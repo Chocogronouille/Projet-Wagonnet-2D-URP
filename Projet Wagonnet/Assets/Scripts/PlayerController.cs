@@ -1,0 +1,86 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public KeyCode keyLeft;
+    public KeyCode keyRight;
+    public KeyCode keyUp;
+    public KeyCode keyDown;
+    public float walkSpeed;
+    public float fastFallSpeed;
+    public float jumpForce;
+    private int _jumpBuffer;
+    [SerializeField] private int jumpBufferTime;
+    [SerializeField] private Rigidbody2D rbCharacter;
+    [SerializeField] private bool isAirborn;
+    [SerializeField] private int coyoteTime;
+
+    void Update()
+    {
+        
+        if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
+        {
+            _jumpBuffer -= 1;
+            if (isAirborn == false)
+            {
+                Jump();                     //Si la touche de saut a été enfoncée dans les temps et que le personnage n'est pas en l'air, il saute
+            }
+        }
+
+        if (Input.GetKeyDown(keyLeft))      //Quand la touche de gauche est enfoncée, le personnage obtient une vitesse vers la gauche
+        {
+            rbCharacter.velocity = new Vector2(-walkSpeed, rbCharacter.velocity.y);
+        }
+        
+        if (Input.GetKeyDown(keyRight))     //Quand la touche de droite est enfoncée, le personnage obtient une vitesse vers la droite
+        {
+            rbCharacter.velocity = new Vector2(walkSpeed, rbCharacter.velocity.y);
+        }
+        
+        if (Input.GetKeyDown(keyUp))        //Quand la touche de saut est enfoncée, on commence a compter les frame de jump buffer
+        {
+            _jumpBuffer = jumpBufferTime;
+        }
+        
+        if (Input.GetKey(keyDown))          //Quand la touche de chute est enfoncée, le personnage obtient une vitesse vers le bas
+        {
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        
+        isAirborn = false;                  //Quand le personnage atterit sur une plateforme, il n'est plus considéré en l'air
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        CoyoteTime();                       //Quand le personnage sort d'une plateforme, on lance la coroutine coyote time
+    }
+
+    void Jump()                             //Fonction de saut qui donne une impulsion vers le haut au personnage
+    {
+        isAirborn = true;                   //Le personnage est en l'air
+        _jumpBuffer = 0;                    //On arrête le décompte des frames de jump buffer
+        rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+    }
+
+    IEnumerator CoyoteTime()                //Coroutine du coyote time
+    {
+        if (coyoteTime!=0)                  //Si on vient de quitter une plateforme, on décompte les frames pour encore sauter
+        {
+            coyoteTime -= 1;
+        }
+        else                                //Quand les frames sont passées, le personnage est en l'air et on stoppe le décompte
+        {
+            isAirborn = true;
+            StopCoroutine(CoyoteTime());
+        }
+
+        yield return null;
+    }
+}
