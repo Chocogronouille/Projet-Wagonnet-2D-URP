@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     private int _jumpBuffer;
     public float drag;
+    [SerializeField] private bool leftButtonPressed;
+    [SerializeField] private bool rightButtonPressed;
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private bool isAirborn;
@@ -32,31 +34,41 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(keyLeft))      //Quand la touche de gauche est enfoncée, le personnage obtient une vitesse vers la gauche
+        if (Input.GetKeyDown(keyLeft))      //Quand la touche de gauche est enfoncée, le personnage obtient une vitesse vers la gauche
         {
+            leftButtonPressed = true;
             EndDrag();
             StartMoveLeft();
         }
 
         if (Input.GetKeyUp(keyLeft))
         {
+            leftButtonPressed = false;
             if (isAirborn == false)
             {
-                Drag();
+                if (rightButtonPressed == false)
+                {
+                    Drag();
+                }
             }
         }
 
-        if (Input.GetKey(keyRight))     //Quand la touche de droite est enfoncée, le personnage obtient une vitesse vers la droite
+        if (Input.GetKeyDown(keyRight))     //Quand la touche de droite est enfoncée, le personnage obtient une vitesse vers la droite
         {
+            rightButtonPressed = true;
             EndDrag();
             StartMoveRight();
         }
         
         if (Input.GetKeyUp(keyRight))
         {
+            rightButtonPressed = false;
             if (isAirborn == false)
             {
-                Drag();
+                if (leftButtonPressed == false)
+                {
+                    Drag();
+                }
             }
         }
 
@@ -73,7 +85,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Drag();
+        if (leftButtonPressed == false)
+        {
+            if (rightButtonPressed == false)
+            {
+                Drag();
+            }
+        }
         isAirborn = false;                  //Quand le personnage atterit sur une plateforme, il n'est plus considéré en l'air
     }
 
