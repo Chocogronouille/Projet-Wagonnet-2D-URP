@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float fastFallSpeed;
     public float jumpForce;
     private int _jumpBuffer;
+    public float drag;
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private bool isAirborn;
@@ -30,16 +32,34 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(keyLeft))      //Quand la touche de gauche est enfoncée, le personnage obtient une vitesse vers la gauche
+        if (Input.GetKey(keyLeft))      //Quand la touche de gauche est enfoncée, le personnage obtient une vitesse vers la gauche
         {
-            rbCharacter.velocity = new Vector2(-walkSpeed, rbCharacter.velocity.y);
+            EndDrag();
+            StartMoveLeft();
+        }
+
+        if (Input.GetKeyUp(keyLeft))
+        {
+            if (isAirborn == false)
+            {
+                Drag();
+            }
+        }
+
+        if (Input.GetKey(keyRight))     //Quand la touche de droite est enfoncée, le personnage obtient une vitesse vers la droite
+        {
+            EndDrag();
+            StartMoveRight();
         }
         
-        if (Input.GetKeyDown(keyRight))     //Quand la touche de droite est enfoncée, le personnage obtient une vitesse vers la droite
+        if (Input.GetKeyUp(keyRight))
         {
-            rbCharacter.velocity = new Vector2(walkSpeed, rbCharacter.velocity.y);
+            if (isAirborn == false)
+            {
+                Drag();
+            }
         }
-        
+
         if (Input.GetKeyDown(keyUp))        //Quand la touche de saut est enfoncée, on commence a compter les frame de jump buffer
         {
             _jumpBuffer = jumpBufferTime;
@@ -47,18 +67,19 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKey(keyDown))          //Quand la touche de chute est enfoncée, le personnage obtient une vitesse vers le bas
         {
-            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+            FastFall();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        
+        Drag();
         isAirborn = false;                  //Quand le personnage atterit sur une plateforme, il n'est plus considéré en l'air
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
+        EndDrag();
         CoyoteTime();                       //Quand le personnage sort d'une plateforme, on lance la coroutine coyote time
     }
 
@@ -67,6 +88,21 @@ public class PlayerController : MonoBehaviour
         isAirborn = true;                   //Le personnage est en l'air
         _jumpBuffer = 0;                    //On arrête le décompte des frames de jump buffer
         rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+    }
+
+    void StartMoveLeft()
+    {
+        rbCharacter.velocity = new Vector2(-walkSpeed, rbCharacter.velocity.y);
+    }
+
+    void StartMoveRight()
+    {
+        rbCharacter.velocity = new Vector2(walkSpeed, rbCharacter.velocity.y);
+    }
+
+    void FastFall()
+    {
+        rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
     }
 
     IEnumerator CoyoteTime()                //Coroutine du coyote time
@@ -82,5 +118,15 @@ public class PlayerController : MonoBehaviour
         }
 
         yield return null;
+    }
+    
+    void Drag()
+    {
+        rbCharacter.drag = drag;
+    }
+
+    void EndDrag()
+    {
+        rbCharacter.drag = 0;
     }
 }
