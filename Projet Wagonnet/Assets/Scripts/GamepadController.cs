@@ -79,6 +79,7 @@ public class GamepadController : MonoBehaviour
         else                                //Quand les frames sont passées, le personnage est en l'air et on stoppe le décompte
         {
             isAirborn = true;
+            Debug.Log(isAirborn);
             StopCoroutine(CoyoteTime());
         }
 
