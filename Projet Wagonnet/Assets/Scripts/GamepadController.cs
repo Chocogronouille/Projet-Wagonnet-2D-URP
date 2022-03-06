@@ -14,9 +14,10 @@ public class GamepadController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float fastFallSpeed;
     [SerializeField] private bool isAirborn;
+    [SerializeField] private bool coyoteFloat;
     [SerializeField] private int jumpBufferTime;
-    [SerializeField] private int coyoteTime;
-    
+    [SerializeField] private float coyoteTime;
+
     void Update()
     {
         Move();
@@ -42,6 +43,19 @@ public class GamepadController : MonoBehaviour
         {
             FastFall();
         }
+
+        if (coyoteFloat == false)
+        {
+            if (rbCharacter.velocity.y < 0)
+            {
+                if (isAirborn == false)
+                {
+                    Debug.Log("Tombe");
+                    coyoteFloat = true;
+                    StartCoroutine(CoyoteTime());
+                }
+            }
+        }
     }
 
     void Move()
@@ -62,27 +76,18 @@ public class GamepadController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        StopCoroutine(CoyoteTime());
         isAirborn = false;
+        coyoteFloat = false;
+        Debug.Log("Landed");
     }
-    
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        CoyoteTime();                       //Quand le personnage sort d'une plateforme, on lance la coroutine coyote time
-    }
-    
-    IEnumerator CoyoteTime()                //Coroutine du coyote time
-    {
-        if (coyoteTime!=0)                  //Si on vient de quitter une plateforme, on décompte les frames pour encore sauter
-        {
-            coyoteTime -= 1;
-        }
-        else                                //Quand les frames sont passées, le personnage est en l'air et on stoppe le décompte
-        {
-            isAirborn = true;
-            Debug.Log(isAirborn);
-            StopCoroutine(CoyoteTime());
-        }
 
-        yield return null;
+    private IEnumerator CoyoteTime()                //Coroutine du coyote time
+    {
+        Debug.Log("CoyoteTime");
+        yield return new WaitForSeconds(coyoteTime);
+        isAirborn = true;
+        Debug.Log(isAirborn);
+        StopCoroutine(CoyoteTime());
     }
 }
