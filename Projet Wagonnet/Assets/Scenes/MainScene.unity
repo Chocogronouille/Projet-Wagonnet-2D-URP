@@ -854,4 +854,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0}
-  WalkSpeed: 0.1
+  walkSpeed: 12
+  rbCharacter: {fileID: 1935303538}
+  jumpForce: 10
+  fastFallSpeed: 20
+  isAirborn: 0
+  coyoteFloat: 0
+  jumpBufferTime: 50
+  coyoteTime: 0.2

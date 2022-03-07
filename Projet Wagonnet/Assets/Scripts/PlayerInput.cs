@@ -9,7 +9,17 @@ public class PlayerInput : MonoBehaviour
     private InputActions farmerInputActions;
     private InputAction movement;
     public Vector2 Direction;
-    public float WalkSpeed;
+
+    public float walkSpeed;
+    private int _jumpBuffer;
+
+    [SerializeField] private Rigidbody2D rbCharacter;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float fastFallSpeed;
+    [SerializeField] private bool isAirborn;
+    [SerializeField] private bool coyoteFloat;
+    [SerializeField] private int jumpBufferTime;
+    [SerializeField] private float coyoteTime;
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,18 +37,84 @@ public class PlayerInput : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-      Debug.Log("Jump!!");
+   //   Jump();
+      _jumpBuffer = jumpBufferTime;
     }
 
- /*   private void FixedUpdate()
+    private void Jump()
     {
-       Debug.Log("Movement Values " + movement.ReadValue<Vector2>());
-    } */
+      Debug.Log("Jump!!");
+      isAirborn = true;
+      rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+
+    /*  
+    _jumpBuffer = jumpBufferTime;
+    */
+    }
+    
+    
 
     // Update is called once per frame
     void Update()
     {
        Direction = movement.ReadValue<Vector2>();
-       gameObject.transform.Translate(Direction.x * WalkSpeed,Direction.y * WalkSpeed,0);  
+       Move();
+        
+        // Jump Buffer
+        if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
+        {
+            _jumpBuffer -= 1;
+            if (isAirborn == false)
+            {
+                Jump();                     //Si la touche de saut a été enfoncée dans les temps et que le personnage n'est pas en l'air, il saute
+            } 
+        } 
+
+         // Coyote Time
+            if (coyoteFloat == false)
+        {
+            if (rbCharacter.velocity.y < 0)
+            {
+                if (isAirborn == false)
+                {
+                    Debug.Log("Tombe");
+                    coyoteFloat = true;
+                    StartCoroutine(CoyoteTime());
+                }
+            }
+        }
+
+          if (Direction.y < -0.7f)
+        {
+            FastFall();
+        } 
+     }
+
+         void Move()
+    {
+        rbCharacter.velocity = new Vector2(walkSpeed * Direction.x, rbCharacter.velocity.y);
     }
-}
+       
+    void FastFall()
+    {
+        rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+    }
+
+     void OnCollisionEnter2D(Collision2D other)
+    {
+        StopCoroutine(CoyoteTime());
+        isAirborn = false;
+        coyoteFloat = false;
+        Debug.Log("Landed");
+    }
+
+    IEnumerator CoyoteTime()                //Coroutine du coyote time
+    {
+        Debug.Log("CoyoteTime");
+        yield return new WaitForSeconds(coyoteTime);
+        isAirborn = true;
+        Debug.Log(isAirborn);
+        StopCoroutine(CoyoteTime());
+    }
+    }
+

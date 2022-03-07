@@ -33,10 +33,7 @@ public class GamepadController : MonoBehaviour
         
         if(Input.GetButtonDown("Jump"))
         {
-            if (isAirborn == false)
-            {
-                _jumpBuffer = jumpBufferTime;
-            }
+            _jumpBuffer = jumpBufferTime;
         }
 
         if (Input.GetAxis("Vertical") < -0.7f)
