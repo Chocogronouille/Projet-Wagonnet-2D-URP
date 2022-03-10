@@ -1,15 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class GamepadController : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
+
+    private InputActions farmerInputActions;
+    private InputAction movement;
+    public Vector2 Direction;
+
     public float walkSpeed;
     private int _jumpBuffer;
-    
+
     [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fastFallSpeed;
@@ -17,31 +20,58 @@ public class GamepadController : MonoBehaviour
     [SerializeField] private bool coyoteFloat;
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private float coyoteTime;
+    // Start is called before the first frame update
+    void Awake()
+    {
+       farmerInputActions = new InputActions();    
+    }
 
+    private void OnEnable()
+    {
+       movement = farmerInputActions.Player.Movement;
+       movement.Enable();
+
+       farmerInputActions.Player.Jump.performed += DoJump;
+       farmerInputActions.Player.Jump.Enable();
+    }
+
+    private void DoJump(InputAction.CallbackContext obj)
+    {
+   //   Jump();
+      _jumpBuffer = jumpBufferTime;
+    }
+
+    private void Jump()
+    {
+      Debug.Log("Jump!!");
+      isAirborn = true;
+      rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+
+    /*  
+    _jumpBuffer = jumpBufferTime;
+    */
+    }
+    
+    
+
+    // Update is called once per frame
     void Update()
     {
-        Move();
+       Direction = movement.ReadValue<Vector2>();
+       Move();
         
+        // Jump Buffer
         if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
         {
             _jumpBuffer -= 1;
             if (isAirborn == false)
             {
                 Jump();                     //Si la touche de saut a été enfoncée dans les temps et que le personnage n'est pas en l'air, il saute
-            }
-        }
-        
-        if(Input.GetButtonDown("Jump"))
-        {
-            _jumpBuffer = jumpBufferTime;
-        }
+            } 
+        } 
 
-        if (Input.GetAxis("Vertical") < -0.7f)
-        {
-            FastFall();
-        }
-
-        if (coyoteFloat == false)
+         // Coyote Time
+            if (coyoteFloat == false)
         {
             if (rbCharacter.velocity.y < 0)
             {
@@ -53,25 +83,24 @@ public class GamepadController : MonoBehaviour
                 }
             }
         }
-    }
 
-    void Move()
+          if (Direction.y < -0.7f)
+        {
+            FastFall();
+        } 
+     }
+
+         void Move()
     {
-        rbCharacter.velocity = new Vector2(walkSpeed * Input.GetAxis("Horizontal"), rbCharacter.velocity.y);
+        rbCharacter.velocity = new Vector2(walkSpeed * Direction.x, rbCharacter.velocity.y);
     }
-    
-    void Jump()
-    {
-        isAirborn = true;
-        rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-    }
-    
+       
     void FastFall()
     {
         rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+     void OnCollisionEnter2D(Collision2D other)
     {
         StopCoroutine(CoyoteTime());
         isAirborn = false;
@@ -79,7 +108,7 @@ public class GamepadController : MonoBehaviour
         Debug.Log("Landed");
     }
 
-    private IEnumerator CoyoteTime()                //Coroutine du coyote time
+    IEnumerator CoyoteTime()                //Coroutine du coyote time
     {
         Debug.Log("CoyoteTime");
         yield return new WaitForSeconds(coyoteTime);
@@ -87,4 +116,5 @@ public class GamepadController : MonoBehaviour
         Debug.Log(isAirborn);
         StopCoroutine(CoyoteTime());
     }
-}
+    }
+
