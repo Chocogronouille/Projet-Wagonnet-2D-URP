@@ -8,7 +8,7 @@ public class PunchingBall : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Mathf.RoundToInt(score));
+        Debug.Log(Mathf.RoundToInt(Math.Abs((score))));
     }
 
     private void OnTriggerEnter2D(Collider2D other)

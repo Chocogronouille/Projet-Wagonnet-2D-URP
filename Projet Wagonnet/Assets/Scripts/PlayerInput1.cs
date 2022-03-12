@@ -20,6 +20,9 @@ public class PlayerInput1 : MonoBehaviour
     [SerializeField] private bool coyoteFloat;
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private float coyoteTime;
+
+    //public Vector2 newPosition= new Vector2(0.3f, 2.6f);
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,8 +37,14 @@ public class PlayerInput1 : MonoBehaviour
        instance = this;
        #endregion
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("DeathZoneActivé");
+        transform.position = new Vector3(0,3, 0);
+    }
 
-    private void OnEnable()
+     private void OnEnable()
     {
        movement = farmerInputActions.Player.Movement;
        movement.Enable();
