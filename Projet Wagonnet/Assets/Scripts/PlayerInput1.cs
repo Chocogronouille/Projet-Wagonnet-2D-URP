@@ -38,12 +38,12 @@ public class PlayerInput1 : MonoBehaviour
        #endregion
     }
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("DeathZoneActivé");
-        transform.position = new Vector3(0,3, 0);
-    }
-
+//     /*private void OnTriggerEnter2D(Collider2D other)
+//     {
+//         Debug.Log("DeathZoneActivé");
+//         transform.position = new Vector3(0,3, 0);
+//     }
+// */
      private void OnEnable()
     {
        movement = farmerInputActions.Player.Movement;
