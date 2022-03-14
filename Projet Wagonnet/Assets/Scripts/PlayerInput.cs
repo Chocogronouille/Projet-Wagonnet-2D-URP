@@ -12,12 +12,12 @@ public class PlayerInput : MonoBehaviour
 
     public float walkSpeed;
     private int _jumpBuffer;
+    public bool isAirborn;
+    public bool coyoteFloat;
 
     [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fastFallSpeed;
-    [SerializeField] private bool isAirborn;
-    [SerializeField] private bool coyoteFloat;
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private float coyoteTime;
     
@@ -42,9 +42,9 @@ public class PlayerInput : MonoBehaviour
 
     private void Jump()
     {
-      isAirborn = true;
-      rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-      
+        isAirborn = true;
+        _jumpBuffer = 0; 
+        rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
     }
     
     
@@ -66,7 +66,7 @@ public class PlayerInput : MonoBehaviour
         } 
 
          // Coyote Time
-            if (coyoteFloat == false)
+        if (coyoteFloat == false)
         {
             if (rbCharacter.velocity.y < 0)
             {
@@ -91,21 +91,17 @@ public class PlayerInput : MonoBehaviour
        
     void FastFall()
     {
-        rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+        if (isAirborn)
+        {
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+        }
     }
 
-     void OnCollisionEnter2D(Collision2D other)
-    {
-        StopCoroutine(CoyoteTime());
-        isAirborn = false;
-        coyoteFloat = false;
-    }
-
-    IEnumerator CoyoteTime()                //Coroutine du coyote time
+    public IEnumerator CoyoteTime()                //Coroutine du coyote time
     {
         yield return new WaitForSeconds(coyoteTime);
         isAirborn = true;
-        Debug.Log(isAirborn);
+        coyoteFloat = false;
         StopCoroutine(CoyoteTime());
     }
 }
