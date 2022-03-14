@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Serialization;
+using UnityEngine;
 using Cinemachine;
 
 public class TrackCreator : MonoBehaviour
@@ -9,6 +12,8 @@ public class TrackCreator : MonoBehaviour
     private  CinemachinePath.Waypoint[] generatedWaypoints;
     private int waypointCount;
     int currentWaypointIndex = 0;
+
+    public Vector3 Vec0;
 
 
     void Start()
@@ -30,6 +35,7 @@ public class TrackCreator : MonoBehaviour
         for (int i = 0; i < track.transform.childCount; i++)
         {
             Transform currentChild = track.transform.GetChild(i);
+            new Vector3();
 
             if (i == 0 || loopedTrack)
             {

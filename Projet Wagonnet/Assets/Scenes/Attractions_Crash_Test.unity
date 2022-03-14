@@ -324,6 +324,7 @@ MonoBehaviour:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.2
+  posA: {x: 0, y: 0, z: 0}
   m_Looped: 0
   m_Waypoints:
   - position: {x: 0, y: 0, z: -5}
@@ -446,6 +447,7 @@ MonoBehaviour:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.2
+  posA: {x: 0, y: 0, z: 0}
   m_Looped: 0
   m_Waypoints:
   - position: {x: 0, y: 0, z: -5}
@@ -515,9 +517,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1289769969}
   - component: {fileID: 1289769968}
-  - component: {fileID: 1289769967}
   - component: {fileID: 1289769971}
   - component: {fileID: 1289769970}
+  - component: {fileID: 1289769967}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -534,13 +536,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1289769966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a9c787e5d1bbf48a389834c4a9641c, type: 3}
+  m_Script: {fileID: 11500000, guid: edc7eec55babaed4f9ea7609ba713543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1536679569}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 0.5
+  m_Speed: 2
   m_Position: 0
 --- !u!212 &1289769968
 SpriteRenderer:
@@ -631,6 +633,8 @@ MonoBehaviour:
   coyoteTime: 0.2
   Player: {fileID: 1289769966}
   other: {fileID: 1592018860}
+  track: {fileID: 0}
+  dist: 6.8836007
 --- !u!50 &1289769971
 Rigidbody2D:
   serializedVersion: 4
@@ -787,24 +791,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1536679568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d37e5385efd7064cb1d54c94960acae, type: 3}
+  m_Script: {fileID: 11500000, guid: 2955af53361d82a47bafd72a5ae275e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Resolution: 20
   m_Appearance:
-    pathColor: {r: 1, g: 0, b: 0.009780884, a: 1}
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.2
-  m_Looped: 0
+  posA: {x: 0, y: 0, z: 0}
+  m_Looped: 1
   m_Waypoints:
-  - position: {x: -5.199707, y: -1.6187569, z: 5.141127}
-    tangent: {x: 1, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
     roll: 0
-  - position: {x: 1.2487198, y: -1.6501738, z: 4.9304023}
-    tangent: {x: 1, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
     roll: 0
-  - position: {x: 7.636231, y: -1.6249778, z: 4.74914}
-    tangent: {x: 1, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
     roll: 0
 --- !u!4 &1536679570
 Transform:
@@ -995,6 +1000,7 @@ MonoBehaviour:
     pathColor: {r: 1, g: 0, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.2
+  posA: {x: 0, y: 0, z: 0}
   m_Looped: 0
   m_Waypoints:
   - position: {x: 0, y: 0, z: -5}
