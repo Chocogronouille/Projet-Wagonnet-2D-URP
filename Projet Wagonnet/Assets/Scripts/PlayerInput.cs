@@ -6,13 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     private InputActions farmerInputActions;
-    private InputAction movement;
+    public InputAction movement;
     private int _jumpBuffer;
 
     public static PlayerInput instance; // singleton
     public float walkSpeed;
     public bool isAirborn;
     public bool coyoteFloat;
+    public bool canSpinJump;
 
     [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private float jumpForce;
@@ -46,20 +47,41 @@ public class PlayerInput : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        _jumpBuffer = jumpBufferTime;
+        if (!coyoteFloat)                   //Si le joueur n'est pas en CoyoteTime, il SpinJump ou déclenche le JumpBuffer
+        {
+            if (canSpinJump)
+            {
+                SpinJump();
+            }
+            else
+            {
+                _jumpBuffer = jumpBufferTime;
+            }
+        }
+        else                                //Si le joueur est en CoyoteTime, il saute
+        {
+            Jump();
+        }
     }
 
     private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
     {
         isAirborn = true;
+        canSpinJump = true;
         _jumpBuffer = 0; 
+        rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+    }
+
+    private void SpinJump()
+    {
+        canSpinJump = false;
         rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
     }
     
     void Update()
     {
-       Direction = movement.ReadValue<Vector2>();
-       Move();
+        Direction = movement.ReadValue<Vector2>();
+        Move();
         
         // Jump Buffer
         if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
@@ -72,11 +94,11 @@ public class PlayerInput : MonoBehaviour
         } 
 
          // Coyote Time
-        if (coyoteFloat == false)
+        if (isAirborn == false)
         {
             if (rbCharacter.velocity.y < 0) //Si le personnage commence à tomber, on lance la coroutine CoyoteTime
             {
-                if (isAirborn == false)
+                if (coyoteFloat == false)
                 {
                     coyoteFloat = true;
                     StartCoroutine(CoyoteTime());
@@ -108,6 +130,7 @@ public class PlayerInput : MonoBehaviour
         yield return new WaitForSeconds(coyoteTime);
         isAirborn = true;
         coyoteFloat = false;
+        canSpinJump = true;
         StopCoroutine(CoyoteTime());
     }
 }
