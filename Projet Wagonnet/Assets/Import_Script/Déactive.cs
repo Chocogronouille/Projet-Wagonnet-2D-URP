@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine.Utility;
 
 namespace Cinemachine
 {
@@ -30,6 +31,7 @@ public class Déactive : MonoBehaviour
 
     public float walkSpeed;
     private int _jumpBuffer;
+    
 
      [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private float jumpForce;
@@ -40,6 +42,12 @@ public class Déactive : MonoBehaviour
     [SerializeField] private float coyoteTime;
 
     public GameObject Player;
+
+    public Transform other;
+    public GameObject track;
+    public float dist;
+   // public Vector3 trackPos;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -58,6 +66,9 @@ public class Déactive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      /*  trackPos = track.GetComponent<CinemachinePath>().Waypoint[0].position; */
+        dist = Vector3.Distance(other.position, transform.position);
+
         Direction = movement.ReadValue<Vector2>();
         Move();
 

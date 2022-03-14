@@ -12,15 +12,15 @@ public class PlayerInput : MonoBehaviour
 
     public float walkSpeed;
     private int _jumpBuffer;
+    public bool isAirborn;
+    public bool coyoteFloat;
 
     [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fastFallSpeed;
-    [SerializeField] private bool isAirborn;
-    [SerializeField] private bool coyoteFloat;
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private float coyoteTime;
-    // Start is called before the first frame update
+    
     void Awake()
     {
        farmerInputActions = new InputActions();    
@@ -37,19 +37,14 @@ public class PlayerInput : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-   //   Jump();
-      _jumpBuffer = jumpBufferTime;
+        _jumpBuffer = jumpBufferTime;
     }
 
     private void Jump()
     {
-      Debug.Log("Jump!!");
-      isAirborn = true;
-      rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-
-    /*  
-    _jumpBuffer = jumpBufferTime;
-    */
+        isAirborn = true;
+        _jumpBuffer = 0; 
+        rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
     }
     
     
@@ -71,24 +66,23 @@ public class PlayerInput : MonoBehaviour
         } 
 
          // Coyote Time
-            if (coyoteFloat == false)
+        if (coyoteFloat == false)
         {
             if (rbCharacter.velocity.y < 0)
             {
                 if (isAirborn == false)
                 {
-                    Debug.Log("Tombe");
                     coyoteFloat = true;
                     StartCoroutine(CoyoteTime());
                 }
             }
         }
 
-          if (Direction.y < -0.7f)
+        if (Direction.y < -0.7f)
         {
             FastFall();
         } 
-     }
+    }
 
          void Move()
     {
@@ -97,24 +91,18 @@ public class PlayerInput : MonoBehaviour
        
     void FastFall()
     {
-        rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+        if (isAirborn)
+        {
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+        }
     }
 
-     void OnCollisionEnter2D(Collision2D other)
+    public IEnumerator CoyoteTime()                //Coroutine du coyote time
     {
-        StopCoroutine(CoyoteTime());
-        isAirborn = false;
-        coyoteFloat = false;
-        Debug.Log("Landed");
-    }
-
-    IEnumerator CoyoteTime()                //Coroutine du coyote time
-    {
-        Debug.Log("CoyoteTime");
         yield return new WaitForSeconds(coyoteTime);
         isAirborn = true;
-        Debug.Log(isAirborn);
+        coyoteFloat = false;
         StopCoroutine(CoyoteTime());
     }
-    }
+}
 
