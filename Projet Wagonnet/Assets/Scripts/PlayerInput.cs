@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private bool coyoteFloat;
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private float coyoteTime;
-    // Start is called before the first frame update
+    
     void Awake()
     {
        farmerInputActions = new InputActions();    
@@ -37,19 +37,14 @@ public class PlayerInput : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-   //   Jump();
-      _jumpBuffer = jumpBufferTime;
+        _jumpBuffer = jumpBufferTime;
     }
 
     private void Jump()
     {
-      Debug.Log("Jump!!");
       isAirborn = true;
       rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-
-    /*  
-    _jumpBuffer = jumpBufferTime;
-    */
+      
     }
     
     
@@ -77,18 +72,17 @@ public class PlayerInput : MonoBehaviour
             {
                 if (isAirborn == false)
                 {
-                    Debug.Log("Tombe");
                     coyoteFloat = true;
                     StartCoroutine(CoyoteTime());
                 }
             }
         }
 
-          if (Direction.y < -0.7f)
+        if (Direction.y < -0.7f)
         {
             FastFall();
         } 
-     }
+    }
 
          void Move()
     {
@@ -105,16 +99,14 @@ public class PlayerInput : MonoBehaviour
         StopCoroutine(CoyoteTime());
         isAirborn = false;
         coyoteFloat = false;
-        Debug.Log("Landed");
     }
 
     IEnumerator CoyoteTime()                //Coroutine du coyote time
     {
-        Debug.Log("CoyoteTime");
         yield return new WaitForSeconds(coyoteTime);
         isAirborn = true;
         Debug.Log(isAirborn);
         StopCoroutine(CoyoteTime());
     }
-    }
+}
 
