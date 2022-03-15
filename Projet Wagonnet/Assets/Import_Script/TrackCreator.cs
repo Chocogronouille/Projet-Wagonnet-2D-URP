@@ -16,6 +16,19 @@ public class TrackCreator : MonoBehaviour
     public Vector3 Vec0;
     public GameObject EmptyObject;
 
+     public static TrackCreator instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de TrackCreator dans la scène");
+            return;
+        }
+
+        instance = this;
+    }
+
 
     void Start()
     {
@@ -60,10 +73,11 @@ public class TrackCreator : MonoBehaviour
                 CinemachinePath.Waypoint wp = childCinemachinePath.m_Waypoints[idx];
                 CinemachinePath.Waypoint targetWP = new CinemachinePath.Waypoint();
                 targetWP.position = child.localRotation * wp.position + child.localPosition;
+                targetWP.position.z = 0f;
                 targetWP.tangent = child.localRotation * wp.tangent;
                 targetWP.roll = wp.roll;
                 generatedWaypoints[currentWaypointIndex] = targetWP;
-                currentWaypointIndex++;
+                currentWaypointIndex ++;
            //     new Vector3(targetWP.position.x,targetWP.position.y,targetWP.position.z);
                 Vector3 objectScale = child.transform.localScale;
                 Instantiate(EmptyObject,child.transform);
