@@ -45,17 +45,21 @@ namespace Player
 
             farmerInputActions.Player.Jump.performed += DoJump;
             farmerInputActions.Player.Jump.Enable();
+            
+            farmerInputActions.Player.SpinMove.performed += DoSpin;
+            farmerInputActions.Player.SpinMove.Enable();
         }
 
         private void DoJump(InputAction.CallbackContext obj)
         {
+            _jumpBuffer = jumpBufferTime;
+        }
+        
+        private void DoSpin(InputAction.CallbackContext obj)
+        {
             if (canSpinJump)
             {
                 SpinJump();
-            }
-            else
-            {
-                _jumpBuffer = jumpBufferTime;
             }
         }
     
