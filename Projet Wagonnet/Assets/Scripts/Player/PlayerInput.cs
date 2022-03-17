@@ -17,6 +17,9 @@ namespace Player
         public bool canSpinJump;
         public Vector2 direction;
 
+        public Animator animator;
+        public SpriteRenderer spriteRenderer;
+
         [SerializeField] private Rigidbody2D rbCharacter;
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
@@ -108,6 +111,10 @@ namespace Player
         void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
         {
             rbCharacter.velocity = new Vector2(walkSpeed * direction.x, rbCharacter.velocity.y);
+            
+            Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse
+            float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
+            animator.SetFloat("Speed", characterVelocity);              // animator
         }
     
         private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
@@ -130,6 +137,18 @@ namespace Player
             if (isAirborn)
             {
                 rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+            }
+        }
+
+        void Flip(float _velocity)
+        {
+            if (_velocity > 0.1f)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (_velocity < -0.1f)
+            {
+                spriteRenderer.flipX = true;
             }
         }
 
