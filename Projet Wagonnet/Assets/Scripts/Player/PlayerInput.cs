@@ -24,6 +24,7 @@ namespace Player
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
+        [SerializeField] private float apexThreshold;
 
         void Awake()
         {
@@ -63,7 +64,7 @@ namespace Player
 
         private void EndJump(InputAction.CallbackContext obj)
         {
-            if (rbCharacter.velocity.y > 1)
+            if (rbCharacter.velocity.y > apexThreshold)
             {
                 rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
                 rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse); 
