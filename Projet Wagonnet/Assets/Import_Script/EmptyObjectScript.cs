@@ -15,7 +15,7 @@ public class EmptyObjectScript : MonoBehaviour
     private int moveIndex;
     private int NewIndex;
 
-    public float waitTime = 1f;
+    private float delayTime = 0.00001f;
     public bool isCoroutine = false;
 
     public static EmptyObjectScript instance;
@@ -42,6 +42,7 @@ public class EmptyObjectScript : MonoBehaviour
         index = transform.parent.GetSiblingIndex();
         Debug.Log(index);
    //     GetComponent<BoxCollider2D>().size = new Vector2(5f,1f);
+   
     }
 
     // Update is called once per frame
@@ -91,9 +92,17 @@ public class EmptyObjectScript : MonoBehaviour
             EmptyObject.AddComponent<DirectionGizmo>(); */
             PlayerCollider.GetComponent<BoxCollider2D>().enabled = false;
             isCoroutine = true;
-            TrackCreator.instance.GenerateTrack();
+    //        TrackCreator.instance.GenerateTrack();
+            StartCoroutine(Text(delayTime));
         }
     }
+
+    IEnumerator Text(float delayTime)
+{
+   yield return new WaitForSeconds(delayTime);
+   Debug.Log("ok");
+   TrackCreator.instance.GenerateTrack();
+}
  /*   void DestroyObjects()
     {
       if(index < NewIndex)
