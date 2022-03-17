@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EmptyObjectScript : MonoBehaviour
 {
+    private GameObject EmptyObject;
     public Vector3 PlayerPos;
-        private GameObject EmptyObject;
     public GameObject Player;
     public GameObject PlayerCollider;
     public GameObject Track;
@@ -14,6 +14,9 @@ public class EmptyObjectScript : MonoBehaviour
     private int index;
     private int moveIndex;
     private int NewIndex;
+
+    public float waitTime = 1f;
+    public bool isCoroutine = false;
 
     public static EmptyObjectScript instance;
 
@@ -52,6 +55,17 @@ public class EmptyObjectScript : MonoBehaviour
         {
            moveIndex = 1;
         }
+
+          if(isCoroutine)
+    {
+      IEnumerator WaitAndPrint(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("WaitAndPrint ");
+        isCoroutine = false;
+    }
+    }
+
     /*    if(index <= NewIndex)
             {
                 Destroy(transform.parent.gameObject);
@@ -69,13 +83,23 @@ public class EmptyObjectScript : MonoBehaviour
             Instantiate(EmptyObject);
             EmptyObject.transform.parent = Track.transform;
             EmptyObject.transform.position = PlayerPos;
-            EmptyObject.transform.SetSiblingIndex(index - moveIndex);
-       //     NewIndex = index - moveIndex;
+            EmptyObject.transform.SetSiblingIndex(index);
+            EmptyObject.AddComponent<IndexScript>();
+       //     NewIndex = index;
        //     DestroyRails.instance.PlayerPosPos = EmptyObject;
        /*     EmptyObject.AddComponent<Cinemachine.CinemachinePath>();
             EmptyObject.AddComponent<DirectionGizmo>(); */
             PlayerCollider.GetComponent<BoxCollider2D>().enabled = false;
+            isCoroutine = true;
             TrackCreator.instance.GenerateTrack();
         }
     }
+ /*   void DestroyObjects()
+    {
+      if(index < NewIndex)
+      {
+          Destroy(transform.parent.gameObject);
+      }
+    } */
+
 }
