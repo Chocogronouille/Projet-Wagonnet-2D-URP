@@ -23,6 +23,8 @@ namespace Player
         [SerializeField] private float fastFallSpeed;
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
+        [SerializeField] private float apexEndJump;
+        [SerializeField] private float apexThreshold;
 
         void Awake()
         {
@@ -44,6 +46,7 @@ namespace Player
             movement.Enable();
 
             farmerInputActions.Player.Jump.performed += DoJump;
+            farmerInputActions.Player.Jump.canceled += EndJump;
             farmerInputActions.Player.Jump.Enable();
         }
 
@@ -56,6 +59,15 @@ namespace Player
             else
             {
                 _jumpBuffer = jumpBufferTime;
+            }
+        }
+
+        private void EndJump(InputAction.CallbackContext obj)
+        {
+            if (rbCharacter.velocity.y > apexThreshold)
+            {
+                rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
+                rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse); 
             }
         }
     
