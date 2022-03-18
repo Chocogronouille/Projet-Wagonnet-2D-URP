@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &434972749 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8061828029134140003, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+  m_PrefabInstance: {fileID: 8061828031058645264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1644316182
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,25 +624,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: apexEndJump
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: apexThreshold
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: movement.m_Id
-      value: c6adac8a-decd-4220-8189-f52638eb37ea
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: spinJumpForce
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: movement.m_Name
-      value: Movement
-      objectReference: {fileID: 0}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 434972749}
     m_RemovedComponents:
     - {fileID: 381491917847272927, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}

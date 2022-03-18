@@ -8,7 +8,7 @@ namespace Player
     {
         private InputActions farmerInputActions;
         private int _jumpBuffer;
-    
+
         public static PlayerInput instance; // singleton
         public InputAction movement;
         public float walkSpeed;
@@ -140,13 +140,13 @@ namespace Player
             }
         }
 
-        void Flip(float _velocity)
+        void Flip(float velocity)
         {
-            if (_velocity > 0.1f)
+            if (velocity > 0.1f)
             {
                 spriteRenderer.flipX = false;
             }
-            else if (_velocity < -0.1f)
+            else if (velocity < -0.1f)
             {
                 spriteRenderer.flipX = true;
             }

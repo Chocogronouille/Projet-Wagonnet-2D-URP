@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 8061828029134140002}
   - component: {fileID: 8061828029134140005}
   - component: {fileID: 8061828029134140007}
-  - component: {fileID: 381491917847272927}
+  - component: {fileID: 8708817187567798828}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -218,31 +218,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a14a5cfdb0420c488abbec94eacbba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement:
+    m_Name: Movement
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c6adac8a-decd-4220-8189-f52638eb37ea
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   walkSpeed: 12
   isAirborn: 0
   coyoteFloat: 0
+  canSpinJump: 0
+  direction: {x: 0, y: 0}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   rbCharacter: {fileID: 8061828029134140002}
   jumpForce: 10
+  spinJumpForce: 4
   fastFallSpeed: 20
   jumpBufferTime: 50
   coyoteTime: 0.2
-  Direction: {x: 0, y: 0}
---- !u!114 &381491917847272927
-MonoBehaviour:
+  apexEndJump: 3.5
+  apexThreshold: 1.5
+--- !u!95 &8708817187567798828
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8061828029134140000}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f530ab84d6118a840af0756c8fed4de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 8061828029134140007}
-  left: 276
-  right: 275
-  down: 274
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f92cfec4b3ba80f48b53024c21a99ee2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8061828030669002945
 GameObject:
   m_ObjectHideFlags: 0
