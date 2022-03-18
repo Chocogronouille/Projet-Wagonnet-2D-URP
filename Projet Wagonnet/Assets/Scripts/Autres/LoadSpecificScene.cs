@@ -11,14 +11,15 @@ public class LoadSpecificScene : MonoBehaviour
     private void Awake()
     {
         fadeSystem = GameObject.FindGameObjectWithTag("FadeSystem").GetComponent<Animator>();
-    }
 
+    }
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
             StartCoroutine(loadNextScene());
-            SceneManager.LoadScene(sceneName);
+            
         }
     }
 
@@ -26,5 +27,6 @@ public class LoadSpecificScene : MonoBehaviour
     {
         fadeSystem.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(sceneName);
     }
 }
