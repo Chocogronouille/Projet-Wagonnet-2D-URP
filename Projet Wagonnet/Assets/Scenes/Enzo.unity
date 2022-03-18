@@ -731,6 +731,7 @@ MonoBehaviour:
   - {fileID: 905367751}
   - {fileID: 2010168153}
   - {fileID: 465854163}
+  - {fileID: 334887517}
 --- !u!4 &68827104
 Transform:
   m_ObjectHideFlags: 0
@@ -739,7 +740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68827102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 156.60162, y: 115.48617, z: -109.30801}
+  m_LocalPosition: {x: 156.60162, y: 115.48617, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2317,6 +2318,7 @@ GameObject:
   - component: {fileID: 334887520}
   - component: {fileID: 334887519}
   - component: {fileID: 334887518}
+  - component: {fileID: 334887522}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -2422,6 +2424,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &334887522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334887517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0844a5cc1ab637249884e367c99cc45b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8061828029866323757}
+  timeOffset: 0.2
+  posOffSet: {x: 0, y: 0, z: -20}
 --- !u!1 &335696677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,11 +2948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 150.59
+      value: 153.86
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 112.07
+      value: 115.97
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14031,11 +14048,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5563298686184410655, guid: dc46f6f35927b6347a294d9200288fbd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 113.47
+      value: 143.8
       objectReference: {fileID: 0}
     - target: {fileID: 5563298686184410655, guid: dc46f6f35927b6347a294d9200288fbd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 116.19
+      value: 112.6
       objectReference: {fileID: 0}
     - target: {fileID: 5563298686184410655, guid: dc46f6f35927b6347a294d9200288fbd, type: 3}
       propertyPath: m_LocalPosition.z
