@@ -8,6 +8,8 @@ namespace Cinemachine
 {
     public class CinemachineDollyCart : MonoBehaviour
     {
+        public Vector3 PosDebut;
+      //  public bool isSurfing = false;
         /// <summary>The path to follow</summary>
         [Tooltip("The path to follow")]
         public CinemachinePath m_Path;
@@ -22,6 +24,26 @@ namespace Cinemachine
             /// <summary>Updated in normal MonoBehaviour LateUpdate</summary>
             LateUpdate
         };
+
+        public static CinemachineDollyCart instance;
+
+    private void Awake()
+    {
+     //   EmptyObjectScript.instance.isSurfing = true;
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de CinemachineDollyCart dans la scène");
+            return;
+        }
+
+        instance = this;
+    }
+
+  /*  void Start()
+        {
+            EmptyObjectScript.instance.isSurfing = true;
+        } */
+    
 
         /// <summary>When to move the cart, if Velocity is non-zero</summary>
         [Tooltip("When to move the cart, if Velocity is non-zero")]
@@ -41,12 +63,11 @@ namespace Cinemachine
         [FormerlySerializedAs("m_CurrentDistance")]
         public float m_Position;
 
-        public Vector3 PosA;
 
-        void Awake()
+    /*    void Awake()
             {
                 PosA = m_Path.m_Waypoints[0].position;
-            }
+            } */
         
 
         void FixedUpdate()
@@ -58,7 +79,7 @@ namespace Cinemachine
         void Update()
         {
             float speed = Application.isPlaying ? m_Speed : 0;
-            if (m_UpdateMethod == UpdateMethod.Update)
+           if (m_UpdateMethod == UpdateMethod.Update)
                 SetCartPosition(m_Position + speed * Time.deltaTime);
         }
 
