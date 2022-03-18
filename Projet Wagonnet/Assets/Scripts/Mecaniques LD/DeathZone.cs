@@ -26,10 +26,4 @@ public class DeathZone : MonoBehaviour
         collision.transform.position = playerSpawn.position;
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
