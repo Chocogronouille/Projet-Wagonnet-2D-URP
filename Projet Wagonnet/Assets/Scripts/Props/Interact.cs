@@ -33,7 +33,7 @@ public class Interact : MonoBehaviour
             currentCount = currentCount + 1;
             interactBar.SetCount(currentCount);
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 }
