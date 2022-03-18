@@ -8,6 +8,14 @@ public class Interact : MonoBehaviour
     public int currentCount;
     public InteractBar interactBar;
 
+    /*
+     private void Awake()
+     
+    {
+        interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
+    }
+    */
+    
     private void Start()
     {
         currentCount = 0;
