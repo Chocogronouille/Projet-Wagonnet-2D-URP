@@ -1,4 +1,5 @@
 using System;
+using Player;
 using UnityEngine;
 
 public class PunchingBall : MonoBehaviour
@@ -13,7 +14,7 @@ public class PunchingBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        score += PlayerInput1.instance.rbCharacter.velocity.x * scoreMultiplier;
+        score += PlayerInput.instance.rbCharacter.velocity.x * scoreMultiplier;
     }
 
     public void OnTriggerExit2D(Collider2D other)

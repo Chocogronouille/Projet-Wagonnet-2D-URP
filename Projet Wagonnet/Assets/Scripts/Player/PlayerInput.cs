@@ -19,8 +19,8 @@ namespace Player
 
         public Animator animator;
         public SpriteRenderer spriteRenderer;
-
-        [SerializeField] private Rigidbody2D rbCharacter;
+        public Rigidbody2D rbCharacter;
+        
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
         [SerializeField] private float fastFallSpeed;
