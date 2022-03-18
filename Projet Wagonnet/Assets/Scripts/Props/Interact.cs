@@ -21,7 +21,8 @@ public class Interact : MonoBehaviour
             InteractCounter.instance.AddCounter(1);
             currentCount = currentCount + 1;
             interactBar.SetCount(currentCount);
-            Destroy(gameObject);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            
         }
     }
 }
