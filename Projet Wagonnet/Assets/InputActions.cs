@@ -99,6 +99,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""SpinMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95c1882e-cdda-4dcd-bca2-7aa6a3bd2c81"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpinMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
