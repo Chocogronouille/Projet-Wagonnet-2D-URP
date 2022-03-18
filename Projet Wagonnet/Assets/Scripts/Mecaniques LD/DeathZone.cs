@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class DeathZone : MonoBehaviour
 {
     private Transform playerSpawn;
@@ -15,8 +15,16 @@ public class DeathZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.transform.position = playerSpawn.position;
+            StartCoroutine(ReplacePlayer(collision));
         }
+    }
+
+    private IEnumerator ReplacePlayer(Collider2D collision)
+    {
+        fadeSystem.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(1f);
+        collision.transform.position = playerSpawn.position;
+
     }
 
     // Update is called once per frame

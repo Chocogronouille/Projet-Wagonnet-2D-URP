@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
     public int currentCount;
     public InteractBar interactBar;
+    
+    
+//    private InputActions farmerInputActions;
     
      private void Awake()
      
