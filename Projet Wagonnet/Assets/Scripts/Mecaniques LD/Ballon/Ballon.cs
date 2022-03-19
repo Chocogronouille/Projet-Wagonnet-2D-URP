@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Ballon : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
     [SerializeField] private float gravityScaleBallon;
     [SerializeField] private float duréeBallon;
     private Rigidbody2D _rbPlayer;
@@ -14,8 +13,8 @@ public class Ballon : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _rbPlayer = player.GetComponent<Rigidbody2D>();
-        _playerInput = player.GetComponent<PlayerInput>();
+        _rbPlayer = other.GetComponentInParent<Rigidbody2D>();
+        _playerInput = other.GetComponentInParent<PlayerInput>();
         
         if (_rbPlayer.velocity.y < _playerInput.apexThreshold)
         {
