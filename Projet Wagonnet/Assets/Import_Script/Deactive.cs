@@ -21,7 +21,7 @@ namespace Cinemachine
  //   [HelpURL(Documentation.BaseURL + "manual/CinemachineDollyCart.html")]
 
 
-public class Déactive : MonoBehaviour
+public class Deactive : MonoBehaviour
 {
 
     private InputActions farmerInputActions;
@@ -31,7 +31,7 @@ public class Déactive : MonoBehaviour
     public float walkSpeed;
     private int _jumpBuffer;
 
-     [SerializeField] private Rigidbody2D rbCharacter;
+    [SerializeField] private Rigidbody2D rbCharacter;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fastFallSpeed;
     [SerializeField] private bool isAirborn;
@@ -39,17 +39,22 @@ public class Déactive : MonoBehaviour
     [SerializeField] private int jumpBufferTime;
     [SerializeField] private float coyoteTime;
 
-    public GameObject Player;
+    public GameObject Player; 
+
+    public bool isSurfing;
+    private float waitTime = 0.0001f;
+    private GameObject TheChild;
     // Start is called before the first frame update
     void Awake()
     {
        farmerInputActions = new InputActions();    
-    }
+       TheChild = transform.GetChild(0).gameObject;
+    } 
 
     private void OnEnable()
     {
        movement = farmerInputActions.Player.Movement;
-       movement.Enable();
+       movement.Enable(); 
 
        farmerInputActions.Player.Jump.performed += DoJump;
        farmerInputActions.Player.Jump.Enable();
@@ -59,32 +64,51 @@ public class Déactive : MonoBehaviour
     void Update()
     {
         Direction = movement.ReadValue<Vector2>();
-        Move();
+        Move(); 
 
      /*   if(Input.GetKeyDown(KeyCode.D))
         {
             Player.GetComponent<CinemachineDollyCart>().enabled=false;
         } */
+
+        if(isSurfing)
+        {
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
+        else
+        {
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
     }
 
     private void DoJump(InputAction.CallbackContext obj)
     {
    //   Jump();
    //   _jumpBuffer = jumpBufferTime;
+   gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
    rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-   Debug.Log("Hi");
-   Player.GetComponent<CinemachineDollyCart>().enabled=false;
+   StartCoroutine(LeJump(waitTime));
+ //  rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
     }
 
- /*  private void DoJump()
+   private void DoJump()
     {
       Debug.Log("Jump!!");
       isAirborn = true;
       rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-    } */
+      
+    } 
      void Move()
     {
         rbCharacter.velocity = new Vector2(walkSpeed * Direction.x, rbCharacter.velocity.y);
+    } 
+
+            IEnumerator LeJump(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        isSurfing = false;
+        yield return new WaitForSeconds(waitTime + 0.2f);
+        TheChild.GetComponent<BoxCollider2D>().enabled = true;
     }
 }
 }

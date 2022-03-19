@@ -92,6 +92,7 @@ public class EmptyObjectScript : MonoBehaviour
             EmptyObject.AddComponent<DirectionGizmo>(); */
             PlayerCollider.GetComponent<BoxCollider2D>().enabled = false;
             isCoroutine = true;
+            other.gameObject.GetComponent<Cinemachine.Deactive>().isSurfing = true;
     //        TrackCreator.instance.GenerateTrack();
             StartCoroutine(Text(delayTime));
         }

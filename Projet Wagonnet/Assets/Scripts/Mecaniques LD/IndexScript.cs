@@ -12,6 +12,7 @@ public class IndexScript : MonoBehaviour
         index = gameObject.transform.GetSiblingIndex();     
         Debug.Log(index);
         parent = transform.parent;
+        parent.gameObject.AddComponent<ListOfChild>();
         parent.GetComponent<ListOfChild>().Newindex = index;
         parent.GetComponent<ListOfChild>().enabled = true;
     //    gameObject.transform.SetSiblingIndex(index + 1); 

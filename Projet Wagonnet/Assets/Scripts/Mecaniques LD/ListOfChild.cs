@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ListOfChild : MonoBehaviour
 {
-    public GameObject TheEmpty;
+ //   public GameObject TheEmpty;
     public int Theindex;
     public int Newindex;
     public List<int> goList = new List<int>();
+    private float delayTime = 0.0001f;
     void Start () {
       
          Debug.Log("Child Objects: " + CountChildren(transform));
+    //     gameObject.GetComponent<ListOfChild>().enabled = false;
      }
  
      int CountChildren(Transform a)
@@ -30,6 +32,7 @@ public class ListOfChild : MonoBehaviour
                  Destroy(b.gameObject);
              }
          }
+         StartCoroutine(DeleteFunction(delayTime));
          return childCount;
      }
 
@@ -38,4 +41,10 @@ public class ListOfChild : MonoBehaviour
     {
         
     }
+
+     IEnumerator DeleteFunction(float delayTime)
+{
+   yield return new WaitForSeconds(delayTime);
+   Destroy(gameObject.GetComponent<ListOfChild>());
+}
 }
