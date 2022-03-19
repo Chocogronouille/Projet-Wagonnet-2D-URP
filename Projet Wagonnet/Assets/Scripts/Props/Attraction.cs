@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class Interact : MonoBehaviour
+public class Attraction : MonoBehaviour
 {
     
     private InputActions farmerInputActions;
@@ -58,9 +58,7 @@ public class Interact : MonoBehaviour
             InteractCounter.instance.AddCounter(1);
             currentCount = currentCount + 1;
             interactBar.SetCount(currentCount);
-            GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<Interact>().enabled = false;
 
         }
     }
