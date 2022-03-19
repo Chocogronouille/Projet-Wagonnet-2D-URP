@@ -11,6 +11,7 @@ namespace Player
             player.isAirborn = false;
             player.coyoteFloat = false;
             player.canSpinJump = false;
+            player.isFalling = false;
         }
     
     }

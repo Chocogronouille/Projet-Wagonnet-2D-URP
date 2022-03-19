@@ -126,7 +126,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bead16e418aa4af4985e76a0370476cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,8 +147,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.1021271, g: 0.8018868, b: 0.28480703, a: 1}
+  m_Sprite: {fileID: -4031619653288768660, guid: a5b79f6a5b250b94d9098db73df0d802, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -196,7 +196,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a14a5cfdb0420c488abbec94eacbba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFalling: 0
   movement:
     m_Name: Movement
     m_Type: 0
@@ -231,16 +232,18 @@ MonoBehaviour:
   coyoteFloat: 0
   canSpinJump: 0
   direction: {x: 0, y: 0}
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  apexThreshold: 2
+  animator: {fileID: 8708817187567798828}
+  spriteRenderer: {fileID: 8061828029134140003}
   rbCharacter: {fileID: 8061828029134140002}
   jumpForce: 10
-  spinJumpForce: 4
+  spinJumpForce: 5
   fastFallSpeed: 20
   jumpBufferTime: 50
   coyoteTime: 0.2
   apexEndJump: 3.5
-  apexThreshold: 1.5
+  fallGravityScale: 2
+  startFallSpeedThreshold: 2
 --- !u!95 &8708817187567798828
 Animator:
   serializedVersion: 3

@@ -8,6 +8,7 @@ namespace Player
     {
         private InputActions farmerInputActions;
         private int _jumpBuffer;
+        public bool isFalling;
 
         public static PlayerInput instance; // singleton
         public InputAction movement;
@@ -16,6 +17,7 @@ namespace Player
         public bool coyoteFloat;
         public bool canSpinJump;
         public Vector2 direction;
+        public float apexThreshold;
 
         public Animator animator;
         public SpriteRenderer spriteRenderer;
@@ -27,8 +29,20 @@ namespace Player
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
-        [SerializeField] private float apexThreshold;
+        [SerializeField] private float fallGravityScale;
+        [SerializeField] private float startFallSpeedThreshold;
 
+        private float m_lastDirectionX;
+        private float lastDirectionX      //Si la position du joystick est différente de la dernière position enregistrée, on actualise la vitesse du personnage
+        {
+            get => m_lastDirectionX;
+            set
+            {
+                m_lastDirectionX = value;
+                Move();
+            }
+        }
+        
         void Awake()
         {
             farmerInputActions = new InputActions();
@@ -56,6 +70,8 @@ namespace Player
             farmerInputActions.Player.SpinMove.Enable();
         }
 
+        #region InputAction
+
         private void DoJump(InputAction.CallbackContext obj)
         {
             _jumpBuffer = jumpBufferTime;
@@ -77,11 +93,14 @@ namespace Player
                 rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse); 
             }
         }
+
+        #endregion
+        
     
         void Update()
         {
             direction = movement.ReadValue<Vector2>();
-            Move();
+            lastDirectionX = direction.x;       //On enregistre la position du joystick en x
         
             // Jump Buffer
             if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
@@ -91,14 +110,29 @@ namespace Player
                 {
                     Jump();                     //Si la touche de saut a été enfoncée dans les temps et que le personnage n'est pas en l'air, il saute
                 } 
-            } 
+            }
+
+            // Gestion de la vitesse de chute
+            if (!isFalling)
+            {
+                if (isAirborn)
+                {
+                    if (rbCharacter.velocity.y < startFallSpeedThreshold)
+                    {
+                        isFalling = true;
+                        rbCharacter.gravityScale = fallGravityScale;
+                    }
+                }
+            }
+            
+            
 
             // Coyote Time
-            if (isAirborn == false)
+            if (!isAirborn)
             {
                 if (rbCharacter.velocity.y < 0) //Si le personnage commence à tomber, on lance la coroutine CoyoteTime
                 {
-                    if (coyoteFloat == false)
+                    if (!coyoteFloat)
                     {
                         coyoteFloat = true;
                         StartCoroutine(CoyoteTime());
@@ -111,18 +145,23 @@ namespace Player
                 FastFall();
             } 
         }
+        
+
+        #region FonctionsDéplacements
 
         void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
         {
-            rbCharacter.velocity = new Vector2(walkSpeed * direction.x, rbCharacter.velocity.y);
+            rbCharacter.velocity = new Vector2(walkSpeed*lastDirectionX, rbCharacter.velocity.y);
             
             Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse
             float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
             animator.SetFloat("Speed", characterVelocity);              // animator
         }
-    
+        
         private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
         {
+            rbCharacter.gravityScale = 1;
+            isFalling = false;
             isAirborn = true;
             canSpinJump = true;
             _jumpBuffer = 0; 
@@ -131,6 +170,10 @@ namespace Player
 
         private void SpinJump()
         {
+            rbCharacter.gravityScale = 1;
+            isFalling = false;
+            isAirborn = true;
+            coyoteFloat = false;
             canSpinJump = false;
             rbCharacter.velocity = new Vector2(0, 0);
             rbCharacter.AddForce(new Vector2(0,spinJumpForce),ForceMode2D.Impulse);
@@ -144,6 +187,10 @@ namespace Player
             }
         }
 
+        #endregion
+
+        #region FonctionsAnimator
+
         void Flip(float velocity)
         {
             if (velocity > 0.1f)
@@ -156,14 +203,20 @@ namespace Player
             }
         }
 
-        public IEnumerator CoyoteTime()                         //Coroutine du coyote time
+        #endregion
+
+        #region Coroutine
+
+        private IEnumerator CoyoteTime()                        //Coroutine du coyote time
         {                                                       //On attend X secondes avant de considérer le joueur comme en l'air
+            canSpinJump = true;
             yield return new WaitForSeconds(coyoteTime);
             isAirborn = true;
             coyoteFloat = false;
-            canSpinJump = true;
             StopCoroutine(CoyoteTime());
         }
+
+        #endregion
     }
 }
 
