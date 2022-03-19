@@ -65,7 +65,7 @@ namespace Player
             farmerInputActions.Player.Jump.performed += DoJump;
             farmerInputActions.Player.Jump.canceled += EndJump;
             farmerInputActions.Player.Jump.Enable();
-            
+
             farmerInputActions.Player.SpinMove.performed += DoSpin;
             farmerInputActions.Player.SpinMove.Enable();
         }
@@ -76,7 +76,7 @@ namespace Player
         {
             _jumpBuffer = jumpBufferTime;
         }
-        
+
         private void DoSpin(InputAction.CallbackContext obj)
         {
             if (canSpinJump)
@@ -96,7 +96,6 @@ namespace Player
 
         #endregion
         
-    
         void Update()
         {
             direction = movement.ReadValue<Vector2>();

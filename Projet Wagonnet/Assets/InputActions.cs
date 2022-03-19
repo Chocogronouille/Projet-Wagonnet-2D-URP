@@ -53,6 +53,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PressB"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cd61dfe-767f-4434-9215-1252d38d566f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""SpinMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""347c0ee5-3303-4cd7-8de3-acb915deb653"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +141,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_SpinMove = m_Player.FindAction("SpinMove", throwIfNotFound: true);
+        m_Player_PressB = m_Player.FindAction("PressB", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +204,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_SpinMove;
+    private readonly InputAction m_Player_PressB;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -190,6 +212,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @SpinMove => m_Wrapper.m_Player_SpinMove;
+        public InputAction @PressB => m_Wrapper.m_Player_PressB;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +231,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SpinMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
                 @SpinMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
                 @SpinMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
+                @PressB.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
+                @PressB.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
+                @PressB.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +247,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SpinMove.started += instance.OnSpinMove;
                 @SpinMove.performed += instance.OnSpinMove;
                 @SpinMove.canceled += instance.OnSpinMove;
+                @PressB.started += instance.OnPressB;
+                @PressB.performed += instance.OnPressB;
+                @PressB.canceled += instance.OnPressB;
             }
         }
     }
@@ -230,5 +259,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSpinMove(InputAction.CallbackContext context);
+        void OnPressB(InputAction.CallbackContext context);
     }
 }
