@@ -8,12 +8,12 @@ using UnityEngine.InputSystem;
 public class Cassette : MonoBehaviour
 {
     
-    private InputActions farmerInputActions;
+//    private InputActions farmerInputActions;
 
 
 
-    public int currentCount;
-    public InteractBar interactBar;
+    public int currentCassetteCount;
+   // public InteractBar interactBar;
 
 
 
@@ -22,7 +22,7 @@ public class Cassette : MonoBehaviour
      private void Awake()
      
     {
-        interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
+       // interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
         //farmerInputActions = new InputActions();
     }
     
@@ -36,21 +36,21 @@ public class Cassette : MonoBehaviour
      */
     private void Start()
     {
-        currentCount = 0;
-        interactBar.SetCount(currentCount);
+        currentCassetteCount = 0;
+       // interactBar.SetCount(currentCount);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            InteractCounter.instance.AddCounter(1);
-            currentCount = currentCount + 1;
-            interactBar.SetCount(currentCount);
+            CounterCassette.instance.AddCounterCassette(1);
+            currentCassetteCount = currentCassetteCount + 1;
+          //  interactBar.SetCount(currentCount);
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
 
         }
     }
-    
+
 }

@@ -12,8 +12,8 @@ public class Attraction : MonoBehaviour
 
 
 
-    public int currentCount;
-    public InteractBar interactBar;
+    public int currentAttractionCount;
+   // public InteractBar interactBar;
     public bool isColliding;
     
     
@@ -23,7 +23,7 @@ public class Attraction : MonoBehaviour
      private void Awake()
      
     {
-        interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
+       // interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
         farmerInputActions = new InputActions();
     }
     
@@ -34,8 +34,8 @@ public class Attraction : MonoBehaviour
      }
     private void Start()
     {
-        currentCount = 0;
-        interactBar.SetCount(currentCount);
+        currentAttractionCount = 0;
+        //interactBar.SetCount(currentAttractionCount);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,9 +55,9 @@ public class Attraction : MonoBehaviour
     {
         if (isColliding == true)
         {
-            InteractCounter.instance.AddCounter(1);
-            currentCount = currentCount + 1;
-            interactBar.SetCount(currentCount);
+            CounterAttraction.instance.AddCounterAttraction(1);
+            currentAttractionCount = currentAttractionCount + 1;
+           // interactBar.SetCount(currentAttractionCount);
             GetComponent<BoxCollider2D>().enabled = false;
 
         }
