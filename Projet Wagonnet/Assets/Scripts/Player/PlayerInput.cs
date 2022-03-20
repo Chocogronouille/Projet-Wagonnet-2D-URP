@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,6 +32,7 @@ namespace Player
         [SerializeField] private float apexEndJump;
         [SerializeField] private float fallGravityScale;
         [SerializeField] private float startFallSpeedThreshold;
+        [SerializeField] private float defaultGravityScale;
 
         private float m_lastDirectionX;
         private float lastDirectionX      //Si la position du joystick est différente de la dernière position enregistrée, on actualise la vitesse du personnage
@@ -92,6 +94,7 @@ namespace Player
                 if (rbCharacter.velocity.y > apexThreshold)
                 {
                     isFalling = true;
+                    rbCharacter.gravityScale = fallGravityScale;
                     rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
                     rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse); 
                 }
@@ -132,8 +135,6 @@ namespace Player
                 }
             }
             
-            
-
             // Coyote Time
             if (!isAirborn)
             {
@@ -152,7 +153,6 @@ namespace Player
                 FastFall();
             } 
         }
-        
 
         #region FonctionsDéplacements
 
@@ -167,7 +167,7 @@ namespace Player
         
         private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
         {
-            rbCharacter.gravityScale = 1;
+            rbCharacter.gravityScale = defaultGravityScale;
             isFalling = false;
             isAirborn = true;
             canSpinJump = true;
@@ -177,7 +177,7 @@ namespace Player
 
         private void SpinJump()
         {
-            rbCharacter.gravityScale = 1;
+            rbCharacter.gravityScale = defaultGravityScale;
             isFalling = false;
             isAirborn = true;
             coyoteFloat = false;
