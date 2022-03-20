@@ -146,7 +146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -4031619653288768660, guid: a5b79f6a5b250b94d9098db73df0d802, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -236,12 +236,12 @@ MonoBehaviour:
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   rbCharacter: {fileID: 8061828029134140002}
-  jumpForce: 10
+  jumpForce: 9
   spinJumpForce: 5
   fastFallSpeed: 20
   jumpBufferTime: 50
   coyoteTime: 0.2
-  apexEndJump: 3.5
+  apexEndJump: 2
   fallGravityScale: 2
   startFallSpeedThreshold: 2
 --- !u!95 &8708817187567798828

@@ -8,8 +8,8 @@ namespace Player
     {
         private InputActions farmerInputActions;
         private int _jumpBuffer;
+        
         public bool isFalling;
-
         public static PlayerInput instance; // singleton
         public InputAction movement;
         public float walkSpeed;
@@ -87,10 +87,18 @@ namespace Player
 
         private void EndJump(InputAction.CallbackContext obj)
         {
-            if (rbCharacter.velocity.y > apexThreshold)
+            if (!isFalling) 
             {
-                rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
-                rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse); 
+                if (rbCharacter.velocity.y > apexThreshold)
+                {
+                    isFalling = true;
+                    rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
+                    rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse); 
+                }
+            }
+            else
+            {
+                _jumpBuffer = 0;
             }
         }
 
