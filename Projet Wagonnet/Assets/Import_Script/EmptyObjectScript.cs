@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EmptyObjectScript : MonoBehaviour
 {
-    private GameObject EmptyObject;
+    public GameObject EmptyObject;
     public Vector3 PlayerPos;
     public GameObject Player;
     public GameObject PlayerCollider;
     public GameObject Track;
     public bool isSurfing = false;
 
-    private int index;
+    public int index;
     private int moveIndex;
     private int NewIndex;
 
@@ -35,11 +35,11 @@ public class EmptyObjectScript : MonoBehaviour
     {
         gameObject.AddComponent<BoxCollider2D>();
         gameObject.transform.localScale = new Vector3(1,1,0);
-        EmptyObject = GameObject.Find("V2EmptyObject");
+     //   EmptyObject = GameObject.Find("V2EmptyObject(Clone)");
         Player = GameObject.Find("Player");
         Track = GameObject.Find("Track");
         PlayerCollider = GameObject.Find("PlayerCollider");
-        index = transform.parent.GetSiblingIndex();
+     //   index = transform.parent.GetSiblingIndex();
         Debug.Log(index);
    //     GetComponent<BoxCollider2D>().size = new Vector2(5f,1f);
    
@@ -48,24 +48,17 @@ public class EmptyObjectScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(index - 1 < 0)
+        EmptyObject = GameObject.Find("V2EmptyObject(Clone)");
+        index = transform.parent.GetSiblingIndex();
+  /*     if(index - 1 < 0)
         {
-            moveIndex = 0;
+            index = 0;
         }
-        else
+        else if(index > 0)
         {
-           moveIndex = 1;
-        }
+           index += 1;
+        } */
 
-          if(isCoroutine)
-    {
-      IEnumerator WaitAndPrint(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        Debug.Log("WaitAndPrint ");
-        isCoroutine = false;
-    }
-    }
 
     /*    if(index <= NewIndex)
             {
@@ -81,7 +74,7 @@ public class EmptyObjectScript : MonoBehaviour
             other.gameObject.GetComponent<Cinemachine.CinemachineDollyCart>().enabled = true;
             other.gameObject.GetComponent<Cinemachine.CinemachineDollyCart>().PosDebut = PlayerPos;
             Debug.Log(other.transform.position.y);
-            Instantiate(EmptyObject);
+      //      Instantiate(EmptyObject);
             EmptyObject.transform.parent = Track.transform;
             EmptyObject.transform.position = PlayerPos;
             EmptyObject.transform.SetSiblingIndex(index);

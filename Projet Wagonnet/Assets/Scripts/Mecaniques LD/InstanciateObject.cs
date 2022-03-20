@@ -5,7 +5,7 @@ using UnityEngine;
 public class InstanciateObject : MonoBehaviour
 {
     public bool isInstancie;
-    private GameObject EmptyObject;
+    public GameObject EmptyObject;
     public GameObject Player;
     // Start is called before the first frame update
 
