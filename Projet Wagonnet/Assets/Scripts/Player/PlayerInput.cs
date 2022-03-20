@@ -9,6 +9,7 @@ namespace Player
     {
         private InputActions farmerInputActions;
         private int _jumpBuffer;
+        private float _horizontalSpeed;
         
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -33,17 +34,6 @@ namespace Player
         [SerializeField] private float fallGravityScale;
         [SerializeField] private float startFallSpeedThreshold;
         [SerializeField] private float defaultGravityScale;
-
-        private float m_lastDirectionX;
-        private float lastDirectionX      //Si la position du joystick est différente de la dernière position enregistrée, on actualise la vitesse du personnage
-        {
-            get => m_lastDirectionX;
-            set
-            {
-                m_lastDirectionX = value;
-                Move();
-            }
-        }
         
         void Awake()
         {
@@ -110,7 +100,6 @@ namespace Player
         void Update()
         {
             direction = movement.ReadValue<Vector2>();
-            lastDirectionX = direction.x;       //On enregistre la position du joystick en x
         
             // Jump Buffer
             if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
@@ -151,14 +140,23 @@ namespace Player
             if (direction.y < -0.7f)            //Lorsque le joystick est orienté vers le bas, on lance la FastFall
             {
                 FastFall();
-            } 
+            }
+
+            if (direction.x != 0f)
+            {
+                Move();
+            }
         }
 
         #region FonctionsDéplacements
 
         void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
         {
-            rbCharacter.velocity = new Vector2(walkSpeed*lastDirectionX, rbCharacter.velocity.y);
+            Debug.Log(rbCharacter.drag);
+            rbCharacter.drag = 0;
+            rbCharacter.AddForce(new Vector2(walkSpeed*direction.x,0f));
+            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);
+            rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
             
             Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse
             float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
@@ -182,7 +180,7 @@ namespace Player
             isAirborn = true;
             coyoteFloat = false;
             canSpinJump = false;
-            rbCharacter.velocity = new Vector2(0, 0);
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0);
             rbCharacter.AddForce(new Vector2(0,spinJumpForce),ForceMode2D.Impulse);
         }
        
