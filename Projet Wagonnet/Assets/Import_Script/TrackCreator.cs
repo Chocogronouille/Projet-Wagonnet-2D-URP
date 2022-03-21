@@ -13,7 +13,7 @@ public class TrackCreator : MonoBehaviour
     private int waypointCount;
     int currentWaypointIndex = 0;
 
-    public Vector3 Vec0;
+
  //   public GameObject EmptyObject;
 
      public static TrackCreator instance;
@@ -72,7 +72,7 @@ public class TrackCreator : MonoBehaviour
                 CinemachinePath childCinemachinePath = child.GetComponent<CinemachinePath>();
                 CinemachinePath.Waypoint wp = childCinemachinePath.m_Waypoints[idx];
                 CinemachinePath.Waypoint targetWP = new CinemachinePath.Waypoint();
-                targetWP.position = child.localRotation * wp.position + child.localPosition;
+                targetWP.position = child.localRotation * wp.position + child.transform.position - track.transform.position;
                 targetWP.position.z = 0f;
                 targetWP.tangent = child.localRotation * wp.tangent;
                 targetWP.roll = wp.roll;
