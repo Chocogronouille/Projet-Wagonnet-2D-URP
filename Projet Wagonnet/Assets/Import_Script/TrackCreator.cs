@@ -6,15 +6,16 @@ using Cinemachine;
 
 public class TrackCreator : MonoBehaviour
 {
-    [SerializeField] CinemachinePath track;   
+    public CinemachinePath track;   
     [SerializeField] bool loopedTrack = false;
 
     private  CinemachinePath.Waypoint[] generatedWaypoints;
     private int waypointCount;
     int currentWaypointIndex = 0;
+    private GameObject player;
 
-    public Vector3 Vec0;
-    public GameObject EmptyObject;
+
+ //   public GameObject EmptyObject;
 
      public static TrackCreator instance;
 
@@ -33,11 +34,12 @@ public class TrackCreator : MonoBehaviour
     void Start()
     {
         // GenerateTrack();
-
+        player = GameObject.FindWithTag("Player");
     }
 
     public void GenerateTrack()
     {
+        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0f;
         if(!track) Debug.Log("No track assigned.");
 
         currentWaypointIndex = 0;
@@ -72,7 +74,7 @@ public class TrackCreator : MonoBehaviour
                 CinemachinePath childCinemachinePath = child.GetComponent<CinemachinePath>();
                 CinemachinePath.Waypoint wp = childCinemachinePath.m_Waypoints[idx];
                 CinemachinePath.Waypoint targetWP = new CinemachinePath.Waypoint();
-                targetWP.position = child.localRotation * wp.position + child.localPosition;
+                targetWP.position = child.localRotation * wp.position + child.transform.position - track.transform.position;
                 targetWP.position.z = 0f;
                 targetWP.tangent = child.localRotation * wp.tangent;
                 targetWP.roll = wp.roll;
@@ -80,7 +82,7 @@ public class TrackCreator : MonoBehaviour
                 currentWaypointIndex ++;
            //     new Vector3(targetWP.position.x,targetWP.position.y,targetWP.position.z);
                 Vector3 objectScale = child.transform.localScale;
-                Instantiate(EmptyObject,child.transform);
+      //          Instantiate(EmptyObject,child.transform);
             //    EmptyObject.transform.position = new Vector3(0,0,0);
             //      EmptyObject.transform.localScale = objectScale;
              //   EmptyObject.transform.SetParent(child.transform);

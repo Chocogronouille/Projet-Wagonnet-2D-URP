@@ -5,7 +5,7 @@ using UnityEngine;
 public class InstanciateObject : MonoBehaviour
 {
     public bool isInstancie;
-    private GameObject EmptyObject;
+    public GameObject EmptyObject;
     public GameObject Player;
     // Start is called before the first frame update
 
@@ -33,7 +33,7 @@ public class InstanciateObject : MonoBehaviour
         if(isInstancie)
         {
             Instantiate(EmptyObject);
-            EmptyObject.transform.parent = gameObject.transform;
+     //       EmptyObject.transform.parent = gameObject.transform;
             EmptyObject.transform.position = EmptyObjectScript.instance.PlayerPos;
             EmptyObject.AddComponent<Cinemachine.CinemachinePath>();
             EmptyObject.AddComponent<DirectionGizmo>();
