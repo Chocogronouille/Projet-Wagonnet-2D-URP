@@ -32,5 +32,5 @@ public class Instaciate : MonoBehaviour
     public void InstanciateTest()
     {
         Instantiate(test);
-    }
+    } 
 }
