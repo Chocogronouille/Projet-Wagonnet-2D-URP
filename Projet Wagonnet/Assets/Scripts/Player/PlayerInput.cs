@@ -99,6 +99,7 @@ namespace Player
         
         void Update()
         {
+            Debug.Log(movement);
             direction = movement.ReadValue<Vector2>();
         
             // Jump Buffer
@@ -142,7 +143,7 @@ namespace Player
                 FastFall();
             }
 
-            if (direction.x != 0f)
+            if ((direction.x < -0.2f)&&(0.2f<direction.x))
             {
                 Move();
             }
