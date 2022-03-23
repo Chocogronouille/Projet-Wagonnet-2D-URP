@@ -973,7 +973,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: walkSpeed
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: minJumpStartFrame
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}

@@ -16,12 +16,14 @@ public class Ballon : MonoBehaviour
         _rbPlayer = other.GetComponentInParent<Rigidbody2D>();
         _playerInput = other.GetComponentInParent<PlayerInput>();
         
+        _playerInput.isAirborn = false;
+        
         if (_rbPlayer.velocity.y < _playerInput.apexThreshold)
         {
             _rbPlayer.velocity = new Vector2(_rbPlayer.velocity.x, _playerInput.apexThreshold*1.1f);
         }
         _rbPlayer.gravityScale = gravityScaleBallon;
-        _playerInput.isAirborn = false;
+        
         StartCoroutine(UtilisationBallon());
     }
 
