@@ -8,9 +8,9 @@ namespace Player
     public class PlayerInput : MonoBehaviour
     {
         private InputActions farmerInputActions;
-        private int _jumpBuffer;
+        private float _jumpBuffer;
         private float _horizontalSpeed;
-        private int _jumpFrameCount;
+        private float _jumpFrameCount;
         private bool _wantToEndJump;
         
         public bool isFalling;
@@ -34,8 +34,8 @@ namespace Player
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
-        [SerializeField] private int minJumpEndFrame;
-        [SerializeField] private int maxJumpEndFrame;
+        [SerializeField] private float minJumpEndFrame;
+        [SerializeField] private float maxJumpEndFrame;
         
         void Awake()
         {
@@ -101,9 +101,9 @@ namespace Player
             direction = movement.ReadValue<Vector2>();
         
             // Jump Buffer
-            if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
+            if (_jumpBuffer > 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
             {
-                _jumpBuffer -= 1;
+                _jumpBuffer -= 1*Time.deltaTime;
                 if (isAirborn == false)
                 {
                     Jump();                     //Si la touche de saut a été enfoncée dans les temps et que le personnage n'est pas en l'air, il saute
@@ -113,10 +113,11 @@ namespace Player
             // Gestion de la vitesse de chute et du nuancier de saut
             if (!isFalling)
             {
-                _jumpFrameCount++;
-                
                 if (isAirborn)
                 {
+                    _jumpFrameCount += 1*Time.deltaTime;
+                    Debug.Log(_jumpFrameCount);
+                    
                     // if (rbCharacter.velocity.y < startFallSpeedThreshold) // Acceleration de la chute
                     // {
                     //     Fall();
@@ -244,6 +245,7 @@ namespace Player
         private IEnumerator CoyoteTime()                        //Coroutine du coyote time
         {                                                       //On attend X secondes avant de considérer le joueur comme en l'air
             canSpinJump = true;
+            rbCharacter.drag = 0;
             yield return new WaitForSeconds(coyoteTime);
             isAirborn = true;
             coyoteFloat = false;
