@@ -37,7 +37,7 @@ public class EmptyObjectScript : MonoBehaviour
         gameObject.transform.localScale = new Vector3(1,1,0);
      //   EmptyObject = GameObject.Find("V2EmptyObject(Clone)");
         Player = GameObject.Find("Player");
-        Track = GameObject.Find("Track");
+        Track = gameObject.transform.parent.parent.gameObject;
         PlayerCollider = GameObject.Find("PlayerCollider");
      //   index = transform.parent.GetSiblingIndex();
         Debug.Log(index);

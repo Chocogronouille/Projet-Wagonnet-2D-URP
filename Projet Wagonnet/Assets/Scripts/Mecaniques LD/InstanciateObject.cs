@@ -33,7 +33,7 @@ public class InstanciateObject : MonoBehaviour
         if(isInstancie)
         {
             Instantiate(EmptyObject);
-            EmptyObject.transform.parent = gameObject.transform;
+     //       EmptyObject.transform.parent = gameObject.transform;
             EmptyObject.transform.position = EmptyObjectScript.instance.PlayerPos;
             EmptyObject.AddComponent<Cinemachine.CinemachinePath>();
             EmptyObject.AddComponent<DirectionGizmo>();

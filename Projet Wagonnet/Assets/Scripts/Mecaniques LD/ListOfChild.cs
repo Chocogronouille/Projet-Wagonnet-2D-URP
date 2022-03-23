@@ -9,6 +9,10 @@ public class ListOfChild : MonoBehaviour
     public int Newindex;
     public List<int> goList = new List<int>();
     private float delayTime = 0.0001f;
+
+    // List of GameObjects
+    public List<Vector3> TheList = new List<Vector3>();
+
     void Start () {
       
          Debug.Log("Child Objects: " + CountChildren(transform));
@@ -21,15 +25,25 @@ public class ListOfChild : MonoBehaviour
          int childCount = 0;
          foreach (Transform b in a)
          {
-     //        Debug.Log("Child: "+b);
+             if(b.gameObject.CompareTag("Empty"))
+             {
+                 Debug.Log("Empty");
+             }
+             else
+             {
+                 //        Debug.Log("Child: "+b);
              childCount ++;
      //        childCount += CountChildren(b);
              Theindex = b.transform.GetSiblingIndex();
              Debug.Log(b.transform.GetSiblingIndex());
              goList.Add(Theindex);
+             gameObject.GetComponent<RespawnObject>().VectorList.Add(b.transform.position);
+             Debug.Log("Destruction");
              if(Theindex < Newindex)
              {
                  Destroy(b.gameObject);
+             }
+
              }
          }
          StartCoroutine(DeleteFunction(delayTime));

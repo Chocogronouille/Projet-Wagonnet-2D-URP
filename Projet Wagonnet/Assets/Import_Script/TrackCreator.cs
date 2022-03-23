@@ -6,12 +6,13 @@ using Cinemachine;
 
 public class TrackCreator : MonoBehaviour
 {
-    [SerializeField] CinemachinePath track;   
+    public CinemachinePath track;   
     [SerializeField] bool loopedTrack = false;
 
     private  CinemachinePath.Waypoint[] generatedWaypoints;
     private int waypointCount;
     int currentWaypointIndex = 0;
+    private GameObject player;
 
 
  //   public GameObject EmptyObject;
@@ -33,11 +34,12 @@ public class TrackCreator : MonoBehaviour
     void Start()
     {
         // GenerateTrack();
-
+        player = GameObject.FindWithTag("Player");
     }
 
     public void GenerateTrack()
     {
+        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0f;
         if(!track) Debug.Log("No track assigned.");
 
         currentWaypointIndex = 0;
