@@ -33,6 +33,6 @@ public class IndexScript : MonoBehaviour
     IEnumerator LaCouroutine(float delayTime)
 {
    yield return new WaitForSeconds(delayTime);
- //  Instaciate.instance.InstanciateTest();
+   Instaciate.instance.InstanciateTest();
 }
 }
