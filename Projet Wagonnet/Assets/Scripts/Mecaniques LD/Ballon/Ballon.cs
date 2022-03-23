@@ -34,7 +34,7 @@ public class Ballon : MonoBehaviour
         {
             _playerInput.isAirborn = true;
             _playerInput.canSpinJump = true;
-            _rbPlayer.gravityScale = 1;
+            _rbPlayer.gravityScale = _playerInput.defaultGravityScale;
         }
         StopCoroutine(UtilisationBallon());
     }

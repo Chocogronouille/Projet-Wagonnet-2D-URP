@@ -22,6 +22,7 @@ namespace Player
         public bool canSpinJump;
         public Vector2 direction;
         public float apexThreshold;
+        public float defaultGravityScale;
 
         public Animator animator;
         public SpriteRenderer spriteRenderer;
@@ -33,8 +34,6 @@ namespace Player
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
-        [SerializeField] private float fallGravityScale;
-        [SerializeField] private float defaultGravityScale;
         [SerializeField] private int minJumpEndFrame;
         [SerializeField] private int maxJumpEndFrame;
         
@@ -209,7 +208,7 @@ namespace Player
         {
             isFalling = true;
             _wantToEndJump = false;
-            rbCharacter.gravityScale = fallGravityScale;
+            rbCharacter.gravityScale = defaultGravityScale;
             
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
             rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse);
@@ -250,7 +249,7 @@ namespace Player
             isAirborn = true;
             coyoteFloat = false;
             isFalling = true;
-            rbCharacter.gravityScale = fallGravityScale;
+            rbCharacter.gravityScale = defaultGravityScale;
             StopCoroutine(CoyoteTime());
         }
 
