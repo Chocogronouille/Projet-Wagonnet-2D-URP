@@ -9,6 +9,9 @@ namespace Player
     {
         private InputActions farmerInputActions;
         private int _jumpBuffer;
+        private float _horizontalSpeed;
+        private int _jumpFrameCount;
+        private bool _wantToEndJump;
         
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -19,6 +22,7 @@ namespace Player
         public bool canSpinJump;
         public Vector2 direction;
         public float apexThreshold;
+        public float defaultGravityScale;
 
         public Animator animator;
         public SpriteRenderer spriteRenderer;
@@ -30,20 +34,8 @@ namespace Player
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
-        [SerializeField] private float fallGravityScale;
-        [SerializeField] private float startFallSpeedThreshold;
-        [SerializeField] private float defaultGravityScale;
-
-        private float m_lastDirectionX;
-        private float lastDirectionX      //Si la position du joystick est différente de la dernière position enregistrée, on actualise la vitesse du personnage
-        {
-            get => m_lastDirectionX;
-            set
-            {
-                m_lastDirectionX = value;
-                Move();
-            }
-        }
+        [SerializeField] private int minJumpEndFrame;
+        [SerializeField] private int maxJumpEndFrame;
         
         void Awake()
         {
@@ -91,12 +83,9 @@ namespace Player
         {
             if (!isFalling) 
             {
-                if (rbCharacter.velocity.y > apexThreshold)
+                if (isAirborn)
                 {
-                    isFalling = true;
-                    rbCharacter.gravityScale = fallGravityScale;
-                    rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
-                    rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse); 
+                    _wantToEndJump = true;
                 }
             }
             else
@@ -106,11 +95,10 @@ namespace Player
         }
 
         #endregion
-        
-        void Update()
+
+        private void Update()
         {
             direction = movement.ReadValue<Vector2>();
-            lastDirectionX = direction.x;       //On enregistre la position du joystick en x
         
             // Jump Buffer
             if (_jumpBuffer != 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
@@ -122,18 +110,37 @@ namespace Player
                 } 
             }
 
-            // Gestion de la vitesse de chute
+            // Gestion de la vitesse de chute et du nuancier de saut
             if (!isFalling)
             {
+                _jumpFrameCount++;
+                
                 if (isAirborn)
                 {
-                    if (rbCharacter.velocity.y < startFallSpeedThreshold)
+                    // if (rbCharacter.velocity.y < startFallSpeedThreshold) // Acceleration de la chute
+                    // {
+                    //     Fall();
+                    // }
+                    
+                    if (_jumpFrameCount > maxJumpEndFrame)           // Fin du saut max
                     {
-                        isFalling = true;
-                        rbCharacter.gravityScale = fallGravityScale;
+                        Fall();
                     }
+
+                    if (_wantToEndJump)                                      // Fin du saut en cours de montée
+                    {
+                        if (rbCharacter.velocity.y > apexThreshold)
+                        {
+                            if (_jumpFrameCount > minJumpEndFrame)
+                            {
+                                Fall(); 
+                            }
+                        }  
+                    }
+                    
                 }
             }
+            
             
             // Coyote Time
             if (!isAirborn)
@@ -151,14 +158,23 @@ namespace Player
             if (direction.y < -0.7f)            //Lorsque le joystick est orienté vers le bas, on lance la FastFall
             {
                 FastFall();
-            } 
+            }
+
+            if ((direction.x < -0.2f)||(0.2f<direction.x))
+            {
+                Move();
+            }
         }
 
         #region FonctionsDéplacements
 
-        void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
+        private void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
         {
-            rbCharacter.velocity = new Vector2(walkSpeed*lastDirectionX, rbCharacter.velocity.y);
+            Debug.Log(rbCharacter.drag);
+            rbCharacter.drag = 0;
+            rbCharacter.AddForce(new Vector2(walkSpeed*direction.x,0f));
+            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);
+            rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
             
             Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse
             float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
@@ -168,10 +184,12 @@ namespace Player
         private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
         {
             rbCharacter.gravityScale = defaultGravityScale;
+            rbCharacter.drag = 0;
             isFalling = false;
             isAirborn = true;
             canSpinJump = true;
-            _jumpBuffer = 0; 
+            _jumpBuffer = 0;
+            _jumpFrameCount = 0;
             rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
         }
 
@@ -182,11 +200,21 @@ namespace Player
             isAirborn = true;
             coyoteFloat = false;
             canSpinJump = false;
-            rbCharacter.velocity = new Vector2(0, 0);
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0);
             rbCharacter.AddForce(new Vector2(0,spinJumpForce),ForceMode2D.Impulse);
         }
-       
-        void FastFall()                         //Lorsque le personnage est en FastFall, on lui applique une vitesse vers le bas
+
+        private void Fall()
+        {
+            isFalling = true;
+            _wantToEndJump = false;
+            rbCharacter.gravityScale = defaultGravityScale;
+            
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
+            rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse);
+        }
+
+        private void FastFall()                         //Lorsque le personnage est en FastFall, on lui applique une vitesse vers le bas
         {
             if (isAirborn)
             {
@@ -220,6 +248,8 @@ namespace Player
             yield return new WaitForSeconds(coyoteTime);
             isAirborn = true;
             coyoteFloat = false;
+            isFalling = true;
+            rbCharacter.gravityScale = defaultGravityScale;
             StopCoroutine(CoyoteTime());
         }
 
