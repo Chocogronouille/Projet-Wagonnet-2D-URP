@@ -170,7 +170,6 @@ namespace Player
 
         private void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
         {
-            Debug.Log(rbCharacter.drag);
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(walkSpeed*direction.x,0f));
             _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);

@@ -173,11 +173,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &8061828029134140005
 BoxCollider2D:
@@ -233,6 +233,7 @@ MonoBehaviour:
   canSpinJump: 0
   direction: {x: 0, y: 0}
   apexThreshold: 2
+  defaultGravityScale: 3
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   rbCharacter: {fileID: 8061828029134140002}
@@ -242,10 +243,8 @@ MonoBehaviour:
   jumpBufferTime: 50
   coyoteTime: 0.2
   apexEndJump: 7
-  fallGravityScale: 3
-  defaultGravityScale: 3
   minJumpEndFrame: 10
-  maxJumpEndFrame: 45
+  maxJumpEndFrame: 50
 --- !u!95 &8708817187567798828
 Animator:
   serializedVersion: 3
