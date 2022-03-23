@@ -203,7 +203,7 @@ namespace Player
             rbCharacter.AddForce(new Vector2(0,spinJumpForce),ForceMode2D.Impulse);
         }
 
-        private void Fall()
+        public void Fall()
         {
             isFalling = true;
             _wantToEndJump = false;
