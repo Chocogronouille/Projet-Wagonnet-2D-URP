@@ -915,6 +915,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140002, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140002, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -958,6 +966,18 @@ PrefabInstance:
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140005, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: walkSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: minJumpStartFrame
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}

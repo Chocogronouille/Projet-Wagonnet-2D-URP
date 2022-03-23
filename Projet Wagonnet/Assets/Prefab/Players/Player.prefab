@@ -188,7 +188,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 8061828029134140000}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 30532b727293fef4fb0256b2f5e2a430, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  walkSpeed: 12
+  walkSpeed: 10
   isAirborn: 0
   coyoteFloat: 0
   canSpinJump: 0
@@ -236,15 +236,16 @@ MonoBehaviour:
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   rbCharacter: {fileID: 8061828029134140002}
-  jumpForce: 10
-  spinJumpForce: 5
-  fastFallSpeed: 10
+  jumpForce: 20
+  spinJumpForce: 7
+  fastFallSpeed: 20
   jumpBufferTime: 50
   coyoteTime: 0.2
-  apexEndJump: 2
-  fallGravityScale: 2.5
-  startFallSpeedThreshold: 2
-  defaultGravityScale: 1
+  apexEndJump: 7
+  fallGravityScale: 3
+  defaultGravityScale: 3
+  minJumpEndFrame: 10
+  maxJumpEndFrame: 45
 --- !u!95 &8708817187567798828
 Animator:
   serializedVersion: 3
