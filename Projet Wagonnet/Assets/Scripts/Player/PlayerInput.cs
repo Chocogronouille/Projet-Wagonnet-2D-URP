@@ -98,7 +98,7 @@ namespace Player
 
         #endregion
 
-        private void Update()
+        private void FixedUpdate()
         {
             direction = movement.ReadValue<Vector2>();
         
@@ -158,12 +158,12 @@ namespace Player
                 }
             }
 
-            if (direction.y < -0.7f)            //Lorsque le joystick est orienté vers le bas, on lance la FastFall
+            if (direction.y < -1f)            //Lorsque le joystick est orienté vers le bas, on lance la FastFall
             {
                 FastFall();
             }
 
-            if ((direction.x < -0.2f)||(0.2f<direction.x))
+            if ((direction.x < -0.1f)||(0.1f<direction.x))
             {
                 _maxSpeed = walkSpeed;
                 Move();
@@ -172,7 +172,9 @@ namespace Player
             {
                 if (isAirborn)
                 {
+                    
                     _maxSpeed = airStopSpeed;
+                    Move();
                 }
             }
         }
@@ -182,7 +184,7 @@ namespace Player
         private void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
         {
             rbCharacter.drag = 0;
-            rbCharacter.AddForce(new Vector2(walkSpeed*direction.x,0f));
+            rbCharacter.AddForce(new Vector2(_maxSpeed*direction.x*10,0f));
             _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
             rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
             
