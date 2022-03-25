@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Serialization;
 
 public class RespawnObject : MonoBehaviour
 {
     public GameObject Line;
     public List<Vector3> VectorList = new List<Vector3>();
+    public List<Quaternion> RotationList = new List<Quaternion>();
     public GameObject parent;
     public GameObject unobject;
     private float delayTime = 0.2f;
@@ -14,6 +16,12 @@ public class RespawnObject : MonoBehaviour
     private GameObject TrackGenerate;
     private GameObject Player;
     public CinemachinePath LeTrack;
+
+   [SerializeField]  public struct Waypoint 
+        {
+            public Vector3 position;
+            public Vector3 rotation;
+        }
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +60,10 @@ public class RespawnObject : MonoBehaviour
          StartCoroutine(Timer(delayTime));
     //     Line.transform.parent = parent.transform;
        //    Line.transform.SetParent(parent.transform);
+         foreach (Quaternion rot in RotationList) 
+        {
+         Line.transform.rotation = rot;
+        }
         }
     }
 
@@ -59,5 +71,6 @@ public class RespawnObject : MonoBehaviour
 {
    yield return new WaitForSeconds(delayTime);
    VectorList.Clear();
+   RotationList.Clear();
 }
 }

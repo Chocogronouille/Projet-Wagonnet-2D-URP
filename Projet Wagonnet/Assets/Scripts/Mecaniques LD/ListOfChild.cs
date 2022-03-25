@@ -35,9 +35,10 @@ public class ListOfChild : MonoBehaviour
              childCount ++;
      //        childCount += CountChildren(b);
              Theindex = b.transform.GetSiblingIndex();
-             Debug.Log(b.transform.GetSiblingIndex());
+             Debug.Log("On est là");
              goList.Add(Theindex);
              gameObject.GetComponent<RespawnObject>().VectorList.Add(b.transform.position);
+             gameObject.GetComponent<RespawnObject>().RotationList.Add(b.transform.rotation);
              Debug.Log("Destruction");
              if(Theindex < Newindex)
              {
