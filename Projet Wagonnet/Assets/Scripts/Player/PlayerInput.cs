@@ -12,11 +12,11 @@ namespace Player
         private float _horizontalSpeed;
         private float _jumpFrameCount;
         private bool _wantToEndJump;
+        private float _maxSpeed;
         
         public bool isFalling;
         public static PlayerInput instance; // singleton
         public InputAction movement;
-        public float walkSpeed;
         public bool isAirborn;
         public bool coyoteFloat;
         public bool canSpinJump;
@@ -28,6 +28,8 @@ namespace Player
         public SpriteRenderer spriteRenderer;
         public Rigidbody2D rbCharacter;
         
+        [SerializeField] private float walkSpeed;
+        [SerializeField] private float airStopSpeed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
         [SerializeField] private float fastFallSpeed;
@@ -36,7 +38,7 @@ namespace Player
         [SerializeField] private float apexEndJump;
         [SerializeField] private float minJumpEndFrame;
         [SerializeField] private float maxJumpEndFrame;
-        
+
         void Awake()
         {
             farmerInputActions = new InputActions();
@@ -163,7 +165,15 @@ namespace Player
 
             if ((direction.x < -0.2f)||(0.2f<direction.x))
             {
+                _maxSpeed = walkSpeed;
                 Move();
+            }
+            else
+            {
+                if (isAirborn)
+                {
+                    _maxSpeed = airStopSpeed;
+                }
             }
         }
 
@@ -173,7 +183,7 @@ namespace Player
         {
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(walkSpeed*direction.x,0f));
-            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);
+            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
             rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
             
             Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse

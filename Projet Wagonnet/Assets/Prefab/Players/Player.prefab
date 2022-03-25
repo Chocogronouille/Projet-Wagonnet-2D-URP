@@ -299,7 +299,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  walkSpeed: 10
   isAirborn: 0
   coyoteFloat: 0
   canSpinJump: 0
@@ -309,14 +308,16 @@ MonoBehaviour:
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   rbCharacter: {fileID: 8061828029134140002}
+  walkSpeed: 10
+  airStopSpeed: 0
   jumpForce: 20
   spinJumpForce: 7
   fastFallSpeed: 20
   jumpBufferTime: 50
   coyoteTime: 0.2
   apexEndJump: 7
-  minJumpEndFrame: 10
-  maxJumpEndFrame: 50
+  minJumpEndFrame: 0.1
+  maxJumpEndFrame: 0.27
 --- !u!95 &8708817187567798828
 Animator:
   serializedVersion: 3
