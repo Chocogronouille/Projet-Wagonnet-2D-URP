@@ -650,8 +650,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5731987128519793611, guid: 2f1a1a24c2a87464b8f237dcd6db0f25, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f1a1a24c2a87464b8f237dcd6db0f25, type: 3}
 --- !u!1001 &764756463
 PrefabInstance:
@@ -771,39 +770,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LocalPosition: {x: 0, y: 0, z: 0}
   GlobalPosition: {x: 0, y: 0, z: 0}
---- !u!1 &832667252 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5731987128519793614, guid: 2f1a1a24c2a87464b8f237dcd6db0f25, type: 3}
-  m_PrefabInstance: {fileID: 632218618}
-  m_PrefabAsset: {fileID: 0}
---- !u!68 &832667254
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 832667252}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.5815773, y: -0.19623518}
-  - {x: 0.379591, y: 6.5098333}
-  - {x: 8.630751, y: -0.519135}
-  - {x: 7.79669, y: -1.4857156}
-  - {x: 0.41402245, y: 5.9623585}
-  - {x: -7.009263, y: -1.082634}
-  - {x: -7.4776793, y: -0.14251035}
-  - {x: 0.3149929, y: 5.837491}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &894513652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1073,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  walkSpeed: 12
   isAirborn: 0
   coyoteFloat: 0
   canSpinJump: 0
@@ -1117,6 +1082,8 @@ MonoBehaviour:
   animator: {fileID: 1289769973}
   spriteRenderer: {fileID: 1289769968}
   rbCharacter: {fileID: 1289769971}
+  walkSpeed: 12
+  airStopSpeed: 0
   jumpForce: 10
   spinJumpForce: 4
   fastFallSpeed: 20
