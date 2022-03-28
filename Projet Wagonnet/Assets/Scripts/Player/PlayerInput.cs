@@ -25,7 +25,7 @@ namespace Player
         public float defaultGravityScale;
 
         public Animator animator;
-        private string currentState;
+        //private string currentState;
         public SpriteRenderer spriteRenderer;
         public Rigidbody2D rbCharacter;
         
@@ -238,7 +238,7 @@ namespace Player
             _jumpBuffer = 0;
             _jumpFrameCount = 0;
             rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-
+            animator.SetBool("IsAirborn", true);
         }
 
         private void SpinJump()

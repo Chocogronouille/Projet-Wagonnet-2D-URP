@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: -2370392086524372314}
   - component: {fileID: 5575964046086363093}
   - component: {fileID: 2605650185328756105}
-  m_Layer: 0
+  - component: {fileID: -2304084766021405267}
+  m_Layer: 8
   m_Name: Maison2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,9 +96,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -1.4973859, y: 1.8729409}
+  m_Offset: {x: -1.4973859, y: 1.9603295}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -108,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.994959, y: 0.24541116}
+  m_Size: {x: 2.994959, y: 0.07063389}
   m_EdgeRadius: 0
 --- !u!61 &2605650185328756105
 BoxCollider2D:
@@ -121,9 +122,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5014367, y: -0.15811253}
+  m_Offset: {x: -0.5014367, y: -0.04964897}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -134,5 +135,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.506875, y: 0.30774832}
+  m_Size: {x: 7.506875, y: 0.09082121}
   m_EdgeRadius: 0
+--- !u!251 &-2304084766021405267
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2885813188291253957}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 511
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 1
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 1
+  m_SideArc: 1
