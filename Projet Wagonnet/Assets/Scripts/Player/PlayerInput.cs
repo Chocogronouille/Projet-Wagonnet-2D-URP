@@ -160,7 +160,7 @@ namespace Player
             // Coyote Time
             if (!isAirborn)
             {
-                if (rbCharacter.velocity.y < 0) //Si le personnage commence à tomber, on lance la coroutine CoyoteTime
+                if (rbCharacter.velocity.y < -1) //Si le personnage commence à tomber, on lance la coroutine CoyoteTime
                 {
                     if (!coyoteFloat)
                     {
@@ -170,7 +170,7 @@ namespace Player
                 }
             }
 
-            if (direction.y < -1f)            //Lorsque le joystick est orienté vers le bas, on lance la FastFall
+            if (direction.y < -0.9f)            //Lorsque le joystick est orienté vers le bas, on lance la FastFall
             {
                 FastFall();
             }
