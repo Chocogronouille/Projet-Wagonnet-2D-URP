@@ -25,9 +25,19 @@ namespace Player
         public float defaultGravityScale;
 
         public Animator animator;
+        private string currentState;
         public SpriteRenderer spriteRenderer;
         public Rigidbody2D rbCharacter;
         
+        //Animation States
+        private const string PLAYER_IDLE = "Player_Idle";
+        private const string PLAYER_RUN = "Player_Run";
+        private const string PLAYER_SAUTRISE = "Player_SautRise";
+        private const string PLAYER_SAUTFALL = "Player_SautFall";
+        private const string PLAYER_SPINJUMP = "Player_SpinJump";
+        private const string PLAYER_SURF = "Player_Surf";
+        
+
         [SerializeField] private float walkSpeed;
         [SerializeField] private float airStopSpeed;
         [SerializeField] private float jumpForce;
@@ -51,6 +61,8 @@ namespace Player
             }
             instance = this;
             #endregion
+
+            animator = GetComponent<Animator>();
         }
 
         private void OnEnable()
@@ -167,6 +179,9 @@ namespace Player
             {
                 _maxSpeed = walkSpeed;
                 Move();
+                //ChangeAnimationState(PLAYER_RUN);// Tentative animator
+
+
             }
             else
             {
@@ -175,12 +190,32 @@ namespace Player
                     
                     _maxSpeed = airStopSpeed;
                     Move();
+                    //ChangeAnimationState(PLAYER_RUN);// Tentative animator
+
+
                 }
+
+                //Test Animator
+                // if (direction.x == 0)
+                // {
+                //     ChangeAnimationState(PLAYER_IDLE);
+                // }
+                
             }
         }
 
         #region FonctionsDéplacements
 
+       // void ChangeAnimationState(string newState)
+       //  {
+       //      if (currentState == newState) return;
+       //      
+       //      animator.Play(newState);
+       //      
+       //      currentState = newState;
+       //
+       //  }
+        
         private void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
         {
             rbCharacter.drag = 0;
@@ -190,7 +225,7 @@ namespace Player
             
             Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse
             float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
-            animator.SetFloat("Speed", characterVelocity);              // animator
+            animator.SetFloat("Speed", characterVelocity); 
         }
         
         private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
@@ -203,6 +238,8 @@ namespace Player
             _jumpBuffer = 0;
             _jumpFrameCount = 0;
             rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+            animator.SetBool("IsJumping", true);
+
         }
 
         private void SpinJump()
@@ -214,6 +251,8 @@ namespace Player
             canSpinJump = false;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0);
             rbCharacter.AddForce(new Vector2(0,spinJumpForce),ForceMode2D.Impulse);
+            animator.SetBool("IsSpinJump", true);
+
         }
 
         public void Fall()
@@ -224,6 +263,8 @@ namespace Player
             
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
             rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse);
+            animator.SetBool("IsFalling", true);
+
         }
 
         private void FastFall()                         //Lorsque le personnage est en FastFall, on lui applique une vitesse vers le bas
