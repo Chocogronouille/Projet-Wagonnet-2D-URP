@@ -25,7 +25,7 @@ namespace Player
         public float defaultGravityScale;
 
         public Animator animator;
-        private string currentState;
+        //private string currentState;
         public SpriteRenderer spriteRenderer;
         public Rigidbody2D rbCharacter;
         
@@ -113,6 +113,8 @@ namespace Player
         private void FixedUpdate()
         {
             direction = movement.ReadValue<Vector2>();
+            float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
+            animator.SetFloat("Speed", characterVelocity); 
         
             // Jump Buffer
             if (_jumpBuffer > 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
@@ -224,8 +226,6 @@ namespace Player
             rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
             
             Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse
-            float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
-            animator.SetFloat("Speed", characterVelocity); 
         }
         
         private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
@@ -238,8 +238,7 @@ namespace Player
             _jumpBuffer = 0;
             _jumpFrameCount = 0;
             rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-            animator.SetBool("IsJumping", true);
-
+            animator.SetBool("IsAirborn", true);
         }
 
         private void SpinJump()
