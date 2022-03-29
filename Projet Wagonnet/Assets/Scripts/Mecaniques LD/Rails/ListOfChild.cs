@@ -34,6 +34,7 @@ public class ListOfChild : MonoBehaviour
              goList.Add(Theindex);
              gameObject.GetComponent<RespawnObject>().VectorList.Add(b.transform.position);
              gameObject.GetComponent<RespawnObject>().RotationList.Add(b.transform.rotation);
+             gameObject.GetComponent<RespawnObject>().ScaleList.Add(b.transform.localScale);
              if(Theindex < Newindex)
              {
                  Destroy(b.gameObject);

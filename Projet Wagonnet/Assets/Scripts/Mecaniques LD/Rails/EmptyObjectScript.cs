@@ -51,7 +51,7 @@ public class EmptyObjectScript : MonoBehaviour
             other.gameObject.GetComponent<Cinemachine.CinemachineDollyCart>().enabled = true;
             other.gameObject.GetComponent<Cinemachine.CinemachineDollyCart>().PosDebut = PlayerPos;
             EmptyObject.transform.parent = Track.transform;
-            EmptyObject.transform.position = PlayerPos;
+            EmptyObject.transform.position = new Vector3(PlayerPos.x + 5f,PlayerPos.y,PlayerPos.z);
             EmptyObject.transform.SetSiblingIndex(index);
             EmptyObject.AddComponent<IndexScript>();
             PlayerCollider.GetComponent<BoxCollider2D>().enabled = false;

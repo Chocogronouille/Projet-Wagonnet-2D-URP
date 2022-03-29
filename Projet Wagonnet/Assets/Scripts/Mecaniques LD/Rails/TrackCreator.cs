@@ -15,6 +15,9 @@ public class TrackCreator : MonoBehaviour
     private GameObject player;
     public GameObject test;
 
+    public Transform currentChild;
+    private float decalage = 5f;
+
 
  //   public GameObject EmptyObject;
 
@@ -55,7 +58,8 @@ public class TrackCreator : MonoBehaviour
 
         for (int i = 0; i < track.transform.childCount; i++)
         {
-            Transform currentChild = track.transform.GetChild(i);
+             currentChild = track.transform.GetChild(i).transform.GetChild(1);
+          //   LeCurrent = currentChild.transform.GetChild(1);
 
             if (i == 0 || loopedTrack)
             {

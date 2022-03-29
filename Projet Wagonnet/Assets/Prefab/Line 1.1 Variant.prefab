@@ -12,12 +12,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.0815277
+      objectReference: {fileID: 0}
+    - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.94
+      value: 0.5406
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08000004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalRotation.y
@@ -37,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.38268343
+      value: 0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -49,11 +53,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463997, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4637426106493463998, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
       propertyPath: m_Name
-      value: Line 1.1 Variant
+      value: Line 1.1 Variant (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
+--- !u!1 &2329465331111646726 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5680007009018630321, guid: a68c6dae5f24aec4fae7ccf139fd325e, type: 3}
+  m_PrefabInstance: {fileID: 7962535835582564023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1412984110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329465331111646726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2955af53361d82a47bafd72a5ae275e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: 0, y: 0, z: -5}
+    tangent: {x: 1, y: 0, z: 0}
+    roll: 0
+  - position: {x: 0, y: 0, z: 5}
+    tangent: {x: 1, y: 0, z: 0}
+    roll: 0
