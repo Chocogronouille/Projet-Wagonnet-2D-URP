@@ -410,9 +410,9 @@ MonoBehaviour:
   isFalling: 0
   movement:
     m_Name: Movement
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c6adac8a-decd-4220-8189-f52638eb37ea
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: c65ae508-9f5b-4713-a96a-59fbdf167ace
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -422,20 +422,20 @@ MonoBehaviour:
   canSpinJump: 0
   direction: {x: 0, y: 0}
   apexThreshold: 2
-  defaultGravityScale: 3
+  defaultGravityScale: 5
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   rbCharacter: {fileID: 8061828029134140002}
-  walkSpeed: 10
+  walkSpeed: 11
   airStopSpeed: 7
-  jumpForce: 20
+  jumpForce: 24
   spinJumpForce: 7
   fastFallSpeed: 20
   jumpBufferTime: 50
   coyoteTime: 0.2
   apexEndJump: 7
-  minJumpEndFrame: 0.1
-  maxJumpEndFrame: 0.27
+  minJumpDuration: 0.1
+  maxJumpDuration: 0.27
 --- !u!95 &8708817187567798828
 Animator:
   serializedVersion: 3

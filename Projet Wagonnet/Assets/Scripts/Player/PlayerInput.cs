@@ -3,17 +3,30 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Cinemachine
 {
+    /// <summary>
+    /// This is a very simple behaviour that constrains its transform to a CinemachinePath.
+    /// It can be used to animate any objects along a path, or as a Follow target for 
+    /// Cinemachine Virtual Cameras.
+    /// </summary>
+    [DocumentationSorting(DocumentationSortingAttribute.Level.UserRef)]
+#if UNITY_2018_3_OR_NEWER
+    [ExecuteAlways]
+#else
+    [ExecuteInEditMode]
+#endif
+    [DisallowMultipleComponent]
+    //   [HelpURL(Documentation.BaseURL + "manual/CinemachineDollyCart.html")]
     public class PlayerInput : MonoBehaviour
     {
         private InputActions farmerInputActions;
         private float _jumpBuffer;
         private float _horizontalSpeed;
-        private float _jumpFrameCount;
+        private float _jumpDuration;
         private bool _wantToEndJump;
         private float _maxSpeed;
-        
+
         public bool isFalling;
         public static PlayerInput instance; // singleton
         public InputAction movement;
@@ -25,18 +38,11 @@ namespace Player
         public float defaultGravityScale;
 
         public Animator animator;
+
         //private string currentState;
         public SpriteRenderer spriteRenderer;
         public Rigidbody2D rbCharacter;
-        
-        //Animation States
-        private const string PLAYER_IDLE = "Player_Idle";
-        private const string PLAYER_RUN = "Player_Run";
-        private const string PLAYER_SAUTRISE = "Player_SautRise";
-        private const string PLAYER_SAUTFALL = "Player_SautFall";
-        private const string PLAYER_SPINJUMP = "Player_SpinJump";
-        private const string PLAYER_SURF = "Player_Surf";
-        
+
 
         [SerializeField] private float walkSpeed;
         [SerializeField] private float airStopSpeed;
@@ -46,23 +52,27 @@ namespace Player
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
-        [SerializeField] private float minJumpEndFrame;
-        [SerializeField] private float maxJumpEndFrame;
+        [SerializeField] private float minJumpDuration;
+        [SerializeField] private float maxJumpDuration;
 
         void Awake()
         {
             farmerInputActions = new InputActions();
-       
+
             #region singleton
+
             if (instance != null)
             {
                 Debug.LogError("Il y a plusieurs instance de PlayerInput");
                 return;
             }
+
             instance = this;
+
             #endregion
 
             animator = GetComponent<Animator>();
+            
         }
 
         private void OnEnable()
@@ -80,29 +90,30 @@ namespace Player
 
         #region InputAction
 
-        private void DoJump(InputAction.CallbackContext obj)
+        private void DoJump(InputAction.CallbackContext obj) //Quand le bouton de saut est enfoncé
         {
-            _jumpBuffer = jumpBufferTime;
+            _jumpBuffer = jumpBufferTime; //On attribue à la variable _jumpBuffer le temps prédéfini du Jump Buffer
         }
 
-        private void DoSpin(InputAction.CallbackContext obj)
+        private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
         {
-            if (canSpinJump)
+            if (canSpinJump) //On regarde si le joueur peut Spin Jump
             {
-                SpinJump();
+                SpinJump(); //Si oui, il l'effectue
             }
         }
 
-        private void EndJump(InputAction.CallbackContext obj)
+        private void EndJump(InputAction.CallbackContext obj) //Quand le bouton de saut est relaché
         {
-            if (!isFalling) 
+            if (!isFalling) //Si le joueur n'est pas en train de tomber
             {
-                if (isAirborn)
+                if (isAirborn) //On regarde si le joueur est dans les airs
                 {
-                    _wantToEndJump = true;
+                    _wantToEndJump =
+                        true; //Si c'est le cas, on retient le fait que le joueur veuille arrêter son saut
                 }
             }
-            else
+            else //Sinon, le décompte du Jump Buffer passe à 0
             {
                 _jumpBuffer = 0;
             }
@@ -112,166 +123,198 @@ namespace Player
 
         private void FixedUpdate()
         {
-            direction = movement.ReadValue<Vector2>();
-            float characterVelocity = Mathf.Abs(rbCharacter.velocity.x);    //prendre la valeur positive de vitesse
-            animator.SetFloat("Speed", characterVelocity); 
-        
+            direction = movement
+                .ReadValue<Vector2>(); //La variable direction prend la valeur de position du Joystick gauche
+            float characterVelocity = Mathf.Abs(rbCharacter.velocity.x); //N'EST PAS UNE DE MES FONCTIONS
+            animator.SetFloat("Speed", characterVelocity); //N'EST PAS UNE DE MES FONCTIONS
+
+
             // Jump Buffer
-            if (_jumpBuffer > 0)               //Si la touche de saut a été enfoncée, on décompte les frames de jump buffer
+            if (
+                _jumpBuffer >
+                0) //Si la variable _jumpBuffer est supérieure à 0 (que la touche de saut a été enfoncée) 
             {
-                _jumpBuffer -= 1*Time.deltaTime;
-                if (isAirborn == false)
+                _jumpBuffer -= 1 * Time.deltaTime; //On réduit la variable selon le temps passé entre deux frames
+
+                if (isAirborn == false) //Si le joueur n'est pas en l'air (au sol / sur un rail / sur un ballon)
                 {
-                    Jump();                     //Si la touche de saut a été enfoncée dans les temps et que le personnage n'est pas en l'air, il saute
-                } 
+                    Jump(); //Le joueur saute
+                }
             }
+
 
             // Gestion de la vitesse de chute et du nuancier de saut
-            if (!isFalling)
+
+            if (!isFalling) //Si le joueur n'est pas en train de tomber
             {
-                if (isAirborn)
+                if (isAirborn) //Si le joueur est dans les airs
                 {
-                    _jumpFrameCount += 1*Time.deltaTime;
-                    Debug.Log(_jumpFrameCount);
-                    
-                    // if (rbCharacter.velocity.y < startFallSpeedThreshold) // Acceleration de la chute
-                    // {
-                    //     Fall();
-                    // }
-                    
-                    if (_jumpFrameCount > maxJumpEndFrame)           // Fin du saut max
+                    _jumpDuration += 1 * Time.deltaTime; //On compte la durée de son saut
+
+                    if (_jumpDuration >
+                        maxJumpDuration) //Si la durée de son saut est supérieur à la durée max d'un saut
                     {
-                        Fall();
+                        Fall(); //Le joueur commence à retomber
                     }
 
-                    if (_wantToEndJump)                                      // Fin du saut en cours de montée
+                    if (_wantToEndJump) //Si le joueur a relaché la touche de saut
                     {
-                        if (rbCharacter.velocity.y > apexThreshold)
+                        if (rbCharacter.velocity.y >
+                            apexThreshold) //Si le joueur a une vitesse en y supérieur au seuil de vitesse ascensionel
                         {
-                            if (_jumpFrameCount > minJumpEndFrame)
+                            //(on vérifie pour que le joueur ne puisse pas augmenter la taille son saut en l'arrêtant juste avant son apogée)
+
+                            if (_jumpDuration >
+                                minJumpDuration) //Si la durée du saut est supérieure à la durée minimale d'un saut
                             {
-                                Fall(); 
+                                //(permet d'avoir un saut par défaut lorsque le bouton de saut est relaché directement)
+
+                                Fall(); //Le joueur commence à retomber
                             }
-                        }  
+                        }
                     }
-                    
+
                 }
             }
-            
-            
+
+
             // Coyote Time
-            if (!isAirborn)
+
+            if (!isAirborn) //Si le joueur n'est pas encore en train de tomber
             {
-                if (rbCharacter.velocity.y < -1) //Si le personnage commence à tomber, on lance la coroutine CoyoteTime
+                if (
+                    rbCharacter.velocity.y <
+                    -1) //Si sa vitesse verticale est négative (<-1 pour éviter que le Composite Collider des tilemaps ne le déclenche alors que le personnage est encore au sol)
                 {
-                    if (!coyoteFloat)
+                    if (!coyoteFloat) //S'il n'est pas déjà en Coyote Time
                     {
-                        coyoteFloat = true;
-                        StartCoroutine(CoyoteTime());
+                        coyoteFloat = true; //Il entre en Coyote Time
+                        StartCoroutine(CoyoteTime()); //Et on lance la coroutine associée
                     }
                 }
             }
 
-            if (direction.y < -0.9f)            //Lorsque le joystick est orienté vers le bas, on lance la FastFall
+
+            // Fast Fall
+
+            if (direction.y < -0.9f) //Si le joystick gauche est orienté vers le bas
             {
-                FastFall();
+                FastFall(); //On lance la FastFall
             }
 
-            if ((direction.x < -0.1f)||(0.1f<direction.x))
+
+            //Marche
+
+            if ((direction.x < -0.1f) ||
+                (0.1f < direction.x)) //Si le joystick gauche est orienté vers la gauche ou la droite
             {
-                _maxSpeed = walkSpeed;
-                Move();
-                //ChangeAnimationState(PLAYER_RUN);// Tentative animator
+                _maxSpeed = walkSpeed; //Sa vitesse max devient sa vitesse de marche
+                Move(); //On lance la fonction Move pour le déplacement
 
 
+                //ChangeAnimationState(PLAYER_RUN);// Tentative animator                //N'EST PAS UNE DE MES FONCTIONS
             }
-            else
+            else //Si le joystick gauche n'est ni à gauche, ni à droite
             {
-                if (isAirborn)
+                if (isAirborn) //Si le joueur est en l'air
                 {
-                    
-                    _maxSpeed = airStopSpeed;
-                    Move();
-                    //ChangeAnimationState(PLAYER_RUN);// Tentative animator
+
+                    _maxSpeed = airStopSpeed; //Sa vitesse max devient sa vitesse d'arrêt en l'air
+                    Move(); //On lance la fonction Move pour le déplacement
 
 
+                    //ChangeAnimationState(PLAYER_RUN);// Tentative animator            //N'EST PAS UNE DE MES FONCTIONS
                 }
 
-                //Test Animator
-                // if (direction.x == 0)
-                // {
-                //     ChangeAnimationState(PLAYER_IDLE);
-                // }
-                
+                //Test Animator                                                         //N'EST PAS UNE DE MES FONCTIONS
+                // if (direction.x == 0)                                                //N'EST PAS UNE DE MES FONCTIONS
+                // {                                                                    //N'EST PAS UNE DE MES FONCTIONS
+                //     ChangeAnimationState(PLAYER_IDLE);                               //N'EST PAS UNE DE MES FONCTIONS
+                // }                                                                    //N'EST PAS UNE DE MES FONCTIONS
             }
         }
 
         #region FonctionsDéplacements
 
-       // void ChangeAnimationState(string newState)
-       //  {
-       //      if (currentState == newState) return;
-       //      
-       //      animator.Play(newState);
-       //      
-       //      currentState = newState;
-       //
-       //  }
-        
-        private void Move()                             //Lorsque le personnage se déplace, on lui applique une vitesse dans le sens de son joystick
+        // void ChangeAnimationState(string newState)                                    //N'EST PAS UNE DE MES FONCTIONS
+        //  {                                                                            
+        //      if (currentState == newState) return;                                    //N'EST PAS UNE DE MES FONCTIONS
+        //      animator.Play(newState);                                                 //N'EST PAS UNE DE MES FONCTIONS
+        //      currentState = newState;                                                 //N'EST PAS UNE DE MES FONCTIONS
+        //  }
+
+        private void Move() //Fonction Move appelée lorsqu'on veut déplacer le personnage
         {
-            rbCharacter.drag = 0;
-            rbCharacter.AddForce(new Vector2(_maxSpeed*direction.x*10,0f));
-            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
-            rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
-            
-            Flip(rbCharacter.velocity.x);                                   //Flip le joueur en fonction de sa vitesse
-        }
-        
-        private void Jump()                     //Lorsque le personnage saute, on lui applique une force vers le haut
-        {
-            rbCharacter.gravityScale = defaultGravityScale;
-            rbCharacter.drag = 0;
-            isFalling = false;
-            isAirborn = true;
-            canSpinJump = true;
-            _jumpBuffer = 0;
-            _jumpFrameCount = 0;
-            rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-            animator.SetBool("isJumping", true);
+            rbCharacter.drag = 0; //La friction du personnage passe à 0 (pas de résistance en l'air)
+            rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x * 10,
+                0f)); //On applique une force au personnage pour l'accélerer dans la direction du joystick gauche
+            _horizontalSpeed =
+                Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed,
+                    _maxSpeed); //Si sa vitesse horizontale est suppérieur à sa vitesse max, on fixe _horizontalSpeed à la vitesse max
+            rbCharacter.velocity =
+                new Vector2(_horizontalSpeed,
+                    rbCharacter.velocity
+                        .y); //On applique au joueur une vitesse égale à _horizontalSpeed en X et sa vitesse en Y
+
+            Flip(rbCharacter.velocity
+                .x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
         }
 
-        private void SpinJump()
+        private void Jump() //Fonction jump appelée lorsqu'on veut faire sauter le personnage
         {
-            rbCharacter.gravityScale = defaultGravityScale;
-            isFalling = false;
-            isAirborn = true;
-            coyoteFloat = false;
-            canSpinJump = false;
-            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0);
-            rbCharacter.AddForce(new Vector2(0,spinJumpForce),ForceMode2D.Impulse);
-            animator.SetBool("IsSpinJump", true);
+            rbCharacter.gravityScale =
+                defaultGravityScale; //On remet la Gravity Scale du personnage à la Gravity Scale par défaut
+            rbCharacter.drag = 0; //On remet la friction du personnage à 0
+            isFalling = false; //Le joueur n'est pas en train de tomber
+            isAirborn = true; //Le joueur est en l'air
+            canSpinJump = true; //Le joueur peut Spin Jump
+            _jumpBuffer = 0; //Le compteur du Jumàp Buffer est remis à 0
+            _jumpDuration = 0; //On commence à compter la durée du saut
 
+            rbCharacter.AddForce(new Vector2(0, jumpForce),
+                ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à jumpForce
+            animator.SetBool("isJumping", true); //N'EST PAS UNE DE MES FONCTIONS
         }
 
-        public void Fall()
+        private void SpinJump() //Fonction appelée lorsqu'on veut faire Spin Jump le personnage
         {
-            isFalling = true;
-            _wantToEndJump = false;
-            rbCharacter.gravityScale = defaultGravityScale;
-            
-            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
-            rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse);
-            animator.SetBool("IsFalling", true);
-            animator.SetBool("isJumping", false);
+            rbCharacter.gravityScale =
+                defaultGravityScale; //On remet la Gravity Scale à la Gravity Scale par défaut
+            isFalling = false; //Le joueur n'est pas en train de tomber
+            isAirborn = true; //Le joueur est en l'air
+            coyoteFloat = false; //Le joueur n'est pas en Coyote Time
+            canSpinJump = false; //Le joueur ne peut pas Spin Jump
 
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //On arrête la chute du personnage
+            rbCharacter.AddForce(new Vector2(0, spinJumpForce),
+                ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à sa spinjumpForce
+
+            animator.SetBool("IsSpinJump", true); //N'EST PAS UNE DE MES FONCTIONS
         }
 
-        private void FastFall()                         //Lorsque le personnage est en FastFall, on lui applique une vitesse vers le bas
+        public void Fall() //Fonction appelée lorsqu'on veut faire chuter le personnage
         {
-            if (isAirborn)
+            isFalling = true; //Le joueur est en train de tomber
+            _wantToEndJump = false; //Le joueur n'est plus considéré comme voulant arrêter son saut
+            rbCharacter.gravityScale =
+                defaultGravityScale; //On remet la Gravity Scale à la Gravity Scale par défaut
+
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0f); //On arrête la montée du personnage
+            rbCharacter.AddForce(new Vector2(0, apexEndJump),
+                ForceMode2D
+                    .Impulse); //On lui applique une force vers le haut égale à apexEndJump (pour rendre la descente plus douce)
+
+            animator.SetBool("IsFalling", true); //N'EST PAS UNE DE MES FONCTIONS
+            animator.SetBool("isJumping", false); //N'EST PAS UNE DE MES FONCTIONS
+        }
+
+        private void FastFall() //Fonction appelée lorsqu'on veut lancer la Fast Fall
+        {
+            if (isAirborn) //Si le personnage est en l'air
             {
-                rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+                rbCharacter.velocity =
+                    new Vector2(rbCharacter.velocity.x,
+                        -fastFallSpeed); //On le fait aller vers le bas à la vitesse fastFallSpeed
             }
         }
 
@@ -279,15 +322,15 @@ namespace Player
 
         #region FonctionsAnimator
 
-        void Flip(float velocity)
+        void Flip(float velocity) //Fonction utilisée pour changer le sens du sprite du personnage
         {
-            if (velocity > 0.1f)
+            if (velocity > 0.1f) //Si le joueur va vers la droite
             {
-                spriteRenderer.flipX = false;
+                spriteRenderer.flipX = false; //On garde le sprite dans son orientation de base (vers la droite)
             }
-            else if (velocity < -0.1f)
+            else if (velocity < -0.1f) //Si le joueur va vers la gauche
             {
-                spriteRenderer.flipX = true;
+                spriteRenderer.flipX = true; //On oriente le sprite vers la gauche
             }
         }
 
@@ -295,19 +338,23 @@ namespace Player
 
         #region Coroutine
 
-        private IEnumerator CoyoteTime()                        //Coroutine du coyote time
-        {                                                       //On attend X secondes avant de considérer le joueur comme en l'air
-            canSpinJump = true;
-            rbCharacter.drag = 0;
-            yield return new WaitForSeconds(coyoteTime);
-            isAirborn = true;
-            coyoteFloat = false;
-            isFalling = true;
-            rbCharacter.gravityScale = defaultGravityScale;
-            StopCoroutine(CoyoteTime());
+        private IEnumerator CoyoteTime() //Coroutine du coyote time
+        {
+            canSpinJump = true; //Le joueur peut Spin Jump
+            rbCharacter.drag = 0; //La friction du personnage passe à 0
+
+            yield return new WaitForSeconds(coyoteTime); //On attend pendant coyoteTime secondes
+
+            isAirborn = true; //Le joueur est en l'air
+            coyoteFloat = false; //Le joueur n'est plus en Coyote Time
+            isFalling = true; //Le joueur est en train de tomber
+            rbCharacter.gravityScale =
+                defaultGravityScale; //On remet la Gravity Scale du personnage à la Gravity Scale par défaut
+
+            StopCoroutine(CoyoteTime()); //On arrête la coroutine Coyote Time
         }
 
         #endregion
+      
     }
 }
-
