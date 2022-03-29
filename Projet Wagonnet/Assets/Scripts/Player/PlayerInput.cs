@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
+    
     public class PlayerInput : MonoBehaviour
     {
         private InputActions farmerInputActions;
@@ -23,6 +24,12 @@ namespace Player
         public Vector2 direction;
         public float apexThreshold;
         public float defaultGravityScale;
+
+
+        public bool isSurfing;
+        private float waitTime = 0.0001f;
+        private GameObject TheChild;
+        
 
         public Animator animator;
         //private string currentState;
@@ -63,6 +70,9 @@ namespace Player
             #endregion
 
             animator = GetComponent<Animator>();
+
+            TheChild = transform.GetChild(0).gameObject;
+            
         }
 
         private void OnEnable()
@@ -83,6 +93,10 @@ namespace Player
         private void DoJump(InputAction.CallbackContext obj)
         {
             _jumpBuffer = jumpBufferTime;
+            
+            gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
+            rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+            StartCoroutine(LeJump(waitTime));
         }
 
         private void DoSpin(InputAction.CallbackContext obj)
