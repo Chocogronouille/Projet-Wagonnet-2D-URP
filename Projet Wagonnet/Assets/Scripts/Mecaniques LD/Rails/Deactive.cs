@@ -69,11 +69,6 @@ public class Deactive : MonoBehaviour
         Direction = movement.ReadValue<Vector2>();
         Move(); 
 
-     /*   if(Input.GetKeyDown(KeyCode.D))
-        {
-            Player.GetComponent<CinemachineDollyCart>().enabled=false;
-        } */
-
         if(isSurfing)
         {
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -86,12 +81,9 @@ public class Deactive : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-   //   Jump();
-   //   _jumpBuffer = jumpBufferTime;
    gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
    rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
    StartCoroutine(LeJump(waitTime));
- //  rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
     }
 
    private void DoJump()

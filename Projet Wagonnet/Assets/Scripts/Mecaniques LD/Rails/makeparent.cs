@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IndexRotation : MonoBehaviour
+public class makeparent : MonoBehaviour
 {
+    public GameObject parent;
     public List<Quaternion> RotList = new List<Quaternion>();
     public int index;
     // Start is called before the first frame update
@@ -14,9 +15,4 @@ public class IndexRotation : MonoBehaviour
         gameObject.transform.rotation = RotList[index];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

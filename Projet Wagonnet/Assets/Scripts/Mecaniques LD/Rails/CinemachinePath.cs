@@ -55,12 +55,11 @@ namespace Cinemachine
         /// <summary>True if the path ends are joined to form a continuous loop</summary>
         public override bool Looped { get { return m_Looped; } }
 
-            public Vector3 PosA;
-
-        void Awake()
-            {
-                PosA = m_Waypoints[0].position;
-            }
+            void Update()
+                {
+                    m_Looped = false;
+                } 
+            
 
         private void Reset()
         {

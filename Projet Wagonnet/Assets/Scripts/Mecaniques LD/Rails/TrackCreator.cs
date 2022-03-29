@@ -13,6 +13,7 @@ public class TrackCreator : MonoBehaviour
     private int waypointCount;
     int currentWaypointIndex = 0;
     private GameObject player;
+    public GameObject test;
 
 
  //   public GameObject EmptyObject;
@@ -33,8 +34,12 @@ public class TrackCreator : MonoBehaviour
 
     void Start()
     {
-        // GenerateTrack();
         player = GameObject.FindWithTag("Player");
+        Instantiate(test);
+    }
+     public void InstanciateTest()
+    {
+        Instantiate(test);
     }
 
     public void GenerateTrack()
@@ -51,7 +56,6 @@ public class TrackCreator : MonoBehaviour
         for (int i = 0; i < track.transform.childCount; i++)
         {
             Transform currentChild = track.transform.GetChild(i);
-     //       new Vector3(wp.position.x, 1.0f, 0.0f);
 
             if (i == 0 || loopedTrack)
             {
@@ -80,13 +84,7 @@ public class TrackCreator : MonoBehaviour
                 targetWP.roll = wp.roll;
                 generatedWaypoints[currentWaypointIndex] = targetWP;
                 currentWaypointIndex ++;
-           //     new Vector3(targetWP.position.x,targetWP.position.y,targetWP.position.z);
                 Vector3 objectScale = child.transform.localScale;
-      //          Instantiate(EmptyObject,child.transform);
-            //    EmptyObject.transform.position = new Vector3(0,0,0);
-            //      EmptyObject.transform.localScale = objectScale;
-             //   EmptyObject.transform.SetParent(child.transform);
-           //     Debug.Log(targetWP.position.x);
             }
 
     
