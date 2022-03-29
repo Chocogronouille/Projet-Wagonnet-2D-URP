@@ -9,7 +9,6 @@ namespace Cinemachine
     public class CinemachineDollyCart : MonoBehaviour
     {
         public Vector3 PosDebut;
-      //  public bool isSurfing = false;
         /// <summary>The path to follow</summary>
         [Tooltip("The path to follow")]
         public CinemachinePath m_Path;
@@ -29,7 +28,6 @@ namespace Cinemachine
 
     private void Awake()
     {
-     //   EmptyObjectScript.instance.isSurfing = true;
         if (instance != null)
         {
             Debug.LogWarning("Il y a plus d'une instance de CinemachineDollyCart dans la scène");
@@ -37,13 +35,7 @@ namespace Cinemachine
         }
 
         instance = this;
-    }
-
-  /*  void Start()
-        {
-            EmptyObjectScript.instance.isSurfing = true;
-        } */
-    
+    }  
 
         /// <summary>When to move the cart, if Velocity is non-zero</summary>
         [Tooltip("When to move the cart, if Velocity is non-zero")]
@@ -62,14 +54,7 @@ namespace Cinemachine
         [Tooltip("The position along the path at which the cart will be placed.  This can be animated directly or, if the velocity is non-zero, will be updated automatically.  The value is interpreted according to the Position Units setting.")]
         [FormerlySerializedAs("m_CurrentDistance")]
         public float m_Position;
-
-
-    /*    void Awake()
-            {
-                PosA = m_Path.m_Waypoints[0].position;
-            } */
         
-
         void FixedUpdate()
         {
             if (m_UpdateMethod == UpdateMethod.FixedUpdate)

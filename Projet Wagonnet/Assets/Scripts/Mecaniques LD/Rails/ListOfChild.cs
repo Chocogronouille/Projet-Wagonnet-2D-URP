@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ListOfChild : MonoBehaviour
 {
- //   public GameObject TheEmpty;
     public int Theindex;
     public int Newindex;
     public List<int> goList = new List<int>();
@@ -13,11 +12,10 @@ public class ListOfChild : MonoBehaviour
     // List of GameObjects
     public List<Vector3> TheList = new List<Vector3>();
 
-    void Start () {
-      
-         Debug.Log("Child Objects: " + CountChildren(transform));
-    //     gameObject.GetComponent<ListOfChild>().enabled = false;
-     }
+    void Start () 
+      {     
+          Debug.Log("Child Objects: " + CountChildren(transform));
+      }
  
      int CountChildren(Transform a)
      {
@@ -31,15 +29,11 @@ public class ListOfChild : MonoBehaviour
              }
              else
              {
-                 //        Debug.Log("Child: "+b);
              childCount ++;
-     //        childCount += CountChildren(b);
              Theindex = b.transform.GetSiblingIndex();
-             Debug.Log("On est là");
              goList.Add(Theindex);
              gameObject.GetComponent<RespawnObject>().VectorList.Add(b.transform.position);
              gameObject.GetComponent<RespawnObject>().RotationList.Add(b.transform.rotation);
-             Debug.Log("Destruction");
              if(Theindex < Newindex)
              {
                  Destroy(b.gameObject);
@@ -50,12 +44,6 @@ public class ListOfChild : MonoBehaviour
          StartCoroutine(DeleteFunction(delayTime));
          return childCount;
      }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
      IEnumerator DeleteFunction(float delayTime)
 {
