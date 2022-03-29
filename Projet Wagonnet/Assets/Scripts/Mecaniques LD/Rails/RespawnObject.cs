@@ -19,7 +19,7 @@ public class RespawnObject : MonoBehaviour
     void Start()
     {
         parent = gameObject;
-        Player = GameObject.FindWithTag("Player");
+        Player = GameObject.FindWithTag("Player");;
     }
 
     void OnTriggerEnter2D()

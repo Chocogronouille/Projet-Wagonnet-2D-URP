@@ -9,7 +9,6 @@ namespace Cinemachine
     public class CinemachineDollyCart : MonoBehaviour
     {
         public Vector3 PosDebut;
-        private GameObject TheChild;
         /// <summary>The path to follow</summary>
         [Tooltip("The path to follow")]
         public CinemachinePath m_Path;
@@ -29,7 +28,6 @@ namespace Cinemachine
 
     private void Awake()
     {
-        TheChild = transform.GetChild(0).gameObject;
         if (instance != null)
         {
             Debug.LogWarning("Il y a plus d'une instance de CinemachineDollyCart dans la scène");
@@ -68,14 +66,6 @@ namespace Cinemachine
             float speed = Application.isPlaying ? m_Speed : 0;
            if (m_UpdateMethod == UpdateMethod.Update)
                 SetCartPosition(m_Position + speed * Time.deltaTime);
-
-                if(m_Position == 1)
-                {
-                    gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
-                    TheChild.GetComponent<BoxCollider2D>().enabled = true;
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,10),ForceMode2D.Impulse);
-                    gameObject.GetComponent<Deactive>().isSurfing = false;
-                }
         }
 
         void LateUpdate()

@@ -103,7 +103,7 @@ public class Deactive : MonoBehaviour
         gameObject.transform.rotation = new Quaternion(0.0f,90,0.0f,90);
         yield return new WaitForSeconds(waitTime);
         isSurfing = false;
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime + 0.2f);
         TheChild.GetComponent<BoxCollider2D>().enabled = true;
     }
 }
