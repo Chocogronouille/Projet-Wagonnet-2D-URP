@@ -126,7 +126,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a14a5cfdb0420c488abbec94eacbba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFalling: 0
   movement:
     m_Name: Movement
     m_Type: 0
@@ -226,21 +227,25 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  walkSpeed: 12
   isAirborn: 0
   coyoteFloat: 0
   canSpinJump: 0
   direction: {x: 0, y: 0}
+  apexThreshold: 1.5
+  defaultGravityScale: 0
   animator: {fileID: 8148498072017687969}
   spriteRenderer: {fileID: 7363373454391356910}
   rbCharacter: {fileID: 7363373454391356911}
+  walkSpeed: 12
+  airStopSpeed: 0
   jumpForce: 20
   spinJumpForce: 4
   fastFallSpeed: 20
   jumpBufferTime: 50
   coyoteTime: 0.2
   apexEndJump: 3.5
-  apexThreshold: 1.5
+  minJumpEndFrame: 0
+  maxJumpEndFrame: 0
 --- !u!95 &8148498072017687969
 Animator:
   serializedVersion: 3
