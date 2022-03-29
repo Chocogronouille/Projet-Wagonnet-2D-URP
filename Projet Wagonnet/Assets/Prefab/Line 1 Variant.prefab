@@ -107,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738094940, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738094940, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_LocalRotation.x
@@ -115,11 +115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738094940, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738094940, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738094940, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -135,7 +135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738094943, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_Name
-      value: Line 1 Variant
+      value: Line 1.1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738095010, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_Waypoints.Array.data[0].position.x
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5454482524738095011, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19e68b9e1f7132b4b8a711546e1be2a4, type: 3}
@@ -182,4 +182,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  LeParent: {fileID: 0}
+  RotList: []
+  index: 0

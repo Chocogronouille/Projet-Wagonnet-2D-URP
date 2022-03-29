@@ -55,10 +55,10 @@ namespace Cinemachine
         /// <summary>True if the path ends are joined to form a continuous loop</summary>
         public override bool Looped { get { return m_Looped; } }
 
-         /*   void Update()
+            void Update()
                 {
                     m_Looped = false;
-                } */
+                } 
             
 
         private void Reset()
