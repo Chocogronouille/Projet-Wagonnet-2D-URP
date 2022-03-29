@@ -13,6 +13,7 @@ namespace Player
             player.canSpinJump = false;
             player.isFalling = false;
             player.GetComponent<Rigidbody2D>().drag = 10;
+            
         }
     
     }
