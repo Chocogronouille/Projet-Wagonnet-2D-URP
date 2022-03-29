@@ -238,7 +238,7 @@ namespace Player
             _jumpBuffer = 0;
             _jumpFrameCount = 0;
             rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-            animator.SetBool("IsAirborn", true);
+            animator.SetBool("isJumping", true);
         }
 
         private void SpinJump()
@@ -263,6 +263,7 @@ namespace Player
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x,0f);
             rbCharacter.AddForce(new Vector2(0,apexEndJump),ForceMode2D.Impulse);
             animator.SetBool("IsFalling", true);
+            animator.SetBool("isJumping", false);
 
         }
 
