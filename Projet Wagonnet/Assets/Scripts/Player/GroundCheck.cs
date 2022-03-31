@@ -9,7 +9,7 @@ namespace Player
 
         private void OnTriggerStay2D(Collider2D other)      //Tant que le GroundCheck collide avec quelque-chose
         {
-            if (player.GetComponent<Rigidbody2D>().velocity.y<=0)
+            if (player.GetComponent<Rigidbody2D>().velocity.y<2)
             {
                 player.isAirborn = false;                       //Le joueur n'est plus en l'air
                 player.coyoteFloat = false;                     //Le joueur n'est pas en Coyote Time
