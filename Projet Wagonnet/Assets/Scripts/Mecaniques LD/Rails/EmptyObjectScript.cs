@@ -45,6 +45,7 @@ public class EmptyObjectScript : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log("entre");
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerPos = other.transform.position;
@@ -55,7 +56,7 @@ public class EmptyObjectScript : MonoBehaviour
             EmptyObject.transform.SetSiblingIndex(index);
             EmptyObject.AddComponent<IndexScript>();
             PlayerCollider.GetComponent<BoxCollider2D>().enabled = false;
-            other.gameObject.GetComponent<Cinemachine.Deactive>().isSurfing = true;
+            other.gameObject.GetComponent<Cinemachine.PlayerInput>().isSurfing = true;
             StartCoroutine(Text(delayTime));
         }
     }

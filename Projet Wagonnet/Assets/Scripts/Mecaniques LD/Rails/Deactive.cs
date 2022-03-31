@@ -44,9 +44,6 @@ public class Deactive : MonoBehaviour
     public bool isSurfing;
     private float waitTime = 0.0001f;
     private GameObject TheChild;
-    private float ReplaceSpeed = 1;
-    public float LaRotation;
-    public bool isDetect;
     // Start is called before the first frame update
     void Awake()
     {

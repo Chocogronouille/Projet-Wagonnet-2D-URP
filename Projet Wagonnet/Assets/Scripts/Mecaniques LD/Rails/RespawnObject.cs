@@ -22,7 +22,7 @@ public class RespawnObject : MonoBehaviour
     void Start()
     {
         parent = gameObject;
-        Player = GameObject.FindWithTag("Player");
+        Player = GameObject.Find("Player");
         GameManager = GameObject.Find("GameManager");
     }
 
