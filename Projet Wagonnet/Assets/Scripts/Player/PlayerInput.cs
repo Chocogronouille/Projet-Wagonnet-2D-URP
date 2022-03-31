@@ -41,6 +41,7 @@ namespace Cinemachine
 
         //private string currentState;
         public SpriteRenderer spriteRenderer;
+        public SpriteRenderer screenRenderer;
         public Rigidbody2D rbCharacter;
 
 
@@ -327,10 +328,12 @@ namespace Cinemachine
             if (velocity > 0.1f) //Si le joueur va vers la droite
             {
                 spriteRenderer.flipX = false; //On garde le sprite dans son orientation de base (vers la droite)
+                screenRenderer.flipX = false;
             }
             else if (velocity < -0.1f) //Si le joueur va vers la gauche
             {
                 spriteRenderer.flipX = true; //On oriente le sprite vers la gauche
+                screenRenderer.flipX = true;
             }
         }
 
