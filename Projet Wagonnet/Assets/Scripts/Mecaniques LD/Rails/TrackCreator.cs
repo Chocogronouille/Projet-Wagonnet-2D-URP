@@ -9,7 +9,7 @@ public class TrackCreator : MonoBehaviour
     public CinemachinePath track;   
     [SerializeField] bool loopedTrack = false;
 
-    private  CinemachinePath.Waypoint[] generatedWaypoints;
+    public  CinemachinePath.Waypoint[] generatedWaypoints;
     private int waypointCount;
     int currentWaypointIndex = 0;
     private GameObject player;
@@ -47,7 +47,7 @@ public class TrackCreator : MonoBehaviour
 
     public void GenerateTrack()
     {
-        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0f;
+        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0.07f;
         if(!track) Debug.Log("No track assigned.");
 
         currentWaypointIndex = 0;
@@ -69,6 +69,7 @@ public class TrackCreator : MonoBehaviour
             if (!loopedTrack)
             {
                 AddWaypoint(currentChild, 1);
+      //          Destroy(CinemachinePath.Waypoint[1]);
             }
 
         }

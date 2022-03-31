@@ -58,6 +58,11 @@ namespace Cinemachine
             void Update()
                 {
                     m_Looped = false;
+               //     Waypoint.RemoveAt(1);
+             //      Delete(Waypoint[0]);
+                     m_Waypoints[1].position = new Vector3(m_Waypoints[0].position.x,m_Waypoints[0].position.y,0);
+         //     Delete(m_Waypoints[1]);
+      //  m_Waypoints[1].Length = 0;
                 } 
             
 
@@ -66,8 +71,8 @@ namespace Cinemachine
             m_Looped = false;
             m_Waypoints = new Waypoint[2]
             {
-                new Waypoint { position = new Vector3(0, 0, -5), tangent = new Vector3(1, 0, 0) },
-                new Waypoint { position = new Vector3(0, 0, 5), tangent = new Vector3(1, 0, 0) }
+                new Waypoint { position = new Vector3(0, 0, 0), tangent = new Vector3(0, 0, 0) },
+                new Waypoint { position = new Vector3(0, 0, 0), tangent = new Vector3(0, 0, 0) }
             };
             m_Appearance = new Appearance();
             InvalidateDistanceCache();
@@ -98,6 +103,7 @@ namespace Cinemachine
             }
             return pos;
         }
+        
 
         /// <summary>Get a worldspace position of a point along the path</summary>
         /// <param name="pos">Postion along the path.  Need not be normalized.</param>
