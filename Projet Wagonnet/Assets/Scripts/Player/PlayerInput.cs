@@ -142,6 +142,7 @@ namespace Cinemachine
 
         private void FixedUpdate()
         {
+        //    gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x,90,gameObject.transform.rotation.z,0);
             direction = movement
                 .ReadValue<Vector2>(); //La variable direction prend la valeur de position du Joystick gauche
             float characterVelocity = Mathf.Abs(rbCharacter.velocity.x); //N'EST PAS UNE DE MES FONCTIONS

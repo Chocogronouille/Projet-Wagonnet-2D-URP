@@ -47,7 +47,7 @@ public class TrackCreator : MonoBehaviour
 
     public void GenerateTrack()
     {
-        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0.07f;
+        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0.08f;
         if(!track) Debug.Log("No track assigned.");
 
         currentWaypointIndex = 0;
