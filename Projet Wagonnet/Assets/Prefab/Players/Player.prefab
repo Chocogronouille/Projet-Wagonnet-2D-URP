@@ -107,7 +107,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -426,6 +426,7 @@ MonoBehaviour:
   defaultGravityScale: 5
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
+  screenRenderer: {fileID: 8544423070723201315}
   rbCharacter: {fileID: 8061828029134140002}
   walkSpeed: 11
   airStopSpeed: 7
@@ -526,8 +527,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 7601606927834220680, guid: 974fb514546b3b449a482f23d78e6686, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 7957105201655454869, guid: bcb430258e4f74947b42abe4bfe01639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
