@@ -37,7 +37,7 @@ public class TrackCreator : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Player");
         Instantiate(test);
     }
      public void InstanciateTest()

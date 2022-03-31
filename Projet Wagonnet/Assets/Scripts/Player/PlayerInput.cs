@@ -56,6 +56,11 @@ namespace Cinemachine
         [SerializeField] private float minJumpDuration;
         [SerializeField] private float maxJumpDuration;
 
+        // Variable des Rails
+        public bool isSurfing;
+        private float waitTime = 0.0001f;
+        private GameObject TheChild;
+
         void Awake()
         {
             farmerInputActions = new InputActions();
@@ -94,7 +99,20 @@ namespace Cinemachine
         private void DoJump(InputAction.CallbackContext obj) //Quand le bouton de saut est enfoncé
         {
             _jumpBuffer = jumpBufferTime; //On attribue à la variable _jumpBuffer le temps prédéfini du Jump Buffer
+            gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
+            rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+            StartCoroutine(LeJump(waitTime));
         }
+
+        // Couroutine pour les rails
+        IEnumerator LeJump(float waitTime)
+    {
+        gameObject.transform.rotation = new Quaternion(0.0f,90,0.0f,90);
+        yield return new WaitForSeconds(waitTime);
+        isSurfing = false;
+        yield return new WaitForSeconds(waitTime);
+        TheChild.GetComponent<BoxCollider2D>().enabled = true;
+    }
 
         private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
         {
