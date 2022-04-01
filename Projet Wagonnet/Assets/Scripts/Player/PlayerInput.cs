@@ -63,6 +63,7 @@ namespace Cinemachine
 
         void Awake()
         {
+            TheChild = GameObject.Find("PlayerCollider");
             farmerInputActions = new InputActions();
 
             #region singleton
@@ -100,18 +101,19 @@ namespace Cinemachine
         {
             _jumpBuffer = jumpBufferTime; //On attribue à la variable _jumpBuffer le temps prédéfini du Jump Buffer
             gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
-            rbCharacter.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+      //      rbCharacter.AddForce(new Vector2(0,20),ForceMode2D.Impulse);
             StartCoroutine(LeJump(waitTime));
         }
 
         // Couroutine pour les rails
         IEnumerator LeJump(float waitTime)
     {
-        gameObject.transform.rotation = new Quaternion(0.0f,90,0.0f,90);
+     //   gameObject.transform.rotation = new Quaternion(0.0f,90,0.0f,90);
         yield return new WaitForSeconds(waitTime);
         isSurfing = false;
         yield return new WaitForSeconds(waitTime);
-        TheChild.GetComponent<BoxCollider2D>().enabled = true;
+        Debug.Log("couroutine");
+  //      TheChild.GetComponent<BoxCollider2D>().enabled = true;
     }
 
         private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
@@ -142,6 +144,19 @@ namespace Cinemachine
 
         private void FixedUpdate()
         {
+   //         gameObject.transform.rotation = new Quaternion(0,0,0,0);
+            if(isSurfing)
+            {
+                gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+                gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
+            }
+            else
+            {
+              gameObject.GetComponent<Rigidbody2D>().gravityScale = 5;
+              gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+              gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
+            }
         //    gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x,90,gameObject.transform.rotation.z,0);
             direction = movement
                 .ReadValue<Vector2>(); //La variable direction prend la valeur de position du Joystick gauche

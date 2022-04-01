@@ -47,7 +47,7 @@ public class TrackCreator : MonoBehaviour
 
     public void GenerateTrack()
     {
-        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0.08f;
+        player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0f;
         if(!track) Debug.Log("No track assigned.");
 
         currentWaypointIndex = 0;
@@ -64,7 +64,7 @@ public class TrackCreator : MonoBehaviour
             if (i == 0 || loopedTrack)
             {
                 AddWaypoint(currentChild, 0);
-            }
+            } 
 
             if (!loopedTrack)
             {
@@ -90,6 +90,7 @@ public class TrackCreator : MonoBehaviour
                 generatedWaypoints[currentWaypointIndex] = targetWP;
                 currentWaypointIndex ++;
                 Vector3 objectScale = child.transform.localScale;
+                Debug.Log("1 points crée");
             }
 
     

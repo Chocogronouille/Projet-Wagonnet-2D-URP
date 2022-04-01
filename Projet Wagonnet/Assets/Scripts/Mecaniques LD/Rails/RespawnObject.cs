@@ -18,22 +18,34 @@ public class RespawnObject : MonoBehaviour
 
     private GameObject GameManager;
 
+    private GameObject GrCheck;
+    private GameObject CeCheck;
+
     // Start is called before the first frame update
     void Start()
     {
         parent = gameObject;
         Player = GameObject.Find("Player");
         GameManager = GameObject.Find("GameManager");
+        GrCheck = GameObject.Find("GroundCheck");
+        CeCheck = GameObject.Find("CeilingCheck");
     }
 
     void OnTriggerEnter2D()
     {
        TrackCreator.instance.track = LeTrack;
        Player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Path = LeTrack;
+     /*  GrCheck.SetActive(false);
+       CeCheck.SetActive(false); */
+   //    Player.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     void OnTriggerExit2D()
     {
+    /*    GrCheck.SetActive(true);
+        CeCheck.SetActive(true); */
+   //   Player.GetComponent<BoxCollider2D>().enabled = true;
+        Debug.Log("sortie");
         foreach (Transform child in gameObject.transform) 
         {
    //      Instantiate(child,new Vector3(0, 0, 0), new Quaternion(0,0,0,0), GameManager.transform);

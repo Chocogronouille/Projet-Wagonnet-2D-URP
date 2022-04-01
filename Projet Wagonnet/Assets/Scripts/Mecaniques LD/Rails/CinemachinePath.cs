@@ -58,11 +58,6 @@ namespace Cinemachine
             void Update()
                 {
                     m_Looped = false;
-               //     Waypoint.RemoveAt(1);
-             //      Delete(Waypoint[0]);
-                     m_Waypoints[1].position = new Vector3(m_Waypoints[0].position.x,m_Waypoints[0].position.y,0);
-         //     Delete(m_Waypoints[1]);
-      //  m_Waypoints[1].Length = 0;
                 } 
             
 

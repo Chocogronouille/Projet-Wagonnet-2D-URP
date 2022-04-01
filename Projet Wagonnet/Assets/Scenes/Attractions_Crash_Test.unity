@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -146,21 +146,6 @@ MonoBehaviour:
   m_PositionUnits: 2
   m_Speed: 0.5
   m_Position: 0
---- !u!95 &70696460 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8148498072017687969, guid: b703e8f3fc2628f42aba00e097a5ef0c, type: 3}
-  m_PrefabInstance: {fileID: 1718440197}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &70696462 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 7363373454391356911, guid: b703e8f3fc2628f42aba00e097a5ef0c, type: 3}
-  m_PrefabInstance: {fileID: 1718440197}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &70696463 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7363373454391356910, guid: b703e8f3fc2628f42aba00e097a5ef0c, type: 3}
-  m_PrefabInstance: {fileID: 1718440197}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &70696465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7363373454391356905, guid: b703e8f3fc2628f42aba00e097a5ef0c, type: 3}
@@ -197,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   track: {fileID: 0}
   loopedTrack: 1
+  generatedWaypoints: []
   test: {fileID: 4610079828775488035, guid: 09f2edb0250c1354fb80bce5d28978a5, type: 3}
   currentChild: {fileID: 0}
 --- !u!4 &220181372
@@ -680,6 +666,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &1295927929 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8544423070723201315, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+  m_PrefabInstance: {fileID: 2045990653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339358259
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +803,21 @@ MonoBehaviour:
   m_PositionUnits: 2
   m_Speed: 0.3
   m_Position: 0
+--- !u!95 &1693968611 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8708817187567798828, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+  m_PrefabInstance: {fileID: 2045990653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1693968614 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8061828029134140002, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+  m_PrefabInstance: {fileID: 2045990653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1693968615 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8061828029134140003, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+  m_PrefabInstance: {fileID: 2045990653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1693968616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
@@ -884,6 +890,10 @@ PrefabInstance:
       propertyPath: movement.m_Id
       value: c65ae508-9f5b-4713-a96a-59fbdf167ace
       objectReference: {fileID: 0}
+    - target: {fileID: 7363373454391356906, guid: b703e8f3fc2628f42aba00e097a5ef0c, type: 3}
+      propertyPath: screenRenderer
+      value: 
+      objectReference: {fileID: 1295927929}
     - target: {fileID: 7363373454391356906, guid: b703e8f3fc2628f42aba00e097a5ef0c, type: 3}
       propertyPath: movement.m_Type
       value: 1
@@ -1339,34 +1349,34 @@ PrefabInstance:
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 70696460}
+      objectReference: {fileID: 1693968611}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: jumpForce
-      value: 20
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: walkSpeed
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: apexEndJump
-      value: 3.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: rbCharacter
       value: 
-      objectReference: {fileID: 70696462}
+      objectReference: {fileID: 1693968614}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: airStopSpeed
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: apexThreshold
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: spinJumpForce
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: screenRenderer
@@ -1375,14 +1385,14 @@ PrefabInstance:
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: spriteRenderer
       value: 
-      objectReference: {fileID: 70696463}
+      objectReference: {fileID: 1693968615}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: maxJumpDuration
-      value: 0
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: minJumpDuration
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: defaultGravityScale
