@@ -31,18 +31,24 @@ public class RespawnObject : MonoBehaviour
         CeCheck = GameObject.Find("CeilingCheck");
     }
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("PlayerCol"))
+        {
        TrackCreator.instance.track = LeTrack;
        Player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Path = LeTrack;
+        }
+
      /*  GrCheck.SetActive(false);
        CeCheck.SetActive(false); */
    //    Player.GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    void OnTriggerExit2D()
+    void OnTriggerExit2D(Collider2D other)
     {
-    /*    GrCheck.SetActive(true);
+         if (other.gameObject.CompareTag("PlayerCol"))
+        {
+           /*    GrCheck.SetActive(true);
         CeCheck.SetActive(true); */
    //   Player.GetComponent<BoxCollider2D>().enabled = true;
         Debug.Log("sortie");
@@ -56,6 +62,7 @@ public class RespawnObject : MonoBehaviour
          Instantiate(Line,new Vector3(pos.x, pos.y, pos.z), new Quaternion(0,0,0,0), parent.transform);
          Line.GetComponent<makeparent>().parent = parent;
          StartCoroutine(Timer(delayTime));
+        }
         }
     }
 

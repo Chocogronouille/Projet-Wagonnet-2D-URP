@@ -100,9 +100,12 @@ namespace Cinemachine
         private void DoJump(InputAction.CallbackContext obj) //Quand le bouton de saut est enfoncé
         {
             _jumpBuffer = jumpBufferTime; //On attribue à la variable _jumpBuffer le temps prédéfini du Jump Buffer
+            if(isSurfing)
+            {
             gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
-      //      rbCharacter.AddForce(new Vector2(0,20),ForceMode2D.Impulse);
+            rbCharacter.AddForce(new Vector2(0,10),ForceMode2D.Impulse);
             StartCoroutine(LeJump(waitTime));
+            }
         }
 
         // Couroutine pour les rails
@@ -113,7 +116,7 @@ namespace Cinemachine
         isSurfing = false;
         yield return new WaitForSeconds(waitTime);
         Debug.Log("couroutine");
-  //      TheChild.GetComponent<BoxCollider2D>().enabled = true;
+        TheChild.GetComponent<BoxCollider2D>().enabled = true;
     }
 
         private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
