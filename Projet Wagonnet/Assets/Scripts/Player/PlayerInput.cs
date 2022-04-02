@@ -38,6 +38,7 @@ namespace Cinemachine
         public float defaultGravityScale;
 
         public Animator animator;
+        private float delaySpinJump = 0.35f;
 
         //private string currentState;
         public SpriteRenderer spriteRenderer;
@@ -150,12 +151,14 @@ namespace Cinemachine
    //         gameObject.transform.rotation = new Quaternion(0,0,0,0);
             if(isSurfing)
             {
+                animator.SetBool("isSurfing",true);
                 gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
                 gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
                 gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
             }
             else
             {
+              animator.SetBool("isSurfing",false);
               gameObject.GetComponent<Rigidbody2D>().gravityScale = 5;
               gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
               gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
@@ -327,8 +330,15 @@ namespace Cinemachine
             rbCharacter.AddForce(new Vector2(0, spinJumpForce),
                 ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à sa spinjumpForce
 
-            animator.SetBool("IsSpinJump", true); //N'EST PAS UNE DE MES FONCTIONS
+            animator.SetBool("IsSpinJumping", true); //N'EST PAS UNE DE MES FONCTIONS
+            StartCoroutine(TimerSpinJump(delaySpinJump));
         }
+
+         IEnumerator TimerSpinJump(float delaySpinJump)
+{
+   yield return new WaitForSeconds(delaySpinJump);
+   animator.SetBool("IsSpinJumping", false);
+}
 
         public void Fall() //Fonction appelée lorsqu'on veut faire chuter le personnage
         {

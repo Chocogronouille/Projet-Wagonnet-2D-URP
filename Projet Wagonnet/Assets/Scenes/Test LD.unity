@@ -3272,7 +3272,7 @@ MonoBehaviour:
   m_Path: {fileID: 0}
   m_UpdateMethod: 1
   m_PositionUnits: 2
-  m_Speed: 0.3
+  m_Speed: 1
   m_Position: 0
 --- !u!50 &590530030 stripped
 Rigidbody2D:
@@ -110902,6 +110902,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8230146560289642381, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544423070723201315, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544423070723201315, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544423070723201315, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
