@@ -43,7 +43,7 @@ namespace Cinemachine
 
         /// <summary>How to interpret the Path Position</summary>
         [Tooltip("How to interpret the Path Position.  If set to Path Units, values are as follows: 0 represents the first waypoint on the path, 1 is the second, and so on.  Values in-between are points on the path in between the waypoints.  If set to Distance, then Path Position represents distance along the path.")]
-        public CinemachinePathBase.PositionUnits m_PositionUnits = CinemachinePathBase.PositionUnits.Normalized;
+        public CinemachinePathBase.PositionUnits m_PositionUnits = CinemachinePathBase.PositionUnits.PathUnits;
 
         /// <summary>Move the cart with this speed</summary>
         [Tooltip("Move the cart with this speed along the path.  The value is interpreted according to the Position Units setting.")]

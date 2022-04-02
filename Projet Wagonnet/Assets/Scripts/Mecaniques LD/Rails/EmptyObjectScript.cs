@@ -35,6 +35,7 @@ public class EmptyObjectScript : MonoBehaviour
         gameObject.transform.localScale = new Vector3(1,1,0);
         Track = gameObject.transform.parent.parent.gameObject;
         PlayerCollider = GameObject.Find("PlayerCollider");  
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, -1);
     }
 
     // Update is called once per frame
