@@ -158,6 +158,7 @@ namespace Cinemachine
             }
             else
             {
+              gameObject.transform.rotation = new Quaternion(0,0,0,0);
               animator.SetBool("isSurfing",false);
               gameObject.GetComponent<Rigidbody2D>().gravityScale = 5;
               gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;

@@ -35,26 +35,20 @@ public class RespawnObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerCol"))
         {
+            Debug.Log("debut");
        TrackCreator.instance.track = LeTrack;
        Player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Path = LeTrack;
         }
 
-     /*  GrCheck.SetActive(false);
-       CeCheck.SetActive(false); */
-   //    Player.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
          if (other.gameObject.CompareTag("PlayerCol"))
         {
-           /*    GrCheck.SetActive(true);
-        CeCheck.SetActive(true); */
-   //   Player.GetComponent<BoxCollider2D>().enabled = true;
-        Debug.Log("sortie");
+        Debug.Log("fin");
         foreach (Transform child in gameObject.transform) 
         {
-   //      Instantiate(child,new Vector3(0, 0, 0), new Quaternion(0,0,0,0), GameManager.transform);
          GameObject.Destroy(child.gameObject, 0.2f);
         }
         foreach (Vector3 pos in VectorList) 

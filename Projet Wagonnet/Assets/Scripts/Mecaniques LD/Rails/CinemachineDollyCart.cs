@@ -36,6 +36,7 @@ namespace Cinemachine
 
         instance = this;
     }  
+    public Quaternion eval;
 
         /// <summary>When to move the cart, if Velocity is non-zero</summary>
         [Tooltip("When to move the cart, if Velocity is non-zero")]
@@ -80,9 +81,10 @@ namespace Cinemachine
         {
             if (m_Path != null)
             {
+                eval = m_Path.EvaluateOrientationAtUnit(m_Position , m_PositionUnits);
                 m_Position = m_Path.StandardizeUnit(distanceAlongPath, m_PositionUnits);
                 transform.position = m_Path.EvaluatePositionAtUnit(m_Position, m_PositionUnits);
-     //           transform.rotation = m_Path.EvaluateOrientationAtUnit(m_Position, m_PositionUnits);
+                transform.rotation = new Quaternion(eval.x,0,eval.z,eval.w);
             }
         }
     }
