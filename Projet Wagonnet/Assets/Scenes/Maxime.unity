@@ -32913,11 +32913,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: spinJumpForce
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: numberOfSpinJump
-      value: 10
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: spinJumpDuration
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 590530028, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
