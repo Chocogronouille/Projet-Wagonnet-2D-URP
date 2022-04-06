@@ -2941,6 +2941,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6611463457191616101, guid: 475336053369e7041aca5e9fa78f2e19, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6611463457191616102, guid: 475336053369e7041aca5e9fa78f2e19, type: 3}
       propertyPath: m_UsedByEffector
       value: 1
@@ -30586,6 +30590,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8018428428103623845, guid: 1c89bc5e0bad5534783ef07bfe48b280, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c89bc5e0bad5534783ef07bfe48b280, type: 3}
 --- !u!1 &1619754849
@@ -31225,7 +31233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7523880610875365806, guid: 07113a79bf146654291d97192884d412, type: 3}
       propertyPath: m_SortingOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7523880610875365807, guid: 07113a79bf146654291d97192884d412, type: 3}
       propertyPath: m_RootOrder
@@ -32022,6 +32030,10 @@ PrefabInstance:
     - target: {fileID: 8061828029134140005, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_Offset.y
       value: -0.09211874
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: numberOfSpinJump
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 590530028, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}

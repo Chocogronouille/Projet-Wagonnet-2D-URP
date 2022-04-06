@@ -26,18 +26,20 @@ namespace Cinemachine
         private float _jumpDuration;
         private bool _wantToEndJump;
         private float _maxSpeed;
+        private int _canSpinJump;
 
         public bool isFalling;
         public static PlayerInput instance; // singleton
         public InputAction movement;
         public bool isAirborn;
         public bool coyoteFloat;
-        public bool canSpinJump;
+        public int numberOfSpinJump;
         public Vector2 direction;
         public float apexThreshold;
         public float defaultGravityScale;
         public float stopDrag;
         public float groundDrag;
+        public GameObject groundCheck;
 
         public Animator animator;
         private float delaySpinJump = 0.35f;
@@ -46,7 +48,6 @@ namespace Cinemachine
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer screenRenderer;
         public Rigidbody2D rbCharacter;
-        public GameObject groundCheck;
 
 
         [SerializeField] private float walkSpeed;
@@ -124,7 +125,7 @@ namespace Cinemachine
 
         private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
         {
-            if (canSpinJump) //On regarde si le joueur peut Spin Jump
+            if (_canSpinJump!=0) //On regarde si le joueur peut Spin Jump
             {
                 SpinJump(); //Si oui, il l'effectue
             }
@@ -265,7 +266,7 @@ namespace Cinemachine
                 if (isFalling) //Si le joueur est en l'air
                 {
 
-                    rbCharacter.drag = Mathf.Lerp(0, stopDrag,0.5f);
+                    rbCharacter.drag = stopDrag;
 
 
                     //ChangeAnimationState(PLAYER_RUN);// Tentative animator            //N'EST PAS UNE DE MES FONCTIONS
@@ -312,8 +313,7 @@ namespace Cinemachine
             rbCharacter.drag = 0; //On remet la friction du personnage à 0
             isFalling = false; //Le joueur n'est pas en train de tomber
             isAirborn = true; //Le joueur est en l'air
-            canSpinJump = true; //Le joueur peut Spin Jump
-            _jumpBuffer = 0; //Le compteur du Jumàp Buffer est remis à 0
+            _jumpBuffer = 0; //Le compteur du Jump Buffer est remis à 0
             _jumpDuration = 0; //On commence à compter la durée du saut
 
             rbCharacter.AddForce(new Vector2(0, jumpForce),
@@ -330,14 +330,15 @@ namespace Cinemachine
             isFalling = false; //Le joueur n'est pas en train de tomber
             isAirborn = true; //Le joueur est en l'air
             coyoteFloat = false; //Le joueur n'est pas en Coyote Time
-            canSpinJump = false; //Le joueur ne peut pas Spin Jump
 
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //On arrête la chute du personnage
-            rbCharacter.AddForce(new Vector2(0, spinJumpForce),
-                ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à sa spinjumpForce
+            rbCharacter.AddForce(new Vector2(0, spinJumpForce*_canSpinJump),
+                ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à sa spinjumpForce*son nombre de spin jump (Des sauts dégressifs)
 
             animator.SetBool("IsSpinJumping", true); //N'EST PAS UNE DE MES FONCTIONS
             StartCoroutine(TimerSpinJump(delaySpinJump));
+            
+            _canSpinJump -= 1; //On retire 1 au nombre de SpinJumps restant
         }
 
          IEnumerator TimerSpinJump(float delaySpinJump)
@@ -372,6 +373,11 @@ namespace Cinemachine
             }
         }
 
+        public void ResetSpinJump()
+        {
+            _canSpinJump = numberOfSpinJump;
+        }
+
         #endregion
 
         #region FonctionsAnimator
@@ -396,7 +402,6 @@ namespace Cinemachine
 
         private IEnumerator CoyoteTime() //Coroutine du coyote time
         {
-            canSpinJump = true; //Le joueur peut Spin Jump
             rbCharacter.drag = 0; //La friction du personnage passe à 0
 
             yield return new WaitForSeconds(coyoteTime); //On attend pendant coyoteTime secondes
