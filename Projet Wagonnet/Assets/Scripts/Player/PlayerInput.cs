@@ -59,6 +59,7 @@ namespace Cinemachine
         [SerializeField] private float apexEndJump;
         [SerializeField] private float minJumpDuration;
         [SerializeField] private float maxJumpDuration;
+        [SerializeField] private float spinJumpDuration;
 
         // Variable des Rails
         public bool isSurfing;
@@ -125,9 +126,12 @@ namespace Cinemachine
 
         private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
         {
-            if (_canSpinJump!=0) //On regarde si le joueur peut Spin Jump
+            if (isAirborn)
             {
-                SpinJump(); //Si oui, il l'effectue
+                if (_canSpinJump!=0) //On regarde si le joueur peut Spin Jump
+                {
+                    SpinJump(); //Si oui, il l'effectue
+                }
             }
         }
 
@@ -330,6 +334,7 @@ namespace Cinemachine
             isFalling = false; //Le joueur n'est pas en train de tomber
             isAirborn = true; //Le joueur est en l'air
             coyoteFloat = false; //Le joueur n'est pas en Coyote Time
+            _jumpDuration = maxJumpDuration - spinJumpDuration;
 
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //On arrête la chute du personnage
             rbCharacter.AddForce(new Vector2(0, spinJumpForce*_canSpinJump),

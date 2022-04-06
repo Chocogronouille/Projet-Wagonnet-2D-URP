@@ -532,17 +532,17 @@ MonoBehaviour:
     m_Flags: 0
   isAirborn: 0
   coyoteFloat: 0
-  canSpinJump: 0
+  numberOfSpinJump: 3
   direction: {x: 0, y: 0}
   apexThreshold: 2
   defaultGravityScale: 5
   stopDrag: 4
   groundDrag: 10
+  groundCheck: {fileID: 442597106049165126}
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   screenRenderer: {fileID: 8544423070723201315}
   rbCharacter: {fileID: 8061828029134140002}
-  groundCheck: {fileID: 442597106049165126}
   walkSpeed: 11
   jumpForce: 24
   spinJumpForce: 7
@@ -552,6 +552,7 @@ MonoBehaviour:
   apexEndJump: 7
   minJumpDuration: 0.1
   maxJumpDuration: 0.27
+  spinJumpDuration: 0.1
   isSurfing: 0
 --- !u!95 &8708817187567798828
 Animator:
