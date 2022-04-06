@@ -46,6 +46,7 @@ namespace Cinemachine
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer screenRenderer;
         public Rigidbody2D rbCharacter;
+        public GameObject groundCheck;
 
 
         [SerializeField] private float walkSpeed;
@@ -131,6 +132,8 @@ namespace Cinemachine
 
         private void EndJump(InputAction.CallbackContext obj) //Quand le bouton de saut est relaché
         {
+            groundCheck.SetActive(true);
+            
             if (!isFalling) //Si le joueur n'est pas en train de tomber
             {
                 if (isAirborn) //On regarde si le joueur est dans les airs
@@ -259,7 +262,7 @@ namespace Cinemachine
             }
             else //Si le joystick gauche n'est ni à gauche, ni à droite
             {
-                if (isAirborn) //Si le joueur est en l'air
+                if (isFalling) //Si le joueur est en l'air
                 {
 
                     rbCharacter.drag = Mathf.Lerp(0, stopDrag,0.5f);
@@ -316,6 +319,8 @@ namespace Cinemachine
             rbCharacter.AddForce(new Vector2(0, jumpForce),
                 ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à jumpForce
             animator.SetBool("isJumping", true); //N'EST PAS UNE DE MES FONCTIONS
+            
+            groundCheck.SetActive(false);
         }
 
         private void SpinJump() //Fonction appelée lorsqu'on veut faire Spin Jump le personnage

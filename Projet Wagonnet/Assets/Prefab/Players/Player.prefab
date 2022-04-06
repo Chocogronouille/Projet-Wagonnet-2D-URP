@@ -535,13 +535,14 @@ MonoBehaviour:
   canSpinJump: 0
   direction: {x: 0, y: 0}
   apexThreshold: 2
-  defaultGravityScale: 4
+  defaultGravityScale: 5
   stopDrag: 4
   groundDrag: 10
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   screenRenderer: {fileID: 8544423070723201315}
   rbCharacter: {fileID: 8061828029134140002}
+  groundCheck: {fileID: 442597106049165126}
   walkSpeed: 11
   jumpForce: 24
   spinJumpForce: 7
