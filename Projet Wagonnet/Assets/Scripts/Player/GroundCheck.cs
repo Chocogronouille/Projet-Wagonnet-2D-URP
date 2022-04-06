@@ -13,9 +13,10 @@ namespace Player
             {
                 player.isAirborn = false;                       //Le joueur n'est plus en l'air
                 player.coyoteFloat = false;                     //Le joueur n'est pas en Coyote Time
-                player.canSpinJump = false;                     //Le joueur ne peut pas Spin Jump
                 player.isFalling = false;                       //Le joueur n'est pas en train de tomber
                 player.GetComponent<Rigidbody2D>().drag = player.groundDrag;   //La friction du joueur passe à 10 pour l'arrêter lorsqu'il ne maintient plus son joystick dans une direction
+                
+                player.ResetSpinJump();                         //Le joueur récupère tout ses SpinJumps
             }
         }
     }
