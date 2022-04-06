@@ -9,22 +9,20 @@ public class LON_Track : MonoBehaviour
     public Transform origin;
     public GameObject next;
 
-    Tween currentTween;
-
     [Range(0,50)]
     public float speed;
 
     float trackLength;
     LON_Track track;
-
-
-
-    // Start is called before the first frame update
+    [HideInInspector] public LON_Track last; //Not used, just in case, if needed.
+    
+    // Start
     void Start()
     {
         try
         {
             track = next.GetComponent<LON_Track>();
+            track.last = this;
         }
         catch
         {
@@ -37,30 +35,22 @@ public class LON_Track : MonoBehaviour
         if(collision.CompareTag("PlayerCol"))
         {
             PlayerInput player = collision.transform.parent.GetComponent<PlayerInput>();
-
-            player.currentTween = MoveNext(player.transform);
+            MoveNext(player);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void MoveNext(PlayerInput player)
     {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
-    }
-
-    public Tween MoveNext(Transform t)
-    {
         if (next != null)
         {
-            SetLengthFromPoint(t.transform.position);
-            currentTween = t.DOMove(track != null ? track.origin.position : next.transform.position, trackLength / speed).SetEase(Ease.Linear).OnComplete(() => track?.MoveNext(t));
-
-            return currentTween;
+            SetLengthFromPoint(rb.transform.position);
+            player.currentTween?.Kill();
+            player.currentTween = rb.DOMove(track != null ? track.origin.position : next.transform.position, trackLength / speed).SetEase(Ease.Linear).OnComplete(() => track?.MoveNext(player));
         }
-
-        return null;
     }
     
-
     public void SetLengthFromPoint(Vector3 from)
     {
         trackLength = Vector3.Distance(from, track != null ? track.origin.position : next.transform.position);
