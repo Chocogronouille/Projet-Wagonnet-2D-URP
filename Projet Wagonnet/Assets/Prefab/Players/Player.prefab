@@ -476,7 +476,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -536,12 +536,14 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   apexThreshold: 2
   defaultGravityScale: 5
+  stopDrag: 4
+  groundDrag: 10
   animator: {fileID: 8708817187567798828}
   spriteRenderer: {fileID: 8061828029134140003}
   screenRenderer: {fileID: 8544423070723201315}
   rbCharacter: {fileID: 8061828029134140002}
+  groundCheck: {fileID: 442597106049165126}
   walkSpeed: 11
-  airStopSpeed: 7
   jumpForce: 24
   spinJumpForce: 7
   fastFallSpeed: 20
