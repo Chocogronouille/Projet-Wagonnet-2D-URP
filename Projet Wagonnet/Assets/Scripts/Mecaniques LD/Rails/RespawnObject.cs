@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Serialization;
+using DG.Tweening;
 
 public class RespawnObject : MonoBehaviour
 {
@@ -36,8 +37,8 @@ public class RespawnObject : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerCol"))
         {
             Debug.Log("debut");
-       TrackCreator.instance.track = LeTrack;
-       Player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Path = LeTrack;
+            TrackCreator.instance.track = LeTrack;
+            Player.GetComponent<Cinemachine.CinemachineDollyCart>().m_Path = LeTrack;
         }
 
     }

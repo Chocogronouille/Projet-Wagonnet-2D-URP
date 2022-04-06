@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 namespace Cinemachine
 {
@@ -48,6 +49,8 @@ namespace Cinemachine
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer screenRenderer;
         public Rigidbody2D rbCharacter;
+
+        [HideInInspector] public Tween currentTween;
 
 
         [SerializeField] private float walkSpeed;
@@ -104,6 +107,8 @@ namespace Cinemachine
 
         private void DoJump(InputAction.CallbackContext obj) //Quand le bouton de saut est enfoncé
         {
+            currentTween?.Kill();
+
             _jumpBuffer = jumpBufferTime; //On attribue à la variable _jumpBuffer le temps prédéfini du Jump Buffer
             if(isSurfing)
             {
