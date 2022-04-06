@@ -36,6 +36,8 @@ namespace Cinemachine
         public Vector2 direction;
         public float apexThreshold;
         public float defaultGravityScale;
+        public float stopDrag;
+        public float groundDrag;
 
         public Animator animator;
         private float delaySpinJump = 0.35f;
@@ -47,7 +49,6 @@ namespace Cinemachine
 
 
         [SerializeField] private float walkSpeed;
-        [SerializeField] private float airStopSpeed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
         [SerializeField] private float fastFallSpeed;
@@ -261,8 +262,7 @@ namespace Cinemachine
                 if (isAirborn) //Si le joueur est en l'air
                 {
 
-                    _maxSpeed = airStopSpeed; //Sa vitesse max devient sa vitesse d'arrêt en l'air
-                    Move(); //On lance la fonction Move pour le déplacement
+                    rbCharacter.drag = Mathf.Lerp(0, stopDrag,0.5f);
 
 
                     //ChangeAnimationState(PLAYER_RUN);// Tentative animator            //N'EST PAS UNE DE MES FONCTIONS
