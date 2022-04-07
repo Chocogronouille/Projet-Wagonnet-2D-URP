@@ -24,38 +24,41 @@ public class LON_Track : MonoBehaviour
     void Start()
     {
         Rotz= gameObject.transform.localEulerAngles.z;
-        try
-        {
-            track = next.GetComponent<LON_Track>();
-            track.last = this;
-        }
-        catch
-        {
 
-        }      
+        if (next is null) return;
+        
+        track = next.GetComponent<LON_Track>();
+        if (track is null) return;
+        track.last = this;
     }
 
+    PlayerInput player => PlayerInput.instance;
+    Rigidbody2D playerRigidBody => PlayerInput.instance.rbCharacter;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("PlayerCol"))
         {
        //     Ejecte.GetComponent<Ejection>().enabled = true;
-            PlayerInput player = collision.transform.parent.GetComponent<PlayerInput>();
             player.isSurfing = true;
-            MoveNext(player);
+            MoveNext();
             collision.transform.parent.transform.localEulerAngles = new Vector3(0,0,Rotz);
         }
     }
 
-    public void MoveNext(PlayerInput player)
+    public void MoveNext()
     {
-        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-
         if (next != null)
         {
-            SetLengthFromPoint(rb.transform.position);
+            SetLengthFromPoint(playerRigidBody.transform.position);
             player.currentTween?.Kill();
-            player.currentTween = rb.DOMove(track != null ? track.origin.position : next.transform.position, trackLength / speed).SetEase(Ease.Linear).OnComplete(() => track?.MoveNext(player));
+            player.currentTween = playerRigidBody.DOMove(track != null 
+                ? track.origin.position : next.transform.position, trackLength / speed).SetEase(Ease.Linear).OnComplete(() => track?.MoveNext());
+
+            var direction = next.transform.position - player.transform.position;
+            Debug.Log(direction.normalized);
+            Debug.Log(player.deplacement);
+            player.railDirection = direction.normalized;
         }
     }
     

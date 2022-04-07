@@ -9,7 +9,6 @@ public class OnGameLoad : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        GameObject.Find("DebutDeJeu").SetActive(true);
         debutDeJeu.SetTrigger("DebutDeJeu");
     }
 }

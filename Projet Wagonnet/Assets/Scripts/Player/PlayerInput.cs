@@ -87,7 +87,6 @@ namespace Cinemachine
             #endregion
 
             animator = GetComponent<Animator>();
-            
         }
 
         private void OnEnable()
@@ -105,36 +104,36 @@ namespace Cinemachine
 
         #region InputAction
 
+        public Vector2 railDirection;
+        public float railJump = 25;
+
         private void DoJump(InputAction.CallbackContext obj) //Quand le bouton de saut est enfoncé
         {
-            gameObject.transform.localEulerAngles = new Vector3(0,0,0);
+            gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             currentTween?.Kill();
 
             _jumpBuffer = jumpBufferTime; //On attribue à la variable _jumpBuffer le temps prédéfini du Jump Buffer
-            if(isSurfing)
+
+            if (isSurfing)
             {
-            gameObject.GetComponent<CinemachineDollyCart>().enabled=false;
-            rbCharacter.AddForce(new Vector2(0,10),ForceMode2D.Impulse);
-            StartCoroutine(LeJump(waitTime));
+                isSurfing = false;
+                gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
+                ApplyJumpForce(25);
             }
         }
 
-        // Couroutine pour les rails
-        IEnumerator LeJump(float waitTime)
-    {
-     //   gameObject.transform.rotation = new Quaternion(0.0f,90,0.0f,90);
-        yield return new WaitForSeconds(waitTime);
-        isSurfing = false;
-    /*    yield return new WaitForSeconds(waitTime);
-        Debug.Log("couroutine");
-        TheChild.GetComponent<BoxCollider2D>().enabled = true; */
-    }
+        // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
+        public void ApplyJumpForce(int jumpBonus = 0)
+        {
+            rbCharacter.AddForce(new Vector2(railDirection.x * railJump, railDirection.y * railJump + jumpBonus),
+                ForceMode2D.Impulse);
+        }
 
         private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
         {
             if (isAirborn)
             {
-                if (_canSpinJump!=0) //On regarde si le joueur peut Spin Jump
+                if (_canSpinJump != 0) //On regarde si le joueur peut Spin Jump
                 {
                     SpinJump(); //Si oui, il l'effectue
                 }
@@ -144,7 +143,7 @@ namespace Cinemachine
         private void EndJump(InputAction.CallbackContext obj) //Quand le bouton de saut est relaché
         {
             groundCheck.SetActive(true);
-            
+
             if (!isFalling) //Si le joueur n'est pas en train de tomber
             {
                 if (isAirborn) //On regarde si le joueur est dans les airs
@@ -161,79 +160,50 @@ namespace Cinemachine
 
         #endregion
 
+        private Vector2 lastPos = Vector2.zero;
+        public Vector2 deplacement;
+
         private void FixedUpdate()
         {
-   //         gameObject.transform.rotation = new Quaternion(0,0,0,0);
-            if(isSurfing)
+            Movement();
+            CalculateDeplacement();
+        }
+
+        // TODO FIND THE GOOD MOVEMENT VALUE
+        private void CalculateDeplacement()
+        {
+            deplacement = transform.position - new Vector3(lastPos.x, lastPos.y, 0);
+            lastPos = transform.position;
+        }
+
+        private void Movement()
+        {
+            //         gameObject.transform.rotation = new Quaternion(0,0,0,0);
+            if (isSurfing)
             {
-                animator.SetBool("isSurfing",true);
-        //        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-        //        gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
-        //        gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
+                animator.SetBool("isSurfing", true);
+                //        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                //        gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+                //        gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
             }
             else
             {
-              // gameObject.transform.rotation = new Quaternion(0,0,0,0);
-               animator.SetBool("isSurfing",false);
-              // gameObject.GetComponent<Rigidbody2D>().gravityScale = defaultGravityScale;
-              // gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-              // gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
+                // gameObject.transform.rotation = new Quaternion(0,0,0,0);
+                animator.SetBool("isSurfing", false);
+                // gameObject.GetComponent<Rigidbody2D>().gravityScale = defaultGravityScale;
+                // gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+                // gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
             }
-        //    gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x,90,gameObject.transform.rotation.z,0);
+
+            //    gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x,90,gameObject.transform.rotation.z,0);
             direction = movement
                 .ReadValue<Vector2>(); //La variable direction prend la valeur de position du Joystick gauche
             float characterVelocity = Mathf.Abs(rbCharacter.velocity.x); //N'EST PAS UNE DE MES FONCTIONS
             animator.SetFloat("Speed", characterVelocity); //N'EST PAS UNE DE MES FONCTIONS
 
+            JumpBuffer();
 
-            // Jump Buffer
-            if (
-                _jumpBuffer >
-                0) //Si la variable _jumpBuffer est supérieure à 0 (que la touche de saut a été enfoncée) 
-            {
-                _jumpBuffer -= 1 * Time.deltaTime; //On réduit la variable selon le temps passé entre deux frames
-
-                if (isAirborn == false) //Si le joueur n'est pas en l'air (au sol / sur un rail / sur un ballon)
-                {
-                    Jump(); //Le joueur saute
-                }
-            }
-
-
-            // Gestion de la vitesse de chute et du nuancier de saut
-
-            if (!isFalling) //Si le joueur n'est pas en train de tomber
-            {
-                if (isAirborn) //Si le joueur est dans les airs
-                {
-                    _jumpDuration += 1 * Time.deltaTime; //On compte la durée de son saut
-
-                    if (_jumpDuration >
-                        maxJumpDuration) //Si la durée de son saut est supérieur à la durée max d'un saut
-                    {
-                        Fall(); //Le joueur commence à retomber
-                    }
-
-                    if (_wantToEndJump) //Si le joueur a relaché la touche de saut
-                    {
-                        if (rbCharacter.velocity.y >
-                            apexThreshold) //Si le joueur a une vitesse en y supérieur au seuil de vitesse ascensionel
-                        {
-                            //(on vérifie pour que le joueur ne puisse pas augmenter la taille son saut en l'arrêtant juste avant son apogée)
-
-                            if (_jumpDuration >
-                                minJumpDuration) //Si la durée du saut est supérieure à la durée minimale d'un saut
-                            {
-                                //(permet d'avoir un saut par défaut lorsque le bouton de saut est relaché directement)
-
-                                Fall(); //Le joueur commence à retomber
-                            }
-                        }
-                    }
-
-                }
-            }
-
+            FallManagement();
 
             // Coyote Time
 
@@ -275,7 +245,6 @@ namespace Cinemachine
             {
                 if (isFalling) //Si le joueur est en l'air
                 {
-
                     rbCharacter.drag = stopDrag;
 
 
@@ -287,6 +256,55 @@ namespace Cinemachine
                 // {                                                                    //N'EST PAS UNE DE MES FONCTIONS
                 //     ChangeAnimationState(PLAYER_IDLE);                               //N'EST PAS UNE DE MES FONCTIONS
                 // }                                                                    //N'EST PAS UNE DE MES FONCTIONS
+            }
+        }
+        
+        // Gestion de la vitesse de chute et du nuancier de saut
+
+        private void FallManagement()
+        {
+            if (isFalling) return;
+            if (!isAirborn) return;
+
+            _jumpDuration += 1 * Time.deltaTime; //On compte la durée de son saut
+
+            if (_jumpDuration >
+                maxJumpDuration) //Si la durée de son saut est supérieur à la durée max d'un saut
+            {
+                Fall(); //Le joueur commence à retomber
+            }
+
+            if (_wantToEndJump) //Si le joueur a relaché la touche de saut
+            {
+                if (rbCharacter.velocity.y >
+                    apexThreshold) //Si le joueur a une vitesse en y supérieur au seuil de vitesse ascensionel
+                {
+                    //(on vérifie pour que le joueur ne puisse pas augmenter la taille son saut en l'arrêtant juste avant son apogée)
+
+                    if (_jumpDuration >
+                        minJumpDuration) //Si la durée du saut est supérieure à la durée minimale d'un saut
+                    {
+                        //(permet d'avoir un saut par défaut lorsque le bouton de saut est relaché directement)
+
+                        Fall(); //Le joueur commence à retomber
+                    }
+                }
+            }
+        }
+        
+        private void JumpBuffer()
+        {
+            // Jump Buffer
+            if (
+                _jumpBuffer >
+                0) //Si la variable _jumpBuffer est supérieure à 0 (que la touche de saut a été enfoncée) 
+            {
+                _jumpBuffer -= 1 * Time.deltaTime; //On réduit la variable selon le temps passé entre deux frames
+
+                if (isAirborn == false) //Si le joueur n'est pas en l'air (au sol / sur un rail / sur un ballon)
+                {
+                    Jump(); //Le joueur saute
+                }
             }
         }
 
@@ -329,7 +347,7 @@ namespace Cinemachine
             rbCharacter.AddForce(new Vector2(0, jumpForce),
                 ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à jumpForce
             animator.SetBool("isJumping", true); //N'EST PAS UNE DE MES FONCTIONS
-            
+
             groundCheck.SetActive(false);
         }
 
@@ -343,20 +361,20 @@ namespace Cinemachine
             _jumpDuration = maxJumpDuration - spinJumpDuration;
 
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //On arrête la chute du personnage
-            rbCharacter.AddForce(new Vector2(0, spinJumpForce*_canSpinJump),
+            rbCharacter.AddForce(new Vector2(0, spinJumpForce * _canSpinJump),
                 ForceMode2D.Impulse); //On applique une force vers le haut au personnage égale à sa spinjumpForce*son nombre de spin jump (Des sauts dégressifs)
 
             animator.SetBool("IsSpinJumping", true); //N'EST PAS UNE DE MES FONCTIONS
             StartCoroutine(TimerSpinJump(delaySpinJump));
-            
+
             _canSpinJump -= 1; //On retire 1 au nombre de SpinJumps restant
         }
 
-         IEnumerator TimerSpinJump(float delaySpinJump)
-{
-   yield return new WaitForSeconds(delaySpinJump);
-   animator.SetBool("IsSpinJumping", false);
-}
+        IEnumerator TimerSpinJump(float delaySpinJump)
+        {
+            yield return new WaitForSeconds(delaySpinJump);
+            animator.SetBool("IsSpinJumping", false);
+        }
 
         public void Fall() //Fonction appelée lorsqu'on veut faire chuter le personnage
         {
@@ -427,6 +445,5 @@ namespace Cinemachine
         }
 
         #endregion
-      
     }
 }
