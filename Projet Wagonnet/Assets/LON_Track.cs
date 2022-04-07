@@ -6,6 +6,10 @@ using Cinemachine;
 
 public class LON_Track : MonoBehaviour
 {
+    // Rotation
+    private float Rotz;
+//    public GameObject Ejecte;
+
     public Transform origin;
     public GameObject next;
 
@@ -19,6 +23,7 @@ public class LON_Track : MonoBehaviour
     // Start
     void Start()
     {
+        Rotz= gameObject.transform.localEulerAngles.z;
         try
         {
             track = next.GetComponent<LON_Track>();
@@ -34,8 +39,11 @@ public class LON_Track : MonoBehaviour
     {
         if(collision.CompareTag("PlayerCol"))
         {
+       //     Ejecte.GetComponent<Ejection>().enabled = true;
             PlayerInput player = collision.transform.parent.GetComponent<PlayerInput>();
+            player.isSurfing = true;
             MoveNext(player);
+            collision.transform.parent.transform.localEulerAngles = new Vector3(0,0,Rotz);
         }
     }
 

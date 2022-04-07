@@ -107,6 +107,7 @@ namespace Cinemachine
 
         private void DoJump(InputAction.CallbackContext obj) //Quand le bouton de saut est enfoncé
         {
+            gameObject.transform.localEulerAngles = new Vector3(0,0,0);
             currentTween?.Kill();
 
             _jumpBuffer = jumpBufferTime; //On attribue à la variable _jumpBuffer le temps prédéfini du Jump Buffer
@@ -124,9 +125,9 @@ namespace Cinemachine
      //   gameObject.transform.rotation = new Quaternion(0.0f,90,0.0f,90);
         yield return new WaitForSeconds(waitTime);
         isSurfing = false;
-        yield return new WaitForSeconds(waitTime);
+    /*    yield return new WaitForSeconds(waitTime);
         Debug.Log("couroutine");
-        TheChild.GetComponent<BoxCollider2D>().enabled = true;
+        TheChild.GetComponent<BoxCollider2D>().enabled = true; */
     }
 
         private void DoSpin(InputAction.CallbackContext obj) //Quand la touche de Spin Jump est enfoncée
@@ -166,14 +167,14 @@ namespace Cinemachine
             if(isSurfing)
             {
                 animator.SetBool("isSurfing",true);
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-                gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
-                gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
+        //        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+        //        gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+        //        gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
             }
             else
             {
               // gameObject.transform.rotation = new Quaternion(0,0,0,0);
-              // animator.SetBool("isSurfing",false);
+               animator.SetBool("isSurfing",false);
               // gameObject.GetComponent<Rigidbody2D>().gravityScale = defaultGravityScale;
               // gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
               // gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
