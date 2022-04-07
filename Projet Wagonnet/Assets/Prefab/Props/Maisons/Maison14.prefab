@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5702306874457714473}
   - component: {fileID: 4958999103908851418}
   - component: {fileID: 7476104256433681984}
+  - component: {fileID: 6904768576601488011}
   m_Layer: 0
   m_Name: Maison14
   m_TagString: Untagged
@@ -164,6 +165,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.1216736, y: 0.047683716}
   m_EdgeRadius: 0
+--- !u!251 &6904768576601488011
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4352186242765305831}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 90
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &8744454708810900193
 GameObject:
   m_ObjectHideFlags: 0

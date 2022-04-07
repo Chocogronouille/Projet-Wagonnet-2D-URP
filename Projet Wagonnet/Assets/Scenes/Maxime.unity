@@ -5500,7 +5500,7 @@ GameObject:
   - component: {fileID: 1225427284}
   - component: {fileID: 1225427283}
   - component: {fileID: 1225427282}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45431,21 +45431,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 820045838, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: field of view
-      value: 26
-      objectReference: {fileID: 0}
     - target: {fileID: 442597106049165126, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_Layer
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2898092771330418451, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: m_Size.y
-      value: 0.78021955
-      objectReference: {fileID: 0}
-    - target: {fileID: 2898092771330418451, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.39010978
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140000, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_Name
@@ -45454,10 +45442,6 @@ PrefabInstance:
     - target: {fileID: 8061828029134140000, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_Layer
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140003, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_RootOrder
@@ -45477,11 +45461,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8
+      value: 118.26
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 5.38
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45522,18 +45506,6 @@ PrefabInstance:
     - target: {fileID: 8061828029134140005, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_Offset.y
       value: -0.09211874
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: spinJumpForce
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: numberOfSpinJump
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-      propertyPath: spinJumpDuration
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 590530028, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
