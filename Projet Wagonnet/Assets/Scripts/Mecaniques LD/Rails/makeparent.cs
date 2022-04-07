@@ -16,9 +16,16 @@ public class makeparent : MonoBehaviour
         PosList = gameObject.transform.parent.GetComponent<RespawnObject>().VectorList;
         ScaList = gameObject.transform.parent.GetComponent<RespawnObject>().ScaleList;
         index = transform.GetSiblingIndex();
-        gameObject.transform.rotation = RotList[index];
-        gameObject.transform.position = PosList[index];
-        gameObject.transform.localScale = ScaList[index];
+
+        if(index >= 0)
+        {
+            if(index < RotList.Count)
+            gameObject.transform.rotation = RotList[index];
+            if(index < PosList.Count)
+            gameObject.transform.position = PosList[index];
+            if(index < ScaList.Count)
+            gameObject.transform.localScale = ScaList[index];
+        }
     }
 
 }
