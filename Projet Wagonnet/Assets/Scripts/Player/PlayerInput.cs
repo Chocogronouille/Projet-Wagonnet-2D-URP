@@ -383,6 +383,7 @@ namespace Cinemachine
             if (!isAirborn) return;
 
             _maxFallSpeed = fastFallSpeed;
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
         }
 
         public void ResetSpinJump()
