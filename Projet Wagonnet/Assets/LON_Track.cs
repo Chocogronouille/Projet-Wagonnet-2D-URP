@@ -39,7 +39,7 @@ public class LON_Track : MonoBehaviour
     {
         if(collision.CompareTag("PlayerCol"))
         {
-       //     Ejecte.GetComponent<Ejection>().enabled = true;
+            //     Ejecte.GetComponent<Ejection>().enabled = true;
             player.isSurfing = true;
             MoveNext();
             collision.transform.parent.transform.localEulerAngles = new Vector3(0,0,Rotz);

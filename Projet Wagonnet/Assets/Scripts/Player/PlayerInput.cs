@@ -30,10 +30,13 @@ namespace Cinemachine
         private InputActions farmerInputActions;
         private float _jumpBuffer;
         private float _horizontalSpeed;
+        private float _verticalSpeed;
         private float _jumpDuration;
         private bool _wantToEndJump;
         private float _maxSpeed;
+        private float _maxFallSpeed;
         private int _canSpinJump;
+        private bool useRailSpeed;
 
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -62,7 +65,9 @@ namespace Cinemachine
         [SerializeField] private float walkSpeed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
+        [SerializeField] private float fallSpeed;
         [SerializeField] private float fastFallSpeed;
+        [SerializeField] private float railSpeed;
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
@@ -81,6 +86,8 @@ namespace Cinemachine
         {
             TheChild = GameObject.Find("PlayerCollider");
             farmerInputActions = new InputActions();
+            _maxFallSpeed = fallSpeed;
+            _maxSpeed = walkSpeed;
 
             #region singleton
 
@@ -131,6 +138,8 @@ namespace Cinemachine
         // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
         public void ApplyJumpForce(int jumpBonus = 0)
         {
+            useRailSpeed = true;
+            _maxSpeed = railSpeed;
             rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 50, railDirection.y * railJump + 20), ForceMode2D.Impulse);
         }
         public void AJF(int jumpBonus = 0)
@@ -191,6 +200,7 @@ namespace Cinemachine
             CheckCoyoteTime();
             CheckFastFall();
             CheckMove();
+            ClampMove();
         }
 
         
@@ -277,7 +287,6 @@ namespace Cinemachine
         {
             if ((direction.x < -0.1f) ||  (0.1f < direction.x))
             {
-                _maxSpeed = walkSpeed;
                 Move();
                 
                 //ChangeAnimationState(PLAYER_RUN);// Tentative animator                //N'EST PAS UNE DE MES FONCTIONS
@@ -308,10 +317,23 @@ namespace Cinemachine
         {
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x * 10, 0f));
-            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
-            rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
 
             Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
+        }
+
+        private void ClampMove()
+        {
+            if (useRailSpeed)
+            {
+                if (rbCharacter.velocity.x < walkSpeed)
+                {
+                    _maxSpeed = walkSpeed;
+                }
+            }
+            
+            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
+            _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity);
+            rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
         }
 
         private void AirSlowDown()
@@ -359,6 +381,7 @@ namespace Cinemachine
             isFalling = true;
             _wantToEndJump = false;
             rbCharacter.gravityScale = defaultGravityScale;
+            _maxFallSpeed = fallSpeed;
 
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0f); //Arrêt de la montée et lissage de l'apex
             rbCharacter.AddForce(new Vector2(0, apexEndJump), ForceMode2D.Impulse);
@@ -370,7 +393,8 @@ namespace Cinemachine
         private void FastFall()
         {
             if (!isAirborn) return;
-            
+
+            _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
         }
 
