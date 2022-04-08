@@ -44,7 +44,7 @@ namespace Cinemachine
         public Vector2 direction;
         public float apexThreshold;
         public float defaultGravityScale;
-        public float stopDrag;
+        public float airDrag; //set between 0 and 1
         public float groundDrag;
         public GameObject groundCheck;
 
@@ -290,8 +290,7 @@ namespace Cinemachine
                 //     ChangeAnimationState(PLAYER_IDLE);                               //N'EST PAS UNE DE MES FONCTIONS
                 // }                                                                    //N'EST PAS UNE DE MES FONCTIONS
 
-                if (!isFalling) return;
-                rbCharacter.drag = stopDrag;
+                AirSlowDown();
                 
                 //ChangeAnimationState(PLAYER_RUN);// Tentative animator            //N'EST PAS UNE DE MES FONCTIONS
             }
@@ -313,6 +312,14 @@ namespace Cinemachine
             rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
 
             Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
+        }
+
+        private void AirSlowDown()
+        {
+            if (!isFalling) return;
+            var vel = rbCharacter.velocity;
+            vel.x *= 1f-airDrag;
+            rbCharacter.velocity = vel;
         }
 
         private void Jump()
