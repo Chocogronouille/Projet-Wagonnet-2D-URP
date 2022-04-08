@@ -11,20 +11,13 @@ public class Ejection : MonoBehaviour
     public Vector3 dir;
     public GameObject player;
    // [HideInInspector] public Tween currentTween;
-    
-    // Start is called before the first frame update
+   
     void Start()
     {
         player = GameObject.Find("Player");
    /*     direction = player.transform.position - transform.position;
         dir = direction.normalized;
         EjecteZ = transform.parent.transform.localEulerAngles.z; */
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
