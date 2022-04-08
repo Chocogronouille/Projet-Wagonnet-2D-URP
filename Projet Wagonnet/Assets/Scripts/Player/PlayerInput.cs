@@ -125,13 +125,18 @@ namespace Cinemachine
             if (!isSurfing) return;
             isSurfing = false;
             gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
-            ApplyJumpForce(25);
+            AJF(25);
         }
 
         // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
         public void ApplyJumpForce(int jumpBonus = 0)
         {
-            rbCharacter.AddForce(new Vector2(railDirection.x * railJump, railDirection.y * railJump + jumpBonus), ForceMode2D.Impulse);
+            rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 50, railDirection.y * railJump + 20), ForceMode2D.Impulse);
+        }
+        public void AJF(int jumpBonus = 0)
+        {
+          //  rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 20),ForceMode2D.Impulse);
+              rbCharacter.velocity = new Vector3(0, 10, 0);
         }
 
         private void DoSpin(InputAction.CallbackContext obj)
