@@ -30,9 +30,11 @@ namespace Cinemachine
         private InputActions farmerInputActions;
         private float _jumpBuffer;
         private float _horizontalSpeed;
+        private float _verticalSpeed;
         private float _jumpDuration;
         private bool _wantToEndJump;
         private float _maxSpeed;
+        private float _maxFallSpeed;
         private int _canSpinJump;
 
         public bool isFalling;
@@ -62,6 +64,7 @@ namespace Cinemachine
         [SerializeField] private float walkSpeed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
+        [SerializeField] private float fallSpeed;
         [SerializeField] private float fastFallSpeed;
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
@@ -81,6 +84,7 @@ namespace Cinemachine
         {
             TheChild = GameObject.Find("PlayerCollider");
             farmerInputActions = new InputActions();
+            _maxFallSpeed = fallSpeed;
 
             #region singleton
 
@@ -186,6 +190,7 @@ namespace Cinemachine
             CheckCoyoteTime();
             CheckFastFall();
             CheckMove();
+            ClampMove();
         }
 
         
@@ -303,10 +308,15 @@ namespace Cinemachine
         {
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x * 10, 0f));
-            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
-            rbCharacter.velocity = new Vector2(_horizontalSpeed, rbCharacter.velocity.y);
 
             Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
+        }
+
+        private void ClampMove()
+        {
+            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
+            _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity);
+            rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
         }
 
         private void AirSlowDown()
@@ -354,6 +364,7 @@ namespace Cinemachine
             isFalling = true;
             _wantToEndJump = false;
             rbCharacter.gravityScale = defaultGravityScale;
+            _maxFallSpeed = fallSpeed;
 
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0f); //Arrêt de la montée et lissage de l'apex
             rbCharacter.AddForce(new Vector2(0, apexEndJump), ForceMode2D.Impulse);
@@ -365,8 +376,8 @@ namespace Cinemachine
         private void FastFall()
         {
             if (!isAirborn) return;
-            
-            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+
+            _maxFallSpeed = fastFallSpeed;
         }
 
         public void ResetSpinJump()

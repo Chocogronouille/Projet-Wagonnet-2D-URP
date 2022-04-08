@@ -5,19 +5,18 @@ namespace Player
 {
     public class GroundCheck : MonoBehaviour
     {
-        [SerializeField] private PlayerInput player;        //On récupère l'accès au script PlayerInput du prefab Player
+        [SerializeField] private PlayerInput player;
 
-        private void OnTriggerStay2D(Collider2D other)      //Tant que le GroundCheck collide avec quelque-chose
+        private void OnTriggerStay2D(Collider2D other)
         {
-            if (player.GetComponent<Rigidbody2D>().velocity.y<2)
-            {
-                player.isAirborn = false;                       //Le joueur n'est plus en l'air
-                player.coyoteFloat = false;                     //Le joueur n'est pas en Coyote Time
-                player.isFalling = false;                       //Le joueur n'est pas en train de tomber
-                player.GetComponent<Rigidbody2D>().drag = player.groundDrag;   //La friction du joueur passe à 10 pour l'arrêter lorsqu'il ne maintient plus son joystick dans une direction
+            if (player.GetComponent<Rigidbody2D>().velocity.y >= 2) return;
+            
+            player.isAirborn = false;
+            player.coyoteFloat = false;
+            player.isFalling = false;
+            player.GetComponent<Rigidbody2D>().drag = player.groundDrag;
                 
-                player.ResetSpinJump();                         //Le joueur récupère tout ses SpinJumps
-            }
+            player.ResetSpinJump();
         }
     }
 }
