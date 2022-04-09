@@ -11,7 +11,7 @@ public class CameraSwitch : MonoBehaviour
     public CinemachineVirtualCamera Player; //Player
     public CinemachineVirtualCamera GroupAttraction; //GroupCamera
     
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
