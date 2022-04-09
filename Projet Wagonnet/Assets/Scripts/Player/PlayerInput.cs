@@ -36,6 +36,7 @@ namespace Cinemachine
         private float _maxSpeed;
         private float _maxFallSpeed;
         private int _canSpinJump;
+        private bool useRailSpeed;
 
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -66,6 +67,7 @@ namespace Cinemachine
         [SerializeField] private float spinJumpForce;
         [SerializeField] private float fallSpeed;
         [SerializeField] private float fastFallSpeed;
+        [SerializeField] private float railSpeed;
         [SerializeField] private int jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
@@ -85,6 +87,7 @@ namespace Cinemachine
             TheChild = GameObject.Find("PlayerCollider");
             farmerInputActions = new InputActions();
             _maxFallSpeed = fallSpeed;
+            _maxSpeed = walkSpeed;
 
             #region singleton
 
@@ -135,6 +138,8 @@ namespace Cinemachine
         // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
         public void ApplyJumpForce(int jumpBonus = 0)
         {
+            useRailSpeed = true;
+            _maxSpeed = railSpeed;
             rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 50, railDirection.y * railJump + 20), ForceMode2D.Impulse);
         }
         public void AJF(int jumpBonus = 0)
@@ -282,7 +287,6 @@ namespace Cinemachine
         {
             if ((direction.x < -0.1f) ||  (0.1f < direction.x))
             {
-                _maxSpeed = walkSpeed;
                 Move();
                 
                 //ChangeAnimationState(PLAYER_RUN);// Tentative animator                //N'EST PAS UNE DE MES FONCTIONS
@@ -319,6 +323,14 @@ namespace Cinemachine
 
         private void ClampMove()
         {
+            if (useRailSpeed)
+            {
+                if (rbCharacter.velocity.x < walkSpeed)
+                {
+                    _maxSpeed = walkSpeed;
+                }
+            }
+            
             _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
             _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity);
             rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
