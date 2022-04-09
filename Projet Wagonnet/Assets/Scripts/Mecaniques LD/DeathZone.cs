@@ -6,6 +6,8 @@ public class DeathZone : MonoBehaviour
    [SerializeField]
     private Animator fadeSystem;
 
+    private bool _instance;
+
     private void Awake()
     {
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
@@ -13,16 +15,16 @@ public class DeathZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            StartCoroutine(ReplacePlayer(collision));
-        }
+        if (_instance) return;
+        _instance = true;
+        StartCoroutine(ReplacePlayer(collision));
     }
 
     private IEnumerator ReplacePlayer(Collider2D collision)
     {
         fadeSystem.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
+        _instance = false;
         collision.transform.position = playerSpawn.position;
 
     }
