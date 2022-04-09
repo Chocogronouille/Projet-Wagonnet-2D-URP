@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8018428428103623845}
   - component: {fileID: 8500734380593470199}
   - component: {fileID: 4274101686549745652}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ballon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,4 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityScaleBallon: -0.05
   "dur\xE9eBallon": 1
+  "dur\xE9eReapparition": 1
   vitesseMaxY: 4
+  ballonFolder: {fileID: 0}
+  offset: {x: 0, y: 1, z: 0}

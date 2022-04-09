@@ -131,7 +131,7 @@ namespace Cinemachine
 
             if (!isSurfing) return;
             isSurfing = false;
-            gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
+       //     gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
             AJF(25);
         }
 
@@ -144,8 +144,17 @@ namespace Cinemachine
         }
         public void AJF(int jumpBonus = 0)
         {
-          //  rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 20),ForceMode2D.Impulse);
-              rbCharacter.velocity = new Vector3(0, 10, 0);
+            rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 0),ForceMode2D.Impulse);
+          //    gameObject.transform.localPosition += new Vector3(0,100,0) * Time.deltaTime;
+          //    rbCharacter.velocity = new Vector3(0, 10, 0);
+            Debug.Log("Jump_Rail");
+            StartCoroutine(ChangeGravity());
+        }
+        private IEnumerator ChangeGravity()
+        {
+            Debug.Log("couroutine");
+        //    transform.Translate(0,100 * Time.deltaTime,0);
+            yield return new WaitForSeconds(1f);
         }
 
         private void DoSpin(InputAction.CallbackContext obj)
@@ -305,14 +314,6 @@ namespace Cinemachine
             }
         }
         
-
-        // void ChangeAnimationState(string newState)                                    //N'EST PAS UNE DE MES FONCTIONS
-        //  {                                                                            
-        //      if (currentState == newState) return;                                    //N'EST PAS UNE DE MES FONCTIONS
-        //      animator.Play(newState);                                                 //N'EST PAS UNE DE MES FONCTIONS
-        //      currentState = newState;                                                 //N'EST PAS UNE DE MES FONCTIONS
-        //  }
-
         private void Move()
         {
             rbCharacter.drag = 0;
@@ -329,10 +330,10 @@ namespace Cinemachine
                 {
                     _maxSpeed = walkSpeed;
                 }
-            }
+            }  
             
             _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
-            _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity);
+            _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity); 
             rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
         }
 
@@ -352,6 +353,8 @@ namespace Cinemachine
             isAirborn = true;
             _jumpBuffer = 0;
             _jumpDuration = 0;
+
+            GetComponentInChildren<Ballon>()?.JumpFromBallon();
 
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             animator.SetBool("isJumping", true); //N'EST PAS UNE DE MES FONCTIONS
@@ -408,22 +411,22 @@ namespace Cinemachine
 
         #region FonctionsAnimator
 
-        void Flip(float velocity) //Fonction utilisée pour changer le sens du sprite du personnage
+        void Flip(float velocity)
         {
-            if (velocity > 0.1f) //Si le joueur va vers la droite
+            if (velocity > 0.1f)
             {
-                spriteRenderer.flipX = false; //On garde le sprite dans son orientation de base (vers la droite)
+                spriteRenderer.flipX = false;
                 screenRenderer.flipX = false;
             }
-            else if (velocity < -0.1f) //Si le joueur va vers la gauche
+            else if (velocity < -0.1f)
             {
-                spriteRenderer.flipX = true; //On oriente le sprite vers la gauche
+                spriteRenderer.flipX = true;
                 screenRenderer.flipX = true;
             }
         }
 
         #endregion
-
+        
         #region Coroutine
 
         private IEnumerator CoyoteTime()

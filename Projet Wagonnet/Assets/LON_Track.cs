@@ -8,6 +8,9 @@ public class LON_Track : MonoBehaviour
 {
     // Rotation
     private float Rotz;
+
+    // Aide au jump
+    public Transform HelpJump;
 //    public GameObject Ejecte;
 
     public Transform origin;
@@ -23,6 +26,7 @@ public class LON_Track : MonoBehaviour
     // Start
     void Start()
     {
+        HelpJump = gameObject.transform.GetChild(3);
         Rotz= gameObject.transform.localEulerAngles.z;
 
         if (next is null) return;
@@ -43,6 +47,14 @@ public class LON_Track : MonoBehaviour
             player.isSurfing = true;
             MoveNext();
             collision.transform.parent.transform.localEulerAngles = new Vector3(0,0,Rotz);
+            HelpJump.transform.localPosition = new Vector3(0,-0.35f,0);
+        }
+    }
+        private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("PlayerCol"))
+        {
+            HelpJump.transform.localPosition = new Vector3(0,-0.65f,0);
         }
     }
 
