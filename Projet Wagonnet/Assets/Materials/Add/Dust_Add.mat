@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water_Reflection_Material
-  m_Shader: {fileID: -6465566751694194690, guid: a50953dcbbd4cfc4aadd300905bab71b, type: 3}
+  m_Name: Dust_Add
+  m_Shader: {fileID: -6465566751694194690, guid: e1e7a0cc786915642b585fa0d342d61e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,12 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_015874aba0094a90bc37e7db710e7d74:
-        m_Texture: {fileID: 8400000, guid: 654e8316458104a4295e4d6ada9a0141, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_b021386049724303a333bbb98d0e988d:
-        m_Texture: {fileID: 2800000, guid: 35da8055872460443a3e7fb495ad0a6c, type: 3}
+    - Texture2D_9c8fccd2d03f48e0aa03a73f6df1e3fa:
+        m_Texture: {fileID: 2800000, guid: 889921f2d3fd3504bac409cfc09eb6c3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -39,9 +35,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - Vector1_4cdca051156f4e098190ed8749b3ef96: 0.05
-    - Vector1_dae68a214e514dc083cf846441a47a0c: 1
+    m_Floats: []
     m_Colors:
-    - Color_b0e7056aee50401ba7e173cbc30ff44d: {r: 0.5653702, g: 0.7810493, b: 0.990566, a: 1}
+    - Color_a4c2824ad90042debbd90e6526d62dd1: {r: 2.0705884, g: 5.992157, b: 0, a: 1}
   m_BuildTextureStacks: []
