@@ -11,7 +11,7 @@ public class CameraSwitch : MonoBehaviour
     public CinemachineVirtualCamera Player; //Player
     public CinemachineVirtualCamera GroupAttraction; //GroupCamera
     
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
@@ -26,14 +26,15 @@ public class CameraSwitch : MonoBehaviour
         {
             Player.Priority = 0;
             GroupAttraction.Priority = 1;
+            playerCamera = false;
+
         }
         else
         {
             Player.Priority = 1;
             GroupAttraction.Priority = 0;
-            
+            playerCamera = true;
         }
 
-        playerCamera = !playerCamera;
     }
 }
