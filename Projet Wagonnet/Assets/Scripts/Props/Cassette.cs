@@ -47,8 +47,9 @@ public class Cassette : MonoBehaviour
             CounterCassette.instance.AddCounterCassette(1);
             currentCassetteCount = currentCassetteCount + 1;
           //  interactBar.SetCount(currentCount);
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<BoxCollider2D>().enabled = false;
+        //    GetComponent<SpriteRenderer>().enabled = false;
+          //  GetComponent<BoxCollider2D>().enabled = false;
+          Destroy(gameObject,0.00001f);
 
         }
     }
