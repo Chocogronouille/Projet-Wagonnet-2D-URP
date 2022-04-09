@@ -221,6 +221,8 @@ namespace Cinemachine
             if (isSurfing)
             {
                 animator.SetBool("isSurfing", true);
+                isAirborn =  false;
+                isFalling = false;
                 //        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
                 //        gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
                 //        gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
