@@ -49451,7 +49451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5519882212814764959, guid: 7b3ed0a0dff736549b3ef015fb235805, type: 3}
       propertyPath: m_LookaheadIgnoreY
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5519882212814764959, guid: 7b3ed0a0dff736549b3ef015fb235805, type: 3}
       propertyPath: m_LookaheadSmoothing
@@ -49491,11 +49491,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5519882213510539713, guid: 7b3ed0a0dff736549b3ef015fb235805, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 488.76025
+      value: 233.24023
       objectReference: {fileID: 0}
     - target: {fileID: 5519882213510539713, guid: 7b3ed0a0dff736549b3ef015fb235805, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.28
+      value: 66.6
       objectReference: {fileID: 0}
     - target: {fileID: 5519882213510539713, guid: 7b3ed0a0dff736549b3ef015fb235805, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49657,11 +49657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 489.42
+      value: 233.9
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.28
+      value: 66.6
       objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140004, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49702,6 +49702,14 @@ PrefabInstance:
     - target: {fileID: 8061828029134140005, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_Offset.y
       value: -0.09211874
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: fallSpeed
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061828029134140007, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: fastFallSpeed
+      value: 27
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 590530028, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
