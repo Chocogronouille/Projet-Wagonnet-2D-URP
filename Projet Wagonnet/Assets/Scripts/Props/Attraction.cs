@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
+using UnityEditor.Experimental.GraphView;
 
 
 public class Attraction : MonoBehaviour
@@ -15,6 +17,9 @@ public class Attraction : MonoBehaviour
     public int currentAttractionCount;
    // public InteractBar interactBar;
     public bool isColliding;
+    
+    public CinemachineVirtualCamera CameraAttraction; //GroupCamera
+
     
     
     
@@ -55,10 +60,8 @@ public class Attraction : MonoBehaviour
     {
         if (isColliding == true)
         {
-            CounterAttraction.instance.AddCounterAttraction(1);
-            currentAttractionCount = currentAttractionCount + 1;
-           // interactBar.SetCount(currentAttractionCount);
-            GetComponent<BoxCollider2D>().enabled = false;
+            StartCoroutine(Activation());
+            
 
         }
     }
@@ -66,5 +69,17 @@ public class Attraction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         isColliding = false;
+    }
+
+    IEnumerator Activation()
+    {
+        CameraAttraction.Priority = 5;
+        yield return new WaitForSeconds(3f);
+        CounterAttraction.instance.AddCounterAttraction(1);
+        currentAttractionCount = currentAttractionCount + 1;
+        // interactBar.SetCount(currentAttractionCount);
+        GetComponent<BoxCollider2D>().enabled = false;
+        CameraAttraction.Priority = 0;
+
     }
 }

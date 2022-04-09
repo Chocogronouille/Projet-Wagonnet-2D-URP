@@ -26,14 +26,15 @@ public class CameraSwitch : MonoBehaviour
         {
             Player.Priority = 0;
             GroupAttraction.Priority = 1;
+            playerCamera = false;
+
         }
         else
         {
             Player.Priority = 1;
             GroupAttraction.Priority = 0;
-            
+            playerCamera = true;
         }
 
-        playerCamera = !playerCamera;
     }
 }
