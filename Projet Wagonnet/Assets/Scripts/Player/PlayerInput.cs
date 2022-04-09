@@ -38,6 +38,9 @@ namespace Cinemachine
         private int _canSpinJump;
         private bool useRailSpeed;
 
+        // MenuUI
+        public GameObject PauseMenu;
+
         public bool isFalling;
         public static PlayerInput instance; // singleton
         public InputAction movement;
@@ -115,6 +118,15 @@ namespace Cinemachine
 
             farmerInputActions.Player.SpinMove.performed += DoSpin;
             farmerInputActions.Player.SpinMove.Enable();
+
+            farmerInputActions.Player.Menu.performed += DoMenuUI;
+            farmerInputActions.Player.Menu.Enable();
+        }
+        private void DoMenuUI(InputAction.CallbackContext obj)
+        {
+            Debug.Log("OpenMenu");
+            PauseMenu.SetActive(true);
+            GameManage.instance.isPaused = true;
         }
 
         #region InputAction
