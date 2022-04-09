@@ -131,7 +131,7 @@ namespace Cinemachine
 
             if (!isSurfing) return;
             isSurfing = false;
-            gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
+       //     gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
             AJF(25);
         }
 
@@ -144,8 +144,17 @@ namespace Cinemachine
         }
         public void AJF(int jumpBonus = 0)
         {
-          //  rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 20),ForceMode2D.Impulse);
-              rbCharacter.velocity = new Vector3(0, 10, 0);
+            rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 0),ForceMode2D.Impulse);
+          //    gameObject.transform.localPosition += new Vector3(0,100,0) * Time.deltaTime;
+          //    rbCharacter.velocity = new Vector3(0, 10, 0);
+            Debug.Log("Jump_Rail");
+            StartCoroutine(ChangeGravity());
+        }
+        private IEnumerator ChangeGravity()
+        {
+            Debug.Log("couroutine");
+        //    transform.Translate(0,100 * Time.deltaTime,0);
+            yield return new WaitForSeconds(1f);
         }
 
         private void DoSpin(InputAction.CallbackContext obj)
@@ -329,10 +338,10 @@ namespace Cinemachine
                 {
                     _maxSpeed = walkSpeed;
                 }
-            }
+            }  
             
             _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
-            _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity);
+            _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity); 
             rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
         }
 
