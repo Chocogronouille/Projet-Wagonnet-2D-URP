@@ -90,7 +90,7 @@ namespace Cinemachine
             // La cam
             laCam = GameObject.FindGameObjectWithTag("LaCam");
             laCam.SetActive(false);
-            laCam.SetActive(true);
+            StartCoroutine(DesactiveCamera());
             TheChild = GameObject.Find("PlayerCollider");
             farmerInputActions = new InputActions();
             _maxFallSpeed = fallSpeed;
@@ -109,6 +109,12 @@ namespace Cinemachine
             #endregion
 
             animator = GetComponent<Animator>();
+        }
+        
+        private IEnumerator DesactiveCamera()
+        {
+            yield return new WaitForSeconds(0.000001f);
+            laCam.SetActive(true);
         }
 
         private void OnEnable()
@@ -138,9 +144,7 @@ namespace Cinemachine
 
             if (!isSurfing) return;
             isSurfing = false;
-       //     gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
             AJF(25);
-        //    gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
         }
 
         // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
@@ -153,15 +157,12 @@ namespace Cinemachine
         public void AJF(int jumpBonus = 0)
         {
             rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 0),ForceMode2D.Impulse);
-          //    gameObject.transform.localPosition += new Vector3(0,100,0) * Time.deltaTime;
-          //    rbCharacter.velocity = new Vector3(0, 10, 0);
             Debug.Log("Jump_Rail");
             StartCoroutine(ChangeGravity());
         }
         private IEnumerator ChangeGravity()
         {
             Debug.Log("couroutine");
-        //    transform.Translate(0,100 * Time.deltaTime,0);
             yield return new WaitForSeconds(1f);
         }
 
@@ -176,7 +177,7 @@ namespace Cinemachine
 
         private void EndJump(InputAction.CallbackContext obj)
         {
-          //  groundCheck.SetActive(true);
+            groundCheck.SetActive(true);
 
             if (!isFalling)
             {
@@ -189,7 +190,6 @@ namespace Cinemachine
             {
                 _jumpBuffer = 0;
             }
-            groundCheck.SetActive(true);
         }
 
         #endregion
@@ -226,26 +226,17 @@ namespace Cinemachine
         
         private void Surf()
         {
-            //         gameObject.transform.rotation = new Quaternion(0,0,0,0);
             if (isSurfing)
             {
                 animator.SetBool("isSurfing", true);
                 isAirborn =  false;
                 isFalling = false;
-                //        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-                //        gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Discrete;
-                //        gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
             }
             else
             {
-                // gameObject.transform.rotation = new Quaternion(0,0,0,0);
                 animator.SetBool("isSurfing", false);
-                // gameObject.GetComponent<Rigidbody2D>().gravityScale = defaultGravityScale;
-                // gameObject.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-                // gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
             }
 
-            //    gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x,90,gameObject.transform.rotation.z,0);
             direction = movement.ReadValue<Vector2>();
             float characterVelocity = Mathf.Abs(rbCharacter.velocity.x); //N'EST PAS UNE DE MES FONCTIONS
             animator.SetFloat("Speed", characterVelocity); //N'EST PAS UNE DE MES FONCTIONS
