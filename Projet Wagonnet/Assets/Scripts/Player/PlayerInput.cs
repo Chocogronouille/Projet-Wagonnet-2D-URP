@@ -364,15 +364,21 @@ namespace Cinemachine
                 case "ballon":
                     Debug.Log(jumpState);
                     GetComponentInChildren<Ballon>()?.JumpFromBallon();
-                    if (direction.y < -0.9) FallFromBallon();
-                    Jump();
+                    if (direction.y < -0.9)
+                    {
+                        FallFromBallon();
+                    }
+                    else
+                    {
+                        Jump();
+                    }
                     break;
                 
                 case "platform":
                     Debug.Log(jumpState);
                     if (direction.y < -0.9)
                     {
-                        FallFromPlateform();
+                        StartCoroutine(FallFromPlateform());
                     }
                     else
                     {
@@ -427,12 +433,15 @@ namespace Cinemachine
 
         private void FallFromBallon()
         {
-            return;
+            Fall();
         }
 
-        private void FallFromPlateform()
+        private IEnumerator FallFromPlateform()
         {
-            return;
+            GetComponent<BoxCollider2D>().enabled = false;
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<BoxCollider2D>().enabled = true;
+            StopCoroutine(FallFromPlateform());
         }
 
         private void FastFall()
