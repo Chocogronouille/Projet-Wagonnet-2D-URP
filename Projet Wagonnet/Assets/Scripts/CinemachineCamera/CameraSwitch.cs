@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    private bool playerCamera = true;
+    
+    public bool playerCamera = true;
     public CinemachineVirtualCamera Player; //Player
     public CinemachineVirtualCamera GroupAttraction; //GroupCamera
     
@@ -22,7 +23,7 @@ public class CameraSwitch : MonoBehaviour
 
     private void SwitchPriority()
     {
-        if (playerCamera)
+        if (playerCamera == true)
         {
             Player.Priority = 0;
             GroupAttraction.Priority = 1;
