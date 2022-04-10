@@ -38,9 +38,6 @@ namespace Cinemachine
         private int _canSpinJump;
         private bool useRailSpeed;
 
-        // MenuUI
-        public GameObject PauseMenu;
-
         public bool isFalling;
         public static PlayerInput instance; // singleton
         public InputAction movement;
@@ -82,11 +79,18 @@ namespace Cinemachine
         public bool isSurfing;
         private float waitTime = 0.0001f;
         private GameObject TheChild;
+
+        // La Cam
+        public GameObject laCam;
         
         #endregion
 
         void Awake()
         {
+            // La cam
+            laCam = GameObject.FindGameObjectWithTag("LaCam");
+            laCam.SetActive(false);
+            laCam.SetActive(true);
             TheChild = GameObject.Find("PlayerCollider");
             farmerInputActions = new InputActions();
             _maxFallSpeed = fallSpeed;
@@ -94,13 +98,13 @@ namespace Cinemachine
 
             #region singleton
 
-            if (instance != null)
+            /*if (instance != null)
             {
-                Debug.LogError("Il y a plusieurs instance de PlayerInput");
+              //Destroy(gameObject);
                 return;
             }
 
-            instance = this;
+            instance = this; */
 
             #endregion
 
@@ -118,15 +122,6 @@ namespace Cinemachine
 
             farmerInputActions.Player.SpinMove.performed += DoSpin;
             farmerInputActions.Player.SpinMove.Enable();
-
-            farmerInputActions.Player.Menu.performed += DoMenuUI;
-            farmerInputActions.Player.Menu.Enable();
-        }
-        private void DoMenuUI(InputAction.CallbackContext obj)
-        {
-            Debug.Log("OpenMenu");
-            PauseMenu.SetActive(true);
-            GameManage.instance.isPaused = true;
         }
 
         #region InputAction
@@ -145,6 +140,7 @@ namespace Cinemachine
             isSurfing = false;
        //     gameObject.GetComponent<CinemachineDollyCart>().enabled = false;
             AJF(25);
+        //    gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
         }
 
         // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
@@ -180,7 +176,7 @@ namespace Cinemachine
 
         private void EndJump(InputAction.CallbackContext obj)
         {
-            groundCheck.SetActive(true);
+          //  groundCheck.SetActive(true);
 
             if (!isFalling)
             {
@@ -193,6 +189,7 @@ namespace Cinemachine
             {
                 _jumpBuffer = 0;
             }
+            groundCheck.SetActive(true);
         }
 
         #endregion
@@ -463,5 +460,16 @@ namespace Cinemachine
             animator.SetBool("IsSpinJumping", false);
         }
         #endregion
+
+        private void OnDestroy()
+        {
+           Debug.Log("Disable");
+          movement.Disable();
+          farmerInputActions.Player.Jump.Disable();
+          farmerInputActions.Player.SpinMove.Disable();
+        }
+
     }
+
+    
 }

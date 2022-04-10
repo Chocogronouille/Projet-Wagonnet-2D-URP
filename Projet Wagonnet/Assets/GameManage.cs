@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManage : MonoBehaviour
 {
     private InputActions farmerInputActions;
-    public InputAction MenuUI;
+    public InputAction movement;
     public GameObject PauseMenu;
  //   public GameObject WinMenu;
     public bool isPaused;
@@ -17,18 +17,19 @@ public class GameManage : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
-        {
-            Debug.LogWarning("Il y a plus d'une instance de GameManage dans la scène");
-            return;
-        }
+            if (instance != null)
+            {
+              Destroy(gameObject);
+              return;
+            }
+            instance = this;
 
-        instance = this;
+        farmerInputActions = new InputActions();
     }
     // Start is called before the first frame update
     void Start()
     {
-        farmerInputActions = new InputActions();
+
     }
 
     // Update is called once per frame
@@ -40,8 +41,11 @@ public class GameManage : MonoBehaviour
         } 
     }
 
-  /*  private void OnEnable()
+    private void OnEnable()
         {
+            movement = farmerInputActions.Player.Movement;
+            movement.Enable();
+
             farmerInputActions.Player.Menu.performed += DoMenuUI;
             farmerInputActions.Player.Menu.Enable();
         }
@@ -50,7 +54,7 @@ public class GameManage : MonoBehaviour
             Debug.Log("OpenMenu");
            PauseMenu.SetActive(true);
            isPaused = true;
-        } */
+        } 
             public void StartGame()
     {
         SceneManager.LoadScene("LD YAZID");
