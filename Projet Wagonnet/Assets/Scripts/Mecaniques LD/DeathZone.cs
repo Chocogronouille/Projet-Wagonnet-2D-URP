@@ -24,6 +24,14 @@ public class DeathZone : MonoBehaviour
     {
         fadeSystem.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
+        if (collision.GetComponent<Rigidbody2D>())
+        {
+            collision.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+        else
+        {
+            collision.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
+        }
         _instance = false;
         collision.transform.position = playerSpawn.position;
 
