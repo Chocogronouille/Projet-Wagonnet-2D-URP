@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0.5
+  m_AmplitudeGain: 2
   m_FrequencyGain: 0.5
   mNoiseOffsets: {x: 983.4209, y: -14.294006, z: -792.3646}
 --- !u!1 &8670271458699452482
@@ -115,7 +115,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8670271458699452484}
   - component: {fileID: 8670271458699452483}
-  - component: {fileID: 8670271458699452485}
   - component: {fileID: 3803415593989160239}
   m_Layer: 6
   m_Name: CameraAttraction
@@ -131,7 +130,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8670271458699452482}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45.938416, y: -4.1821423, z: 0.0049858093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -161,14 +160,14 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 35
-    OrthographicSize: 7
+    OrthographicSize: 4
     NearClipPlane: 0.001
     FarClipPlane: 2000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3082192, y: 1}
+    m_SensorSize: {x: 1.8850174, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -177,23 +176,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 8670271458320445977}
---- !u!114 &8670271458699452485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8670271458699452482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!114 &3803415593989160239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +194,7 @@ MonoBehaviour:
   m_Use2DDistance: 1
   m_UseCameraSpace: 0
   m_ReactionSettings:
-    m_SecondaryNoise: {fileID: 0}
+    m_SecondaryNoise: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
     m_AmplitudeGain: 0
     m_FrequencyGain: 0
     m_Duration: 0
