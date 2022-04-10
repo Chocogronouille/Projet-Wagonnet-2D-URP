@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820045834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 7.49, y: 1.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8061828029134140004}
@@ -57,11 +57,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.001
   far clip plane: 2000
   field of view: 90
-  orthographic: 0
-  orthographic size: 7
+  orthographic: 1
+  orthographic size: 9
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 1385288979}
   - component: {fileID: 1385288981}
   - component: {fileID: 1385288980}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: PlayerCollider
   m_TagString: PlayerCol
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 360759638342573540}
   - component: {fileID: 2898092771330418451}
   - component: {fileID: 7853542788544092434}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a14a5cfdb0420c488abbec94eacbba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 0}
   isFalling: 0
   movement:
     m_Name: Movement
