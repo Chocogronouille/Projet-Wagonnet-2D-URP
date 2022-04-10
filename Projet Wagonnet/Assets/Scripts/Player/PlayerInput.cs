@@ -98,13 +98,13 @@ namespace Cinemachine
 
             #region singleton
 
-            /*if (instance != null)
+            if (instance != null)
             {
               //Destroy(gameObject);
                 return;
             }
 
-            instance = this; */
+            instance = this;
 
             #endregion
 
@@ -115,7 +115,7 @@ namespace Cinemachine
         {
             yield return new WaitForSeconds(0.000001f);
             laCam.SetActive(true);
-        }
+        } 
 
         private void OnEnable()
         {
@@ -458,7 +458,7 @@ namespace Cinemachine
           movement.Disable();
           farmerInputActions.Player.Jump.Disable();
           farmerInputActions.Player.SpinMove.Disable();
-        }
+        } 
 
     }
 
