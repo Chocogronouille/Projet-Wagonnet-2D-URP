@@ -30,7 +30,6 @@ public class Ballon : MonoBehaviour
         transform.SetParent(other.transform);
         transform.localPosition = offset;
 
-        Debug.Log("StartCoroutine");
         StartCoroutine(UtilisationBallon());
     }
 
@@ -61,13 +60,12 @@ public class Ballon : MonoBehaviour
         {
             _playerInput.isAirborn = true;
             _rbPlayer.gravityScale = _playerInput.defaultGravityScale;
-            Debug.Log("GravityScale dans Ballon");
             StartCoroutine(ReapparitionBallon());
         }
         StopCoroutine(UtilisationBallon());
     }
 
-    public void JumpFromBallon()
+    public void JumpFromBallon() //Fonction appellée dans le PlayerInput
     {
         _asJumped = true;
         StartCoroutine(ReapparitionBallon());
