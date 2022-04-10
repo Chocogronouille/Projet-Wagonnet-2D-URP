@@ -50,6 +50,7 @@ namespace Cinemachine
         public float airDrag; //set between 0 and 1
         public float groundDrag;
         public GameObject groundCheck;
+        public string jumpState;
 
         public Animator animator;
         private float delaySpinJump = 0.35f;
@@ -250,7 +251,7 @@ namespace Cinemachine
             _jumpBuffer -= 1 * Time.deltaTime;
 
             if (isAirborn) return;
-            Jump();
+            CheckJump();
             
         }
         
@@ -347,7 +348,7 @@ namespace Cinemachine
             rbCharacter.velocity = vel;
         }
 
-        private void Jump()
+        private void CheckJump()
         {
             rbCharacter.gravityScale = defaultGravityScale;
             rbCharacter.drag = 0;
@@ -356,11 +357,38 @@ namespace Cinemachine
             _jumpBuffer = 0;
             _jumpDuration = 0;
 
-            GetComponentInChildren<Ballon>()?.JumpFromBallon();
+            switch (jumpState)
+            {
+                case "ballon":
+                    Debug.Log(jumpState);
+                    GetComponentInChildren<Ballon>()?.JumpFromBallon();
+                    if (direction.y < -0.9) FallFromBallon();
+                    Jump();
+                    break;
+                
+                case "platform":
+                    Debug.Log(jumpState);
+                    if (direction.y < -0.9)
+                    {
+                        FallFromPlateform();
+                    }
+                    else
+                    {
+                        Jump();
+                    }
+                    break;
+                
+                case "ground":
+                    Debug.Log(jumpState);
+                    Jump();
+                    break;
+            }
+        }
 
+        private void Jump()
+        {
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            animator.SetBool("isJumping", true); //N'EST PAS UNE DE MES FONCTIONS
-
+            animator.SetBool("isJumping", true);
             groundCheck.SetActive(false);
         }
 
@@ -393,6 +421,16 @@ namespace Cinemachine
 
             animator.SetBool("IsFalling", true); //N'EST PAS UNE DE MES FONCTIONS
             animator.SetBool("isJumping", false); //N'EST PAS UNE DE MES FONCTIONS
+        }
+
+        private void FallFromBallon()
+        {
+            return;
+        }
+
+        private void FallFromPlateform()
+        {
+            return;
         }
 
         private void FastFall()
@@ -458,9 +496,6 @@ namespace Cinemachine
           movement.Disable();
           farmerInputActions.Player.Jump.Disable();
           farmerInputActions.Player.SpinMove.Disable();
-        } 
-
+        }
     }
-
-    
 }
