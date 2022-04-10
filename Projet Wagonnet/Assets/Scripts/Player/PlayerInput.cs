@@ -81,14 +81,16 @@ namespace Cinemachine
         private GameObject TheChild;
 
         // La Cam
-        public GameObject laCam;
+        private GameObject laCamParent;
+        private GameObject laCam;
         
         #endregion
 
         void Awake()
         {
             // La cam
-            laCam = GameObject.FindGameObjectWithTag("LaCam");
+            laCamParent = GameObject.Find("VirtualCam");
+            laCam = laCamParent.transform.GetChild(0).gameObject;
             laCam.SetActive(false);
             StartCoroutine(DesactiveCamera());
             TheChild = GameObject.Find("PlayerCollider");
