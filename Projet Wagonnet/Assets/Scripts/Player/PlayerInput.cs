@@ -33,7 +33,7 @@ namespace Cinemachine
         private float _verticalSpeed;
         private float _jumpDuration;
         private bool _wantToEndJump;
-        private float _maxSpeed;
+        public float _maxSpeed;
         private float _maxFallSpeed;
         private int _canSpinJump;
         private bool useRailSpeed;
@@ -84,6 +84,9 @@ namespace Cinemachine
         // La Cam
         private GameObject laCamParent;
         private GameObject laCam;
+
+        // Ejection
+        public bool isEject;
         
         #endregion
 
@@ -321,6 +324,8 @@ namespace Cinemachine
         
         private void Move()
         {
+            if(isEject) return;
+            
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x * 10, 0f));
 
@@ -329,6 +334,8 @@ namespace Cinemachine
 
         private void ClampMove()
         {
+            if(isEject) return;
+            
             if (useRailSpeed)
             {
                 if (rbCharacter.velocity.x < walkSpeed)
