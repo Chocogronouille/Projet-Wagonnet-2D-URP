@@ -68,7 +68,7 @@ namespace Cinemachine
         [HideInInspector] public Tween currentTween;
 
 
-        [SerializeField] private float walkSpeed;
+        [SerializeField] public float walkSpeed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
         [SerializeField] private float fallSpeed;

@@ -25,11 +25,8 @@ public class Ejection : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             player.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-            //  currentTween?.Kill();
             Debug.Log("ok");
             collision.gameObject.GetComponent<Cinemachine.PlayerInput>().isSurfing = false;
-            //      collision.GetComponent<Rigidbody2D>().AddForce(-dir * 20000);
-            //    collision.GetComponent<Rigidbody2D>().AddForce(new Vector3(100,0,0),ForceMode2D.Impulse);
             PlayerInput.instance.ApplyJumpForce();
             player.GetComponent<Cinemachine.PlayerInput>().isEject = true;
             StartCoroutine(ChangeSpeed());
@@ -37,8 +34,12 @@ public class Ejection : MonoBehaviour
     }
      private IEnumerator ChangeSpeed()
         {
-            Debug.Log("couroutine");
-            yield return new WaitForSeconds(0.3f);
+            player.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(0.5f);
+            player.GetComponent<Cinemachine.PlayerInput>()._maxSpeed = player.GetComponent<Cinemachine.PlayerInput>().walkSpeed;
+            player.GetComponent<Cinemachine.PlayerInput>().isSurfing = false;
+            player.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(0.0001f);
             player.GetComponent<Cinemachine.PlayerInput>().isEject = false;
         }
 }
