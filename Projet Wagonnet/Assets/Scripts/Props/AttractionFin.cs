@@ -15,6 +15,7 @@ public class AttractionFin : MonoBehaviour
     
     private InputActions farmerInputActions;
     public Animator animator;
+    public GameObject credits;
 
 
     [SerializeField] private GameObject player;
@@ -88,6 +89,7 @@ public class AttractionFin : MonoBehaviour
         // interactBar.SetCount(currentAttractionCount);
         GetComponent<BoxCollider2D>().enabled = false;
         CameraFin.Priority = 100;
+        credits.SetActive(true);
 
 
     }
