@@ -387,17 +387,17 @@ namespace Cinemachine
                     }
                     break;
                 
-                case JumpState.plateforme:
-                    Debug.Log(jumpState);
-                    if (direction.y < -0.9)
-                    {
-                        StartCoroutine(FallFromPlateform());
-                    }
-                    else
-                    {
-                        Jump();
-                    }
-                    break;
+                // case JumpState.plateforme:
+                //     Debug.Log(jumpState);
+                //     if (direction.y < -0.9)
+                //     {
+                //         StartCoroutine(FallFromPlateform());
+                //     }
+                //     else
+                //     {
+                //         Jump();
+                //     }
+                //     break;
                 
                 default:
                     Debug.Log(jumpState);
