@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5952454923472902958}
   - component: {fileID: 5952454923472902944}
   - component: {fileID: 8845062582475087722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Attraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,8 +116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf7ce8e9ecf4ac4d8eac74949816b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  player: {fileID: 0}
   currentAttractionCount: 0
   isColliding: 0
+  CameraAttraction: {fileID: 0}
 --- !u!61 &8845062582475087722
 BoxCollider2D:
   m_ObjectHideFlags: 0

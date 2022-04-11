@@ -9,10 +9,10 @@ namespace Player
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Plateforme"))
-            {
-                //Physics2D.SetLayerCollisionMask();
-            }
+            // if (other.gameObject.CompareTag("Plateforme"))
+            // {
+            //     //Physics2D.SetLayerCollisionMask();
+            // }
 
             if (player.GetComponent<Rigidbody2D>().velocity.y >= 2) return;
             
