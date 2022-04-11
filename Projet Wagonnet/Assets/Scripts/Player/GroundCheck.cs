@@ -11,7 +11,7 @@ namespace Player
         {
             // if (other.gameObject.CompareTag("Plateforme"))
             // {
-            //     //Physics2D.SetLayerCollisionMask();
+            //     Physics2D.IgnoreLayerCollision(other.gameObject.layer,player.gameObject.layer);
             // }
 
             if (player.GetComponent<Rigidbody2D>().velocity.y >= 2) return;
