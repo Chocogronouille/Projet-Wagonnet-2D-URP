@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3987,7 +3987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1866117495307750941, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1866117495670300573, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_LocalScale.x
@@ -40097,6 +40097,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 589933664, guid: c4455763e53960a43a674555e437213f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589933666, guid: c4455763e53960a43a674555e437213f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5981264180752200992, guid: c4455763e53960a43a674555e437213f, type: 3}
@@ -40161,6 +40165,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6380719055690552822, guid: c4455763e53960a43a674555e437213f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728456556779341353, guid: c4455763e53960a43a674555e437213f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -52856,6 +52864,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 589933664, guid: c4455763e53960a43a674555e437213f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589933666, guid: c4455763e53960a43a674555e437213f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5981264180752200994, guid: c4455763e53960a43a674555e437213f, type: 3}
@@ -52908,6 +52920,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6380719055690552822, guid: c4455763e53960a43a674555e437213f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728456556779341353, guid: c4455763e53960a43a674555e437213f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
