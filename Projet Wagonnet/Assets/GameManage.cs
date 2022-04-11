@@ -4,16 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 public class GameManage : MonoBehaviour
 {
     private InputActions farmerInputActions;
     public InputAction movement;
     public GameObject PauseMenu;
-    public GameObject SelectLevel;
-    public GameObject EventSystem;
-    public GameObject ButtonScene1;
  //   public GameObject WinMenu;
     public bool isPaused;
 
@@ -39,8 +35,7 @@ public class GameManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-      if(isPaused)
+        if(isPaused)
         {
            Time.timeScale = 0;
         } 
@@ -86,27 +81,6 @@ public class GameManage : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         PauseMenu.SetActive(false);
-    }
-    public void LoadSelectLevel()
-    {
-     //   EventSystem.GetComponent<EventSystem>().firstSelectedGameObject =  ButtonScene1;
-        SceneManager.LoadScene("SelectScene");
-        Time.timeScale = 0;
-        isPaused = true;
-    }
-     public void LoadScene1()
-    {
-        SceneManager.LoadScene("Maxime");
-    //    PauseMenu.SetActive(false); 
-        Time.timeScale = 1;
-        isPaused = false;
-    }
-         public void LoadScene2()
-    {
-        SceneManager.LoadScene("LD YAZID");
-    //    PauseMenu.SetActive(false); 
-        Time.timeScale = 1;
-        isPaused = false;
     }
 
     public void QuitGame()
