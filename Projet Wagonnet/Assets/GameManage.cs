@@ -14,6 +14,8 @@ public class GameManage : MonoBehaviour
     public GameObject SelectLevel;
     public GameObject EventSystem;
     public GameObject ButtonScene1;
+  //  private Scene TheScene;
+    private string theScene;
  //   public GameObject WinMenu;
     public bool isPaused;
 
@@ -33,7 +35,9 @@ public class GameManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+         Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
+     //  TheScene = SceneManager.GetActiveScene().name;
+     theScene = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
@@ -62,7 +66,7 @@ public class GameManage : MonoBehaviour
         } 
             public void StartGame()
     {
-        SceneManager.LoadScene("LD YAZID");
+        SceneManager.LoadScene("Maxime");
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
@@ -76,7 +80,7 @@ public class GameManage : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("LD YAZID");
+        SceneManager.LoadScene(theScene);
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
         isPaused = false;
