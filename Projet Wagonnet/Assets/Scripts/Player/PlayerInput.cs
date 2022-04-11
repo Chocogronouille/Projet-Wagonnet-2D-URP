@@ -37,6 +37,7 @@ namespace Cinemachine
         private float _maxFallSpeed;
         private int _canSpinJump;
         private bool useRailSpeed;
+        private bool _falledFromBallon;
 
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -50,7 +51,11 @@ namespace Cinemachine
         public float airDrag; //set between 0 and 1
         public float groundDrag;
         public GameObject groundCheck;
-        public string jumpState;
+        public JumpState jumpState;
+        public enum JumpState
+        {
+            ballon = 1, plateforme = 2, ground = 3
+        }
 
         public Animator animator;
         private float delaySpinJump = 0.35f;
@@ -75,6 +80,7 @@ namespace Cinemachine
         [SerializeField] private float minJumpDuration;
         [SerializeField] private float maxJumpDuration;
         [SerializeField] private float spinJumpDuration;
+        [SerializeField] private float fallBallonDelay;
 
         // Variable des Rails
         public bool isSurfing;
@@ -368,7 +374,7 @@ namespace Cinemachine
 
             switch (jumpState)
             {
-                case "ballon":
+                case JumpState.ballon:
                     Debug.Log(jumpState);
                     GetComponentInChildren<Ballon>()?.JumpFromBallon();
                     if (direction.y < -0.9)
@@ -381,7 +387,7 @@ namespace Cinemachine
                     }
                     break;
                 
-                case "platform":
+                case JumpState.plateforme:
                     Debug.Log(jumpState);
                     if (direction.y < -0.9)
                     {
@@ -393,7 +399,7 @@ namespace Cinemachine
                     }
                     break;
                 
-                case "ground":
+                default:
                     Debug.Log(jumpState);
                     Jump();
                     break;
@@ -441,6 +447,15 @@ namespace Cinemachine
         private void FallFromBallon()
         {
             Fall();
+            StartCoroutine(NoFastFallFromBallon());
+        }
+
+        private IEnumerator NoFastFallFromBallon()
+        {
+            _falledFromBallon = true;
+            yield return new WaitForSeconds(fallBallonDelay);
+            _falledFromBallon = false;
+            StopCoroutine(NoFastFallFromBallon());
         }
 
         private IEnumerator FallFromPlateform()
@@ -454,6 +469,7 @@ namespace Cinemachine
         private void FastFall()
         {
             if (!isAirborn) return;
+            if (_falledFromBallon) return;
 
             _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
