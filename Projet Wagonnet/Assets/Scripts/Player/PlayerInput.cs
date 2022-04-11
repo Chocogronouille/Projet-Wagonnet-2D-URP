@@ -164,7 +164,7 @@ namespace Cinemachine
         {
             useRailSpeed = true;
             _maxSpeed = railSpeed;
-            rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 10, railDirection.y * railJump + 5), ForceMode2D.Impulse);
+            rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 8, railDirection.y * railJump + 3), ForceMode2D.Impulse);
         }
         public void AJF(int jumpBonus = 0)
         {
