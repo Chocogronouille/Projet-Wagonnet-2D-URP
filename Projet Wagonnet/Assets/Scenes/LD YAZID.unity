@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -572,9 +572,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 957668410}
+      - m_Target: {fileID: 1001377797}
         m_TargetAssemblyTypeName: GameManage, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3565,7 +3565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1866117495307750941, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1866117495670300573, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_LocalScale.x
@@ -42448,9 +42448,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+--- !u!114 &1001377797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+  m_PrefabInstance: {fileID: 1001377796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd1e3ce5b77f274587fa758b8f8f19d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1027902007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43107,7 +43117,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1206629205
 PrefabInstance:
@@ -43984,7 +43994,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9238477, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -44006,7 +44016,7 @@ Transform:
   m_Children:
   - {fileID: 1664523305}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1305092670
 PrefabInstance:
@@ -44160,7 +44170,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 957668410}
+      - m_Target: {fileID: 1001377797}
         m_TargetAssemblyTypeName: GameManage, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -48500,7 +48510,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 957668410}
+      - m_Target: {fileID: 1001377797}
         m_TargetAssemblyTypeName: GameManage, Assembly-CSharp
         m_MethodName: LoadMenu
         m_Mode: 1
@@ -48847,7 +48857,7 @@ Transform:
   - {fileID: 1439412776}
   - {fileID: 1345701450}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1783440654
 PrefabInstance:
@@ -50429,7 +50439,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 957668410}
+      - m_Target: {fileID: 1001377797}
         m_TargetAssemblyTypeName: GameManage, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -50856,7 +50866,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2047557024
 PrefabInstance:
