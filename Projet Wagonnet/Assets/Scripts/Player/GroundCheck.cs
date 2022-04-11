@@ -16,6 +16,7 @@ namespace Player
 
             if (player.GetComponent<Rigidbody2D>().velocity.y >= 2) return;
             
+            player.jumpState = PlayerInput.JumpState.ground;
             player.isAirborn = false;
             player.coyoteFloat = false;
             player.isFalling = false;

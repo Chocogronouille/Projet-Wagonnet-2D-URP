@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1109,6 +1109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TargetGroupAttraction_Player3
       objectReference: {fileID: 0}
+    - target: {fileID: 7004689901579760810, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7004689901579760812, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
       propertyPath: m_Targets.Array.data[0].target
       value: 
@@ -1984,6 +1988,10 @@ PrefabInstance:
     - target: {fileID: 7004689901579760810, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
       propertyPath: m_Name
       value: TargetGroupAttraction_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004689901579760810, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7004689901579760812, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
       propertyPath: m_Targets.Array.data[0].target
@@ -39023,7 +39031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 578361053}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Triggers/confiners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42476,6 +42484,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TargetGroupAttraction_Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 7004689901579760810, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7004689901579760812, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
       propertyPath: m_Targets.Array.data[0].target
       value: 
@@ -43347,6 +43359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroupCamera2
       objectReference: {fileID: 0}
+    - target: {fileID: 8267434176427728514, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8267434176427728515, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_Follow
       value: 
@@ -43362,6 +43378,10 @@ PrefabInstance:
     - target: {fileID: 8267434176733023689, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_TrackedObjectOffset.y
       value: -5.192276
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267434176733023691, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
@@ -43695,6 +43715,10 @@ PrefabInstance:
     - target: {fileID: 2125789486828817099, guid: db19eb9ae506f2a41ba4693145351360, type: 3}
       propertyPath: m_Name
       value: CameraTrigger3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125789486828817099, guid: db19eb9ae506f2a41ba4693145351360, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2125789486828817100, guid: db19eb9ae506f2a41ba4693145351360, type: 3}
       propertyPath: Player
@@ -45099,7 +45123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1378528559}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VirtualCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45488,6 +45512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroupCamera3
       objectReference: {fileID: 0}
+    - target: {fileID: 8267434176427728514, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8267434176427728515, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_Follow
       value: 
@@ -45503,6 +45531,10 @@ PrefabInstance:
     - target: {fileID: 8267434176733023689, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_TrackedObjectOffset.y
       value: -5.192276
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267434176733023691, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
@@ -48182,6 +48214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroupCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 8267434176427728514, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8267434176427728515, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_Follow
       value: 
@@ -48189,6 +48225,10 @@ PrefabInstance:
     - target: {fileID: 8267434176427728515, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
       value: 1.7777778
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267434176733023691, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
@@ -51023,7 +51063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2069464101}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: -------------    Cameras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
