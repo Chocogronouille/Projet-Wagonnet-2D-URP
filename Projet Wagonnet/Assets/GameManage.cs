@@ -18,6 +18,7 @@ public class GameManage : MonoBehaviour
     private string theScene;
  //   public GameObject WinMenu;
     public bool isPaused;
+    private GameObject player;
 
     // InteractText
     private GameObject InteractText;
@@ -31,6 +32,7 @@ public class GameManage : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
         // Interaction
         InteractText = GameObject.Find("InteractText");
         InteractAnim = InteractText.GetComponent<Animator>();
@@ -70,10 +72,12 @@ public class GameManage : MonoBehaviour
     public void InteractOpen()
     {
         InteractAnim.SetBool("isOpen", true);
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractClose()
     {
         InteractAnim.SetBool("isOpen", false);
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 
         // Cassette
@@ -98,9 +102,10 @@ IEnumerator IsOpenFalse()
         }
         private void DoMenuUI(InputAction.CallbackContext obj)
         {
-            Debug.Log("OpenMenu");
+           Debug.Log("OpenMenu");
            PauseMenu.SetActive(true);
            isPaused = true;
+           player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
         } 
             public void StartGame()
     {
@@ -108,12 +113,14 @@ IEnumerator IsOpenFalse()
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
     public void Resume()
     {
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 
     public void Restart()
@@ -122,12 +129,14 @@ IEnumerator IsOpenFalse()
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
         isPaused = false;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 
         public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
         PauseMenu.SetActive(false);
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
     public void LoadSelectLevel()
     {

@@ -93,6 +93,9 @@ namespace Cinemachine
 
         // Ejection
         public bool isEject;
+
+        // Stop Jump during Interaction
+        public bool isInteract;
         
         #endregion
 
@@ -149,6 +152,7 @@ namespace Cinemachine
 
         private void DoJump(InputAction.CallbackContext obj)
         {
+            if(isInteract) return;
             gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             currentTween?.Kill();
 
