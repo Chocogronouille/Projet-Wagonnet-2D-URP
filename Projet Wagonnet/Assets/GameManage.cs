@@ -19,10 +19,17 @@ public class GameManage : MonoBehaviour
  //   public GameObject WinMenu;
     public bool isPaused;
 
+    // InteractText
+    private GameObject InteractText;
+    private Animator InteractAnim;
+
     public static GameManage instance;
 
     private void Awake()
     {
+        InteractText = GameObject.Find("InteractText");
+        InteractAnim = InteractText.GetComponent<Animator>();
+
             if (instance != null)
             {
               Destroy(gameObject);
@@ -48,6 +55,14 @@ public class GameManage : MonoBehaviour
         {
            Time.timeScale = 0;
         } 
+    }
+    public void InteractOpen()
+    {
+        InteractAnim.SetBool("isOpen", true);
+    }
+        public void InteractClose()
+    {
+        InteractAnim.SetBool("isOpen", false);
     }
 
     private void OnEnable()

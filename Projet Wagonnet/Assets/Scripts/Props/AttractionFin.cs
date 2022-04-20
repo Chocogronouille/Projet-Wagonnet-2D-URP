@@ -26,6 +26,8 @@ public class AttractionFin : MonoBehaviour
     public CinemachineVirtualCamera CameraAttraction; //GroupCamera
     public CinemachineVirtualCamera CameraFin; //FinCamera
 
+    private GameObject GameManage;
+
     
     
     
@@ -34,6 +36,7 @@ public class AttractionFin : MonoBehaviour
      private void Awake()
      
     {
+        GameManage = GameObject.Find("GameManager");
        // interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
         farmerInputActions = new InputActions();
     }
@@ -53,8 +56,8 @@ public class AttractionFin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            GameManage.GetComponent<GameManage>().InteractOpen();
             isColliding = true;
-
         }
     }
     private void DoPressB(InputAction.CallbackContext obj)
@@ -66,9 +69,8 @@ public class AttractionFin : MonoBehaviour
     {
         if (isColliding == true)
         {
+            GameManage.GetComponent<GameManage>().InteractClose();
             StartCoroutine(Activation());
-            
-
         }
     }
 
