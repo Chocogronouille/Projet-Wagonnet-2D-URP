@@ -44,6 +44,7 @@ public class Cassette : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            GameManage.instance.CassetteOpen();
             CounterCassette.instance.AddCounterCassette(1);
             currentCassetteCount = currentCassetteCount + 1;
           //  interactBar.SetCount(currentCount);

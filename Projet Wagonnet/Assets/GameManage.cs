@@ -23,12 +23,21 @@ public class GameManage : MonoBehaviour
     private GameObject InteractText;
     private Animator InteractAnim;
 
+    // Cassette Recup Text
+    private GameObject CassetteText;
+    private Animator CassetteAnim;
+
     public static GameManage instance;
 
     private void Awake()
     {
+        // Interaction
         InteractText = GameObject.Find("InteractText");
         InteractAnim = InteractText.GetComponent<Animator>();
+
+        // Cassette
+        CassetteText = GameObject.Find("CassetteRecupText");
+        CassetteAnim = CassetteText.GetComponent<Animator>();
 
             if (instance != null)
             {
@@ -56,6 +65,8 @@ public class GameManage : MonoBehaviour
            Time.timeScale = 0;
         } 
     }
+
+    // Interact
     public void InteractOpen()
     {
         InteractAnim.SetBool("isOpen", true);
@@ -63,6 +74,18 @@ public class GameManage : MonoBehaviour
         public void InteractClose()
     {
         InteractAnim.SetBool("isOpen", false);
+    }
+
+        // Cassette
+    public void CassetteOpen()
+    {
+        CassetteAnim.SetBool("isOpen", true);
+        StartCoroutine(IsOpenFalse());
+    }
+IEnumerator IsOpenFalse()
+    {
+        yield return new WaitForSeconds(1.1f);
+        CassetteAnim.SetBool("isOpen", false);
     }
 
     private void OnEnable()
