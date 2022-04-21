@@ -26,7 +26,7 @@ public class AttractionFin : MonoBehaviour
     public CinemachineVirtualCamera CameraAttraction; //GroupCamera
     public CinemachineVirtualCamera CameraFin; //FinCamera
 
-    private GameObject GameManage;
+    private GameObject GameManager;
 
     
     
@@ -36,7 +36,7 @@ public class AttractionFin : MonoBehaviour
      private void Awake()
      
     {
-        GameManage = GameObject.Find("GameManager");
+        GameManager = GameObject.Find("GameManager");
        // interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
         farmerInputActions = new InputActions();
     }
@@ -56,7 +56,7 @@ public class AttractionFin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManage.GetComponent<GameManage>().InteractOpen();
+            GameManager.GetComponent<GameManage>().InteractOpen();
             isColliding = true;
         }
     }
@@ -69,7 +69,8 @@ public class AttractionFin : MonoBehaviour
     {
         if (isColliding == true)
         {
-            GameManage.GetComponent<GameManage>().InteractClose();
+            GameManage.instance.CountAnim.SetBool("isAttraCount", true);
+            GameManager.GetComponent<GameManage>().InteractClose();
             StartCoroutine(Activation());
         }
     }
@@ -85,7 +86,10 @@ public class AttractionFin : MonoBehaviour
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+        GameManage.instance.CountAnim.SetBool("isAttraCount", false);
+        // Il était à 2 secondes
+        yield return new WaitForSeconds(0.43f);
         CounterAttraction.instance.AddCounterAttraction(1);
         currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);

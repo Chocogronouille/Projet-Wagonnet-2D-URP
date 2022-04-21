@@ -25,8 +25,13 @@ public class GameManage : MonoBehaviour
     private Animator InteractAnim;
 
     // Cassette Recup Text
-    private GameObject CassetteText;
-    private Animator CassetteAnim;
+    public GameObject CassetteText;
+    public Animator CassetteAnim;
+
+    // UI Count
+    [HideInInspector] 
+    public GameObject CountText;
+    public Animator CountAnim;
 
     public static GameManage instance;
 
@@ -40,6 +45,10 @@ public class GameManage : MonoBehaviour
         // Cassette
         CassetteText = GameObject.Find("CassetteRecupText");
         CassetteAnim = CassetteText.GetComponent<Animator>();
+
+        // Cassette
+        CountText = GameObject.Find("UI Count");
+        CountAnim = CountText.GetComponent<Animator>();
 
             if (instance != null)
             {
