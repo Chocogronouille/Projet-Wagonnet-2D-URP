@@ -68,6 +68,7 @@ public class GameManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+         //Cursor.lockState = CursorLockMode.Locked;
          Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
      //  TheScene = SceneManager.GetActiveScene().name;
      theScene = SceneManager.GetActiveScene().name;
