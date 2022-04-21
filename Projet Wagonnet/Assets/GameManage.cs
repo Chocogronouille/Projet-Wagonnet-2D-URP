@@ -10,7 +10,6 @@ public class GameManage : MonoBehaviour
 {
     private InputActions farmerInputActions;
     public InputAction movement;
-    public GameObject PauseMenu;
     public GameObject SelectLevel;
     public GameObject EventSystem;
     public GameObject ButtonScene1;
@@ -33,6 +32,10 @@ public class GameManage : MonoBehaviour
     public GameObject CountText;
     public Animator CountAnim;
 
+    // PauseMenuAnim
+    public GameObject PauseMenu;
+    private Animator PauseAnim;
+
     public static GameManage instance;
 
     private void Awake()
@@ -46,9 +49,12 @@ public class GameManage : MonoBehaviour
         CassetteText = GameObject.Find("CassetteRecupText");
         CassetteAnim = CassetteText.GetComponent<Animator>();
 
-        // Cassette
+        // Cassette Open 
         CountText = GameObject.Find("UI Count");
         CountAnim = CountText.GetComponent<Animator>();
+
+        // PauseAnim
+        PauseAnim = PauseMenu.GetComponent<Animator>();
 
             if (instance != null)
             {
@@ -113,9 +119,12 @@ IEnumerator IsOpenFalse()
         {
            Debug.Log("OpenMenu");
            PauseMenu.SetActive(true);
+           PauseAnim.SetBool("isPaused", true);
+           CountAnim.SetBool("isPaused", true);
            isPaused = true;
            player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
         } 
+
             public void StartGame()
     {
         SceneManager.LoadScene("Maxime");
@@ -126,6 +135,7 @@ IEnumerator IsOpenFalse()
     }
     public void Resume()
     {
+        CountAnim.SetBool("isPaused", false);
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
