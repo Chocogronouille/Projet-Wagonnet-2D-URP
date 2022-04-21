@@ -13,7 +13,7 @@ public class SplashManage : MonoBehaviour
     IEnumerator LoadTheScene()
     {
         yield return new WaitForSeconds(6f);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Ecran_Titre");
     }
 
     // Update is called once per frame

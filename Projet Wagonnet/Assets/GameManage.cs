@@ -14,7 +14,7 @@ public class GameManage : MonoBehaviour
     public GameObject EventSystem;
     public GameObject ButtonScene1;
   //  private Scene TheScene;
-    private string theScene;
+    public string theScene;
  //   public GameObject WinMenu;
     public bool isPaused;
     private GameObject player;
