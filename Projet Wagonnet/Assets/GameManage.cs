@@ -10,12 +10,9 @@ public class GameManage : MonoBehaviour
 {
     private InputActions farmerInputActions;
     public InputAction movement;
-    public GameObject SelectLevel;
-    public GameObject EventSystem;
-    public GameObject ButtonScene1;
-  //  private Scene TheScene;
+    [HideInInspector]
     public string theScene;
- //   public GameObject WinMenu;
+    [HideInInspector]
     public bool isPaused;
     private GameObject player;
 
@@ -24,17 +21,23 @@ public class GameManage : MonoBehaviour
     private Animator InteractAnim;
 
     // Cassette Recup Text
+    [HideInInspector]
     public GameObject CassetteText;
+    [HideInInspector]
     public Animator CassetteAnim;
 
     // UI Count
     [HideInInspector] 
     public GameObject CountText;
+    [HideInInspector]
     public Animator CountAnim;
 
     // PauseMenuAnim
     public GameObject PauseMenu;
     private Animator PauseAnim;
+
+    // Settings Menu
+    public GameObject SettingsMenu;
 
     public static GameManage instance;
 
@@ -68,8 +71,9 @@ public class GameManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         //Cursor.lockState = CursorLockMode.Locked;
-         Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
+ //    SettingsMenu = GameObject.Find("SettingsPanel");
+     //Cursor.lockState = CursorLockMode.Locked;
+     Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
      //  TheScene = SceneManager.GetActiveScene().name;
      theScene = SceneManager.GetActiveScene().name;
     }
@@ -160,7 +164,6 @@ IEnumerator IsOpenFalse()
     }
     public void LoadSelectLevel()
     {
-     //   EventSystem.GetComponent<EventSystem>().firstSelectedGameObject =  ButtonScene1;
         SceneManager.LoadScene("SelectScene");
         Time.timeScale = 0;
         isPaused = true;
@@ -178,6 +181,15 @@ IEnumerator IsOpenFalse()
     //    PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
+    }
+
+    public void OpenSettings()
+    {
+       SettingsMenu.SetActive(true);
+    }
+        public void CloseSettings()
+    {
+       SettingsMenu.SetActive(false);
     }
 
     public void QuitGame()
