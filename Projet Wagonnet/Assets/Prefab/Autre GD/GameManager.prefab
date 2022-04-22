@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 998473269492159373}
   - component: {fileID: 998473269492159410}
   - component: {fileID: 329988488939068292}
+  - component: {fileID: 174555748}
+  - component: {fileID: 174555751}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc228c924ae41c4eb349f2a89c542a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 998473269492159411}
-  - {fileID: 0}
+  objects: []
 --- !u!114 &329988488939068292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,5 +68,40 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  PauseMenu: {fileID: 0}
+  theScene: 
   isPaused: 0
+  CassetteText: {fileID: 0}
+  CassetteAnim: {fileID: 0}
+  CountText: {fileID: 0}
+  CountAnim: {fileID: 0}
+  PauseMenu: {fileID: 0}
+  SettingsMenu: {fileID: 0}
+  PauseFirstButton: {fileID: 0}
+  OptionFirstButton: {fileID: 0}
+  DialogueButton: {fileID: 0}
+--- !u!114 &174555748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998473269492159411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57c4c3c429575c4285f9721a7e89d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 0}
+--- !u!114 &174555751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998473269492159411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0938e2f0dbbfe1541810914506dc5eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 0}

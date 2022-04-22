@@ -82,7 +82,7 @@ public class Attraction : MonoBehaviour
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(1f);
         GameManage.instance.CountAnim.SetBool("isAttraCount", false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.4f);
         CounterAttraction.instance.AddCounterAttraction(1);
         currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);
