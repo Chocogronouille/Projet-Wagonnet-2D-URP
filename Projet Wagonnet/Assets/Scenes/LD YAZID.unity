@@ -1776,6 +1776,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 9633890}
+--- !u!114 &174555751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174555747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0938e2f0dbbfe1541810914506dc5eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 9633890}
 --- !u!1 &175274849
 GameObject:
   m_ObjectHideFlags: 0
@@ -50374,7 +50387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7797846403262427755, guid: 0cca4b553a892bd4d87c466741350aa3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 174.78998
+      value: 133.29498
       objectReference: {fileID: 0}
     - target: {fileID: 7797846403262427755, guid: 0cca4b553a892bd4d87c466741350aa3, type: 3}
       propertyPath: m_LocalPosition.y
