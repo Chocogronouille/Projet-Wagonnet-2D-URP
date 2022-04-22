@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(GameManage.instance.DialogueButton);
         animator.SetBool("isOpen", true);
 
         nameText.text = dialogue.name;

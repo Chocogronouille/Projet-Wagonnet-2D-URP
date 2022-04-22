@@ -39,6 +39,8 @@ public class GameManage : MonoBehaviour
     // Settings Menu
     public GameObject SettingsMenu;
 
+    public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
+
     public static GameManage instance;
 
     private void Awake()
@@ -71,10 +73,10 @@ public class GameManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    //    SettingsMenu.SetActive(false);
  //    SettingsMenu = GameObject.Find("SettingsPanel");
      //Cursor.lockState = CursorLockMode.Locked;
      Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
-     //  TheScene = SceneManager.GetActiveScene().name;
      theScene = SceneManager.GetActiveScene().name;
     }
 
@@ -122,6 +124,8 @@ IEnumerator IsOpenFalse()
         }
         private void DoMenuUI(InputAction.CallbackContext obj)
         {
+           EventSystem.current.SetSelectedGameObject(null);
+           EventSystem.current.SetSelectedGameObject(PauseFirstButton);
            Debug.Log("OpenMenu");
            PauseMenu.SetActive(true);
            PauseAnim.SetBool("isPaused", true);
@@ -171,14 +175,12 @@ IEnumerator IsOpenFalse()
      public void LoadScene1()
     {
         SceneManager.LoadScene("Maxime");
-    //    PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
     }
          public void LoadScene2()
     {
         SceneManager.LoadScene("LD YAZID");
-    //    PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
     }
@@ -186,10 +188,14 @@ IEnumerator IsOpenFalse()
     public void OpenSettings()
     {
        SettingsMenu.SetActive(true);
+       EventSystem.current.SetSelectedGameObject(null);
+       EventSystem.current.SetSelectedGameObject(OptionFirstButton);
     }
         public void CloseSettings()
     {
        SettingsMenu.SetActive(false);
+       EventSystem.current.SetSelectedGameObject(null);
+       EventSystem.current.SetSelectedGameObject(PauseFirstButton);
     }
 
     public void QuitGame()
