@@ -548,6 +548,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9633890, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1698381233}
+    - target: {fileID: 9633890, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetResolution
+      objectReference: {fileID: 0}
     - target: {fileID: 157280343, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.2387056
@@ -619,6 +627,14 @@ PrefabInstance:
     - target: {fileID: 1422242831, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517595695, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1698381233}
+    - target: {fileID: 1517595695, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetFullScreen
       objectReference: {fileID: 0}
     - target: {fileID: 1717884906, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder

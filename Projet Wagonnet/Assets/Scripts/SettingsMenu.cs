@@ -61,6 +61,14 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullScreen;
     }
+        public void Vibration(bool isVibrate)
+    {
+       // Screen.fullScreen = isFullScreen;
+    }
+        public void SpeedRun(bool isSpeedRun)
+    {
+     //   Screen.fullScreen = isFullScreen;
+    }
 
     public void SetResolution(int resolutionIndex)
     {
