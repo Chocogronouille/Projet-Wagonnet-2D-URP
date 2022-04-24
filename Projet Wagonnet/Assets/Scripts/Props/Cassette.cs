@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Cassette : MonoBehaviour
 {
+    public AudioClip sound;
     
 //    private InputActions farmerInputActions;
 
@@ -53,6 +54,7 @@ public class Cassette : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
       //    Destroy(gameObject,0.00001f);
+            AudioManager.instance.PlayClipAt(sound, transform.position);
         }
     }
     IEnumerator ChangeNumber()

@@ -6,22 +6,22 @@ using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
 {
-   // public AudioMixer audioMixer;
+    public AudioMixer audioMixer;
 
     public Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
 
- /*   public Slider musicSlider;
-    public Slider soundSlider; */
+    public Slider musicSlider;
+    public Slider soundSlider;
 
     public void Start()
     {
-  /*      audioMixer.GetFloat("Music", out float musicValueForSlider);
+        audioMixer.GetFloat("Music", out float musicValueForSlider);
         musicSlider.value = musicValueForSlider;
 
         audioMixer.GetFloat("Sound", out float soundValueForSlider);
-        soundSlider.value = soundValueForSlider; */
+        soundSlider.value = soundValueForSlider;
 
         resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
         resolutionDropdown.ClearOptions();
@@ -47,7 +47,7 @@ public class SettingsMenu : MonoBehaviour
         Screen.fullScreen = true;
     }
 
- /*   public void SetVolume(float volume)
+    public void SetVolume(float volume)
     {
         audioMixer.SetFloat("Music", volume);
     }
@@ -55,7 +55,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetSoundVolume(float volume)
     {
         audioMixer.SetFloat("Sound", volume);
-    } */
+    }
 
     public void SetFullScreen(bool isFullScreen)
     {
