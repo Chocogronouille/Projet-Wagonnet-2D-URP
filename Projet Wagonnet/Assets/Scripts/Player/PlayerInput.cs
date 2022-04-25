@@ -427,9 +427,13 @@ namespace Cinemachine
 
         private void SpinJump()
         {
-            _currentPlatform.enabled = true; //On réactive la dernière plateforme au cas où le joueur en est descendu
-            
+            GetComponentInChildren<Ballon>()?.JumpFromBallon();
+            if (_currentPlatform != null) _currentPlatform.enabled = true;
+            //On réactive la dernière plateforme au cas où le joueur en est descendu
+
+            jumpState = JumpState.Ground;
             rbCharacter.gravityScale = defaultGravityScale;
+            rbCharacter.drag = 0;
             isFalling = false;
             isAirborn = true;
             coyoteFloat = false;
