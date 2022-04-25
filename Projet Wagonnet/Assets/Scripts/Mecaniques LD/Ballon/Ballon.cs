@@ -36,7 +36,7 @@ public class Ballon : MonoBehaviour
     private IEnumerator UtilisationBallon()
     {
         _playerInput.isAirborn = false;
-        _playerInput.jumpState = PlayerInput.JumpState.ballon;
+        _playerInput.jumpState = PlayerInput.JumpState.Ballon;
         
         _rbPlayer.gravityScale = gravityScaleBallon;
         if (_rbPlayer.velocity.y < _playerInput.apexThreshold)

@@ -38,6 +38,8 @@ namespace Cinemachine
         private int _canSpinJump;
         private bool useRailSpeed;
         private bool _falledFromBallon;
+        private bool _falledFromPlatform;
+        private Collider2D _currentPlatform;
 
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -54,7 +56,7 @@ namespace Cinemachine
         public JumpState jumpState;
         public enum JumpState
         {
-            ballon = 1, plateforme = 2, ground = 3
+            Ballon = 1, Platform = 2, Ground = 3
         }
 
         public Animator animator;
@@ -81,6 +83,7 @@ namespace Cinemachine
         [SerializeField] private float maxJumpDuration;
         [SerializeField] private float spinJumpDuration;
         [SerializeField] private float fallBallonDelay;
+        [SerializeField] private float fallPlatformDelay;
 
         // Variable des Rails
         public bool isSurfing;
@@ -184,13 +187,13 @@ namespace Cinemachine
 
         private void DoSpin(InputAction.CallbackContext obj)
         {
-            if (coyoteFloat)
-            {
-                SpinJump();
-                return;
-            }
+            // if (coyoteFloat)
+            // {
+            //     SpinJump();
+            //     return;
+            // }
+            // if (!isAirborn) return;
             
-            if (!isAirborn) return;
             if (_canSpinJump != 0)
             {
                 SpinJump();
@@ -384,7 +387,7 @@ namespace Cinemachine
 
             switch (jumpState)
             {
-                case JumpState.ballon:
+                case JumpState.Ballon:
                     Debug.Log(jumpState);
                     GetComponentInChildren<Ballon>()?.JumpFromBallon();
                     if (direction.y < -0.9)
@@ -395,19 +398,21 @@ namespace Cinemachine
                     {
                         Jump();
                     }
+                    jumpState = JumpState.Ground;
                     break;
                 
-                // case JumpState.plateforme:
-                //     Debug.Log(jumpState);
-                //     if (direction.y < -0.9)
-                //     {
-                //         StartCoroutine(FallFromPlateform());
-                //     }
-                //     else
-                //     {
-                //         Jump();
-                //     }
-                //     break;
+                case JumpState.Platform:
+                    Debug.Log(jumpState);
+                    if (direction.y < -0.9)
+                    {
+                        FallFromPlatform();
+                    }
+                    else
+                    {
+                        Jump();
+                    }
+                    jumpState = JumpState.Ground;
+                    break;
                 
                 default:
                     Debug.Log(jumpState);
@@ -468,18 +473,29 @@ namespace Cinemachine
             StopCoroutine(NoFastFallFromBallon());
         }
 
-        private IEnumerator FallFromPlateform()
+        public void StandOnPlatform(Collider2D platformCollider) //Fonction appelée lors d'une collision avec une plateforme
         {
-            GetComponent<BoxCollider2D>().enabled = false;
-            yield return new WaitForSeconds(0.3f);
-            GetComponent<BoxCollider2D>().enabled = true;
-            StopCoroutine(FallFromPlateform());
+            _currentPlatform = platformCollider;
+            jumpState = JumpState.Platform;
         }
-
+        private void FallFromPlatform()
+        {
+            StartCoroutine(NoFastFallFromPlatform());
+            _currentPlatform.isTrigger = true;
+        }
+        
+        private IEnumerator NoFastFallFromPlatform()
+        {
+            _falledFromPlatform = true;
+            yield return new WaitForSeconds(fallPlatformDelay);
+            _falledFromPlatform = false;
+            StopCoroutine(NoFastFallFromBallon());
+        }
         private void FastFall()
         {
             if (!isAirborn) return;
             if (_falledFromBallon) return;
+            if (_falledFromPlatform) return;
 
             _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
