@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 506969976729975709}
   - component: {fileID: 28869990543624282}
   - component: {fileID: 2461125424822926183}
+  - component: {fileID: 1479107228517469832}
   m_Layer: 0
   m_Name: Maison8
   m_TagString: Plateforme
@@ -131,6 +132,18 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &1479107228517469832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506969976729975682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10935e0acf0038f44ab7e08c0e7806f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &747339045831663776
 GameObject:
   m_ObjectHideFlags: 0

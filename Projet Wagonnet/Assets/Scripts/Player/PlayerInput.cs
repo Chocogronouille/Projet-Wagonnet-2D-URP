@@ -388,7 +388,6 @@ namespace Cinemachine
             switch (jumpState)
             {
                 case JumpState.Ballon:
-                    Debug.Log(jumpState);
                     GetComponentInChildren<Ballon>()?.JumpFromBallon();
                     if (direction.y < -0.9)
                     {
@@ -402,7 +401,6 @@ namespace Cinemachine
                     break;
                 
                 case JumpState.Platform:
-                    Debug.Log(jumpState);
                     if (direction.y < -0.9)
                     {
                         FallFromPlatform();
@@ -415,7 +413,6 @@ namespace Cinemachine
                     break;
                 
                 default:
-                    Debug.Log(jumpState);
                     Jump();
                     break;
             }
@@ -430,6 +427,8 @@ namespace Cinemachine
 
         private void SpinJump()
         {
+            _currentPlatform.enabled = true; //On réactive la dernière plateforme au cas où le joueur en est descendu
+            
             rbCharacter.gravityScale = defaultGravityScale;
             isFalling = false;
             isAirborn = true;
@@ -480,15 +479,17 @@ namespace Cinemachine
         }
         private void FallFromPlatform()
         {
+            Fall();
             StartCoroutine(NoFastFallFromPlatform());
-            _currentPlatform.isTrigger = true;
         }
         
         private IEnumerator NoFastFallFromPlatform()
         {
             _falledFromPlatform = true;
+            _currentPlatform.enabled = false;
             yield return new WaitForSeconds(fallPlatformDelay);
             _falledFromPlatform = false;
+            _currentPlatform.enabled = true;
             StopCoroutine(NoFastFallFromBallon());
         }
         private void FastFall()

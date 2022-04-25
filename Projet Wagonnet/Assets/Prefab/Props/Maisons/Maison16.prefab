@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5452718566671401685}
   - component: {fileID: 1032860786683425938}
   - component: {fileID: 5771583356708232775}
+  - component: {fileID: 1697994508236635724}
   m_Layer: 0
   m_Name: Maison16
   m_TagString: Plateforme
@@ -158,6 +159,18 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &1697994508236635724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5878402798322260010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10935e0acf0038f44ab7e08c0e7806f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8139415947577388594
 GameObject:
   m_ObjectHideFlags: 0

@@ -663,9 +663,11 @@ MonoBehaviour:
   minJumpDuration: 0.1
   maxJumpDuration: 0.27
   spinJumpDuration: 0.1
-  fallBallonDelay: 0.8
+  fallBallonDelay: 0.5
+  fallPlatformDelay: 0.5
   isSurfing: 0
   isEject: 0
+  isInteract: 0
   railDirection: {x: 0, y: 0}
   railJump: 25
   deplacement: {x: 0, y: 0}

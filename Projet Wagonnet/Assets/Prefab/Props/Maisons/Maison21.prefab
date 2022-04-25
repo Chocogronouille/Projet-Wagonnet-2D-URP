@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8352048840239637545}
   - component: {fileID: 1867877807848451231}
   - component: {fileID: 8429934796652680338}
+  - component: {fileID: 3485177229063765445}
   m_Layer: 0
   m_Name: Maison21
   m_TagString: Plateforme
@@ -294,6 +295,18 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &3485177229063765445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890742415067721371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10935e0acf0038f44ab7e08c0e7806f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5013500641321585866
 GameObject:
   m_ObjectHideFlags: 0

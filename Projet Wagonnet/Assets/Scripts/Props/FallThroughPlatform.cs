@@ -8,14 +8,8 @@ namespace Props
     {
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log("collide");
             var thisCollider = GetComponent<Collider2D>();
             other.gameObject.GetComponent<PlayerInput>().StandOnPlatform(thisCollider);
-        }
-
-        private void OnTriggerExit2D(Collider2D other) //Si le joueur est descendu de la plateforme
-        {
-            GetComponent<Collider2D>().isTrigger = false;
         }
     }
 }
