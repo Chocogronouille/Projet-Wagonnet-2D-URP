@@ -18,11 +18,11 @@ public class PreEjection : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            player.GetComponent<Cinemachine.PlayerInput>().isEject = true;
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag("Player"))
+    //     {
+    //         player.GetComponent<Cinemachine.PlayerInput>().isEject = true;
+    //     }
+    // }
 }

@@ -84,7 +84,8 @@ namespace Cinemachine
         [SerializeField] private float spinJumpDuration;
         [SerializeField] private float fallBallonDelay;
         [SerializeField] private float fallPlatformDelay;
-
+        [SerializeField] private float facteurAccel;
+        
         // Variable des Rails
         public bool isSurfing;
         private float waitTime = 0.0001f;
@@ -95,7 +96,7 @@ namespace Cinemachine
         private GameObject laCam;
 
         // Ejection
-        public bool isEject;
+        //public bool isEject;
 
         // Stop Jump during Interaction
         public bool isInteract;
@@ -170,7 +171,7 @@ namespace Cinemachine
         public void ApplyJumpForce(int jumpBonus = 0)
         {
             useRailSpeed = true;
-            _maxSpeed = railSpeed;
+            //_maxSpeed = railSpeed;
             rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 8, railDirection.y * railJump + 3), ForceMode2D.Impulse);
         }
         public void AJF(int jumpBonus = 0)
@@ -343,27 +344,29 @@ namespace Cinemachine
         
         private void Move()
         {
-            if(isEject) return;
+            //if(isEject) return;
             
             rbCharacter.drag = 0;
-            rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x * 10, 0f));
+            //rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x*facteurAccel, 0f));
+            rbCharacter.AddForce(new Vector2(walkSpeed * direction.x*facteurAccel, 0f));
 
             Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
         }
 
         private void ClampMove()
         {
-            if(isEject) return;
+            //if(isEject) return;
             
-            if (useRailSpeed)
-            {
-                if (rbCharacter.velocity.x < walkSpeed)
-                {
-                    _maxSpeed = walkSpeed;
-                }
-            }  
+            // if (useRailSpeed)
+            // {
+            //     if (rbCharacter.velocity.x < walkSpeed)
+            //     {
+            //         _maxSpeed = walkSpeed;
+            //     }
+            // }  
             
-            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
+            //_horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
+            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);
             _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity); 
             rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
         }
@@ -383,7 +386,6 @@ namespace Cinemachine
             isFalling = false;
             isAirborn = true;
             _jumpBuffer = 0;
-            _jumpDuration = 0;
 
             switch (jumpState)
             {
@@ -420,6 +422,7 @@ namespace Cinemachine
 
         private void Jump()
         {
+            _jumpDuration = 0;
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             animator.SetBool("isJumping", true);
             groundCheck.SetActive(false);
@@ -440,7 +443,7 @@ namespace Cinemachine
             _jumpDuration = maxJumpDuration - spinJumpDuration;
 
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //Arrêt de la montée et lissage de l'apex
-            rbCharacter.AddForce(new Vector2(0, spinJumpForce * _canSpinJump), ForceMode2D.Impulse);
+            rbCharacter.AddForce(new Vector2(0, spinJumpForce *_canSpinJump), ForceMode2D.Impulse);
 
             animator.SetBool("IsSpinJumping", true); //N'EST PAS UNE DE MES FONCTIONS
             StartCoroutine(TimerSpinJump(delaySpinJump));
