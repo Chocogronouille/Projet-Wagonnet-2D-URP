@@ -71,6 +71,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniCam"",
+                    ""type"": ""Button"",
+                    ""id"": ""4857bf13-d6e9-4162-b9b9-a187b17ac4c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -161,6 +170,28 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f426f10-723d-455c-842a-5abbef54bc5a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0dcaa7d-01fd-4d41-83ef-bf222996d8bc"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -174,6 +205,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_SpinMove = m_Player.FindAction("SpinMove", throwIfNotFound: true);
         m_Player_PressB = m_Player.FindAction("PressB", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+        m_Player_MiniCam = m_Player.FindAction("MiniCam", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,6 +270,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpinMove;
     private readonly InputAction m_Player_PressB;
     private readonly InputAction m_Player_Menu;
+    private readonly InputAction m_Player_MiniCam;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -247,6 +280,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @SpinMove => m_Wrapper.m_Player_SpinMove;
         public InputAction @PressB => m_Wrapper.m_Player_PressB;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
+        public InputAction @MiniCam => m_Wrapper.m_Player_MiniCam;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -271,6 +305,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @MiniCam.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiniCam;
+                @MiniCam.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiniCam;
+                @MiniCam.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiniCam;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -290,6 +327,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @MiniCam.started += instance.OnMiniCam;
+                @MiniCam.performed += instance.OnMiniCam;
+                @MiniCam.canceled += instance.OnMiniCam;
             }
         }
     }
@@ -301,5 +341,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnSpinMove(InputAction.CallbackContext context);
         void OnPressB(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnMiniCam(InputAction.CallbackContext context);
     }
 }

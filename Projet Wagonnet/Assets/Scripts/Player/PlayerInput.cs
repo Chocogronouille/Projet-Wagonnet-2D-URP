@@ -187,12 +187,12 @@ namespace Cinemachine
 
         private void DoSpin(InputAction.CallbackContext obj)
         {
-            // if (coyoteFloat)
-            // {
-            //     SpinJump();
-            //     return;
-            // }
-            // if (!isAirborn) return;
+            if (coyoteFloat)
+            {
+                 SpinJump();
+                 return;
+            }
+            if (!isAirborn) return;
             
             if (_canSpinJump != 0)
             {
