@@ -8,13 +8,7 @@ public class DropdownAutoscroller : MonoBehaviour {
  
     [Tooltip("Assign to the dropdown that should automatically scroll according to the currently selected item.")]
     public Dropdown dropdown;
- 
-    // Use this for initialization
-    void Start ()
-    {
-        
-    }
-   
+    
     // Update is called once per frame
     void Update () {
         if (EventSystem.current.currentSelectedGameObject == dropdown.gameObject)
