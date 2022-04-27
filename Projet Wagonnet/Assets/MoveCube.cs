@@ -18,13 +18,13 @@ public class MoveCube : MonoBehaviour
     void Update()
     {
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * speed);
 
         if(Vector3.Distance(transform.position, target.position) < 0.3f)
         {
             destPoint = (destPoint + 1) % waypoints.Length;
             target = waypoints[destPoint];
-        }
+        } 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -32,6 +32,7 @@ public class MoveCube : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             collision.collider.transform.SetParent(transform);
+            collision.transform.gameObject.GetComponent<Cinemachine.PlayerInput>().walkSpeed = 50;
         }
     }
 
@@ -40,8 +41,9 @@ public class MoveCube : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             collision.collider.transform.SetParent(null);
+            collision.transform.gameObject.GetComponent<Cinemachine.PlayerInput>().walkSpeed = 8.67f;
         }
-    }
+    } 
 
 
 }
