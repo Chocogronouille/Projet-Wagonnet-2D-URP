@@ -86,6 +86,8 @@ namespace Cinemachine
         [SerializeField] private float fallBallonDelay;
         [SerializeField] private float fallPlatformDelay;
         [SerializeField] private float facteurAccel;
+        [SerializeField] private float facteurDecelSpinJump;
+        [SerializeField] private float ecartDepartDecelSpinJump;
         
         // Variable des Rails
         public bool isSurfing;
@@ -448,7 +450,8 @@ namespace Cinemachine
             coyoteFloat = false;
             _jumpDuration = maxJumpDuration - spinJumpDuration;
 
-            _maxSpeed = afterSpinAirSpeed;
+            // ATTENTION : FORMULE DE RALENTISSEMENT PROGRESSIVE DE LA VITESSE APRES UN SPIN JUMP ECRITE EN DUR
+            _maxSpeed = afterSpinAirSpeed + (walkSpeed-afterSpinAirSpeed)*(_canSpinJump-1)*facteurDecelSpinJump*ecartDepartDecelSpinJump;
             
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //Arrêt de la montée et lissage de l'apex
             rbCharacter.AddForce(new Vector2(0, spinJumpForce *_canSpinJump), ForceMode2D.Impulse);
