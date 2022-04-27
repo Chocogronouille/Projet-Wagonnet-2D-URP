@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820045834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.49, y: 1.6, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8061828029134140004}
@@ -61,7 +61,7 @@ Camera:
   far clip plane: 2000
   field of view: 90
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 10.7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -145,7 +145,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
+  m_CustomBlends: {fileID: 11400000, guid: 45a0ce21aa6a45a4f909f8e31db24ec0, type: 2}
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -654,7 +654,7 @@ MonoBehaviour:
   walkSpeed: 8.67
   afterSpinAirSpeed: 6.42
   jumpForce: 19
-  spinJumpForce: 2.86
+  spinJumpForce: 3.3
   fallSpeed: 27
   fastFallSpeed: 27
   railSpeed: 100
