@@ -71,6 +71,7 @@ namespace Cinemachine
 
 
         [SerializeField] public float walkSpeed;
+        [SerializeField] public float afterSpinAirSpeed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float spinJumpForce;
         [SerializeField] private float fallSpeed;
@@ -341,7 +342,12 @@ namespace Cinemachine
                 AirSlowDown();
             }
         }
-        
+
+        public void ResetMaxSpeed()
+        {
+            _maxSpeed = walkSpeed;
+        }
+
         private void Move()
         {
             rbCharacter.drag = 0;
@@ -363,8 +369,8 @@ namespace Cinemachine
             //     }
             // }  
             
-            //_horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
-            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);
+            _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
+            //_horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);
             _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity); 
             rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
         }
@@ -442,6 +448,8 @@ namespace Cinemachine
             coyoteFloat = false;
             _jumpDuration = maxJumpDuration - spinJumpDuration;
 
+            _maxSpeed = afterSpinAirSpeed;
+            
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //Arrêt de la montée et lissage de l'apex
             rbCharacter.AddForce(new Vector2(0, spinJumpForce *_canSpinJump), ForceMode2D.Impulse);
 
