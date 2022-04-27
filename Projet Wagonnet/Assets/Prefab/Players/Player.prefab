@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a14a5cfdb0420c488abbec94eacbba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 11
+  _maxSpeed: 8.67
   isFalling: 0
   movement:
     m_Name: Movement
@@ -651,10 +651,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8061828029134140003}
   screenRenderer: {fileID: 8544423070723201315}
   rbCharacter: {fileID: 8061828029134140002}
-  walkSpeed: 11
-  afterSpinAirSpeed: 0
-  jumpForce: 24
-  spinJumpForce: 7
+  walkSpeed: 8.67
+  afterSpinAirSpeed: 6.42
+  jumpForce: 19
+  spinJumpForce: 2.86
   fallSpeed: 27
   fastFallSpeed: 27
   railSpeed: 100
@@ -662,11 +662,11 @@ MonoBehaviour:
   coyoteTime: 0.2
   apexEndJump: 7
   minJumpDuration: 0.1
-  maxJumpDuration: 0.27
+  maxJumpDuration: 0.23
   spinJumpDuration: 0.1
   fallBallonDelay: 0.5
   fallPlatformDelay: 0.5
-  facteurAccel: 0
+  facteurAccel: 10
   isSurfing: 0
   isEject: 0
   isInteract: 0
