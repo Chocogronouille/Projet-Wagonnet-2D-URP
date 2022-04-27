@@ -27,8 +27,9 @@ public class Ejection : MonoBehaviour
             player.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             Debug.Log("ok");
             collision.gameObject.GetComponent<Cinemachine.PlayerInput>().isSurfing = false;
-            PlayerInput.instance.ApplyJumpForce();
             //player.GetComponent<Cinemachine.PlayerInput>().isEject = true;
+            //PlayerInput.instance.ApplyJumpForce();
+            
             StartCoroutine(ChangeSpeed());
         }
     }

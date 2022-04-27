@@ -96,7 +96,7 @@ namespace Cinemachine
         private GameObject laCam;
 
         // Ejection
-        //public bool isEject;
+        public bool isEject;
 
         // Stop Jump during Interaction
         public bool isInteract;
@@ -156,45 +156,49 @@ namespace Cinemachine
 
         private void DoJump(InputAction.CallbackContext obj)
         {
+            if(isEject) return;
+            if (isSurfing) return;
+            
             if(isInteract) return;
             gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             currentTween?.Kill();
 
             _jumpBuffer = jumpBufferTime;
-
-            if (!isSurfing) return;
-            isSurfing = false;
-            AJF(25);
         }
-
-        // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
-        public void ApplyJumpForce(int jumpBonus = 0)
-        {
-            useRailSpeed = true;
-            //_maxSpeed = railSpeed;
-            rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 8, railDirection.y * railJump + 3), ForceMode2D.Impulse);
-        }
-        public void AJF(int jumpBonus = 0)
-        {
-            rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 0),ForceMode2D.Impulse);
-            Debug.Log("Jump_Rail");
-            StartCoroutine(ChangeGravity());
-        }
-        private IEnumerator ChangeGravity()
-        {
-            Debug.Log("couroutine");
-            yield return new WaitForSeconds(1f);
-        }
+        
+        // // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
+        // public void ApplyJumpForce(int jumpBonus = 0)
+        // {
+        //     useRailSpeed = true;
+        //     _maxSpeed = railSpeed;
+        //     rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 8, railDirection.y * railJump + 3), ForceMode2D.Impulse);
+        // }
+        // public void AJF(int jumpBonus = 0)
+        // {
+        //     rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 0),ForceMode2D.Impulse);
+        //     Debug.Log("Jump_Rail");
+        //     StartCoroutine(ChangeGravity());
+        // }
+        // private IEnumerator ChangeGravity()
+        // {
+        //     Debug.Log("couroutine");
+        //     yield return new WaitForSeconds(1f);
+        // }
 
         private void DoSpin(InputAction.CallbackContext obj)
         {
-            if (coyoteFloat)
-            {
-                 SpinJump();
-                 return;
-            }
-            if (!isAirborn) return;
+            if(isEject) return;
+            if (isSurfing) return;
             
+            // A décommenter pour empêcher le joueur de spinJump au sol
+            
+            // if (coyoteFloat)
+            // {
+            //     SpinJump();
+            //     return;
+            // }
+            // if (!isAirborn) return;
+
             if (_canSpinJump != 0)
             {
                 SpinJump();
@@ -203,6 +207,9 @@ namespace Cinemachine
 
         private void EndJump(InputAction.CallbackContext obj)
         {
+            if(isEject) return;
+            if (isSurfing) return;
+            
             groundCheck.SetActive(true);
 
             if (!isFalling)
@@ -239,6 +246,9 @@ namespace Cinemachine
         private void Movement()
         {
             Surf();
+            if(isEject) return;
+            if (isSurfing) return;
+            
             JumpBuffer();
             FallManagement();
             CheckCoyoteTime();
@@ -325,27 +335,15 @@ namespace Cinemachine
             if ((direction.x < -0.1f) ||  (0.1f < direction.x))
             {
                 Move();
-                
-                //ChangeAnimationState(PLAYER_RUN);// Tentative animator                //N'EST PAS UNE DE MES FONCTIONS
             }
             else
             {
-                //Test Animator                                                         //N'EST PAS UNE DE MES FONCTIONS
-                // if (direction.x == 0)                                                //N'EST PAS UNE DE MES FONCTIONS
-                // {                                                                    //N'EST PAS UNE DE MES FONCTIONS
-                //     ChangeAnimationState(PLAYER_IDLE);                               //N'EST PAS UNE DE MES FONCTIONS
-                // }                                                                    //N'EST PAS UNE DE MES FONCTIONS
-
                 AirSlowDown();
-                
-                //ChangeAnimationState(PLAYER_RUN);// Tentative animator            //N'EST PAS UNE DE MES FONCTIONS
             }
         }
         
         private void Move()
         {
-            //if(isEject) return;
-            
             rbCharacter.drag = 0;
             //rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x*facteurAccel, 0f));
             rbCharacter.AddForce(new Vector2(walkSpeed * direction.x*facteurAccel, 0f));
@@ -387,6 +385,8 @@ namespace Cinemachine
             isAirborn = true;
             _jumpBuffer = 0;
 
+            if (isEject) return;
+            
             switch (jumpState)
             {
                 case JumpState.Ballon:
@@ -453,6 +453,7 @@ namespace Cinemachine
         
         public void Fall()
         {
+            Debug.Log("Fall");
             isFalling = true;
             _wantToEndJump = false;
             rbCharacter.gravityScale = defaultGravityScale;
