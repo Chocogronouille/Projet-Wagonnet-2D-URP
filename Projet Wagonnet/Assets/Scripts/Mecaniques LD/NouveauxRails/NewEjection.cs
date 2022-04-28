@@ -28,6 +28,7 @@ public class NewEjection : MonoBehaviour
     private IEnumerator EjectionTime()
     {
         DOTween.KillAll();
+        
         _ejectionDirection = end.position - origin.position;
         Player.isEject = true;
         Player.transform.localEulerAngles = new Vector3(0,0,0);

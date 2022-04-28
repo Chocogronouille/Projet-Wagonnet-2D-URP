@@ -160,35 +160,9 @@ namespace Cinemachine
 
         private void DoJump(InputAction.CallbackContext obj)
         {
-            if(isEject) return;
-            if (isSurfing) return;
-            
-            if(isInteract) return;
-            gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-            currentTween?.Kill();
-
             _jumpBuffer = jumpBufferTime;
         }
         
-        // // TODO SEE IF EQUILIBRAGE DE RAIL DIRECTION OR VOUS DEBUGUEZ LE DEPLACEMENT DEPUIS LA FRAME PRECEDENTE
-        // public void ApplyJumpForce(int jumpBonus = 0)
-        // {
-        //     useRailSpeed = true;
-        //     _maxSpeed = railSpeed;
-        //     rbCharacter.AddForce(new Vector2(railDirection.x * railJump + 8, railDirection.y * railJump + 3), ForceMode2D.Impulse);
-        // }
-        // public void AJF(int jumpBonus = 0)
-        // {
-        //     rbCharacter.AddForce(new Vector2(0, railDirection.y * railJump + 0),ForceMode2D.Impulse);
-        //     Debug.Log("Jump_Rail");
-        //     StartCoroutine(ChangeGravity());
-        // }
-        // private IEnumerator ChangeGravity()
-        // {
-        //     Debug.Log("couroutine");
-        //     yield return new WaitForSeconds(1f);
-        // }
-
         private void DoSpin(InputAction.CallbackContext obj)
         {
             if(isEject) return;
@@ -238,6 +212,7 @@ namespace Cinemachine
         {
             Movement();
             CalculateDeplacement();
+            Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
         }
 
         // TODO FIND THE GOOD MOVEMENT VALUE
@@ -348,6 +323,8 @@ namespace Cinemachine
 
         public void SetAirSpeedAfterRail(float ejectionSpeedX)
         {
+            if (ejectionSpeedX < 0) ejectionSpeedX = -ejectionSpeedX;
+            //On prend la valeur absolu de la vitesse
             _maxSpeed = ejectionSpeedX;
         }
         
@@ -359,10 +336,7 @@ namespace Cinemachine
         private void Move()
         {
             rbCharacter.drag = 0;
-            //rbCharacter.AddForce(new Vector2(_maxSpeed * direction.x*facteurAccel, 0f));
             rbCharacter.AddForce(new Vector2(walkSpeed * direction.x*facteurAccel, 0f));
-
-            Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
         }
 
         private void ClampMove()
