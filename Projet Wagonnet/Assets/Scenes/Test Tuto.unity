@@ -166,7 +166,10 @@ MonoBehaviour:
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 2
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -341,6 +344,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 820045838, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 820045838, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 820045838, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 820045838, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+      propertyPath: orthographic size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8061828029134140000, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_Name
       value: Player
