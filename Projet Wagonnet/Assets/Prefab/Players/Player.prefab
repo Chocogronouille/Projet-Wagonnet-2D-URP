@@ -654,21 +654,22 @@ MonoBehaviour:
   walkSpeed: 8.67
   afterSpinAirSpeed: 6.42
   jumpForce: 19
-  spinJumpForce: 3.3
+  spinJumpForce: 3.4
   fallSpeed: 27
   fastFallSpeed: 27
   railSpeed: 100
   jumpBufferTime: 50
-  coyoteTime: 0.2
+  coyoteTime: 0.08
   apexEndJump: 7
-  minJumpDuration: 0.1
-  maxJumpDuration: 0.23
+  minJumpDuration: 0.12
+  maxJumpDuration: 0.24
   spinJumpDuration: 0.1
   fallBallonDelay: 0.5
   fallPlatformDelay: 0.5
   facteurAccel: 10
   facteurDecelSpinJump: 0.33
   ecartDepartDecelSpinJump: 0.5
+  facteurDecelAfterRail: 10
   isSurfing: 0
   isEject: 0
   isInteract: 0
