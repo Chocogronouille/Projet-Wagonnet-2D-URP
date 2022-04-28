@@ -18,7 +18,7 @@ public class MoveCube : MonoBehaviour
     void Update()
     {
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed);
+        transform.Translate(dir.normalized * speed * Time.deltaTime);
 
         if(Vector3.Distance(transform.position, target.position) < 0.3f)
         {
@@ -27,7 +27,7 @@ public class MoveCube : MonoBehaviour
         } 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+  /*  private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player"))
         {
@@ -43,7 +43,7 @@ public class MoveCube : MonoBehaviour
             collision.collider.transform.SetParent(null);
             collision.transform.gameObject.GetComponent<Cinemachine.PlayerInput>().walkSpeed = 8.67f;
         }
-    } 
+    } */
 
 
 }
