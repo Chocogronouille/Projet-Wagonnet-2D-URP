@@ -29,11 +29,15 @@ public class NewEjection : MonoBehaviour
     {
         DOTween.KillAll();
         _ejectionDirection = end.position - origin.position;
-        _ejectionDirection.Normalize();
-        Player.transform.localEulerAngles = new Vector3(0,0,0);
         Player.isEject = true;
-        Player.GetComponent<Rigidbody2D>().AddForce(_ejectionDirection*ejectionForce,ForceMode2D.Impulse);
+        Player.transform.localEulerAngles = new Vector3(0,0,0);
+        Player.rbCharacter.velocity = Vector2.zero;
+        Player.rbCharacter.gravityScale = 0;
+        var ejectionSpeed = _ejectionDirection.normalized * ejectionForce;
+        Player.rbCharacter.AddForce(ejectionSpeed,ForceMode2D.Impulse);
+        Player.SetAirSpeedAfterRail(ejectionSpeed.x);
         yield return new WaitForSeconds(ejectionDuration);
+        Player.rbCharacter.gravityScale = Player.defaultGravityScale;
         Player.isEject = false;
         Player.isSurfing = false;
         _instance = false;

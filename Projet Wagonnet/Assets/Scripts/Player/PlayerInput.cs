@@ -88,6 +88,7 @@ namespace Cinemachine
         [SerializeField] private float facteurAccel;
         [SerializeField] private float facteurDecelSpinJump;
         [SerializeField] private float ecartDepartDecelSpinJump;
+        [SerializeField] private float facteurDecelAfterRail;
         
         // Variable des Rails
         public bool isSurfing;
@@ -345,6 +346,11 @@ namespace Cinemachine
             }
         }
 
+        public void SetAirSpeedAfterRail(float ejectionSpeedX)
+        {
+            _maxSpeed = ejectionSpeedX;
+        }
+        
         public void ResetMaxSpeed()
         {
             _maxSpeed = walkSpeed;
@@ -361,18 +367,12 @@ namespace Cinemachine
 
         private void ClampMove()
         {
-            //if(isEject) return;
-            
-            // if (useRailSpeed)
-            // {
-            //     if (rbCharacter.velocity.x < walkSpeed)
-            //     {
-            //         _maxSpeed = walkSpeed;
-            //     }
-            // }  
-            
+            if (_maxSpeed > walkSpeed)
+            {
+                _maxSpeed -= facteurDecelAfterRail * Time.deltaTime;
+            }
+
             _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
-            //_horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -walkSpeed, walkSpeed);
             _verticalSpeed = Mathf.Clamp(rbCharacter.velocity.y, -_maxFallSpeed, Single.PositiveInfinity); 
             rbCharacter.velocity = new Vector2(_horizontalSpeed, _verticalSpeed);
         }
