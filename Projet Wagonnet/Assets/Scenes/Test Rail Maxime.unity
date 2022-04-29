@@ -2970,40 +2970,6 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5396445239180707889, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396445239180707889, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396445239180707889, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396445239180707892, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
-      propertyPath: m_Name
-      value: CameraStayTrigger Variant
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
---- !u!4 &1431723334 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5396445239180707889, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
-  m_PrefabInstance: {fileID: 1431723333}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1445489407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1098039781, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-  m_PrefabInstance: {fileID: 391818010}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1460678730 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 820045834, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
-  m_PrefabInstance: {fileID: 977696803}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1468254014
-GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3052,6 +3018,40 @@ MonoBehaviour:
   camPlayer: {fileID: 1460678730}
 --- !u!212 &1468254017
 SpriteRenderer:
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396445239180707889, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396445239180707889, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396445239180707892, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
+      propertyPath: m_Name
+      value: CameraStayTrigger Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
+--- !u!4 &1431723334 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5396445239180707889, guid: b90b01757fb625c43afd62da0c694a83, type: 3}
+  m_PrefabInstance: {fileID: 1431723333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1445489407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1098039781, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 391818010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1460678730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 820045834, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
+  m_PrefabInstance: {fileID: 977696803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1468254014
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
