@@ -43,6 +43,7 @@ public class NewEjection : MonoBehaviour
         Player.isEject = false;
         Player.isSurfing = false;
         Player.isFalling = true;
+        Player.groundCheck.SetActive(true);
         _instance = false;
         StopCoroutine(EjectionTime());
     }
