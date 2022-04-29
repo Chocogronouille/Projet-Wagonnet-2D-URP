@@ -38,6 +38,7 @@ public class NewEjection : MonoBehaviour
         Player.rbCharacter.AddForce(ejectionSpeed,ForceMode2D.Impulse);
         Player.SetAirSpeedAfterRail(ejectionSpeed.x);
         yield return new WaitForSeconds(ejectionDuration);
+        Player.ResetSpinJump();
         Player.rbCharacter.gravityScale = Player.defaultGravityScale;
         Player.isEject = false;
         Player.isSurfing = false;

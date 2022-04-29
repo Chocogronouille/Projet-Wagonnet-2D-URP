@@ -67,6 +67,7 @@ public class Ballon : MonoBehaviour
     public void JumpFromBallon() //Fonction appellée dans le PlayerInput
     {
         _asJumped = true;
+        _playerInput.ResetSpinJump();
         StartCoroutine(ReapparitionBallon());
     }
     
