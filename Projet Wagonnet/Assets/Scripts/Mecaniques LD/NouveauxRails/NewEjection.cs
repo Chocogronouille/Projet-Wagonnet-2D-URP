@@ -41,6 +41,7 @@ public class NewEjection : MonoBehaviour
         Player.rbCharacter.gravityScale = Player.defaultGravityScale;
         Player.isEject = false;
         Player.isSurfing = false;
+        Player.isFalling = true;
         _instance = false;
         StopCoroutine(EjectionTime());
     }
