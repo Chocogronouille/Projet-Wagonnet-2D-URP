@@ -86,8 +86,8 @@ namespace Cinemachine
         [SerializeField] private float fallBallonDelay;
         [SerializeField] private float fallPlatformDelay;
         [SerializeField] private float facteurAccel;
-        [SerializeField] private float facteurDecelSpinJump;
-        [SerializeField] private float ecartDepartDecelSpinJump;
+        [SerializeField] private float facteurDecelSpinJump; //set between 0 and 1
+        [SerializeField] private float ecartDepartDecelSpinJump; //set between 0 and 1
         [SerializeField] private float facteurDecelAfterRail;
         
         // Variable des Rails
