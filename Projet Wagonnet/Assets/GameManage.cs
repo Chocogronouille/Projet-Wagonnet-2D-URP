@@ -94,12 +94,12 @@ public class GameManage : MonoBehaviour
     public void InteractOpen()
     {
         InteractAnim.SetBool("isOpen", true);
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+  //      player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractClose()
     {
         InteractAnim.SetBool("isOpen", false);
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+    //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 
         // Cassette
