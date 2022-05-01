@@ -335,8 +335,11 @@ namespace Cinemachine
 
         private void Move()
         {
+             if(!isInteract)
+            {
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(walkSpeed * direction.x*facteurAccel, 0f));
+            }
         }
 
         private void ClampMove()
@@ -404,10 +407,13 @@ namespace Cinemachine
 
         private void Jump()
         {
+            if(!isInteract)
+            {
             _jumpDuration = 0;
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             animator.SetBool("isJumping", true);
             groundCheck.SetActive(false);
+           }
         }
 
         private void SpinJump()

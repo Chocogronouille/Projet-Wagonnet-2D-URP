@@ -12,11 +12,13 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
 
     private Queue<string> sentences;
+    private GameObject player;
 
     public static DialogueManager instance;
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
         if(instance != null)
         {
             Debug.LogWarning("Il y a plus d'une instance de DialogueManager dans la scène");
@@ -30,6 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(GameManage.instance.DialogueButton);
         animator.SetBool("isOpen", true);
@@ -71,6 +74,13 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        StartCoroutine(Timer());
         animator.SetBool("isOpen", false);
+    }
+
+    IEnumerator Timer()
+    {
+            yield return new WaitForSeconds(0.3f);
+            player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 }

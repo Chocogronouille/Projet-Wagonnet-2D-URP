@@ -11,11 +11,13 @@ public class DialogueTrigger : MonoBehaviour
     private bool isInRange;
 
     private GameObject interactUI;
+    private GameObject Player;
 
     private void Awake()
     {
         farmerInputActions = new InputActions();
         interactUI = GameObject.Find("InteractText");
+        Player = GameObject.Find("Player");
     }
          private void OnEnable()
      {
@@ -46,6 +48,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             isInRange = true;
             GameManage.instance.InteractOpen();
+        //    Player.GetComponent<Cinemachine.PlayerInput>().isEject = true
         }
     }
 
