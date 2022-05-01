@@ -335,8 +335,11 @@ namespace Cinemachine
 
         private void Move()
         {
+             if(!isInteract)
+            {
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(walkSpeed * direction.x*facteurAccel, 0f));
+            }
         }
 
         private void ClampMove()
