@@ -151,6 +151,20 @@ namespace Cinemachine
 
             farmerInputActions.Player.SpinMove.performed += DoSpin;
             farmerInputActions.Player.SpinMove.Enable();
+
+            farmerInputActions.Player.SlowRails.performed += DoSlowing;
+            farmerInputActions.Player.SlowRails.canceled += EndSlowing;
+            farmerInputActions.Player.SlowRails.Enable();
+        }
+        private void DoSlowing(InputAction.CallbackContext obj)
+        {
+          //  speed -= 5f;
+          Debug.Log("SlowSpeed");
+        }
+                private void EndSlowing(InputAction.CallbackContext obj)
+        {
+          //  speed -= 5f;
+          Debug.Log("StopSpeed");
         }
 
         #region InputAction
