@@ -33,7 +33,7 @@ namespace Cinemachine
         private float _verticalSpeed;
         private float _jumpDuration;
         private bool _wantToEndJump;
-        public float _maxSpeed;
+        [SerializeField] private float _maxSpeed;
         private float _maxFallSpeed;
         private int _canSpinJump;
         private bool useRailSpeed;
@@ -149,9 +149,6 @@ namespace Cinemachine
             farmerInputActions.Player.Jump.canceled += EndJump;
             farmerInputActions.Player.Jump.Enable();
 
-            farmerInputActions.Player.SpinMove.performed += DoSpin;
-            farmerInputActions.Player.SpinMove.Enable();
-
             farmerInputActions.Player.SlowRails.performed += DoSlowing;
             farmerInputActions.Player.SlowRails.canceled += EndSlowing;
             farmerInputActions.Player.SlowRails.Enable();
@@ -161,7 +158,7 @@ namespace Cinemachine
           //  speed -= 5f;
           Debug.Log("SlowSpeed");
         }
-                private void EndSlowing(InputAction.CallbackContext obj)
+        private void EndSlowing(InputAction.CallbackContext obj)
         {
           //  speed -= 5f;
           Debug.Log("StopSpeed");
@@ -175,28 +172,18 @@ namespace Cinemachine
         private void DoJump(InputAction.CallbackContext obj)
         {
             _jumpBuffer = jumpBufferTime;
-        }
-        
-        private void DoSpin(InputAction.CallbackContext obj)
-        {
+            
+            if (!isAirborn) return;
             if(isEject) return;
             if (isSurfing) return;
-            
-            // A décommenter pour empêcher le joueur de spinJump au sol
-            
-            // if (coyoteFloat)
-            // {
-            //     SpinJump();
-            //     return;
-            // }
-            // if (!isAirborn) return;
 
             if (_canSpinJump != 0)
             {
+                _jumpBuffer = 0;
                 SpinJump();
             }
         }
-
+        
         private void EndJump(InputAction.CallbackContext obj)
         {
             if(isEject) return;
@@ -349,11 +336,10 @@ namespace Cinemachine
 
         private void Move()
         {
-             if(!isInteract)
-            {
+            if (isInteract) return;
+            
             rbCharacter.drag = 0;
             rbCharacter.AddForce(new Vector2(walkSpeed * direction.x*facteurAccel, 0f));
-            }
         }
 
         private void ClampMove()
@@ -421,13 +407,13 @@ namespace Cinemachine
 
         private void Jump()
         {
-            if(!isInteract)
-            {
+            if (isInteract) return;
+            
             _jumpDuration = 0;
+            transform.localEulerAngles = new Vector3(0,0,0);
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             animator.SetBool("isJumping", true);
             groundCheck.SetActive(false);
-           }
         }
 
         private void SpinJump()
@@ -442,13 +428,15 @@ namespace Cinemachine
             isFalling = false;
             isAirborn = true;
             coyoteFloat = false;
+            groundCheck.SetActive(false);
+            transform.localEulerAngles = new Vector3(0,0,0);
             _jumpDuration = maxJumpDuration - spinJumpDuration;
 
             // ATTENTION : FORMULE DE RALENTISSEMENT PROGRESSIVE DE LA VITESSE APRES UN SPIN JUMP ECRITE EN DUR
-            _maxSpeed = afterSpinAirSpeed + (walkSpeed-afterSpinAirSpeed)*(_canSpinJump-1)*facteurDecelSpinJump*ecartDepartDecelSpinJump;
+            _maxSpeed = afterSpinAirSpeed + (_maxSpeed-afterSpinAirSpeed)*(_canSpinJump-1)*facteurDecelSpinJump*ecartDepartDecelSpinJump;
             
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, 0); //Arrêt de la montée et lissage de l'apex
-            rbCharacter.AddForce(new Vector2(0, spinJumpForce *_canSpinJump), ForceMode2D.Impulse);
+            rbCharacter.AddForce(new Vector2(0, spinJumpForce*_canSpinJump), ForceMode2D.Impulse);
 
             animator.SetBool("IsSpinJumping", true); //N'EST PAS UNE DE MES FONCTIONS
             StartCoroutine(TimerSpinJump(delaySpinJump));
