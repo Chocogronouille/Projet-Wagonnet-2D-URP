@@ -347,6 +347,10 @@ namespace Cinemachine
             if (_maxSpeed > walkSpeed)
             {
                 _maxSpeed -= facteurDecelAfterRail * Time.deltaTime;
+                if (Mathf.Abs(rbCharacter.velocity.x)<walkSpeed)
+                {
+                    _maxSpeed = walkSpeed;
+                }
             }
 
             _horizontalSpeed = Mathf.Clamp(rbCharacter.velocity.x, -_maxSpeed, _maxSpeed);
@@ -557,7 +561,6 @@ namespace Cinemachine
            Debug.Log("Disable");
           movement.Disable();
           farmerInputActions.Player.Jump.Disable();
-          farmerInputActions.Player.SpinMove.Disable();
         }
     }
 }

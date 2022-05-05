@@ -46,15 +46,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SpinMove"",
-                    ""type"": ""Button"",
-                    ""id"": ""ed0cbaca-cfee-4bb9-b22c-ba4abbdfe0ce"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""PressB"",
                     ""type"": ""Button"",
                     ""id"": ""4cd61dfe-767f-4434-9215-1252d38d566f"",
@@ -122,28 +113,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7b6ba606-3b30-4b61-8bb1-38ed566168b8"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpinMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""95c1882e-cdda-4dcd-bca2-7aa6a3bd2c81"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpinMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -222,7 +191,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_SpinMove = m_Player.FindAction("SpinMove", throwIfNotFound: true);
         m_Player_PressB = m_Player.FindAction("PressB", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_MiniCam = m_Player.FindAction("MiniCam", throwIfNotFound: true);
@@ -288,7 +256,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_SpinMove;
     private readonly InputAction m_Player_PressB;
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_MiniCam;
@@ -299,7 +266,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @SpinMove => m_Wrapper.m_Player_SpinMove;
         public InputAction @PressB => m_Wrapper.m_Player_PressB;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @MiniCam => m_Wrapper.m_Player_MiniCam;
@@ -319,9 +285,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @SpinMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
-                @SpinMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
-                @SpinMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
                 @PressB.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
                 @PressB.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
                 @PressB.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
@@ -344,9 +307,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @SpinMove.started += instance.OnSpinMove;
-                @SpinMove.performed += instance.OnSpinMove;
-                @SpinMove.canceled += instance.OnSpinMove;
                 @PressB.started += instance.OnPressB;
                 @PressB.performed += instance.OnPressB;
                 @PressB.canceled += instance.OnPressB;
@@ -367,7 +327,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSpinMove(InputAction.CallbackContext context);
         void OnPressB(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnMiniCam(InputAction.CallbackContext context);
