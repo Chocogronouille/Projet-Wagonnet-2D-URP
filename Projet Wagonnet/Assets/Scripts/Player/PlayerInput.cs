@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using UnityEngine.InputSystem.Haptics;
+using UnityEngine.InputSystem.XR.Haptics;
 
 namespace Cinemachine
 {
@@ -98,7 +100,7 @@ namespace Cinemachine
         // La Cam
         private GameObject laCamParent;
         private GameObject laCam;
-
+        
         // Ejection
         public bool isEject;
 
@@ -418,6 +420,8 @@ namespace Cinemachine
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             animator.SetBool("isJumping", true);
             groundCheck.SetActive(false);
+            
+            StartCoroutine(JumpRumble());
         }
 
         private void SpinJump()
@@ -443,6 +447,9 @@ namespace Cinemachine
             rbCharacter.AddForce(new Vector2(0, spinJumpForce*_canSpinJump), ForceMode2D.Impulse);
 
             animator.SetBool("IsSpinJumping", true); //N'EST PAS UNE DE MES FONCTIONS
+            
+            StopCoroutine(JumpRumble());
+            StartCoroutine(JumpRumble());
             StartCoroutine(TimerSpinJump(delaySpinJump));
 
             _canSpinJump -= 1;
@@ -554,13 +561,21 @@ namespace Cinemachine
             yield return new WaitForSeconds(delaySpinJump);
             animator.SetBool("IsSpinJumping", false);
         }
+
+        private IEnumerator JumpRumble()
+        {
+            Gamepad.current.SetMotorSpeeds(1f, 0.5f);
+            yield return new WaitForSecondsRealtime(0.04f);
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
         #endregion
 
         private void OnDestroy()
-        {
-           Debug.Log("Disable");
-          movement.Disable();
-          farmerInputActions.Player.Jump.Disable();
+        { 
+            Debug.Log("Disable");
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+            movement.Disable();
+            farmerInputActions.Player.Jump.Disable();
         }
     }
 }
