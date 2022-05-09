@@ -7673,7 +7673,7 @@ PrefabInstance:
     - target: {fileID: 8747023392751072299, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 436509362}
+      objectReference: {fileID: 0}
     - target: {fileID: 8747023392751072300, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
       propertyPath: m_Name
       value: PlayerCamera
@@ -8163,11 +8163,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b380f1284a68847a208cf2898b98d5, type: 3}
---- !u!60 &436509362 stripped
-PolygonCollider2D:
-  m_CorrespondingSourceObject: {fileID: 991384065818282857, guid: 8297f8d41e522bd42896fdb1e26bb6da, type: 3}
-  m_PrefabInstance: {fileID: 991384066831970545}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &447108858
 PrefabInstance:
   m_ObjectHideFlags: 0
