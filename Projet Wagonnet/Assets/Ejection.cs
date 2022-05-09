@@ -37,8 +37,8 @@ public class Ejection : MonoBehaviour
         {
             player.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             yield return new WaitForSeconds(0.5f);
-            player.GetComponent<Cinemachine.PlayerInput>()._maxSpeed = player.GetComponent<Cinemachine.PlayerInput>().walkSpeed;
-            player.GetComponent<Cinemachine.PlayerInput>().isSurfing = false;
+            // player.GetComponent<Cinemachine.PlayerInput>()._maxSpeed = player.GetComponent<Cinemachine.PlayerInput>().walkSpeed;
+            // player.GetComponent<Cinemachine.PlayerInput>().isSurfing = false;
             player.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             yield return new WaitForSeconds(0.0001f);
             //player.GetComponent<Cinemachine.PlayerInput>().isEject = false;
