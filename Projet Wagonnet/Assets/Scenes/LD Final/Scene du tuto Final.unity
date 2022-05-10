@@ -3993,6 +3993,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7004689901579760813, guid: f4c2253bd8d4ef14a948e2b793c7f716, type: 3}
   m_PrefabInstance: {fileID: 247616950}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &492578282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8747023392751072300, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
+  m_PrefabInstance: {fileID: 8747023394494883534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &492578283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492578282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f13af7063c791c43a56ae8a49d475c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &501926458
 GameObject:
   m_ObjectHideFlags: 0
@@ -73575,7 +73592,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8747023392751072301, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
   m_PrefabInstance: {fileID: 8747023394494883534}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 492578282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
@@ -76051,6 +76068,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraConfiner 1ERLD
       objectReference: {fileID: 0}
+    - target: {fileID: 3911309898278440703, guid: c822ffc21273de94b85546e646621761, type: 3}
+      propertyPath: m_TagString
+      value: Confiner
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c822ffc21273de94b85546e646621761, type: 3}
 --- !u!1001 &279102856491987952
@@ -76196,7 +76217,7 @@ PrefabInstance:
       objectReference: {fileID: 490530757}
     - target: {fileID: 7797846403262427752, guid: 0cca4b553a892bd4d87c466741350aa3, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.9238477
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 7797846403262427753, guid: 0cca4b553a892bd4d87c466741350aa3, type: 3}
       propertyPath: m_Name
@@ -76471,11 +76492,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.068844
       objectReference: {fileID: 0}
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.773693
       objectReference: {fileID: 0}
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.z
@@ -76590,10 +76611,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8747023392751072299, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8747023392751072300, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
       propertyPath: m_Name
       value: PlayerCamera
@@ -76608,7 +76625,7 @@ PrefabInstance:
       objectReference: {fileID: 1974885171}
     - target: {fileID: 8747023392751072301, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.9616613
+      value: 1.7777778
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
