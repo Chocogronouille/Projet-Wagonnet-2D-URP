@@ -10,19 +10,57 @@ public class GameManage : MonoBehaviour
 {
     private InputActions farmerInputActions;
     public InputAction movement;
-    public GameObject PauseMenu;
-    public GameObject SelectLevel;
-    public GameObject EventSystem;
-    public GameObject ButtonScene1;
-  //  private Scene TheScene;
-    private string theScene;
- //   public GameObject WinMenu;
+    [HideInInspector]
+    public string theScene;
+    [HideInInspector]
     public bool isPaused;
+    private GameObject player;
+
+    // InteractText
+    private GameObject InteractText;
+    private Animator InteractAnim;
+
+    // Cassette Recup Text
+    [HideInInspector]
+    public GameObject CassetteText;
+    [HideInInspector]
+    public Animator CassetteAnim;
+
+    // UI Count
+    [HideInInspector] 
+    public GameObject CountText;
+    [HideInInspector]
+    public Animator CountAnim;
+
+    // PauseMenuAnim
+    public GameObject PauseMenu;
+    private Animator PauseAnim;
+
+    // Settings Menu
+    public GameObject SettingsMenu;
+
+    public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
 
     public static GameManage instance;
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
+        // Interaction
+        InteractText = GameObject.Find("InteractText");
+        InteractAnim = InteractText.GetComponent<Animator>();
+
+        // Cassette
+        CassetteText = GameObject.Find("CassetteRecupText");
+        CassetteAnim = CassetteText.GetComponent<Animator>();
+
+        // Cassette Open 
+        CountText = GameObject.Find("UI Count");
+        CountAnim = CountText.GetComponent<Animator>();
+
+        // PauseAnim
+        PauseAnim = PauseMenu.GetComponent<Animator>();
+
             if (instance != null)
             {
               Destroy(gameObject);
@@ -35,8 +73,10 @@ public class GameManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
-     //  TheScene = SceneManager.GetActiveScene().name;
+    //    SettingsMenu.SetActive(false);
+ //    SettingsMenu = GameObject.Find("SettingsPanel");
+     //Cursor.lockState = CursorLockMode.Locked;
+     Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
      theScene = SceneManager.GetActiveScene().name;
     }
 
@@ -50,6 +90,30 @@ public class GameManage : MonoBehaviour
         } 
     }
 
+    // Interact
+    public void InteractOpen()
+    {
+        InteractAnim.SetBool("isOpen", true);
+  //      player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+    }
+        public void InteractClose()
+    {
+        InteractAnim.SetBool("isOpen", false);
+    //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+    }
+
+        // Cassette
+    public void CassetteOpen()
+    {
+        CassetteAnim.SetBool("isOpen", true);
+        StartCoroutine(IsOpenFalse());
+    }
+IEnumerator IsOpenFalse()
+    {
+        yield return new WaitForSeconds(1.1f);
+        CassetteAnim.SetBool("isOpen", false);
+    }
+
     private void OnEnable()
         {
             movement = farmerInputActions.Player.Movement;
@@ -60,22 +124,31 @@ public class GameManage : MonoBehaviour
         }
         private void DoMenuUI(InputAction.CallbackContext obj)
         {
-            Debug.Log("OpenMenu");
+           EventSystem.current.SetSelectedGameObject(null);
+           EventSystem.current.SetSelectedGameObject(PauseFirstButton);
+           Debug.Log("OpenMenu");
            PauseMenu.SetActive(true);
+           PauseAnim.SetBool("isPaused", true);
+           CountAnim.SetBool("isPaused", true);
            isPaused = true;
+           player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
         } 
+
             public void StartGame()
     {
         SceneManager.LoadScene("Maxime");
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
     public void Resume()
     {
+        CountAnim.SetBool("isPaused", false);
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 
     public void Restart()
@@ -84,16 +157,17 @@ public class GameManage : MonoBehaviour
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
         isPaused = false;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 
         public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
         PauseMenu.SetActive(false);
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
     public void LoadSelectLevel()
     {
-     //   EventSystem.GetComponent<EventSystem>().firstSelectedGameObject =  ButtonScene1;
         SceneManager.LoadScene("SelectScene");
         Time.timeScale = 0;
         isPaused = true;
@@ -101,16 +175,27 @@ public class GameManage : MonoBehaviour
      public void LoadScene1()
     {
         SceneManager.LoadScene("Maxime");
-    //    PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
     }
          public void LoadScene2()
     {
         SceneManager.LoadScene("LD YAZID");
-    //    PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
+    }
+
+    public void OpenSettings()
+    {
+       SettingsMenu.SetActive(true);
+       EventSystem.current.SetSelectedGameObject(null);
+       EventSystem.current.SetSelectedGameObject(OptionFirstButton);
+    }
+        public void CloseSettings()
+    {
+       SettingsMenu.SetActive(false);
+       EventSystem.current.SetSelectedGameObject(null);
+       EventSystem.current.SetSelectedGameObject(PauseFirstButton);
     }
 
     public void QuitGame()

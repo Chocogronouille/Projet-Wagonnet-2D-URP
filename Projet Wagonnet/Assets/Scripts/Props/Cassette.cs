@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Cassette : MonoBehaviour
 {
+    public AudioClip sound;
     
 //    private InputActions farmerInputActions;
 
@@ -44,14 +45,25 @@ public class Cassette : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            CounterCassette.instance.AddCounterCassette(1);
+            GameManage.instance.CountAnim.SetBool("isCassCount", true);
+            GameManage.instance.CassetteOpen();
+       //    CounterCassette.instance.AddCounterCassette(1);
+            StartCoroutine(ChangeNumber());
             currentCassetteCount = currentCassetteCount + 1;
           //  interactBar.SetCount(currentCount);
-        //    GetComponent<SpriteRenderer>().enabled = false;
-          //  GetComponent<BoxCollider2D>().enabled = false;
-          Destroy(gameObject,0.00001f);
-
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+      //    Destroy(gameObject,0.00001f);
+            AudioManager.instance.PlayClipAt(sound, transform.position);
         }
+    }
+    IEnumerator ChangeNumber()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManage.instance.CountAnim.SetBool("isCassCount", false);
+        yield return new WaitForSeconds(0.43f);
+        CounterCassette.instance.AddCounterCassette(1);
+        Destroy(gameObject,0.00001f);
     }
 
 }

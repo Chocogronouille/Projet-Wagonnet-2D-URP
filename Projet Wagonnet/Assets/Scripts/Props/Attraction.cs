@@ -64,9 +64,8 @@ public class Attraction : MonoBehaviour
     {
         if (isColliding == true)
         {
+            GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
-            
-
         }
     }
 
@@ -81,7 +80,9 @@ public class Attraction : MonoBehaviour
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+        GameManage.instance.CountAnim.SetBool("isAttraCount", false);
+        yield return new WaitForSeconds(0.4f);
         CounterAttraction.instance.AddCounterAttraction(1);
         currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);

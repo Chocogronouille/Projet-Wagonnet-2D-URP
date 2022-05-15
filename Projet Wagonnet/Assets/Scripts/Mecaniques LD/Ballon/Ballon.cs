@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using DG.Tweening;
 using Player;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class Ballon : MonoBehaviour
     [SerializeField] private float duréeReapparition;
     [SerializeField] private float vitesseMaxY;
     [SerializeField] private Transform ballonFolder;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private float offsetX;
     private Rigidbody2D _rbPlayer;
     private PlayerInput _playerInput;
     private Vector3 _oldPos;
@@ -28,7 +29,7 @@ public class Ballon : MonoBehaviour
         _oldPos = transform.position;
 
         transform.SetParent(other.transform);
-        transform.localPosition = offset;
+        transform.localPosition = new Vector2(offsetX,transform.localPosition.y);
 
         StartCoroutine(UtilisationBallon());
     }
@@ -36,12 +37,13 @@ public class Ballon : MonoBehaviour
     private IEnumerator UtilisationBallon()
     {
         _playerInput.isAirborn = false;
-        _playerInput.jumpState = PlayerInput.JumpState.ballon;
+        _playerInput.jumpState = PlayerInput.JumpState.Ballon;
+        GetComponent<SpriteRenderer>().DOColor(Color.red, duréeBallon);
         
         _rbPlayer.gravityScale = gravityScaleBallon;
         if (_rbPlayer.velocity.y < _playerInput.apexThreshold)
         {
-            _rbPlayer.velocity = new Vector2(_rbPlayer.velocity.x, _playerInput.apexThreshold*1.1f);
+            _rbPlayer.velocity = new Vector2(_rbPlayer.velocity.x, _playerInput.apexThreshold);
         }
         else
         {
@@ -49,7 +51,7 @@ public class Ballon : MonoBehaviour
         }
         
         GetComponent<BoxCollider2D>().enabled = false;
-        yield return new WaitForSecondsRealtime(duréeBallon);
+        yield return new WaitForSeconds(duréeBallon);
 
         if (_asJumped)
         {
@@ -67,9 +69,10 @@ public class Ballon : MonoBehaviour
     public void JumpFromBallon() //Fonction appellée dans le PlayerInput
     {
         _asJumped = true;
+        _playerInput.ResetSpinJump();
         StartCoroutine(ReapparitionBallon());
     }
-    
+
     private IEnumerator ReapparitionBallon()
     {
         GetComponent<SpriteRenderer>().enabled = false;
@@ -77,8 +80,9 @@ public class Ballon : MonoBehaviour
         transform.position = _oldPos;
         _oldPosInstance = false;
 
-        yield return new WaitForSecondsRealtime(duréeReapparition);
+        yield return new WaitForSeconds(duréeReapparition);
         
+        GetComponent<SpriteRenderer>().color = Color.white;
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
         

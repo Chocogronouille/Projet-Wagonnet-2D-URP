@@ -46,15 +46,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SpinMove"",
-                    ""type"": ""Button"",
-                    ""id"": ""ed0cbaca-cfee-4bb9-b22c-ba4abbdfe0ce"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""PressB"",
                     ""type"": ""Button"",
                     ""id"": ""4cd61dfe-767f-4434-9215-1252d38d566f"",
@@ -67,6 +58,24 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""151ce0d0-d799-48e9-a2a6-287ea3a24c2b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniCam"",
+                    ""type"": ""Button"",
+                    ""id"": ""4857bf13-d6e9-4162-b9b9-a187b17ac4c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlowRails"",
+                    ""type"": ""Button"",
+                    ""id"": ""12f8ba0d-662e-426e-ba7e-0405a3e65cb2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -109,28 +118,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7b6ba606-3b30-4b61-8bb1-38ed566168b8"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpinMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""95c1882e-cdda-4dcd-bca2-7aa6a3bd2c81"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpinMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""347c0ee5-3303-4cd7-8de3-acb915deb653"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
@@ -161,6 +148,39 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f426f10-723d-455c-842a-5abbef54bc5a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0dcaa7d-01fd-4d41-83ef-bf222996d8bc"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da3dc877-db8a-4a8f-b8b1-732e912df80b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlowRails"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -171,9 +191,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_SpinMove = m_Player.FindAction("SpinMove", throwIfNotFound: true);
         m_Player_PressB = m_Player.FindAction("PressB", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+        m_Player_MiniCam = m_Player.FindAction("MiniCam", throwIfNotFound: true);
+        m_Player_SlowRails = m_Player.FindAction("SlowRails", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -235,18 +256,20 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_SpinMove;
     private readonly InputAction m_Player_PressB;
     private readonly InputAction m_Player_Menu;
+    private readonly InputAction m_Player_MiniCam;
+    private readonly InputAction m_Player_SlowRails;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
         public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @SpinMove => m_Wrapper.m_Player_SpinMove;
         public InputAction @PressB => m_Wrapper.m_Player_PressB;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
+        public InputAction @MiniCam => m_Wrapper.m_Player_MiniCam;
+        public InputAction @SlowRails => m_Wrapper.m_Player_SlowRails;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -262,15 +285,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @SpinMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
-                @SpinMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
-                @SpinMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinMove;
                 @PressB.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
                 @PressB.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
                 @PressB.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPressB;
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @MiniCam.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiniCam;
+                @MiniCam.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiniCam;
+                @MiniCam.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiniCam;
+                @SlowRails.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowRails;
+                @SlowRails.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowRails;
+                @SlowRails.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowRails;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -281,15 +307,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @SpinMove.started += instance.OnSpinMove;
-                @SpinMove.performed += instance.OnSpinMove;
-                @SpinMove.canceled += instance.OnSpinMove;
                 @PressB.started += instance.OnPressB;
                 @PressB.performed += instance.OnPressB;
                 @PressB.canceled += instance.OnPressB;
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @MiniCam.started += instance.OnMiniCam;
+                @MiniCam.performed += instance.OnMiniCam;
+                @MiniCam.canceled += instance.OnMiniCam;
+                @SlowRails.started += instance.OnSlowRails;
+                @SlowRails.performed += instance.OnSlowRails;
+                @SlowRails.canceled += instance.OnSlowRails;
             }
         }
     }
@@ -298,8 +327,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSpinMove(InputAction.CallbackContext context);
         void OnPressB(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnMiniCam(InputAction.CallbackContext context);
+        void OnSlowRails(InputAction.CallbackContext context);
     }
 }

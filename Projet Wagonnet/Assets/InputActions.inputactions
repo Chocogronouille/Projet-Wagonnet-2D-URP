@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SpinMove",
-                    "type": "Button",
-                    "id": "ed0cbaca-cfee-4bb9-b22c-ba4abbdfe0ce",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "PressB",
                     "type": "Button",
                     "id": "4cd61dfe-767f-4434-9215-1252d38d566f",
@@ -45,6 +36,24 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "151ce0d0-d799-48e9-a2a6-287ea3a24c2b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MiniCam",
+                    "type": "Button",
+                    "id": "4857bf13-d6e9-4162-b9b9-a187b17ac4c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SlowRails",
+                    "type": "Button",
+                    "id": "12f8ba0d-662e-426e-ba7e-0405a3e65cb2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -87,28 +96,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7b6ba606-3b30-4b61-8bb1-38ed566168b8",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpinMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "95c1882e-cdda-4dcd-bca2-7aa6a3bd2c81",
-                    "path": "<Keyboard>/b",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpinMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "347c0ee5-3303-4cd7-8de3-acb915deb653",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -137,6 +124,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f426f10-723d-455c-842a-5abbef54bc5a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0dcaa7d-01fd-4d41-83ef-bf222996d8bc",
+                    "path": "<XInputController>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da3dc877-db8a-4a8f-b8b1-732e912df80b",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SlowRails",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

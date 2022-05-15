@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1050834809425143732}
   - component: {fileID: 3703581737689721853}
   - component: {fileID: 6115382417660820094}
+  - component: {fileID: 6436617817330290777}
   m_Layer: 0
   m_Name: Maison9
   m_TagString: Plateforme
@@ -213,6 +214,18 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &6436617817330290777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050834809425143731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10935e0acf0038f44ab7e08c0e7806f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2900949485747658025
 GameObject:
   m_ObjectHideFlags: 0

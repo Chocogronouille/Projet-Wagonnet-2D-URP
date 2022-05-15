@@ -3,10 +3,9 @@ using System.Collections;
 public class DeathZone : MonoBehaviour
 {
     private Transform playerSpawn;
-   [SerializeField]
-    private Animator fadeSystem;
+    [SerializeField] private Animator fadeSystem;
 
-    private bool _instance;
+    public bool instanceDeathzone;
 
     private void Awake()
     {
@@ -15,8 +14,8 @@ public class DeathZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_instance) return;
-        _instance = true;
+        if (instanceDeathzone) return;
+        instanceDeathzone = true;
         StartCoroutine(ReplacePlayer(collision));
     }
 
@@ -32,8 +31,7 @@ public class DeathZone : MonoBehaviour
         {
             collision.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
         }
-        _instance = false;
+        instanceDeathzone = false;
         collision.transform.position = playerSpawn.position;
-
     }
 }
