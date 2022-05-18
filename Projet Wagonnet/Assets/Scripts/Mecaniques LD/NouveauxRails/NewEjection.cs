@@ -34,6 +34,7 @@ public class NewEjection : MonoBehaviour
         Player.transform.localEulerAngles = new Vector3(0,0,0);
         Player.rbCharacter.velocity = Vector2.zero;
         Player.rbCharacter.gravityScale = 0;
+        Player.GetComponent<Rigidbody2D>().drag = 0;
         var ejectionSpeed = _ejectionDirection.normalized * ejectionForce;
         Player.rbCharacter.AddForce(ejectionSpeed,ForceMode2D.Impulse);
         Player.SetAirSpeedAfterRail(ejectionSpeed.x);
