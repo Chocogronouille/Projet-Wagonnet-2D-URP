@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using Cinemachine;
+
 public class DeathZone : MonoBehaviour
 {
     private Transform playerSpawn;
@@ -22,6 +24,7 @@ public class DeathZone : MonoBehaviour
     private IEnumerator ReplacePlayer(Collider2D collision)
     {
         fadeSystem.SetTrigger("FadeIn");
+        collision.GetComponent<PlayerInput>().isSurfing = false;
         yield return new WaitForSeconds(1f);
         if (collision.GetComponent<Rigidbody2D>())
         {
