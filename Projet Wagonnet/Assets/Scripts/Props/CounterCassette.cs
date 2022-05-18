@@ -15,7 +15,7 @@ public class CounterCassette : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("Il y a plus d'une instance d'Interact Counter dans la scène");
+            Destroy(this.gameObject);
             return;
         }
         instance = this;
