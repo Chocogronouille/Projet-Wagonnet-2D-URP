@@ -328,7 +328,14 @@ namespace Cinemachine
         {
             if (ejectionSpeedX < 0) ejectionSpeedX = -ejectionSpeedX;
             //On prend la valeur absolu de la vitesse
-            _maxSpeed = ejectionSpeedX;
+            if(ejectionSpeedX > walkSpeed)
+            {
+                _maxSpeed = ejectionSpeedX;
+            }
+            else
+            {
+                _maxSpeed = walkSpeed;
+            }
         }
         
         public void ResetMaxSpeed()
