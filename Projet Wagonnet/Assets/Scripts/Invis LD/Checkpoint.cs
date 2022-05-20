@@ -6,6 +6,8 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private Transform playerSpawn;
+    [SerializeField] private Animator validation;
+
     private void Awake()
     {
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
@@ -17,6 +19,7 @@ public class Checkpoint : MonoBehaviour
         {
             playerSpawn.position = transform.position;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            validation.SetBool("Validation",true);
         }
     }
 }
