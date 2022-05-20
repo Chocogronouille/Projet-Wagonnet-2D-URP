@@ -22,13 +22,15 @@ public class DeathZone : MonoBehaviour
     }
 
     private IEnumerator ReplacePlayer(Collider2D collision)
-    {
+    { 
         fadeSystem.SetTrigger("FadeIn");
         collision.GetComponent<PlayerInput>().isSurfing = false;
+        var rb = collision.GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(1f);
-        if (collision.GetComponent<Rigidbody2D>())
+        if (rb)
         {
-            collision.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
         }
         else
         {
@@ -36,5 +38,6 @@ public class DeathZone : MonoBehaviour
         }
         instanceDeathzone = false;
         collision.transform.position = playerSpawn.position;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
