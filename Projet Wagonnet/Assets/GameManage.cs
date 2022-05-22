@@ -126,7 +126,6 @@ IEnumerator IsOpenFalse()
         {
            EventSystem.current.SetSelectedGameObject(null);
            EventSystem.current.SetSelectedGameObject(PauseFirstButton);
-           Debug.Log("OpenMenu");
            PauseMenu.SetActive(true);
            PauseAnim.SetBool("isPaused", true);
            CountAnim.SetBool("isPaused", true);

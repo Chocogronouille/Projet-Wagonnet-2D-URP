@@ -26,8 +26,6 @@ public class LON_Track : MonoBehaviour
     // Start
     void Start()
     {
-        //////////////////////////////HelpJump = gameObject.transform.GetChild(3);
-        ///////////////////////////////Debug.Log(HelpJump);
         Rotz= gameObject.transform.localEulerAngles.z;
 
         if (next is null) return;
@@ -57,8 +55,6 @@ public class LON_Track : MonoBehaviour
                 ? track.origin.position : next.transform.position, trackLength / speed).SetEase(Ease.Linear).OnComplete(() => track?.MoveNext());
 
             var direction = next.transform.position - player.transform.position;
-            Debug.Log(direction.normalized);
-            Debug.Log(player.deplacement);
             player.railDirection = direction.normalized;
         }
     }

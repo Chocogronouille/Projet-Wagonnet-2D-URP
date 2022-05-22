@@ -125,7 +125,7 @@ namespace Cinemachine
 
             if (instance != null)
             {
-              //Destroy(gameObject);
+                Destroy(gameObject);
                 return;
             }
 
@@ -150,22 +150,8 @@ namespace Cinemachine
             farmerInputActions.Player.Jump.performed += DoJump;
             farmerInputActions.Player.Jump.canceled += EndJump;
             farmerInputActions.Player.Jump.Enable();
-
-            farmerInputActions.Player.SlowRails.performed += DoSlowing;
-            farmerInputActions.Player.SlowRails.canceled += EndSlowing;
-            farmerInputActions.Player.SlowRails.Enable();
         }
-        private void DoSlowing(InputAction.CallbackContext obj)
-        {
-          //  speed -= 5f;
-          Debug.Log("SlowSpeed");
-        }
-        private void EndSlowing(InputAction.CallbackContext obj)
-        {
-          //  speed -= 5f;
-          Debug.Log("StopSpeed");
-        }
-
+        
         #region InputAction
 
         public Vector2 railDirection;
@@ -229,7 +215,6 @@ namespace Cinemachine
         {
             Surf();
             JumpBuffer();
-            Debug.Log(_jumpBuffer);
             if(isEject) return;
             if (isSurfing) return;
             FallManagement();
@@ -466,7 +451,6 @@ namespace Cinemachine
         
         public void Fall()
         {
-            Debug.Log("Fall");
             isFalling = true;
             _wantToEndJump = false;
             rbCharacter.gravityScale = defaultGravityScale;
@@ -581,7 +565,6 @@ namespace Cinemachine
 
         private void OnDestroy()
         { 
-            Debug.Log("Disable");
             Gamepad.current.SetMotorSpeeds(0f, 0f);
             movement.Disable();
             farmerInputActions.Player.Jump.Disable();
