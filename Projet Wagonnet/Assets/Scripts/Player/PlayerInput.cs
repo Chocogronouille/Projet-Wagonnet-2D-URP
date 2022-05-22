@@ -41,7 +41,6 @@ namespace Cinemachine
         private bool useRailSpeed;
         private bool _falledFromBallon;
         private bool _falledFromPlatform;
-        private Collider2D _currentPlatform;
 
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -106,6 +105,9 @@ namespace Cinemachine
 
         // Stop Jump during Interaction
         public bool isInteract;
+        
+        //Liste Plateforme A faire Apparaitre Après Descente
+        [HideInInspector] public Collider2D[] currentPlatform;
         
         #endregion
 
@@ -407,6 +409,15 @@ namespace Cinemachine
 
         private void Jump()
         {
+            if (currentPlatform != null)
+            {
+                foreach (var iCollider2D in currentPlatform)
+                {
+                    iCollider2D.enabled = true;
+                }
+                currentPlatform = null;
+            }
+
             if (isInteract) return;
             
             _jumpDuration = 0;
@@ -421,8 +432,16 @@ namespace Cinemachine
         private void SpinJump()
         {
             GetComponentInChildren<Ballon>()?.JumpFromBallon();
-            if (_currentPlatform != null) _currentPlatform.enabled = true;
-            //On réactive la dernière plateforme au cas où le joueur en est descendu
+            if (currentPlatform != null)
+            {
+                foreach (var iCollider2D in currentPlatform)
+                {
+                    iCollider2D.enabled = true;
+                }
+                currentPlatform = null;
+            }
+
+            //On réactive la dernière maison au cas où le joueur en est descendu
 
             jumpState = JumpState.Ground;
             rbCharacter.gravityScale = defaultGravityScale;
@@ -477,9 +496,9 @@ namespace Cinemachine
             StopCoroutine(NoFastFallFromBallon());
         }
 
-        public void StandOnPlatform(Collider2D platformCollider) //Fonction appelée lors d'une collision avec une plateforme
+        public void StandOnPlatform(Collider2D[] platformColliders) //Fonction appelée lors d'une collision avec une plateforme
         {
-            _currentPlatform = platformCollider;
+            currentPlatform = platformColliders;
             jumpState = JumpState.Platform;
         }
         private void FallFromPlatform()
@@ -491,11 +510,14 @@ namespace Cinemachine
         private IEnumerator NoFastFallFromPlatform()
         {
             _falledFromPlatform = true;
-            _currentPlatform.enabled = false;
+            foreach (var iCollider2D in currentPlatform)
+            {
+                iCollider2D.enabled = false;
+            }
             yield return new WaitForSeconds(fallPlatformDelay);
             _falledFromPlatform = false;
-            _currentPlatform.enabled = true;
-            StopCoroutine(NoFastFallFromBallon());
+            
+            StopCoroutine(NoFastFallFromPlatform());
         }
         private void FastFall()
         {
