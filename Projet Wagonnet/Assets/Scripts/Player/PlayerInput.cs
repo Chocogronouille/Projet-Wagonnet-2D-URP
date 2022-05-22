@@ -79,7 +79,7 @@ namespace Cinemachine
         [SerializeField] private float fallSpeed;
         [SerializeField] private float fastFallSpeed;
         [SerializeField] private float railSpeed;
-        [SerializeField] private int jumpBufferTime;
+        [SerializeField] private float jumpBufferTime;
         [SerializeField] private float coyoteTime;
         [SerializeField] private float apexEndJump;
         [SerializeField] private float minJumpDuration;
@@ -228,10 +228,10 @@ namespace Cinemachine
         private void Movement()
         {
             Surf();
+            JumpBuffer();
+            Debug.Log(_jumpBuffer);
             if(isEject) return;
             if (isSurfing) return;
-            
-            JumpBuffer();
             FallManagement();
             CheckCoyoteTime();
             CheckFastFall();
@@ -267,6 +267,8 @@ namespace Cinemachine
             
             _jumpBuffer -= 1 * Time.deltaTime;
 
+            if(isEject) return;
+            if (isSurfing) return;
             if (isAirborn) return;
             CheckJump();
             
