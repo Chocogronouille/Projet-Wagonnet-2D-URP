@@ -1,13 +1,13 @@
 using System;
-using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using PlayerInput = Cinemachine.PlayerInput;
 
 namespace Player
 {
     public class GroundCheck : MonoBehaviour
     {
         [SerializeField] private PlayerInput player;
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             player.ResetMaxSpeed();
@@ -21,6 +21,7 @@ namespace Player
             player.coyoteFloat = false;
             player.isFalling = false;
             player.GetComponent<Rigidbody2D>().drag = player.groundDrag;
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
             
             player.ResetSpinJump();
         }
