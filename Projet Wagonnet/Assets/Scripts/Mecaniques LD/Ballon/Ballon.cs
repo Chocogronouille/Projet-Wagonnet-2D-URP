@@ -24,6 +24,7 @@ public class Ballon : MonoBehaviour
     {
         _rbPlayer = other.GetComponentInParent<Rigidbody2D>();
         _playerInput = other.GetComponentInParent<PlayerInput>();
+        _playerInput.ResetSpinJump();
         if (_oldPosInstance) return;
         _oldPosInstance = true;
         _oldPos = transform.position;
