@@ -329,7 +329,7 @@ namespace Cinemachine
         
         public void ResetMaxSpeed()
         {
-            _maxSpeed = walkSpeed;
+            if (_maxSpeed<walkSpeed) _maxSpeed = walkSpeed;
         }
 
         private void Move()
@@ -344,7 +344,9 @@ namespace Cinemachine
         {
             if (_maxSpeed > walkSpeed)
             {
-                _maxSpeed -= facteurDecelAfterRail * Time.deltaTime;
+                if(isAirborn) _maxSpeed -= facteurDecelAfterRail * Time.deltaTime;
+                else _maxSpeed -= facteurDecelAfterRail * 3 * Time.deltaTime;
+                
                 if (Mathf.Abs(rbCharacter.velocity.x)<walkSpeed)
                 {
                     _maxSpeed = walkSpeed;
@@ -417,6 +419,7 @@ namespace Cinemachine
 
             if (isInteract) return;
             
+            ResetMaxSpeed();
             _jumpDuration = 0;
             transform.localEulerAngles = new Vector3(0,0,0);
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);

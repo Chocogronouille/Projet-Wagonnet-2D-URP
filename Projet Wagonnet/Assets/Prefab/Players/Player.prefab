@@ -659,7 +659,7 @@ MonoBehaviour:
   fallSpeed: 27
   fastFallSpeed: 27
   railSpeed: 100
-  jumpBufferTime: 0.1
+  jumpBufferTime: 0.25
   coyoteTime: 0.06
   apexEndJump: 7
   minJumpDuration: 0.1
@@ -674,6 +674,7 @@ MonoBehaviour:
   isSurfing: 0
   isEject: 0
   isInteract: 0
+  currentPlatform: {fileID: 0}
   railDirection: {x: 0, y: 0}
   railJump: 25
   deplacement: {x: 0, y: 0}
