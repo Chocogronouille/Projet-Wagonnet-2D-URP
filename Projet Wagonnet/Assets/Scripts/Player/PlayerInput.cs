@@ -107,7 +107,7 @@ namespace Cinemachine
         public bool isInteract;
         
         //Liste Plateforme A faire Apparaitre Après Descente
-        [HideInInspector] public Collider2D[] currentPlatform;
+        [HideInInspector] public Collider2D currentPlatform;
         
         #endregion
 
@@ -411,10 +411,7 @@ namespace Cinemachine
         {
             if (currentPlatform != null)
             {
-                foreach (var iCollider2D in currentPlatform)
-                {
-                    iCollider2D.enabled = true;
-                }
+                currentPlatform.enabled = true;
                 currentPlatform = null;
             }
 
@@ -434,10 +431,7 @@ namespace Cinemachine
             GetComponentInChildren<Ballon>()?.JumpFromBallon();
             if (currentPlatform != null)
             {
-                foreach (var iCollider2D in currentPlatform)
-                {
-                    iCollider2D.enabled = true;
-                }
+                currentPlatform.enabled = true;
                 currentPlatform = null;
             }
 
@@ -496,9 +490,9 @@ namespace Cinemachine
             StopCoroutine(NoFastFallFromBallon());
         }
 
-        public void StandOnPlatform(Collider2D[] platformColliders) //Fonction appelée lors d'une collision avec une plateforme
+        public void StandOnPlatform(Collider2D platformCollider) //Fonction appelée lors d'une collision avec une plateforme
         {
-            currentPlatform = platformColliders;
+            currentPlatform = platformCollider;
             jumpState = JumpState.Platform;
         }
         private void FallFromPlatform()
@@ -510,10 +504,7 @@ namespace Cinemachine
         private IEnumerator NoFastFallFromPlatform()
         {
             _falledFromPlatform = true;
-            foreach (var iCollider2D in currentPlatform)
-            {
-                iCollider2D.enabled = false;
-            }
+            currentPlatform.enabled = false;
             yield return new WaitForSeconds(fallPlatformDelay);
             _falledFromPlatform = false;
             
