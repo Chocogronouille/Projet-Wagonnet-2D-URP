@@ -7,20 +7,17 @@ namespace Props
 {
     public class FallThroughPlatform : MonoBehaviour
     {
-        private Collider2D[] _thisColliders;
+        private Collider2D _thisCollider;
         private void OnCollisionEnter2D(Collision2D other)
         {
-            _thisColliders = other.gameObject.GetComponent<PlayerInput>().currentPlatform;
-            if (_thisColliders != null)
+            _thisCollider = other.gameObject.GetComponent<PlayerInput>().currentPlatform;
+            if (_thisCollider != null)
             {
-                foreach (var iCollider2D in _thisColliders)
-                {
-                    iCollider2D.enabled = true;
-                }
+                _thisCollider.enabled = true;
             }       //On fait réapparaitre les dernières plateformes touchées avant de retenir les nouvelles
             
-            _thisColliders = GetComponents<Collider2D>();
-            other.gameObject.GetComponent<PlayerInput>().StandOnPlatform(_thisColliders);
+            _thisCollider = GetComponent<Collider2D>();
+            other.gameObject.GetComponent<PlayerInput>().StandOnPlatform(_thisCollider);
             
         }
     }

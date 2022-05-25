@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1558,6 +1558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.3
+  offsetY: 0
   camPlayer: {fileID: 548196748}
 --- !u!212 &567287771
 SpriteRenderer:
@@ -1739,6 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.6
+  offsetY: 0
   camPlayer: {fileID: 548196748}
 --- !u!212 &584150448
 SpriteRenderer:
@@ -39683,6 +39685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.5
+  offsetY: 0
   camPlayer: {fileID: 548196748}
 --- !u!212 &1849793470
 SpriteRenderer:
@@ -40422,6 +40425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.8
+  offsetY: 0
   camPlayer: {fileID: 548196748}
 --- !u!212 &2108331861
 SpriteRenderer:
@@ -40584,6 +40588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.9
+  offsetY: 0
   camPlayer: {fileID: 548196748}
 --- !u!212 &2141578619
 SpriteRenderer:

@@ -107,7 +107,7 @@ namespace Cinemachine
         public bool isInteract;
         
         //Liste Plateforme A faire Apparaitre Après Descente
-        [HideInInspector] public Collider2D[] currentPlatform;
+        [HideInInspector] public Collider2D currentPlatform;
         
         #endregion
 
@@ -329,7 +329,7 @@ namespace Cinemachine
         
         public void ResetMaxSpeed()
         {
-            _maxSpeed = walkSpeed;
+            if (_maxSpeed<walkSpeed) _maxSpeed = walkSpeed;
         }
 
         private void Move()
@@ -344,7 +344,9 @@ namespace Cinemachine
         {
             if (_maxSpeed > walkSpeed)
             {
-                _maxSpeed -= facteurDecelAfterRail * Time.deltaTime;
+                if(isAirborn) _maxSpeed -= facteurDecelAfterRail * Time.deltaTime;
+                else _maxSpeed -= facteurDecelAfterRail * 3 * Time.deltaTime;
+                
                 if (Mathf.Abs(rbCharacter.velocity.x)<walkSpeed)
                 {
                     _maxSpeed = walkSpeed;
@@ -411,15 +413,13 @@ namespace Cinemachine
         {
             if (currentPlatform != null)
             {
-                foreach (var iCollider2D in currentPlatform)
-                {
-                    iCollider2D.enabled = true;
-                }
+                currentPlatform.enabled = true;
                 currentPlatform = null;
             }
 
             if (isInteract) return;
             
+            ResetMaxSpeed();
             _jumpDuration = 0;
             transform.localEulerAngles = new Vector3(0,0,0);
             rbCharacter.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -434,10 +434,7 @@ namespace Cinemachine
             GetComponentInChildren<Ballon>()?.JumpFromBallon();
             if (currentPlatform != null)
             {
-                foreach (var iCollider2D in currentPlatform)
-                {
-                    iCollider2D.enabled = true;
-                }
+                currentPlatform.enabled = true;
                 currentPlatform = null;
             }
 
@@ -496,9 +493,9 @@ namespace Cinemachine
             StopCoroutine(NoFastFallFromBallon());
         }
 
-        public void StandOnPlatform(Collider2D[] platformColliders) //Fonction appelée lors d'une collision avec une plateforme
+        public void StandOnPlatform(Collider2D platformCollider) //Fonction appelée lors d'une collision avec une plateforme
         {
-            currentPlatform = platformColliders;
+            currentPlatform = platformCollider;
             jumpState = JumpState.Platform;
         }
         private void FallFromPlatform()
@@ -510,10 +507,7 @@ namespace Cinemachine
         private IEnumerator NoFastFallFromPlatform()
         {
             _falledFromPlatform = true;
-            foreach (var iCollider2D in currentPlatform)
-            {
-                iCollider2D.enabled = false;
-            }
+            currentPlatform.enabled = false;
             yield return new WaitForSeconds(fallPlatformDelay);
             _falledFromPlatform = false;
             

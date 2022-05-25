@@ -48,7 +48,7 @@ public class Cassette : MonoBehaviour
             GameManage.instance.CountAnim.SetBool("isCassCount", true);
             GameManage.instance.CassetteOpen();
        //    CounterCassette.instance.AddCounterCassette(1);
-            StartCoroutine(ChangeNumber());
+            StartCoroutine(ChangeNumber(collision));
             currentCassetteCount = currentCassetteCount + 1;
           //  interactBar.SetCount(currentCount);
             GetComponent<SpriteRenderer>().enabled = false;
@@ -57,9 +57,12 @@ public class Cassette : MonoBehaviour
             AudioManager.instance.PlayClipAt(sound, transform.position);
         }
     }
-    IEnumerator ChangeNumber()
+    IEnumerator ChangeNumber(Collider2D collision)
     {
+        var rb = collision.GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(1f);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         GameManage.instance.CountAnim.SetBool("isCassCount", false);
         yield return new WaitForSeconds(0.43f);
         CounterCassette.instance.AddCounterCassette(1);
