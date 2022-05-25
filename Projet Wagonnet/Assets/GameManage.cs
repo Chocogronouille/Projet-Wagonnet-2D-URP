@@ -135,7 +135,7 @@ IEnumerator IsOpenFalse()
 
             public void StartGame()
     {
-        SceneManager.LoadScene("Maxime");
+        SceneManager.LoadScene("Scene du tuto Final");
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
