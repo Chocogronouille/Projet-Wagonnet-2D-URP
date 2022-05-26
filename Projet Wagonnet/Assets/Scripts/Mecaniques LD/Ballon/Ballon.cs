@@ -79,6 +79,7 @@ public class Ballon : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         transform.SetParent(ballonFolder);
         transform.position = _oldPos;
+        transform.rotation = Quaternion.Euler(0,0,0);
         _oldPosInstance = false;
 
         yield return new WaitForSeconds(duréeReapparition);
