@@ -326,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 685265223278230138}
   - component: {fileID: 253219316515568697}
+  - component: {fileID: 1573622344904999069}
   m_Layer: 0
   m_Name: Rails
   m_TagString: Untagged
@@ -398,3 +399,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1573622344904999069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858422274074910534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a3bc979f9d49c48ae6972bf5788af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightRail: {fileID: 1036389361599285467, guid: a687c03b47947d64f9ec97815d2b22f1, type: 3}
+  offsetLight: {x: -0.03, y: -0.28}
+  animSpeedSecond: 0.07
