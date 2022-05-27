@@ -201,6 +201,22 @@ namespace Cinemachine
 
         private void FixedUpdate()
         {
+            if(isFalling)
+            {
+                animator.SetBool("isOnFloor", false);
+            }
+              else
+            {
+                animator.SetBool("isOnFloor", true);
+            }
+            if(isAirborn)
+            {
+                animator.SetBool("isFlying", true);
+            }
+              else
+            {
+                animator.SetBool("isFlying", false);
+            }
             Movement();
             CalculateDeplacement();
             Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
