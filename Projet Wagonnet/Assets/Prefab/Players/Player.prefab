@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820045834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 4.0060616, y: -0.047902107, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8061828029134140004}
@@ -583,7 +583,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -627,8 +627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a14a5cfdb0420c488abbec94eacbba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 8.67
-  isFalling: 0
+  _maxSpeed: 12.5
+  isFalling: 1
   movement:
     m_Name: Movement
     m_Type: 1
@@ -638,7 +638,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  isAirborn: 0
+  isAirborn: 1
   coyoteFloat: 0
   numberOfSpinJump: 3
   direction: {x: 0, y: 0}
@@ -652,7 +652,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8061828029134140003}
   screenRenderer: {fileID: 8544423070723201315}
   rbCharacter: {fileID: 8061828029134140002}
-  walkSpeed: 11
+  walkSpeed: 12
   afterSpinAirSpeed: 9
   jumpForce: 24
   spinJumpForce: 7
