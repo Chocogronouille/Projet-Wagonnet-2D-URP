@@ -540,8 +540,8 @@ namespace Cinemachine
             if (!isAirborn) return;
             if (_falledFromBallon) return;
             if (_falledFromPlatform) return;
-
-            FallEffects.Play();
+            FallEffects.gameObject.SetActive(true);
+          //  FallEffects.Play();
             _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
         }
