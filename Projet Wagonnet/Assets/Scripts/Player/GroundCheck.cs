@@ -54,5 +54,11 @@ namespace Player
             
             player.ResetSpinJump();
         }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            WalkEffectsRight.SetActive(false);
+            WalkEffectsLeft.SetActive(false);
+        }
     }
 }
