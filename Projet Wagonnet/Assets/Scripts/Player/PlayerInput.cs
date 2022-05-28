@@ -62,6 +62,7 @@ namespace Cinemachine
 
         public Animator animator;
         private float delaySpinJump = 0.35f;
+        public float characterVelocity;
 
         //private string currentState;
         public SpriteRenderer spriteRenderer;
@@ -263,7 +264,7 @@ namespace Cinemachine
             }
 
             direction = movement.ReadValue<Vector2>();
-            float characterVelocity = Mathf.Abs(rbCharacter.velocity.x); //N'EST PAS UNE DE MES FONCTIONS
+            characterVelocity = Mathf.Abs(rbCharacter.velocity.x); //N'EST PAS UNE DE MES FONCTIONS
             animator.SetFloat("Speed", characterVelocity); //N'EST PAS UNE DE MES FONCTIONS
         }
         

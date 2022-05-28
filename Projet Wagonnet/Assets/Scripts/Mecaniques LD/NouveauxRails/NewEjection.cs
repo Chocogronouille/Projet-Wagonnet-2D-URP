@@ -63,7 +63,6 @@ public class NewEjection : MonoBehaviour
         Player.isFalling = true;
         Player.groundCheck.SetActive(true);
         _instance = false;
-        Debug.Log("Eject");
         yield return new WaitForSeconds(0.001f);
         Player.transform.localEulerAngles = new Vector3(0,0,0);
         StopCoroutine(EjectionTime());
