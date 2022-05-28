@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 313361036}
   m_Layer: 11
   m_Name: NewEjection
-  m_TagString: Untagged
+  m_TagString: Left
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,10 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037aca8605814dc478c54aa80104c381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Effects: {fileID: 0}
   ejectionForce: 30
   ejectionDuration: 0.1
   origin: {fileID: 5981264181569017141}
   end: {fileID: 1832320956390992472}
+  EjectEffects: {fileID: 0}
 --- !u!61 &313361036
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,7 +172,7 @@ GameObject:
   - component: {fileID: 5981264180752200993}
   m_Layer: 11
   m_Name: LeftOldEndTrack
-  m_TagString: Untagged
+  m_TagString: Left
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 5981264181569017141}
   next: {fileID: 5771568184456374953}
+  SurfEffects: {fileID: 0}
   speed: 20
   last: {fileID: 0}
 --- !u!61 &5981264180752200993

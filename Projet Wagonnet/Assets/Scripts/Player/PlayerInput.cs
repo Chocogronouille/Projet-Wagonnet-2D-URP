@@ -108,6 +108,11 @@ namespace Cinemachine
         
         //Liste Plateforme A faire Apparaitre Après Descente
         [HideInInspector] public Collider2D currentPlatform;
+       
+        // Particule System
+        public ParticleSystem Effects;
+        public ParticleSystem SurfEffects;
+        public ParticleSystem FallEffects;
         
         #endregion
 
@@ -201,6 +206,22 @@ namespace Cinemachine
 
         private void FixedUpdate()
         {
+            if(isFalling)
+            {
+                animator.SetBool("isOnFloor", false);
+            }
+              else
+            {
+                animator.SetBool("isOnFloor", true);
+            }
+            if(isAirborn)
+            {
+                animator.SetBool("isFlying", true);
+            }
+              else
+            {
+                animator.SetBool("isFlying", false);
+            }
             Movement();
             CalculateDeplacement();
             Flip(rbCharacter.velocity.x); //Flip le joueur en fonction de sa vitesse  //N'EST PAS UNE DE MES FONCTIONS
@@ -431,6 +452,7 @@ namespace Cinemachine
 
         private void SpinJump()
         {
+            Effects.Play();
             GetComponentInChildren<Ballon>()?.JumpFromBallon();
             if (currentPlatform != null)
             {
@@ -519,6 +541,7 @@ namespace Cinemachine
             if (_falledFromBallon) return;
             if (_falledFromPlatform) return;
 
+            FallEffects.Play();
             _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
         }

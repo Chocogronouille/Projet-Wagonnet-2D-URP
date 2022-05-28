@@ -19,6 +19,9 @@ public class Ballon : MonoBehaviour
     private Vector3 _oldPos;
     private bool _oldPosInstance;
     private bool _asJumped;
+
+    public Animator animator;
+  //  animator.SetBool("isFlying",true);
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -37,6 +40,8 @@ public class Ballon : MonoBehaviour
 
     private IEnumerator UtilisationBallon()
     {
+        animator.SetBool("isFlying",true);
+        PlayerInput.instance.animator.SetBool("isBallon",true);
         _playerInput.isAirborn = false;
         _playerInput.jumpState = PlayerInput.JumpState.Ballon;
         GetComponent<SpriteRenderer>().DOColor(Color.red, duréeBallon);
@@ -72,6 +77,8 @@ public class Ballon : MonoBehaviour
         _asJumped = true;
         _playerInput.ResetSpinJump();
         StartCoroutine(ReapparitionBallon());
+        animator.SetBool("isFlying",false);
+        PlayerInput.instance.animator.SetBool("isBallon",false);
     }
 
     private IEnumerator ReapparitionBallon()
@@ -81,6 +88,8 @@ public class Ballon : MonoBehaviour
         transform.position = _oldPos;
         transform.rotation = Quaternion.Euler(0,0,0);
         _oldPosInstance = false;
+        animator.SetBool("isFlying",false);
+        PlayerInput.instance.animator.SetBool("isBallon",false);
 
         yield return new WaitForSeconds(duréeReapparition);
         
