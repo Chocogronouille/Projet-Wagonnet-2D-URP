@@ -111,7 +111,6 @@ namespace Cinemachine
        
         // Particule System
         public ParticleSystem Effects;
-        public ParticleSystem SurfEffects;
         public ParticleSystem FallEffects;
         
         #endregion
