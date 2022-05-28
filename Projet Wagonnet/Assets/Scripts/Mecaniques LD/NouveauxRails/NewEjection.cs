@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class NewEjection : MonoBehaviour
 {
+    public ParticleSystem Effects;
     PlayerInput Player => PlayerInput.instance;
     
     [SerializeField] private float ejectionForce;
@@ -22,6 +23,7 @@ public class NewEjection : MonoBehaviour
     {
         if (_instance) return;
         _instance = true;
+        Effects.Play();
         StartCoroutine(EjectionTime());
     }
 

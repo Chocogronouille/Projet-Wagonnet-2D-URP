@@ -41,8 +41,14 @@ public class LON_Track : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         player.isSurfing = true;
+        PlayerInput.instance.SurfEffects.Play();
         MoveNext();
         collision.transform.localEulerAngles = new Vector3(0,0,Rotz);
+    }
+
+     private void OnTriggerExit2D(Collider2D collision)
+    {
+        PlayerInput.instance.SurfEffects.Stop();
     }
 
     public void MoveNext()
