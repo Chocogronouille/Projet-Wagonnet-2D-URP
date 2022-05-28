@@ -3,14 +3,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using PlayerInput = Cinemachine.PlayerInput;
 
+
 namespace Player
 {
     public class GroundCheck : MonoBehaviour
     {
         [SerializeField] private PlayerInput player;
+        public ParticleSystem Effects;
         private void OnTriggerEnter2D(Collider2D other)
         {
             player.ResetMaxSpeed();
+            Effects.Play();
         }
 
         private void OnTriggerStay2D(Collider2D other)

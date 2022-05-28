@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class NewEjection : MonoBehaviour
 {
+    public ParticleSystem Effects;
     PlayerInput Player => PlayerInput.instance;
     
     [SerializeField] private float ejectionForce;
@@ -17,11 +18,27 @@ public class NewEjection : MonoBehaviour
 
     private Vector2 _ejectionDirection;
     private bool _instance;
+
+    public ParticleSystem EjectEffects;
+
+    void Start()
+    {
+         if(gameObject.tag == "Right")
+        {
+            EjectEffects = GameObject.Find("VFX_Sparks_End_Right").GetComponent<ParticleSystem>();
+        }
+         else if(gameObject.tag == "Left")
+        {
+            EjectEffects = GameObject.Find("VFX_Sparks_End_Left").GetComponent<ParticleSystem>();
+        }
+    //    EjectEffects = GameObject.Find("VFX_Sparks_End").GetComponent<ParticleSystem>();
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_instance) return;
         _instance = true;
+        EjectEffects.Play();
         StartCoroutine(EjectionTime());
     }
 
