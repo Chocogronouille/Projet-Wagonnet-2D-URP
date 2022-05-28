@@ -61,8 +61,9 @@ public class Cassette : MonoBehaviour
     {
         var rb = collision.GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        yield return new WaitForSeconds(1f);
         GameManage.instance.CountAnim.SetBool("isCassCount", false);
         yield return new WaitForSeconds(0.43f);
         CounterCassette.instance.AddCounterCassette(1);
