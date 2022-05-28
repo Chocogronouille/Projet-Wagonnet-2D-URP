@@ -16,6 +16,8 @@ public class LON_Track : MonoBehaviour
     public Transform origin;
     public GameObject next;
 
+    public ParticleSystem SurfEffects;
+
     [Range(0,50)]
     public float speed;
 
@@ -26,6 +28,7 @@ public class LON_Track : MonoBehaviour
     // Start
     void Start()
     {
+        SurfEffects = GameObject.Find("VFX_Surf_Rails").GetComponent<ParticleSystem>();
         Rotz= gameObject.transform.localEulerAngles.z;
 
         if (next is null) return;
@@ -41,14 +44,14 @@ public class LON_Track : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         player.isSurfing = true;
-        PlayerInput.instance.SurfEffects.Play();
+        SurfEffects.Play();
         MoveNext();
         collision.transform.localEulerAngles = new Vector3(0,0,Rotz);
     }
 
      private void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerInput.instance.SurfEffects.Stop();
+        SurfEffects.Stop();
     }
 
     public void MoveNext()

@@ -18,12 +18,19 @@ public class NewEjection : MonoBehaviour
 
     private Vector2 _ejectionDirection;
     private bool _instance;
+
+    public ParticleSystem EjectEffects;
+
+    void Start()
+    {
+        EjectEffects = GameObject.Find("VFX_Sparks_End").GetComponent<ParticleSystem>();
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_instance) return;
         _instance = true;
-        Effects.Play();
+        EjectEffects.Play();
         StartCoroutine(EjectionTime());
     }
 
