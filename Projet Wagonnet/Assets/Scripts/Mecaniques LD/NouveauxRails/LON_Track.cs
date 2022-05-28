@@ -28,7 +28,15 @@ public class LON_Track : MonoBehaviour
     // Start
     void Start()
     {
-        SurfEffects = GameObject.Find("VFX_Surf_Rails").GetComponent<ParticleSystem>();
+        if(gameObject.tag == "Right")
+        {
+            SurfEffects = GameObject.Find("VFX_Surf_Rails_Right").GetComponent<ParticleSystem>();
+        }
+         else if(gameObject.tag == "Left")
+        {
+            SurfEffects = GameObject.Find("VFX_Surf_Rails_Left").GetComponent<ParticleSystem>();
+        }
+     //   SurfEffects = GameObject.Find("VFX_Surf_Rails").GetComponent<ParticleSystem>();
         Rotz= gameObject.transform.localEulerAngles.z;
 
         if (next is null) return;

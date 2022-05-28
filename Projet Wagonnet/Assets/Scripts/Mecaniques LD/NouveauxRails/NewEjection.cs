@@ -23,7 +23,15 @@ public class NewEjection : MonoBehaviour
 
     void Start()
     {
-        EjectEffects = GameObject.Find("VFX_Sparks_End").GetComponent<ParticleSystem>();
+         if(gameObject.tag == "Right")
+        {
+            EjectEffects = GameObject.Find("VFX_Sparks_End_Right").GetComponent<ParticleSystem>();
+        }
+         else if(gameObject.tag == "Left")
+        {
+            EjectEffects = GameObject.Find("VFX_Sparks_End_Left").GetComponent<ParticleSystem>();
+        }
+    //    EjectEffects = GameObject.Find("VFX_Sparks_End").GetComponent<ParticleSystem>();
     }
     
     private void OnTriggerEnter2D(Collider2D other)
