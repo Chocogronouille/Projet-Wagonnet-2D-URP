@@ -14,6 +14,7 @@ public class Recorder : MonoBehaviour
 
         // Bind all the Transforms on the GameObject and all its children.
         m_Recorder.BindComponentsOfType<Transform>(gameObject, true);
+        m_Recorder.BindComponentsOfType<SpriteRenderer>(gameObject, true);
     }
 
     void LateUpdate()

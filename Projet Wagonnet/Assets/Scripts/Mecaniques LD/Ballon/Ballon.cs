@@ -44,7 +44,7 @@ public class Ballon : MonoBehaviour
         PlayerInput.instance.animator.SetBool("isBallon",true);
         _playerInput.isAirborn = false;
         _playerInput.jumpState = PlayerInput.JumpState.Ballon;
-        GetComponent<SpriteRenderer>().DOColor(Color.red, duréeBallon);
+        //GetComponent<SpriteRenderer>().DOColor(Color.red, duréeBallon);
         
         _rbPlayer.gravityScale = gravityScaleBallon;
         if (_rbPlayer.velocity.y < _playerInput.apexThreshold)
