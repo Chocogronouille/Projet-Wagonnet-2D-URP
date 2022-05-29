@@ -34,7 +34,9 @@ public class GameManage : MonoBehaviour
 
     // PauseMenuAnim
     public GameObject PauseMenu;
+    public GameObject MainMenu;
     private Animator PauseAnim;
+    public bool isSelectScene;
 
     // Settings Menu
     public GameObject SettingsMenu;
@@ -121,7 +123,39 @@ IEnumerator IsOpenFalse()
 
             farmerInputActions.Player.Menu.performed += DoMenuUI;
             farmerInputActions.Player.Menu.Enable();
+
+         farmerInputActions.Player.PressB.performed += DoPressB;
+         farmerInputActions.Player.PressB.Enable();
         }
+         private void DoPressB(InputAction.CallbackContext obj)
+    {
+        PressB();
+    }
+
+         private void PressB()                     
+    {
+         if(SettingsMenu.active)
+        {
+            SettingsMenu.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(PauseFirstButton);
+        }
+        else if(PauseMenu.active)
+        {
+        CountAnim.SetBool("isPaused", false);
+        PauseMenu.SetActive(false); 
+        Time.timeScale = 1;
+        isPaused = false;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+        }
+        else if(isSelectScene)
+        {
+        SceneManager.LoadScene("MainMenu");
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+        isSelectScene = false;
+        }
+        Debug.Log("Press BB");
+    }
         private void DoMenuUI(InputAction.CallbackContext obj)
         {
            EventSystem.current.SetSelectedGameObject(null);
@@ -170,6 +204,7 @@ IEnumerator IsOpenFalse()
         SceneManager.LoadScene("SelectScene");
         Time.timeScale = 0;
         isPaused = true;
+        isSelectScene = true;
     }
         public void LoadScene1()
     {

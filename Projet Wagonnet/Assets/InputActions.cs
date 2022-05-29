@@ -80,6 +80,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""2938e3c5-7988-48ff-9d66-3c2a62a85dfd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -120,6 +129,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""347c0ee5-3303-4cd7-8de3-acb915deb653"",
                     ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64babbee-c72e-45df-9d25-188ab52c6a24"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -181,6 +201,28 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""SlowRails"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45e5e549-8df8-4b4e-adf1-7d2421f2b89f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da681280-eedd-4896-afec-2afe26d3ece4"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -195,6 +237,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_MiniCam = m_Player.FindAction("MiniCam", throwIfNotFound: true);
         m_Player_SlowRails = m_Player.FindAction("SlowRails", throwIfNotFound: true);
+        m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +303,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_MiniCam;
     private readonly InputAction m_Player_SlowRails;
+    private readonly InputAction m_Player_Back;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -270,6 +314,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @MiniCam => m_Wrapper.m_Player_MiniCam;
         public InputAction @SlowRails => m_Wrapper.m_Player_SlowRails;
+        public InputAction @Back => m_Wrapper.m_Player_Back;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -297,6 +342,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SlowRails.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowRails;
                 @SlowRails.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowRails;
                 @SlowRails.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowRails;
+                @Back.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -319,6 +367,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SlowRails.started += instance.OnSlowRails;
                 @SlowRails.performed += instance.OnSlowRails;
                 @SlowRails.canceled += instance.OnSlowRails;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
             }
         }
     }
@@ -331,5 +382,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnMiniCam(InputAction.CallbackContext context);
         void OnSlowRails(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
 }
