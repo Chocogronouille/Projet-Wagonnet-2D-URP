@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Token : MonoBehaviour
 {
     public AudioClip sound;
+    public ParticleSystem Effects;
     
 //    private InputActions farmerInputActions;
 
@@ -45,9 +46,12 @@ public class Token : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            GameManage.instance.CountAnim.SetBool("isTokenCount", true);
+            GameManage.instance.timer = 2f;
             // GameManage.instance.CountAnim.SetBool("isCassCount", true);
             // GameManage.instance.CassetteOpen();
        //    CounterCassette.instance.AddCounterCassette(1);
+            Effects.Play();
             StartCoroutine(ChangeNumber());
             currentTokenCount = currentTokenCount + 1;
           //  interactBar.SetCount(currentCount);
