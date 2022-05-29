@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using PlayerInput = Cinemachine.PlayerInput;
+using UnityEngine.SceneManagement;
 
 //using UnityEditor.Experimental.GraphView;
 
@@ -15,6 +16,8 @@ public class Attraction : MonoBehaviour
     
     private InputActions farmerInputActions;
     public Animator animator;
+    public string sceneName;
+    public Animator fadeSystem;
 
 
     [SerializeField] private GameObject player;
@@ -88,8 +91,16 @@ public class Attraction : MonoBehaviour
         // interactBar.SetCount(currentAttractionCount);
         GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
+        StartCoroutine(loadNextScene());
+        
+
+
+    }
+    public IEnumerator loadNextScene()
+    {
+        fadeSystem.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(sceneName);
         player.GetComponent<PlayerInput>().enabled = true;
-
-
     }
 }
