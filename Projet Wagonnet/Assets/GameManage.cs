@@ -135,7 +135,7 @@ IEnumerator IsOpenFalse()
 
             public void StartGame()
     {
-        SceneManager.LoadScene("Scene du tuto Final");
+        SceneManager.LoadScene("Tuto Final (enzo");
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
@@ -171,15 +171,21 @@ IEnumerator IsOpenFalse()
         Time.timeScale = 0;
         isPaused = true;
     }
-     public void LoadScene1()
+        public void LoadScene1()
     {
-        SceneManager.LoadScene("Maxime");
+        SceneManager.LoadScene("Tuto Final (enzo");
         Time.timeScale = 1;
         isPaused = false;
     }
          public void LoadScene2()
     {
-        SceneManager.LoadScene("LD YAZID");
+        SceneManager.LoadScene("LD BALLON");
+        Time.timeScale = 1;
+        isPaused = false;
+    }
+        public void LoadScene3()
+    {
+        SceneManager.LoadScene("RAILS V2 1");
         Time.timeScale = 1;
         isPaused = false;
     }
