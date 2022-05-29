@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1918402867581565799}
   - component: {fileID: 1918402867581565798}
   - component: {fileID: 1918402867581565792}
+  - component: {fileID: 1027259502}
+  - component: {fileID: 1027259503}
   m_Layer: 10
   m_Name: Sad_Rails
   m_TagString: Untagged
@@ -103,6 +105,53 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &1027259502
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918402867581565797}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.49, y: 1.16}
+    newSize: {x: 1.49, y: 1.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.49, y: 1.16}
+  m_EdgeRadius: 0
+--- !u!114 &1027259503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918402867581565797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf7ce8e9ecf4ac4d8eac74949816b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  MyAnimator: {fileID: 1918402867581565792}
+  Effects: {fileID: 2554487333453670719}
+  sceneName: LD RAIL
+  fadeSystem: {fileID: 0}
+  player: {fileID: 0}
+  currentAttractionCount: 0
+  isColliding: 0
+  CameraAttraction: {fileID: 0}
 --- !u!1001 &5780280211663206214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,5 +220,10 @@ PrefabInstance:
 --- !u!4 &2554487333453670718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8306030279309008504, guid: f78ab99c528e3ba47be396d08a51b7b3, type: 3}
+  m_PrefabInstance: {fileID: 5780280211663206214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2554487333453670719 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8306030279309008505, guid: f78ab99c528e3ba47be396d08a51b7b3, type: 3}
   m_PrefabInstance: {fileID: 5780280211663206214}
   m_PrefabAsset: {fileID: 0}
