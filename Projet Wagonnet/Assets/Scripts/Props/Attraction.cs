@@ -16,6 +16,8 @@ public class Attraction : MonoBehaviour
     
     private InputActions farmerInputActions;
     public Animator animator;
+    public Animator MyAnimator;
+    public ParticleSystem Effects;
     public string sceneName;
     public Animator fadeSystem;
 
@@ -67,6 +69,17 @@ public class Attraction : MonoBehaviour
     {
         if (isColliding == true)
         {
+            MyAnimator.SetBool("isHappy",true);
+         //   gameObject.transform.Translate(0,1.1f,0);
+            Effects.gameObject.SetActive(false);
+            if(gameObject.name == "Sad_Rails")
+            {
+              gameObject.transform.Translate(0,-0.75f,0);
+            }
+            else if(gameObject.name == "Sad_Ballon")
+            {
+                gameObject.transform.Translate(0,1.1f,0);
+            }
             GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
         }
