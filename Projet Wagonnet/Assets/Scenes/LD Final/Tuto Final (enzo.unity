@@ -5218,11 +5218,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8424929504794748192, guid: 1cd32ea6fea08734e9f63bef240372b2, type: 3}
   m_PrefabInstance: {fileID: 1688495772}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &466104549 stripped
-PolygonCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3354446822673005636, guid: c822ffc21273de94b85546e646621761, type: 3}
-  m_PrefabInstance: {fileID: 94276887248700368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &467227322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9170906881764924158, guid: 3e5e0cdddc151524388cd1b263926a02, type: 3}
@@ -94671,11 +94666,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 233.7
+      value: -123.6
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 7.8
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.z
@@ -103546,11 +103541,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04550171
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8352709
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.z
@@ -103842,12 +103837,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8747023392751072299, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
       propertyPath: m_Damping
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8747023392751072299, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 466104549}
+      objectReference: {fileID: 0}
     - target: {fileID: 8747023392751072300, guid: 8c82252566d58d345ab5a513775af6df, type: 3}
       propertyPath: m_Name
       value: PlayerCamera
