@@ -91,6 +91,7 @@ public class Attraction : MonoBehaviour
         // interactBar.SetCount(currentAttractionCount);
         GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
+        yield return new WaitForSeconds(2f);
         StartCoroutine(loadNextScene());
         
 
