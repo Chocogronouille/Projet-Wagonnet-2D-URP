@@ -12,19 +12,33 @@ public class DialogueTrigger : MonoBehaviour
 
     private GameObject interactUI;
     private GameObject Player;
+    public bool isOpen;
+    public bool isOnAir;
+
+    public static DialogueTrigger instance;
 
     private void Awake()
     {
+          if(instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de DialogueManager dans la scène");
+            return;
+        }
+
+        instance = this;
         farmerInputActions = new InputActions();
         interactUI = GameObject.Find("InteractText");
         Player = GameObject.Find("Player");
     }
          private void OnEnable()
      {
-         farmerInputActions.Player.PressB.performed += DoPressB;
-         farmerInputActions.Player.PressB.Enable();
+   /*      farmerInputActions.Player.PressB.performed += DoPressB;
+         farmerInputActions.Player.PressB.Enable(); */
+
+          farmerInputActions.Player.Jump.performed += DoDialogue;
+          farmerInputActions.Player.Jump.Enable();
      }
-         private void DoPressB(InputAction.CallbackContext obj)
+ /*        private void DoPressB(InputAction.CallbackContext obj)
     {
         PressB();
     }
@@ -34,12 +48,26 @@ public class DialogueTrigger : MonoBehaviour
         {
             TriggerDialogue();
         }
-        Debug.Log("PressB");
+    } */
+    private void DoDialogue(InputAction.CallbackContext obj)
+    {
+        TheDialogue();
+    }
+    private void TheDialogue()                     
+    {
+         if(isInRange)
+        {
+            if(!isOpen)
+            {
+              TriggerDialogue();
+              isOpen = true;
+            }
+        }
     }
 
     void Update()
     {
-
+     isOnAir = Player.GetComponent<Cinemachine.PlayerInput>().isAirborn;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
