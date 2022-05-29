@@ -318,8 +318,19 @@ namespace Cinemachine
         {
             if (direction.y < -0.9f)
             {
+                if (!isAirborn) Crouch();
                 FastFall();
             }
+            else if(direction.y > -0.9f)
+            {
+            animator.SetBool("isCrouching",false);
+            }
+        }
+        
+        private void Crouch()
+        {
+            animator.SetBool("isCrouching",true);
+            return;
         }
         
         private void CheckMove()
@@ -545,7 +556,7 @@ namespace Cinemachine
             _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
         }
-
+        
         public void ResetSpinJump()
         {
             _canSpinJump = numberOfSpinJump;
