@@ -318,8 +318,14 @@ namespace Cinemachine
         {
             if (direction.y < -0.9f)
             {
+                if (!isAirborn) Crouch();
                 FastFall();
             }
+        }
+        
+        private void Crouch()
+        {
+            return;
         }
         
         private void CheckMove()
@@ -545,7 +551,7 @@ namespace Cinemachine
             _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
         }
-
+        
         public void ResetSpinJump()
         {
             _canSpinJump = numberOfSpinJump;
