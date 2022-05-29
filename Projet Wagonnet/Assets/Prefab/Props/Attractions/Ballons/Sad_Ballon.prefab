@@ -28,7 +28,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 85.92, y: -3.44, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1627329931298142424}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -102,3 +103,73 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &1972865065548321029
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 467845341615902427}
+    m_Modifications:
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.14285713
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.14285713
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3119918
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005544754247363038, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+      propertyPath: m_Name
+      value: "VFX_Fum\xE9e_OnSadBallon"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+--- !u!4 &1627329931298142424 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
+  m_PrefabInstance: {fileID: 1972865065548321029}
+  m_PrefabAsset: {fileID: 0}
