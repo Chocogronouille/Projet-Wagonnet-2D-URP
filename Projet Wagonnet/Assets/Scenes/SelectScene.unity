@@ -494,6 +494,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+--- !u!1 &372789460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 507483131, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 372789459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &372789461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 801353748, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 372789459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &372789462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1610903625, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 372789459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &372789463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 541636378, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 372789459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &372789464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1098039781, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 372789459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &974896165
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +789,7 @@ PrefabInstance:
     - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
       propertyPath: PauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 372789464}
     - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
       propertyPath: EventSystem
       value: 
@@ -777,6 +802,26 @@ PrefabInstance:
       propertyPath: ButtonScene1
       value: 
       objectReference: {fileID: 1374694434}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: SettingsMenu
+      value: 
+      objectReference: {fileID: 372789463}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: isSelectScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: DialogueButton
+      value: 
+      objectReference: {fileID: 372789460}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: PauseFirstButton
+      value: 
+      objectReference: {fileID: 372789462}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: OptionFirstButton
+      value: 
+      objectReference: {fileID: 372789461}
     - target: {fileID: 998473269492159373, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
       propertyPath: m_RootOrder
       value: 3

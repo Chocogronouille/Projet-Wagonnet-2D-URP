@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 172675230}
   - component: {fileID: 172675229}
   m_Layer: 5
-  m_Name: PauseMenu
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 541636379, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 945477513, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -596,9 +600,13 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1098039781, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1196056645, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1322301593, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_LocalScale.x
@@ -798,7 +806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6051016470675733118, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
@@ -839,9 +847,13 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
-      propertyPath: PauseMenu
+      propertyPath: MainMenu
       value: 
       objectReference: {fileID: 172675227}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1022368696}
     - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
       propertyPath: EventSystem
       value: 
@@ -1219,6 +1231,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012575937}
   m_CullTransparentMesh: 1
+--- !u!1 &1022368696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1098039781, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 831298165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1197740560
 GameObject:
   m_ObjectHideFlags: 0
