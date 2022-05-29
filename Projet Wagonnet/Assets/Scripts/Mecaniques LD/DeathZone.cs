@@ -6,18 +6,21 @@ public class DeathZone : MonoBehaviour
 {
     private Transform playerSpawn;
     [SerializeField] private Animator fadeSystem;
+    private GameObject player;
 
     public bool instanceDeathzone;
 
     private void Awake()
     {
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
+        player = GameObject.Find("Player");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (instanceDeathzone) return;
         instanceDeathzone = true;
+        player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isDead",true);
         StartCoroutine(ReplacePlayer(collision));
     }
 
