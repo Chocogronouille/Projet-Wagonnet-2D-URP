@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 467845341615902420}
   - component: {fileID: 467845341615902421}
   - component: {fileID: 493729564}
-  - component: {fileID: 493729563}
   m_Layer: 10
   m_Name: Sad_Ballon
   m_TagString: Untagged
@@ -131,27 +130,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.54, y: 0.88}
   m_EdgeRadius: 0
---- !u!114 &493729563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467845341615902422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf7ce8e9ecf4ac4d8eac74949816b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  MyAnimator: {fileID: 467845341615902421}
-  Effects: {fileID: 1627329931298142425}
-  sceneName: LD BALLON
-  fadeSystem: {fileID: 0}
-  player: {fileID: 0}
-  currentAttractionCount: 0
-  isColliding: 0
-  CameraAttraction: {fileID: 0}
 --- !u!1001 &1972865065548321029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,10 +198,5 @@ PrefabInstance:
 --- !u!4 &1627329931298142424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1005544754247363037, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
-  m_PrefabInstance: {fileID: 1972865065548321029}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1627329931298142425 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1005544754247363036, guid: 073753f17e8608e48bbd70c7b156b332, type: 3}
   m_PrefabInstance: {fileID: 1972865065548321029}
   m_PrefabAsset: {fileID: 0}

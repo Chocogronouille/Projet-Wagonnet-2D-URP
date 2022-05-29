@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3653,6 +3653,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+--- !u!114 &274844837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1961164029, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 274844836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &274844838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1885846039, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 274844836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816246474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &274844839 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1517595695, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+  m_PrefabInstance: {fileID: 274844836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &297101551
 GameObject:
   m_ObjectHideFlags: 0
@@ -5653,6 +5686,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8061828031058645269}
+  MyAnimator: {fileID: 1175651856}
+  Effects: {fileID: 1175651855}
   sceneName: LD BALLON
   fadeSystem: {fileID: 2055494273}
   player: {fileID: 8061828031058645265}
@@ -8039,7 +8074,7 @@ PrefabInstance:
       objectReference: {fileID: 602827847}
     - target: {fileID: 174555751, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
       propertyPath: Choice1
@@ -8057,6 +8092,18 @@ PrefabInstance:
       propertyPath: DialogueButton
       value: 
       objectReference: {fileID: 1506943703}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: SpeedRunToggle
+      value: 
+      objectReference: {fileID: 274844837}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: VibrationToggle
+      value: 
+      objectReference: {fileID: 274844838}
+    - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
+      propertyPath: FullScreenToggle
+      value: 
+      objectReference: {fileID: 274844839}
     - target: {fileID: 329988488939068292, guid: 7f786dcee9838274ea0269277b1d531c, type: 3}
       propertyPath: PauseFirstButton
       value: 
@@ -11272,6 +11319,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de806d803d3fea4f8bd2b596efcdc5a, type: 3}
+--- !u!198 &1175651855 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1627329931298142425, guid: 6de806d803d3fea4f8bd2b596efcdc5a, type: 3}
+  m_PrefabInstance: {fileID: 1175651854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1175651856 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 467845341615902421, guid: 6de806d803d3fea4f8bd2b596efcdc5a, type: 3}
+  m_PrefabInstance: {fileID: 1175651854}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1177595657
 GameObject:
   m_ObjectHideFlags: 0
