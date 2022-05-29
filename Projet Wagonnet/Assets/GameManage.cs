@@ -42,6 +42,10 @@ public class GameManage : MonoBehaviour
     // Settings Menu
     public GameObject SettingsMenu;
 
+    public Toggle FullScreenToggle;
+    public Toggle VibrationToggle;
+    public Toggle SpeedRunToggle;
+
     public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
 
     public static GameManage instance;
@@ -81,7 +85,28 @@ public class GameManage : MonoBehaviour
      //Cursor.lockState = CursorLockMode.Locked;
      Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
      theScene = SceneManager.GetActiveScene().name;
+     FullScreenToggle.isOn = (PlayerPrefs.GetInt("FullScreen", 1) == 1);
+     VibrationToggle.isOn = (PlayerPrefs.GetInt("Vibration", 1) == 1);
+     SpeedRunToggle.isOn = (PlayerPrefs.GetInt("SpeedRun", 0) == 1);
     }
+
+    public void TheFullScreenToggle() 
+    {
+    // Get the current state of our toggle button.
+    int enable = FullScreenToggle.isOn ? 1 : 0;
+    // Set the PlayerPrefs equal to our current state.
+    PlayerPrefs.SetInt("FullScreen", enable);
+    } 
+    public void TheVibrationToggle() 
+    {
+    int enable = VibrationToggle.isOn ? 1 : 0;
+    PlayerPrefs.SetInt("Vibration", enable);
+    } 
+    public void TheSpeedRunToggle() 
+    {
+    int enable = SpeedRunToggle.isOn ? 1 : 0;
+    PlayerPrefs.SetInt("SpeedRun", enable);
+    } 
 
     // Update is called once per frame
     void Update()
