@@ -31,6 +31,7 @@ public class GameManage : MonoBehaviour
     public GameObject CountText;
     [HideInInspector]
     public Animator CountAnim;
+    public float timer;
 
     // PauseMenuAnim
     public GameObject PauseMenu;
@@ -85,6 +86,14 @@ public class GameManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        if(timer <= 0)
+        {
+            CountAnim.SetBool("isTokenCount", false);
+        }
 
       if(isPaused)
         {
