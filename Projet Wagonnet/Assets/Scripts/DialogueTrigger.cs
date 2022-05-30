@@ -75,7 +75,7 @@ public class DialogueTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             isInRange = true;
-            GameManage.instance.InteractOpenA();
+            GameManage.instance.InteractOpen();
         //    Player.GetComponent<Cinemachine.PlayerInput>().isEject = true
         }
     }
@@ -85,14 +85,13 @@ public class DialogueTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isInRange = false;
-            GameManage.instance.InteractCloseA();
+            GameManage.instance.InteractClose();
             DialogueManager.instance.EndDialogue();
         }
     }
 
     void TriggerDialogue()
     {
-        GameManage.instance.InteractCloseA();
         DialogueManager.instance.StartDialogue(dialogue);
     }
 }
