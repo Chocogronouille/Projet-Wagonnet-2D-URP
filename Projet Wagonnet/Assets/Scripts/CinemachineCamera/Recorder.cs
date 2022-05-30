@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 
 public class Recorder : MonoBehaviour
 {
-    public AnimationClip clip;
+ /*   public AnimationClip clip;
 
     private GameObjectRecorder m_Recorder;
 
@@ -36,5 +36,5 @@ public class Recorder : MonoBehaviour
             // Save the recorded session to the clip.
             m_Recorder.SaveToClip(clip);
         }
-    }
+    } */
 }
