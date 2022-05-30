@@ -9,6 +9,7 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private Animator validation;
 
     public ParticleSystem Effects;
+    public AudioClip sound;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            AudioManager.instance.PlayClipAt(sound, transform.position);
             playerSpawn.position = transform.position;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             validation.SetBool("Validation",true);
