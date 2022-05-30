@@ -533,7 +533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8195596297426272585, guid: 09ce42dde78d66547b36458bba53551e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 457.31238
+      value: 457.99
       objectReference: {fileID: 0}
     - target: {fileID: 8195596297426272585, guid: 09ce42dde78d66547b36458bba53551e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -589,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8195596297785398039, guid: 09ce42dde78d66547b36458bba53551e, type: 3}
       propertyPath: m_TrackedObjectOffset.x
-      value: -0.3091741
+      value: 0.3684382
       objectReference: {fileID: 0}
     - target: {fileID: 8195596297785398039, guid: 09ce42dde78d66547b36458bba53551e, type: 3}
       propertyPath: m_TrackedObjectOffset.y
@@ -95292,11 +95292,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -124.9
+      value: -126.9
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.3
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.z
@@ -98155,6 +98155,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4314212970843971958, guid: 4001abb645f81994a8c696f20170b5db, type: 3}
   m_PrefabInstance: {fileID: 2027437681}
   m_PrefabAsset: {fileID: 0}
+--- !u!60 &1572256424 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3354446822673005636, guid: c822ffc21273de94b85546e646621761, type: 3}
+  m_PrefabInstance: {fileID: 94276887248700368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1574859140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9170906881764924158, guid: 3e5e0cdddc151524388cd1b263926a02, type: 3}
@@ -99918,23 +99923,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8267434176427728515, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8267434176733023689, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
-      propertyPath: m_MaximumOrthoSize
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8267434176733023689, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
+      propertyPath: m_MaximumOrthoSize
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267434176733023689, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_MinimumOrthoSize
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8267434176733023689, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_TrackedObjectOffset.x
-      value: 0
+      value: 106.5
       objectReference: {fileID: 0}
     - target: {fileID: 8267434176733023689, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_TrackedObjectOffset.y
-      value: 0
+      value: -5.192276
       objectReference: {fileID: 0}
     - target: {fileID: 8267434176733023691, guid: 26b706f8d4e981d409c0a8fd6c8a1b97, type: 3}
       propertyPath: m_Layer
@@ -100426,9 +100431,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 0}
+  m_BoundingShape2D: {fileID: 1572256424}
   m_Damping: 0
   m_MaxWindowSize: -1
+--- !u!114 &1805089726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805089724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f13af7063c791c43a56ae8a49d475c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1811626646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9170906881764924158, guid: 3e5e0cdddc151524388cd1b263926a02, type: 3}
