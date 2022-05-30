@@ -92,7 +92,6 @@ public class DialogueTrigger : MonoBehaviour
 
     void TriggerDialogue()
     {
-        GameManage.instance.InteractCloseA();
         DialogueManager.instance.StartDialogue(dialogue);
     }
 }

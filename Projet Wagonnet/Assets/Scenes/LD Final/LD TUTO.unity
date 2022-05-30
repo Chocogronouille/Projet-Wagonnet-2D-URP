@@ -3303,22 +3303,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 779846929}
-    - target: {fileID: 383826372, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 507483128, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 532094133, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 983466125}
-    - target: {fileID: 541636379, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 945477513, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3347,10 +3335,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 779846929}
-    - target: {fileID: 1717884917, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1742178224, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3459,22 +3443,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 117
       objectReference: {fileID: 0}
+    - target: {fileID: 5379390015977840328, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_Text
+      value: Press A To Interact
+      objectReference: {fileID: 0}
     - target: {fileID: 6442003580939937331, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 779846929}
-    - target: {fileID: 8623025571806081830, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-      propertyPath: m_Text
-      value: Press A To Interact
-      objectReference: {fileID: 0}
-    - target: {fileID: 8623025571806081831, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 8623025571806081848, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
-      propertyPath: m_Name
-      value: InteractTextA
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
 --- !u!114 &274844837 stripped
@@ -95462,11 +95438,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 434.3
+      value: -126.5
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.1
+      value: 9.3
       objectReference: {fileID: 0}
     - target: {fileID: 7344335026258238007, guid: 018db6b6b60da0c4ea461a3e15bbdd73, type: 3}
       propertyPath: m_LocalPosition.z
@@ -103682,11 +103658,11 @@ GameObject:
   - component: {fileID: 2032091886}
   m_Layer: 6
   m_Name: CameraConfinerGroupCamera
-  m_TagString: Untagged
+  m_TagString: Confiner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2032091885
 Transform:
   m_ObjectHideFlags: 0
@@ -103727,8 +103703,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.2553246, y: 1.4554453}
-      - {x: -53.67938, y: 2.002439}
-      - {x: -54.73021, y: -2.823792}
+      - {x: -5.1252494, y: 2.6068473}
+      - {x: -5.101579, y: -0.7419417}
       - {x: 1.5422764, y: -0.7131396}
       - {x: 1.5750468, y: 1.4828659}
 --- !u!4 &2034699475 stripped
@@ -104957,11 +104933,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6193848
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.020625114
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 820045835, guid: 0aa73fa1a9230e6438caa61a321b0301, type: 3}
       propertyPath: m_LocalPosition.z
