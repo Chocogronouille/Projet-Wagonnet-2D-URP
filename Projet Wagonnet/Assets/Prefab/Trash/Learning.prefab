@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1645053691876382939}
   - component: {fileID: 1645053691876382934}
   - component: {fileID: 1645053691876382937}
+  - component: {fileID: 1991048077}
   m_Layer: 10
   m_Name: Learning
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645053691876382938}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -67.66731, y: -6.970681, z: 326.8285}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 981ca80e97342194bbdda41d0c062b07, type: 3}
+  m_Sprite: {fileID: 686102173085409654, guid: b1e5795948394b24ebdad28539982463, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.4, y: 2.4}
+    oldSize: {x: 1.5, y: 1}
     newSize: {x: 2.4, y: 2.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -126,5 +127,26 @@ MonoBehaviour:
     name: Ton Amie
     sentences:
     - "Tu dois apprendre \xE0 sauter"
-    - "Appuie sur A pour faire un saut un passer le vide qui se trouve derri\xE8re
+    - "Appuie sur A pour faire un saut et passer le vide qui se trouve derri\xE8re
       moi."
+  isOpen: 0
+  isOnAir: 0
+--- !u!95 &1991048077
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645053691876382938}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d40b381ecd18c794db15f8337f419087, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
