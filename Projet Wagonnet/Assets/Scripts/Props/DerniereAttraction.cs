@@ -58,8 +58,8 @@ public class DerniereAttraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            GameManage.instance.InteractOpen();
             isColliding = true;
-
         }
     }
     private void DoPressB(InputAction.CallbackContext obj)
@@ -82,6 +82,12 @@ public class DerniereAttraction : MonoBehaviour
             {
                 gameObject.transform.Translate(0,1.1f,0);
             }
+
+              else if(gameObject.name == "Lampe_Sad")
+            {
+            //    gameObject.transform.Translate(0,1.1f,0);
+            Debug.Log("ok");
+            }
             GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
         }
@@ -90,6 +96,7 @@ public class DerniereAttraction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         isColliding = false;
+        GameManage.instance.InteractClose();
     }
 
     IEnumerator Activation()
