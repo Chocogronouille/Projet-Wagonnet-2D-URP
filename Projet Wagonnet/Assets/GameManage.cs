@@ -154,7 +154,7 @@ public class GameManage : MonoBehaviour
     public void InteractOpen()
     {
         InteractAnim.SetBool("isOpen", true);
-  //      player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+   //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractClose()
     {
@@ -167,13 +167,13 @@ public class GameManage : MonoBehaviour
     public void InteractOpenA()
     {
         InteractAnimA.SetBool("isOpen", true);
-  //      player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+     //   player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractCloseA()
     {
         InteractAnimA.SetBool("isOpen", false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
-    StartCoroutine(AllowMovement());
+  //  StartCoroutine(AllowMovement());
     }
 
         // Cassette
