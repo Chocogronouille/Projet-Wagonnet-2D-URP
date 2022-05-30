@@ -51,6 +51,8 @@ public class GameManage : MonoBehaviour
 
     public bool isSpeedRun;
 
+    public GameObject ButtonB;
+
     public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
 
     public static GameManage instance;
@@ -58,6 +60,7 @@ public class GameManage : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
+   //     ButtonB = GameObject.Find("ButtonB");
         // Interaction
         InteractText = GameObject.Find("InteractText");
         InteractAnim = InteractText.GetComponent<Animator>();
@@ -155,10 +158,12 @@ public class GameManage : MonoBehaviour
     {
         InteractAnim.SetBool("isOpen", true);
    //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+        ButtonB.SetActive(true);
     }
         public void InteractClose()
     {
         InteractAnim.SetBool("isOpen", false);
+        ButtonB.SetActive(false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     StartCoroutine(AllowMovement());
     }
@@ -167,11 +172,13 @@ public class GameManage : MonoBehaviour
     public void InteractOpenA()
     {
         InteractAnimA.SetBool("isOpen", true);
+        ButtonB.SetActive(true);
      //   player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractCloseA()
     {
         InteractAnimA.SetBool("isOpen", false);
+        ButtonB.SetActive(false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
   //  StartCoroutine(AllowMovement());
     }
