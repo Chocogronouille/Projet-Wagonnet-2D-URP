@@ -46,6 +46,8 @@ public class GameManage : MonoBehaviour
     public Toggle VibrationToggle;
     public Toggle SpeedRunToggle;
 
+    public bool isSpeedRun;
+
     public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
 
     public static GameManage instance;
@@ -87,7 +89,7 @@ public class GameManage : MonoBehaviour
      theScene = SceneManager.GetActiveScene().name;
      FullScreenToggle.isOn = (PlayerPrefs.GetInt("FullScreen", 1) == 1);
      VibrationToggle.isOn = (PlayerPrefs.GetInt("Vibration", 1) == 1);
-     SpeedRunToggle.isOn = (PlayerPrefs.GetInt("SpeedRun", 0) == 1);
+     SpeedRunToggle.isOn = (PlayerPrefs.GetInt("SpeedRun", 1) == 1);
     }
 
     public void TheFullScreenToggle() 
@@ -111,6 +113,17 @@ public class GameManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Condition vibration
+        if(VibrationToggle.isOn = (PlayerPrefs.GetInt("Vibration", 1) == 1))
+        {
+            player.GetComponent<Cinemachine.PlayerInput>().isVibrate = true;
+        }
+        else
+        {
+           player.GetComponent<Cinemachine.PlayerInput>().isVibrate = false;
+        }
+
+
         if(timer > 0)
         {
             timer -= Time.deltaTime;
