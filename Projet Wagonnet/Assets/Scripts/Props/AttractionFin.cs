@@ -24,7 +24,7 @@ public class AttractionFin : MonoBehaviour
     public bool isColliding;
     
     public CinemachineVirtualCamera CameraAttraction; //GroupCamera
-    public CinemachineVirtualCamera CameraFin; //FinCamera
+    //public CinemachineVirtualCamera CameraFin; //FinCamera
 
     private GameObject GameManager;
 
@@ -94,8 +94,8 @@ public class AttractionFin : MonoBehaviour
         currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);
         GetComponent<BoxCollider2D>().enabled = false;
-        CameraFin.Priority = 100;
-        credits.SetActive(true);
+        //CameraFin.Priority = 100;
+        //credits.SetActive(true);
 
 
     }
