@@ -113,6 +113,10 @@ namespace Cinemachine
         // Particule System
         public ParticleSystem Effects;
         public ParticleSystem FallEffects;
+
+        // Settings
+      //  [HideInInspector]
+      public bool isVibrate;
         
         #endregion
 
@@ -607,9 +611,12 @@ namespace Cinemachine
 
         private IEnumerator JumpRumble()
         {
+            if(isVibrate)
+            {
             Gamepad.current.SetMotorSpeeds(1f, 0.5f);
             yield return new WaitForSecondsRealtime(0.04f);
             Gamepad.current.SetMotorSpeeds(0f, 0f);
+            }
         }
         #endregion
 

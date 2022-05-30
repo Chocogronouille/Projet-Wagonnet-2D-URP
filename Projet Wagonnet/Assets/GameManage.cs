@@ -46,6 +46,8 @@ public class GameManage : MonoBehaviour
     public Toggle VibrationToggle;
     public Toggle SpeedRunToggle;
 
+    public bool isSpeedRun;
+
     public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
 
     public static GameManage instance;
@@ -87,7 +89,7 @@ public class GameManage : MonoBehaviour
      theScene = SceneManager.GetActiveScene().name;
      FullScreenToggle.isOn = (PlayerPrefs.GetInt("FullScreen", 1) == 1);
      VibrationToggle.isOn = (PlayerPrefs.GetInt("Vibration", 1) == 1);
-     SpeedRunToggle.isOn = (PlayerPrefs.GetInt("SpeedRun", 0) == 1);
+     SpeedRunToggle.isOn = (PlayerPrefs.GetInt("SpeedRun", 1) == 1);
     }
 
     public void TheFullScreenToggle() 
@@ -111,6 +113,17 @@ public class GameManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Condition vibration
+        if(VibrationToggle.isOn = (PlayerPrefs.GetInt("Vibration", 1) == 1))
+        {
+            player.GetComponent<Cinemachine.PlayerInput>().isVibrate = true;
+        }
+        else
+        {
+           player.GetComponent<Cinemachine.PlayerInput>().isVibrate = false;
+        }
+
+
         if(timer > 0)
         {
             timer -= Time.deltaTime;
@@ -123,7 +136,13 @@ public class GameManage : MonoBehaviour
       if(isPaused)
         {
            Time.timeScale = 0;
+      //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
         } 
+    }
+    IEnumerator AllowMovement()
+    {
+        yield return new WaitForSeconds(0.1f);
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 
     // Interact
@@ -136,6 +155,7 @@ public class GameManage : MonoBehaviour
     {
         InteractAnim.SetBool("isOpen", false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+    StartCoroutine(AllowMovement());
     }
 
         // Cassette
@@ -180,12 +200,14 @@ IEnumerator IsOpenFalse()
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+    //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+    StartCoroutine(AllowMovement());
         }
         else if(isSelectScene)
         {
         SceneManager.LoadScene("MainMenu");
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+  //      player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+  StartCoroutine(AllowMovement());
         isSelectScene = false;
         }
         Debug.Log("Press BB");
@@ -203,11 +225,12 @@ IEnumerator IsOpenFalse()
 
             public void StartGame()
     {
-        SceneManager.LoadScene("Tuto Final (enzo");
+        SceneManager.LoadScene("LD TUTO");
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+   //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+   StartCoroutine(AllowMovement());
     }
     public void Resume()
     {
@@ -215,7 +238,8 @@ IEnumerator IsOpenFalse()
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
         isPaused = false;
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+    //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+    StartCoroutine(AllowMovement());
     }
 
     public void Restart()
@@ -224,14 +248,16 @@ IEnumerator IsOpenFalse()
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
         isPaused = false;
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+  //      player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+  StartCoroutine(AllowMovement());
     }
 
         public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
         PauseMenu.SetActive(false);
-        player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+   //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+   StartCoroutine(AllowMovement());
     }
     public void LoadSelectLevel()
     {
@@ -242,7 +268,7 @@ IEnumerator IsOpenFalse()
     }
         public void LoadScene1()
     {
-        SceneManager.LoadScene("Tuto Final (enzo");
+        SceneManager.LoadScene("LD TUTO");
         Time.timeScale = 1;
         isPaused = false;
     }
@@ -254,7 +280,7 @@ IEnumerator IsOpenFalse()
     }
         public void LoadScene3()
     {
-        SceneManager.LoadScene("RAILS V2 1");
+        SceneManager.LoadScene("LD RAIL");
         Time.timeScale = 1;
         isPaused = false;
     }

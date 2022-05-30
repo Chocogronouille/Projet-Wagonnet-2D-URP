@@ -14,9 +14,11 @@ public class SettingsMenu : MonoBehaviour
 
     public Slider musicSlider;
     public Slider soundSlider;
+    private GameObject player;
 
     public void Start()
     {
+        player = GameObject.Find("Player");
         audioMixer.GetFloat("Music", out float musicValueForSlider);
         musicSlider.value = musicValueForSlider;
 
@@ -60,10 +62,6 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
-    }
-        public void Vibration(bool isVibrate)
-    {
-       // Screen.fullScreen = isFullScreen;
     }
         public void SpeedRun(bool isSpeedRun)
     {
