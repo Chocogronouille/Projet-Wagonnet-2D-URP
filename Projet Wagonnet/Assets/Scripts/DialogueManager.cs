@@ -77,6 +77,7 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(Timer());
         animator.SetBool("isOpen", false);
         DialogueTrigger.instance.isOpen = false;
+        Debug.Log("EndDialogue");
     }
 
     IEnumerator Timer()

@@ -20,6 +20,9 @@ public class GameManage : MonoBehaviour
     private GameObject InteractText;
     private Animator InteractAnim;
 
+    private GameObject InteractTextA;
+    private Animator InteractAnimA;
+
     // Cassette Recup Text
     [HideInInspector]
     public GameObject CassetteText;
@@ -58,6 +61,8 @@ public class GameManage : MonoBehaviour
         // Interaction
         InteractText = GameObject.Find("InteractText");
         InteractAnim = InteractText.GetComponent<Animator>();
+        InteractTextA = GameObject.Find("InteractTextA");
+        InteractAnimA = InteractTextA.GetComponent<Animator>();
 
         // Cassette
         CassetteText = GameObject.Find("CassetteRecupText");
@@ -149,13 +154,26 @@ public class GameManage : MonoBehaviour
     public void InteractOpen()
     {
         InteractAnim.SetBool("isOpen", true);
-  //      player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+   //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractClose()
     {
         InteractAnim.SetBool("isOpen", false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     StartCoroutine(AllowMovement());
+    }
+
+        // Interact
+    public void InteractOpenA()
+    {
+        InteractAnimA.SetBool("isOpen", true);
+     //   player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+    }
+        public void InteractCloseA()
+    {
+        InteractAnimA.SetBool("isOpen", false);
+    //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+  //  StartCoroutine(AllowMovement());
     }
 
         // Cassette
