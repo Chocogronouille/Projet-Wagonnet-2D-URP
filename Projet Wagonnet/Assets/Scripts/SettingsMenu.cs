@@ -14,9 +14,11 @@ public class SettingsMenu : MonoBehaviour
 
     public Slider musicSlider;
     public Slider soundSlider;
+    private GameObject player;
 
     public void Start()
     {
+        player = GameObject.Find("Player");
         audioMixer.GetFloat("Music", out float musicValueForSlider);
         musicSlider.value = musicValueForSlider;
 
@@ -74,6 +76,11 @@ public class SettingsMenu : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+        public void SetVibration()
+    {
+        player.GetComponent<Cinemachine.PlayerInput>().isVibrate = true;
     }
 
     public void ClearSavedData()
