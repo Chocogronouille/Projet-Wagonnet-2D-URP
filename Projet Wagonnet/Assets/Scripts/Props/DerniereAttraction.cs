@@ -58,8 +58,8 @@ public class DerniereAttraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            GameManage.instance.InteractOpen();
             isColliding = true;
-
         }
     }
     private void DoPressB(InputAction.CallbackContext obj)
@@ -96,6 +96,7 @@ public class DerniereAttraction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         isColliding = false;
+        GameManage.instance.InteractClose();
     }
 
     IEnumerator Activation()
