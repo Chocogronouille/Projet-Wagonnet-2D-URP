@@ -586,6 +586,10 @@ namespace Cinemachine
                 spriteRenderer.flipX = true;
                 screenRenderer.flipX = true;
             }
+
+            if (!isSurfing) return;
+            spriteRenderer.flipX = false;
+            screenRenderer.flipX = false;
         }
 
         #endregion
