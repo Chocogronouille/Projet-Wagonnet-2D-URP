@@ -28,6 +28,8 @@ public class DerniereAttraction : MonoBehaviour
     public bool isColliding;
     
     public CinemachineVirtualCamera CameraAttraction; //GroupCamera
+    public CinemachineVirtualCamera CameraFin;
+
 
     
     
@@ -106,6 +108,7 @@ public class DerniereAttraction : MonoBehaviour
         CameraAttraction.Priority = 0;
         yield return new WaitForSeconds(2f);
         player.GetComponent<PlayerInput>().enabled = true;
+        CameraFin.Priority = 10;
         //StartCoroutine(loadNextScene());
         
 
