@@ -56,6 +56,7 @@ public class Attraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            GameManage.instance.InteractOpen();
             isColliding = true;
 
         }
@@ -87,6 +88,7 @@ public class Attraction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        GameManage.instance.InteractClose();
         isColliding = false;
     }
 
