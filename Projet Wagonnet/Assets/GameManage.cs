@@ -51,6 +51,7 @@ public class GameManage : MonoBehaviour
 
     public bool isSpeedRun;
 
+    public GameObject ButtonA;
     public GameObject ButtonB;
 
     public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
@@ -172,13 +173,13 @@ public class GameManage : MonoBehaviour
     public void InteractOpenA()
     {
         InteractAnimA.SetBool("isOpen", true);
-        ButtonB.SetActive(true);
+        ButtonA.SetActive(true);
      //   player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractCloseA()
     {
         InteractAnimA.SetBool("isOpen", false);
-        ButtonB.SetActive(false);
+        ButtonA.SetActive(false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
   //  StartCoroutine(AllowMovement());
     }
