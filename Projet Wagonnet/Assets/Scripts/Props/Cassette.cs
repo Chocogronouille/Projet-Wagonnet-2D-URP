@@ -14,6 +14,7 @@ public class Cassette : MonoBehaviour
 
 
     public int currentCassetteCount;
+    private GameObject player;
    // public InteractBar interactBar;
 
 
@@ -39,6 +40,7 @@ public class Cassette : MonoBehaviour
     {
         currentCassetteCount = 0;
        // interactBar.SetCount(currentCount);
+       player = GameObject.Find("Player");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,9 +61,11 @@ public class Cassette : MonoBehaviour
     }
     IEnumerator ChangeNumber(Collider2D collision)
     {
+        player.GetComponent<Animator>().SetBool("isCassetting",true);
         var rb = collision.GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(0.2f);
+        player.GetComponent<Animator>().SetBool("isCassetting",false);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(1f);
         GameManage.instance.CountAnim.SetBool("isCassCount", false);
