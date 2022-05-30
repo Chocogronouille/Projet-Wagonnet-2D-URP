@@ -63,10 +63,6 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullScreen;
     }
-        public void Vibration(bool isVibrate)
-    {
-       // Screen.fullScreen = isFullScreen;
-    }
         public void SpeedRun(bool isSpeedRun)
     {
      //   Screen.fullScreen = isFullScreen;
@@ -76,11 +72,6 @@ public class SettingsMenu : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
-
-        public void SetVibration()
-    {
-        player.GetComponent<Cinemachine.PlayerInput>().isVibrate = true;
     }
 
     public void ClearSavedData()
