@@ -106,7 +106,7 @@ public class Attraction : MonoBehaviour
         // interactBar.SetCount(currentAttractionCount);
         GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         StartCoroutine(loadNextScene());
         
 
@@ -115,7 +115,7 @@ public class Attraction : MonoBehaviour
     public IEnumerator loadNextScene()
     {
         fadeSystem.SetTrigger("FadeIn");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(sceneName);
         player.GetComponent<PlayerInput>().enabled = true;
     }
