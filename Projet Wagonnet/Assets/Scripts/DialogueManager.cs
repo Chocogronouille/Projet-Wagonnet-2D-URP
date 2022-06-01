@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
     private GameObject player;
+    private string sentence;
+    public bool isFinished;
 
     public static DialogueManager instance;
 
@@ -33,8 +35,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(GameManage.instance.DialogueButton);
+        StartCoroutine(LeButton());
         animator.SetBool("isOpen", true);
 
         nameText.text = dialogue.name;
@@ -48,18 +49,48 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNextSentence();
     }
+    private IEnumerator LeButton()
+    {
+        yield return new WaitForSeconds(0.2f);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(GameManage.instance.DialogueButton);
+    }
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+         if(sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
 
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+         sentence = sentences.Dequeue();
+      //   StopAllCoroutines();
+         StartCoroutine(TypeSentence(sentence));
+
+        
+    }
+        public void DNSButton()
+    {
+        if(!isFinished)
+        {
+           StopAllCoroutines();
+           dialogueText.text = sentence;
+           isFinished = true;
+        }
+        else
+        {
+         if(sentences.Count == 0)
+        {
+            EndDialogue();
+            return;
+        }
+
+         sentence = sentences.Dequeue();
+         StopAllCoroutines();
+         StartCoroutine(TypeSentence(sentence));
+
+        }
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -68,12 +99,15 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+            isFinished = false;
             yield return new WaitForSeconds(0.02f);
         }
+        isFinished = true;
     }
 
     public void EndDialogue()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(Timer());
         animator.SetBool("isOpen", false);
         DialogueTrigger.instance.isOpen = false;
