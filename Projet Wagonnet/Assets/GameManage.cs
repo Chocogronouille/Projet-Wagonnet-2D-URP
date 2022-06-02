@@ -240,6 +240,8 @@ IEnumerator IsOpenFalse()
     }
         private void DoMenuUI(InputAction.CallbackContext obj)
         {
+            if(SceneManager.GetActiveScene().name != "MainMenu")
+            {
            EventSystem.current.SetSelectedGameObject(null);
            EventSystem.current.SetSelectedGameObject(PauseFirstButton);
            PauseMenu.SetActive(true);
@@ -247,6 +249,7 @@ IEnumerator IsOpenFalse()
            CountAnim.SetBool("isPaused", true);
            isPaused = true;
            player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+            }
         } 
 
             public void StartGame()
