@@ -7,7 +7,8 @@ using System;
 
 public class CounterAttraction : MonoBehaviour
 {
-    public int currentAttractionCount;
+    public float currentAttractionCount;
+    public float AttractionLevel;
     public static CounterAttraction instance;
     public TMP_Text interactCountText;
 
@@ -19,11 +20,24 @@ public class CounterAttraction : MonoBehaviour
             return;
         }
         instance = this;
+        LoadSaveAttraction();
+        interactCountText.text = currentAttractionCount.ToString();
+        AttractionLevel = PlayerPrefs.GetFloat("Attraction");
     }
 
     public void AddCounterAttraction(int count)
     {
         currentAttractionCount += count;
         interactCountText.text = currentAttractionCount.ToString();
+        SaveAttraction();
+    }
+    public void SaveAttraction()
+    {
+        PlayerPrefs.SetFloat("Attraction", currentAttractionCount);
+    }
+    public void LoadSaveAttraction()
+    {
+        currentAttractionCount = PlayerPrefs.GetFloat("Attraction");
+        Debug.Log(PlayerPrefs.GetFloat("Attraction"));
     }
 }

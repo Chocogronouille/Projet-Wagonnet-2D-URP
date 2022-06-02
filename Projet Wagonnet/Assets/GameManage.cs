@@ -251,6 +251,9 @@ IEnumerator IsOpenFalse()
 
             public void StartGame()
     {
+        PlayerPrefs.SetFloat("Token",0);
+        PlayerPrefs.SetFloat("Cassette",0);
+        PlayerPrefs.SetFloat("Attraction",0);
         SceneManager.LoadScene("LD TUTO");
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
@@ -270,6 +273,10 @@ IEnumerator IsOpenFalse()
 
     public void Restart()
     {
+     //   PlayerPrefs.GetFloat("Token") = PlayerPrefs.GetFloat("TokenLevel");
+        PlayerPrefs.SetFloat("Token",CounterToken.instance.TokenLevel);
+        PlayerPrefs.SetFloat("Cassette",CounterCassette.instance.CassetteLevel);
+        PlayerPrefs.SetFloat("Attraction",CounterAttraction.instance.AttractionLevel);
         SceneManager.LoadScene(theScene);
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
@@ -291,6 +298,9 @@ IEnumerator IsOpenFalse()
         Time.timeScale = 0;
         isPaused = true;
         isSelectScene = true;
+        PlayerPrefs.SetFloat("Token",0);
+        PlayerPrefs.SetFloat("Cassette",0);
+        PlayerPrefs.SetFloat("Attraction",0);
     }
         public void LoadScene1()
     {

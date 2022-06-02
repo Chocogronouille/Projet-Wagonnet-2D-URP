@@ -7,7 +7,8 @@ using System;
 
 public class CounterToken : MonoBehaviour
 {
-    public int currentTokenCount;
+    public float currentTokenCount;
+    public float TokenLevel;
     public static CounterToken instance;
     public TMP_Text interactCountText;
 
@@ -19,11 +20,25 @@ public class CounterToken : MonoBehaviour
             return;
         }
         instance = this;
+        LoadSaveToken();
+        interactCountText.text = currentTokenCount.ToString(); 
+        TokenLevel = PlayerPrefs.GetFloat("Token");
     }
 
     public void AddCounterToken(int count)
     {
         currentTokenCount += count;
-        interactCountText.text = currentTokenCount.ToString();
+        interactCountText.text = currentTokenCount.ToString();   
+        SaveToken();
+    }
+
+        public void SaveToken()
+    {
+        PlayerPrefs.SetFloat("Token", currentTokenCount);
+    }
+    public void LoadSaveToken()
+    {
+        currentTokenCount = PlayerPrefs.GetFloat("Token");
+        Debug.Log(PlayerPrefs.GetFloat("Token"));
     }
 }
