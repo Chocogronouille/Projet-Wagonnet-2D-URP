@@ -40,10 +40,16 @@ public class Cassette : MonoBehaviour
     private void Start()
     {
         CassetteTete = GameObject.Find("CassetteTete");
-        CassetteTete.SetActive(false);
         currentCassetteCount = 0;
        // interactBar.SetCount(currentCount);
        player = GameObject.Find("Player");
+       StartCoroutine(TheCassetteTete());
+    }
+
+    IEnumerator TheCassetteTete()
+    {
+        yield return new WaitForSeconds(0.01f);
+        CassetteTete.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
