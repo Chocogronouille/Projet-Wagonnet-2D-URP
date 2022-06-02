@@ -48,7 +48,7 @@ public class Cassette : MonoBehaviour
 
     IEnumerator TheCassetteTete()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.01f);
         CassetteTete.SetActive(false);
     }
 
