@@ -123,7 +123,7 @@ public class GameManage : MonoBehaviour
     void Update()
     {
         // Condition vibration
-        if(VibrationToggle.isOn = (PlayerPrefs.GetInt("Vibration", 1) == 1))
+        if(VibrationToggle.isOn == (PlayerPrefs.GetInt("Vibration", 1) == 1))
         {
             player.GetComponent<Cinemachine.PlayerInput>().isVibrate = true;
         }
