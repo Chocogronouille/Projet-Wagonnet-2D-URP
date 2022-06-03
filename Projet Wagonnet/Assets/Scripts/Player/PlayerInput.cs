@@ -41,6 +41,7 @@ namespace Cinemachine
         private bool useRailSpeed;
         private bool _falledFromBallon;
         private bool _falledFromPlatform;
+        private Color _screenColorDefault;
 
         public bool isFalling;
         public static PlayerInput instance; // singleton
@@ -133,6 +134,7 @@ namespace Cinemachine
             farmerInputActions = new InputActions();
             _maxFallSpeed = fallSpeed;
             _maxSpeed = walkSpeed;
+            _screenColorDefault = screenRenderer.color;
 
             #region singleton
 
@@ -503,6 +505,7 @@ namespace Cinemachine
             StartCoroutine(TimerSpinJump(delaySpinJump));
 
             _canSpinJump -= 1;
+            screenRenderer.color = new Color(_screenColorDefault.r,_screenColorDefault.g,_screenColorDefault.b,_canSpinJump*_screenColorDefault.a/3);
         }
         
         public void Fall()
@@ -567,6 +570,7 @@ namespace Cinemachine
         public void ResetSpinJump()
         {
             _canSpinJump = numberOfSpinJump;
+            screenRenderer.color = _screenColorDefault;
         }
 
         #endregion
