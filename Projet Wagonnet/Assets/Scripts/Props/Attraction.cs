@@ -20,13 +20,14 @@ public class Attraction : MonoBehaviour
     public ParticleSystem Effects;
     public string sceneName;
     public Animator fadeSystem;
+    private bool _isActivated;
 
 
     [SerializeField] private GameObject player;
     public int currentAttractionCount;
    // public InteractBar interactBar;
     public bool isColliding;
-    
+
     public CinemachineVirtualCamera CameraAttraction; //GroupCamera
 
     
@@ -68,8 +69,10 @@ public class Attraction : MonoBehaviour
     
     private void PressB()                     
     {
-        if (isColliding == true)
+        if (isColliding)
         {
+            if (_isActivated) return;
+            _isActivated = true;
             MyAnimator.SetBool("isHappy",true);
          //   gameObject.transform.Translate(0,1.1f,0);
             Effects.gameObject.SetActive(false);
