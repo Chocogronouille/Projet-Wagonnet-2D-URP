@@ -34,6 +34,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        StopCoroutine(Timer());
         player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
         StartCoroutine(LeButton());
         animator.SetBool("isOpen", true);
@@ -116,7 +117,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator Timer()
     {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.8f);
             player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     }
 }
