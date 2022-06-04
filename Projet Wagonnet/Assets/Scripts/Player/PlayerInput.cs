@@ -513,6 +513,7 @@ namespace Cinemachine
         
         public void Fall()
         {
+            if (isInteract) return;
             isFalling = true;
             _wantToEndJump = false;
             rbCharacter.gravityScale = defaultGravityScale;
@@ -552,6 +553,7 @@ namespace Cinemachine
         
         private IEnumerator NoFastFallFromPlatform()
         {
+
             _falledFromPlatform = true;
             currentPlatform.enabled = false;
             yield return new WaitForSeconds(fallPlatformDelay);
