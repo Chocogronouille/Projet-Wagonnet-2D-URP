@@ -157,13 +157,13 @@ public class GameManage : MonoBehaviour
     // Interact
     public void InteractOpen()
     {
-        InteractAnim.SetBool("isOpen", true);
+     //   InteractAnim.SetBool("isOpen", true);
    //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
         ButtonB.SetActive(true);
     }
         public void InteractClose()
     {
-        InteractAnim.SetBool("isOpen", false);
+     //   InteractAnim.SetBool("isOpen", false);
         ButtonB.SetActive(false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
     StartCoroutine(AllowMovement());
@@ -172,13 +172,13 @@ public class GameManage : MonoBehaviour
         // Interact
     public void InteractOpenA()
     {
-        InteractAnimA.SetBool("isOpen", true);
+    //    InteractAnimA.SetBool("isOpen", true);
         ButtonA.SetActive(true);
      //   player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
     }
         public void InteractCloseA()
     {
-        InteractAnimA.SetBool("isOpen", false);
+    //    InteractAnimA.SetBool("isOpen", false);
         ButtonA.SetActive(false);
     //    player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
   //  StartCoroutine(AllowMovement());
