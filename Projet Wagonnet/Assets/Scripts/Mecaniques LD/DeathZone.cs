@@ -30,10 +30,9 @@ public class DeathZone : MonoBehaviour
         collision.GetComponent<PlayerInput>().isSurfing = false;
         var rb = collision.GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitForSeconds(0.5f);
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isDead",false);
-        yield return new WaitForSeconds(1f);
-      //  player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isDead",false);
+        yield return new WaitForSeconds(0.5f);
         if (rb)
         {
             rb.velocity = Vector2.zero;
