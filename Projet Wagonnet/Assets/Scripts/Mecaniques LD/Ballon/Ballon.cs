@@ -77,12 +77,15 @@ public class Ballon : MonoBehaviour
         _asJumped = true;
         _playerInput.ResetSpinJump();
         StartCoroutine(ReapparitionBallon());
-        animator.SetBool("isFlying",false);
+     //   animator.SetBool("isFlying",false);
+        animator.SetBool("isExplode",true);
+     
         PlayerInput.instance.animator.SetBool("isBallon",false);
     }
 
     private IEnumerator ReapparitionBallon()
     {
+        yield return new WaitForSeconds(0.16f);
         GetComponent<SpriteRenderer>().enabled = false;
         transform.SetParent(ballonFolder);
         transform.position = _oldPos;
@@ -90,6 +93,9 @@ public class Ballon : MonoBehaviour
         _oldPosInstance = false;
         animator.SetBool("isFlying",false);
         PlayerInput.instance.animator.SetBool("isBallon",false);
+
+        yield return new WaitForSeconds(0.01f);
+        animator.SetBool("isExplode",false);
 
         yield return new WaitForSeconds(duréeReapparition);
         
