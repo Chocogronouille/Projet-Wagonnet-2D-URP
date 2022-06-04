@@ -56,6 +56,7 @@ namespace Cinemachine
         public float groundDrag;
         public GameObject groundCheck;
         public JumpState jumpState;
+        private bool isCrouching;
         public enum JumpState
         {
             Ballon = 1, Platform = 2, Ground = 3
@@ -332,12 +333,14 @@ namespace Cinemachine
             }
             else if(direction.y > -0.9f)
             {
+            isCrouching = false;
             animator.SetBool("isCrouching",false);
             } 
         }
         
         private void Crouch()
         {
+            isCrouching = true;
             animator.SetBool("isCrouching",true);
             return;
         }
@@ -561,10 +564,17 @@ namespace Cinemachine
             if (!isAirborn) return;
             if (_falledFromBallon) return;
             if (_falledFromPlatform) return;
-            FallEffects.gameObject.SetActive(true);
-          //  FallEffects.Play();
+            if(isCrouching)
+            {
             _maxFallSpeed = fastFallSpeed;
             rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+            }
+            else
+            {
+            FallEffects.gameObject.SetActive(true);
+            _maxFallSpeed = fastFallSpeed;
+            rbCharacter.velocity = new Vector2(rbCharacter.velocity.x, -fastFallSpeed);
+            }
         }
         
         public void ResetSpinJump()
