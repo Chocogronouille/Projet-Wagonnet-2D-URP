@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.InputSystem.Haptics;
 using UnityEngine.InputSystem.XR.Haptics;
+using UnityEngine.SocialPlatforms;
 
 namespace Cinemachine
 {
@@ -213,6 +214,10 @@ namespace Cinemachine
         private Vector2 lastPos = Vector2.zero;
         public Vector2 deplacement;
 
+        [SerializeField] private Color screenSpinColor1;
+        [SerializeField] private Color screenSpinColor2;
+        [SerializeField] private Color screenSpinColor3;
+        
         private void FixedUpdate()
         {
             if(isFalling)
@@ -508,7 +513,21 @@ namespace Cinemachine
             StartCoroutine(TimerSpinJump(delaySpinJump));
 
             _canSpinJump -= 1;
-            screenRenderer.color = new Color(_screenColorDefault.r,_screenColorDefault.g,_screenColorDefault.b,_canSpinJump*_screenColorDefault.a/3);
+            switch (_canSpinJump)
+            {
+                case 2:
+                    Debug.Log(_canSpinJump);
+                    screenRenderer.color = screenSpinColor1;
+                    break;
+                case 1:
+                    Debug.Log(_canSpinJump);
+                    screenRenderer.color = screenSpinColor2;
+                    break;
+                case 0:
+                    Debug.Log(_canSpinJump);
+                    screenRenderer.color = screenSpinColor3;
+                    break;
+            }
         }
         
         public void Fall()
