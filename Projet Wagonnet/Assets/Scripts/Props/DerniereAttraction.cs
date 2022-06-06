@@ -86,6 +86,7 @@ public class DerniereAttraction : MonoBehaviour
     {
         if (isColliding)
         {
+            player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", true);
             Timer.GetComponent<Chronometre>().isTiming = false;
             MyAnimator.SetBool("isHappy",true);
          //   gameObject.transform.Translate(0,1.1f,0);
