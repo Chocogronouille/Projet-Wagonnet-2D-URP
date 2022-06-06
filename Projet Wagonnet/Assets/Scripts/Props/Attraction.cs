@@ -59,7 +59,7 @@ public class Attraction : MonoBehaviour
     private void Start()
     {
         Timer = GameObject.Find("Timer").GetComponent<Text>();
-        Timer.GetComponent<Chronometre>().enabled = true;
+        Timer.GetComponent<Chronometre>().isTiming = true;
         currentAttractionCount = 0;
         //interactBar.SetCount(currentAttractionCount);
     }
@@ -82,7 +82,7 @@ public class Attraction : MonoBehaviour
     {
         if (isColliding)
         {
-            Timer.GetComponent<Chronometre>().enabled = false;
+            Timer.GetComponent<Chronometre>().isTiming = false;
             Chronometre.instance.SaveTimer();
             if (_isActivated) return;
             _isActivated = true;

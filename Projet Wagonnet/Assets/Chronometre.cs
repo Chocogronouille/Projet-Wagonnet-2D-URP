@@ -8,6 +8,7 @@ public class Chronometre : MonoBehaviour
     public Text Chrono;
  //   public Text ChronoDix;
     private float timer = 0;
+    public bool isTiming;
 /*    public float seconde;
     public float dix; */
     // Start is called before the first frame update
@@ -34,7 +35,10 @@ public class Chronometre : MonoBehaviour
     {
 //      seconde = Mathf.Floor (timer % 60);
     //  dix = timer - seconde;
+    if(isTiming)
+    {
       timer += Time.deltaTime;
+    }
   //    Chrono.text = "" + timer;  
       Chrono.text = string.Format ("{0:00}:{1:00}", Mathf.Floor (timer / 60), timer % 60);
    //   ChronoDix.text = "" + dix;
