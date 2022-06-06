@@ -220,6 +220,14 @@ namespace Cinemachine
         
         private void FixedUpdate()
         {
+            if(isInteract)
+            {
+                animator.SetBool("isInteracting", true);
+            }
+            else
+            {
+                animator.SetBool("isInteracting", false);
+            }
             if(isFalling)
             {
                 animator.SetBool("isOnFloor", false);

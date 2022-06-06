@@ -113,11 +113,13 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("isOpen", false);
         DialogueTrigger.instance.isOpen = false;
         Debug.Log("EndDialogue");
+        player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isNoneInteract", true);
     }
 
     IEnumerator Timer()
     {
             yield return new WaitForSeconds(0.8f);
             player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
+            player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isNoneInteract", false);
     }
 }
