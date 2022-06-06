@@ -119,9 +119,10 @@ public class DerniereAttraction : MonoBehaviour
         CounterAttraction.instance.AddCounterAttraction(1);
         currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);
-        GetComponent<BoxCollider2D>().enabled = false;
+   //     GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
         yield return new WaitForSeconds(2f);
+        GetComponent<BoxCollider2D>().enabled = false;
         player.GetComponent<PlayerInput>().enabled = true;
         CameraFin.Priority = 10;
         //StartCoroutine(loadNextScene());

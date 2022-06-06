@@ -120,9 +120,10 @@ public class Attraction : MonoBehaviour
         CounterAttraction.instance.AddCounterAttraction(1);
         currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);
-        GetComponent<BoxCollider2D>().enabled = false;
+      //  GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
         yield return new WaitForSeconds(2.5f);
+        GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(loadNextScene());
         
 
