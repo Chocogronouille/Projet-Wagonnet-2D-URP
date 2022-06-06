@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using PlayerInput = Cinemachine.PlayerInput;
@@ -21,6 +22,7 @@ public class Attraction : MonoBehaviour
     public string sceneName;
     public Animator fadeSystem;
     private bool _isActivated;
+    private Text Timer;
 
 
     [SerializeField] private GameObject player;
@@ -49,6 +51,8 @@ public class Attraction : MonoBehaviour
      }
     private void Start()
     {
+        Timer = GameObject.Find("Timer").GetComponent<Text>();
+        Timer.GetComponent<Chronometre>().enabled = true;
         currentAttractionCount = 0;
         //interactBar.SetCount(currentAttractionCount);
     }
@@ -69,6 +73,8 @@ public class Attraction : MonoBehaviour
     
     private void PressB()                     
     {
+        Timer.GetComponent<Chronometre>().enabled = false;
+        Chronometre.instance.SaveTimer();
         if (isColliding)
         {
             if (_isActivated) return;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using PlayerInput = Cinemachine.PlayerInput;
@@ -17,6 +18,7 @@ public class DerniereAttraction : MonoBehaviour
     private InputActions farmerInputActions;
     public Animator animator;
     public Animator MyAnimator;
+    private Text Timer;
     //public ParticleSystem Effects;
     //public string sceneName;
     //public Animator fadeSystem;
@@ -50,6 +52,8 @@ public class DerniereAttraction : MonoBehaviour
      }
     private void Start()
     {
+        Timer = GameObject.Find("Timer").GetComponent<Text>();
+        Timer.GetComponent<Chronometre>().enabled = true;
         currentAttractionCount = 0;
         //interactBar.SetCount(currentAttractionCount);
     }
@@ -69,6 +73,7 @@ public class DerniereAttraction : MonoBehaviour
     
     private void PressB()                     
     {
+        Timer.GetComponent<Chronometre>().enabled = false;
         if (isColliding == true)
         {
             MyAnimator.SetBool("isHappy",true);
