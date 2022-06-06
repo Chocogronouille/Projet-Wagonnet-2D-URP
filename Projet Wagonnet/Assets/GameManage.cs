@@ -267,6 +267,7 @@ IEnumerator IsOpenFalse()
 
             public void StartGame()
     {
+        PlayerPrefs.SetFloat("Timer", 0f);
         PlayerPrefs.SetFloat("Token",0);
         PlayerPrefs.SetFloat("Cassette",0);
         PlayerPrefs.SetFloat("Attraction",0);
@@ -310,6 +311,7 @@ IEnumerator IsOpenFalse()
     }
     public void LoadSelectLevel()
     {
+        PlayerPrefs.SetFloat("Timer", 0f);
         SceneManager.LoadScene("SelectScene");
         Time.timeScale = 0;
         isPaused = true;
