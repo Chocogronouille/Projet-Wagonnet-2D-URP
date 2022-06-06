@@ -76,7 +76,7 @@ public class DerniereAttraction : MonoBehaviour
     
     private void PressB()                     
     {
-        if (isColliding == true)
+        if (isColliding)
         {
             Timer.GetComponent<Chronometre>().enabled = false;
             MyAnimator.SetBool("isHappy",true);
