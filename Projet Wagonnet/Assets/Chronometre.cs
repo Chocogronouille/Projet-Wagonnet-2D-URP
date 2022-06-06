@@ -7,7 +7,7 @@ public class Chronometre : MonoBehaviour
 {
     public Text Chrono;
  //   public Text ChronoDix;
-    private float timer = 0;
+    public float timer = 0;
     public bool isTiming;
 /*    public float seconde;
     public float dix; */
