@@ -235,6 +235,11 @@ IEnumerator IsOpenFalse()
         }
         else if(PauseMenu.active)
         {
+          if(SpeedRunToggle.isOn == false)
+         {
+          PlayerPrefs.SetFloat("Timer", 0f);
+          Chronometre.instance.timer = PlayerPrefs.GetFloat("Timer");
+         }
         CountAnim.SetBool("isPaused", false);
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
@@ -280,6 +285,11 @@ IEnumerator IsOpenFalse()
     }
     public void Resume()
     {
+        if(SpeedRunToggle.isOn == false)
+         {
+          PlayerPrefs.SetFloat("Timer", 0f);
+          Chronometre.instance.timer = PlayerPrefs.GetFloat("Timer");
+         }
         CountAnim.SetBool("isPaused", false);
         PauseMenu.SetActive(false); 
         Time.timeScale = 1;
