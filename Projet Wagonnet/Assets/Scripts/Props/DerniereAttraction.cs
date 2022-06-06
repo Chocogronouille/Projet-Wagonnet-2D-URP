@@ -56,7 +56,7 @@ public class DerniereAttraction : MonoBehaviour
     private void Start()
     {
         Timer = GameObject.Find("Timer").GetComponent<Text>();
-        Timer.GetComponent<Chronometre>().enabled = true;
+        Timer.GetComponent<Chronometre>().isTiming = true;
         currentAttractionCount = 0;
         //interactBar.SetCount(currentAttractionCount);
     }
@@ -78,7 +78,7 @@ public class DerniereAttraction : MonoBehaviour
     {
         if (isColliding)
         {
-            Timer.GetComponent<Chronometre>().enabled = false;
+            Timer.GetComponent<Chronometre>().isTiming = false;
             MyAnimator.SetBool("isHappy",true);
          //   gameObject.transform.Translate(0,1.1f,0);
             //Effects.gameObject.SetActive(false);

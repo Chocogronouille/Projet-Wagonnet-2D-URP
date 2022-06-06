@@ -137,10 +137,7 @@ public class GameManage : MonoBehaviour
         if(SpeedRunToggle.isOn == true)
         {
             Timer.enabled = true;
-            if(!Attraction.instance.isColliding || !DerniereAttraction.instance.isColliding)
-            {
             Timer.GetComponent<Chronometre>().enabled = true;
-            }
         }
         else
         {
