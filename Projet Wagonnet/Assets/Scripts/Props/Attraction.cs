@@ -19,6 +19,7 @@ public class Attraction : MonoBehaviour
     public Animator animator;
     public Animator MyAnimator;
     public ParticleSystem Effects;
+    public ParticleSystem BigCheckPoint;
     public string sceneName;
     public Animator fadeSystem;
     private bool _isActivated;
@@ -89,6 +90,7 @@ public class Attraction : MonoBehaviour
             MyAnimator.SetBool("isHappy",true);
          //   gameObject.transform.Translate(0,1.1f,0);
             Effects.gameObject.SetActive(false);
+            BigCheckPoint.Play();
             if(gameObject.name == "Sad_Rails")
             {
               gameObject.transform.Translate(0,-0.75f,0);

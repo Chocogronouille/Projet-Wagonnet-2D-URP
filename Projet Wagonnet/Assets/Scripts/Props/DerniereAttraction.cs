@@ -19,6 +19,10 @@ public class DerniereAttraction : MonoBehaviour
     public Animator animator;
     public Animator MyAnimator;
     private Text Timer;
+    public ParticleSystem BigCheckPoint;
+    public Material Lampe_Sad;
+    private GameObject Child1;
+    private GameObject Child2;
     //public ParticleSystem Effects;
     //public string sceneName;
     //public Animator fadeSystem;
@@ -55,6 +59,10 @@ public class DerniereAttraction : MonoBehaviour
      }
     private void Start()
     {
+        Child1 = GameObject.Find("1");
+        Child2 = GameObject.Find("2");
+        Child1.SetActive(false);
+        Child2.SetActive(false);
         Timer = GameObject.Find("Timer").GetComponent<Text>();
         Timer.GetComponent<Chronometre>().isTiming = true;
         currentAttractionCount = 0;
@@ -109,6 +117,10 @@ public class DerniereAttraction : MonoBehaviour
 
     IEnumerator Activation()
     {
+        BigCheckPoint.Play();
+        Child1.SetActive(true);
+        Child2.SetActive(true);
+        gameObject.GetComponent<SpriteRenderer>().material = Lampe_Sad;
         animator.SetFloat("Speed", 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
