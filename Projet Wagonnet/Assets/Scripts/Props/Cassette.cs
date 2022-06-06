@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Cassette : MonoBehaviour
 {
     public AudioClip sound;
+    public float tempsFreeze;
     
 //    private InputActions farmerInputActions;
 
@@ -74,7 +75,7 @@ public class Cassette : MonoBehaviour
         CassetteTete.SetActive(true);
         var rb = collision.GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(tempsFreeze);
         player.GetComponent<Animator>().SetBool("isCassetting",false);
         CassetteTete.SetActive(false);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
