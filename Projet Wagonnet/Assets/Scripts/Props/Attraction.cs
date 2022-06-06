@@ -36,10 +36,17 @@ public class Attraction : MonoBehaviour
     
     
 //    private InputActions farmerInputActions;
+     public static Attraction instance;
     
      private void Awake()
      
     {
+        if (instance != null)
+            {
+              Destroy(gameObject);
+              return;
+            }
+            instance = this;
        // interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
         farmerInputActions = new InputActions();
     }
@@ -73,10 +80,10 @@ public class Attraction : MonoBehaviour
     
     private void PressB()                     
     {
-        Timer.GetComponent<Chronometre>().enabled = false;
-        Chronometre.instance.SaveTimer();
         if (isColliding)
         {
+            Timer.GetComponent<Chronometre>().enabled = false;
+            Chronometre.instance.SaveTimer();
             if (_isActivated) return;
             _isActivated = true;
             MyAnimator.SetBool("isHappy",true);

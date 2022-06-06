@@ -56,6 +56,8 @@ public class GameManage : MonoBehaviour
 
     public GameObject PauseFirstButton, OptionFirstButton, DialogueButton;
 
+    private Text Timer;
+
     public static GameManage instance;
 
     private void Awake()
@@ -94,6 +96,7 @@ public class GameManage : MonoBehaviour
     //    SettingsMenu.SetActive(false);
  //    SettingsMenu = GameObject.Find("SettingsPanel");
      //Cursor.lockState = CursorLockMode.Locked;
+     Timer = GameObject.Find("Timer").GetComponent<Text>();
      Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
      theScene = SceneManager.GetActiveScene().name;
      FullScreenToggle.isOn = (PlayerPrefs.GetInt("FullScreen", 1) == 1);
@@ -123,13 +126,26 @@ public class GameManage : MonoBehaviour
     void Update()
     {
         // Condition vibration
-        if(VibrationToggle.isOn == (PlayerPrefs.GetInt("Vibration", 1) == 1))
+        if(VibrationToggle.isOn == true)
         {
             player.GetComponent<Cinemachine.PlayerInput>().isVibrate = true;
         }
         else
         {
            player.GetComponent<Cinemachine.PlayerInput>().isVibrate = false;
+        }
+        if(SpeedRunToggle.isOn == true)
+        {
+            Timer.enabled = true;
+            if(!Attraction.instance.isColliding || !DerniereAttraction.instance.isColliding)
+            {
+            Timer.GetComponent<Chronometre>().enabled = true;
+            }
+        }
+        else
+        {
+           Timer.enabled = false;
+           Timer.GetComponent<Chronometre>().enabled = false;
         }
 
 

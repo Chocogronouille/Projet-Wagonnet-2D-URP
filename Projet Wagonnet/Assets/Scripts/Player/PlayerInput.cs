@@ -636,9 +636,14 @@ namespace Cinemachine
         {
             if(isVibrate)
             {
+            Debug.Log("ok");
             Gamepad.current.SetMotorSpeeds(1f, 0.5f);
             yield return new WaitForSecondsRealtime(0.04f);
             Gamepad.current.SetMotorSpeeds(0f, 0f);
+            }
+            else
+            {
+                Debug.Log("non");
             }
         }
         #endregion

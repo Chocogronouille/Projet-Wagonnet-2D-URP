@@ -32,15 +32,18 @@ public class DerniereAttraction : MonoBehaviour
     public CinemachineVirtualCamera CameraAttraction; //GroupCamera
     public CinemachineVirtualCamera CameraFin;
 
-
-    
-    
-    
 //    private InputActions farmerInputActions;
+    public static DerniereAttraction instance;
     
      private void Awake()
      
     {
+        if (instance != null)
+            {
+              Destroy(gameObject);
+              return;
+            }
+            instance = this;
        // interactBar = GameObject.FindGameObjectWithTag("InteractBar").GetComponent<InteractBar>();
         farmerInputActions = new InputActions();
     }
@@ -73,9 +76,9 @@ public class DerniereAttraction : MonoBehaviour
     
     private void PressB()                     
     {
-        Timer.GetComponent<Chronometre>().enabled = false;
         if (isColliding == true)
         {
+            Timer.GetComponent<Chronometre>().enabled = false;
             MyAnimator.SetBool("isHappy",true);
          //   gameObject.transform.Translate(0,1.1f,0);
             //Effects.gameObject.SetActive(false);
