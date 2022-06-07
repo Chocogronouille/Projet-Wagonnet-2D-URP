@@ -23,6 +23,8 @@ public class DerniereAttraction : MonoBehaviour
     public Material Lampe_Sad;
     private GameObject Child1;
     private GameObject Child2;
+    public bool isInteract1;
+    public bool isReact;
     //public ParticleSystem Effects;
     //public string sceneName;
     //public Animator fadeSystem;
@@ -67,6 +69,15 @@ public class DerniereAttraction : MonoBehaviour
         Timer.GetComponent<Chronometre>().isTiming = true;
         currentAttractionCount = 0;
         //interactBar.SetCount(currentAttractionCount);
+    }
+
+    void Update()
+    {
+        isInteract1 = player.GetComponent<Cinemachine.PlayerInput>().isInteract;
+      if(isReact && !isInteract1)
+      {
+         StartCoroutine(loadNextScene());
+      }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -118,13 +129,14 @@ public class DerniereAttraction : MonoBehaviour
 
     IEnumerator Activation()
     {
+        gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         BigCheckPoint.Play();
         Child1.SetActive(true);
         Child2.SetActive(true);
         gameObject.GetComponent<SpriteRenderer>().material = Lampe_Sad;
         animator.SetFloat("Speed", 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.GetComponent<PlayerInput>().enabled = false;
+   //     player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(1f);
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", false);
@@ -136,18 +148,23 @@ public class DerniereAttraction : MonoBehaviour
    //     GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
         yield return new WaitForSeconds(2f);
-        GetComponent<BoxCollider2D>().enabled = false;
-        player.GetComponent<PlayerInput>().enabled = true;
+   //     GetComponent<BoxCollider2D>().enabled = false;
+   //     player.GetComponent<PlayerInput>().enabled = true;
         CameraFin.Priority = 10;
+        isReact = true;
         //StartCoroutine(loadNextScene());
         
 
 
     }
-    // public IEnumerator loadNextScene()
-    // {
-    //     //fadeSystem.SetTrigger("FadeIn");
-    //     yield return new WaitForSeconds(1f);
+     public IEnumerator loadNextScene()
+     {
+         player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
+         isReact = false;
+         GetComponent<BoxCollider2D>().enabled = false;
+         //fadeSystem.SetTrigger("FadeIn");
+         yield return new WaitForSeconds(1f);
     //     SceneManager.LoadScene(sceneName);
-    // }
+    //    player.GetComponent<PlayerInput>().enabled = true;
+     }
 }

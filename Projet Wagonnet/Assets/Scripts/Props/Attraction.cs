@@ -24,8 +24,8 @@ public class Attraction : MonoBehaviour
     public Animator fadeSystem;
     private bool _isActivated;
     private Text Timer;
-    public bool isInteract1;
-    public bool isReact;
+    private bool isInteract1;
+    private bool isReact;
 
 
     [SerializeField] private GameObject player;
