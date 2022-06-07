@@ -32,11 +32,11 @@ public class LON_Track : MonoBehaviour
         {
             SurfEffects = GameObject.Find("VFX_Surf_Rails_Right").GetComponent<ParticleSystem>();
         }
-         else if(gameObject.tag == "Left")
+        else if(gameObject.tag == "Left")
         {
             SurfEffects = GameObject.Find("VFX_Surf_Rails_Left").GetComponent<ParticleSystem>();
         }
-     //   SurfEffects = GameObject.Find("VFX_Surf_Rails").GetComponent<ParticleSystem>();
+        //   SurfEffects = GameObject.Find("VFX_Surf_Rails").GetComponent<ParticleSystem>();
         Rotz= gameObject.transform.localEulerAngles.z;
 
         if (next is null) return;
@@ -52,6 +52,7 @@ public class LON_Track : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         player.isSurfing = true;
+        player.ResetSpinJump();
         SurfEffects.Play();
         MoveNext();
         collision.transform.localEulerAngles = new Vector3(0,0,Rotz);
