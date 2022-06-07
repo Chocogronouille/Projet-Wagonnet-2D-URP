@@ -24,6 +24,8 @@ public class Attraction : MonoBehaviour
     public Animator fadeSystem;
     private bool _isActivated;
     private Text Timer;
+    public bool isInteract1;
+    public bool isReact;
 
 
     [SerializeField] private GameObject player;
@@ -59,10 +61,19 @@ public class Attraction : MonoBehaviour
      }
     private void Start()
     {
+        isReact = false;
         Timer = GameObject.Find("Timer").GetComponent<Text>();
         Timer.GetComponent<Chronometre>().isTiming = true;
         currentAttractionCount = 0;
         //interactBar.SetCount(currentAttractionCount);
+    }
+    void Update()
+    {
+        isInteract1 = player.GetComponent<Cinemachine.PlayerInput>().isInteract;
+      if(isReact && !isInteract1)
+      {
+         StartCoroutine(loadNextScene());
+      }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -113,6 +124,7 @@ public class Attraction : MonoBehaviour
 
     IEnumerator Activation()
     {
+        gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         animator.SetFloat("Speed", 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
@@ -126,14 +138,15 @@ public class Attraction : MonoBehaviour
       //  GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
         yield return new WaitForSeconds(2.5f);
-        GetComponent<BoxCollider2D>().enabled = false;
-        StartCoroutine(loadNextScene());
-        
-
-
+      //  GetComponent<BoxCollider2D>().enabled = false;
+       // StartCoroutine(loadNextScene());
+       isReact = true;
     }
+
     public IEnumerator loadNextScene()
     {
+        isReact = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         fadeSystem.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(sceneName);

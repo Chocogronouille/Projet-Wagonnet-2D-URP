@@ -47,7 +47,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         TheDialogue();
     }
-    private void TheDialogue()                     
+    public void TheDialogue()                     
     {
          if(isInRange)
         {
