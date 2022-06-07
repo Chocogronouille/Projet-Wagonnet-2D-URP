@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject player;
     private string sentence;
     public bool isFinished;
+    public bool isOpen1;
 
     public static DialogueManager instance;
 
@@ -111,7 +112,7 @@ public class DialogueManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(Timer());
         animator.SetBool("isOpen", false);
-        DialogueTrigger.instance.isOpen = false;
+        isOpen1 = false;
         Debug.Log("EndDialogue");
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isNoneInteract", true);
     }
@@ -121,5 +122,10 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(0.8f);
             player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
             player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isNoneInteract", false);
+    }
+        IEnumerator Triche()
+    {
+        yield return new WaitForSeconds(0.2f);
+   //     isOpen = false;
     }
 }

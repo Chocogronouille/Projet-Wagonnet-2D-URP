@@ -1,6 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -15,17 +18,8 @@ public class DialogueTrigger : MonoBehaviour
     public bool isOpen;
     public bool isOnAir;
 
-    public static DialogueTrigger instance;
-
     private void Awake()
     {
-          if(instance != null)
-        {
-            Debug.LogWarning("Il y a plus d'une instance de DialogueManager dans la scène");
-            return;
-        }
-
-        instance = this;
         farmerInputActions = new InputActions();
         interactUI = GameObject.Find("InteractText");
         Player = GameObject.Find("Player");
@@ -60,13 +54,14 @@ public class DialogueTrigger : MonoBehaviour
             if(!isOpen)
             {
               TriggerDialogue();
-              isOpen = true;
+              DialogueManager.instance.isOpen1 = true;
             }
         }
     }
 
     void Update()
     {
+     isOpen = DialogueManager.instance.isOpen1;
      isOnAir = Player.GetComponent<Cinemachine.PlayerInput>().isAirborn;
     }
 
@@ -89,8 +84,7 @@ public class DialogueTrigger : MonoBehaviour
             DialogueManager.instance.EndDialogue();
         }
     }
-
-    void TriggerDialogue()
+    private void TriggerDialogue()
     {
         GameManage.instance.InteractCloseA();
         DialogueManager.instance.StartDialogue(dialogue);
