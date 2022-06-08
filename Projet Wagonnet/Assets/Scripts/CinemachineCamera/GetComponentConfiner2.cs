@@ -7,8 +7,9 @@ using UnityEngine;
 [ExecuteAlways]
 
 public class GetComponentConfiner2 : MonoBehaviour
-{
-    private CinemachineVirtualCamera camera;
+{ 
+    [SerializeField] CinemachineVirtualCamera camera;
+    private PolygonCollider2D[] confiners;
 
     private void Start()
     {
@@ -17,11 +18,13 @@ public class GetComponentConfiner2 : MonoBehaviour
 
     private void Update()
     {
-        foreach (GameObject x in GameObject.FindGameObjectsWithTag("Confiner2"))
+        confiners = FindObjectsOfType<PolygonCollider2D>();
+        
+        foreach (PolygonCollider2D x in confiners)
         {
-            if (x.GetComponent<PolygonCollider2D>() != null)
+            if (x.gameObject.CompareTag("Confiner2"))
             {
-                camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = x.GetComponent<PolygonCollider2D>();
+                camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = x;
             }
         }
     }

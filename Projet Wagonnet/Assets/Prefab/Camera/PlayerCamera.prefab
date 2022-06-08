@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8747023392751072298}
   - component: {fileID: 8747023392751072301}
   - component: {fileID: 8747023392751072299}
+  - component: {fileID: 8316131345217694300}
   m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: LaCam
@@ -88,6 +89,18 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &8316131345217694300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747023392751072300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f13af7063c791c43a56ae8a49d475c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8747023393379673718
 GameObject:
   m_ObjectHideFlags: 0
