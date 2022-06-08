@@ -89,7 +89,7 @@ public class Attraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManage.instance.InteractOpen();
+            GameManage.instance.InteractOpenA();
             isColliding = true;
 
         }
@@ -120,14 +120,14 @@ public class Attraction : MonoBehaviour
             {
                 gameObject.transform.Translate(0,1.1f,0);
             }
-            GameManage.instance.CountAnim.SetBool("isAttraCount", true);
+         //   GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        GameManage.instance.InteractClose();
+        GameManage.instance.InteractCloseA();
         isColliding = false;
     }
 
@@ -139,7 +139,7 @@ public class Attraction : MonoBehaviour
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(1f);
-        GameManage.instance.CountAnim.SetBool("isAttraCount", false);
+    //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
     //    CounterAttraction.instance.AddCounterAttraction(1);
     //    currentAttractionCount = currentAttractionCount + 1;

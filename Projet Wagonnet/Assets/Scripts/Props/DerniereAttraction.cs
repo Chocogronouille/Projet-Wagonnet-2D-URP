@@ -92,7 +92,7 @@ public class DerniereAttraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManage.instance.InteractOpen();
+            GameManage.instance.InteractOpenA();
             isColliding = true;
         }
     }
@@ -124,7 +124,7 @@ public class DerniereAttraction : MonoBehaviour
             //    gameObject.transform.Translate(0,1.1f,0);
             Debug.Log("ok");
             }
-            GameManage.instance.CountAnim.SetBool("isAttraCount", true);
+         //   GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
         }
     }
@@ -132,7 +132,7 @@ public class DerniereAttraction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         isColliding = false;
-        GameManage.instance.InteractClose();
+        GameManage.instance.InteractCloseA();
     }
 
     IEnumerator Activation()
@@ -148,7 +148,7 @@ public class DerniereAttraction : MonoBehaviour
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(1f);
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", false);
-        GameManage.instance.CountAnim.SetBool("isAttraCount", false);
+    //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
     //    CounterAttraction.instance.AddCounterAttraction(1);
     //    currentAttractionCount = currentAttractionCount + 1;
