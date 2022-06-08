@@ -58,7 +58,15 @@ public class DerniereAttraction : MonoBehaviour
      {
          farmerInputActions.Player.PressB.performed += DoPressB;
          farmerInputActions.Player.PressB.Enable();
+
+         farmerInputActions.Player.Jump.performed += DoReact;
+         farmerInputActions.Player.Jump.Enable();
      }
+
+    private void DoReact(InputAction.CallbackContext obj)
+    {
+        TheReact();
+    }
     private void Start()
     {
         Child1 = GameObject.Find("1");
@@ -90,10 +98,10 @@ public class DerniereAttraction : MonoBehaviour
     }
     private void DoPressB(InputAction.CallbackContext obj)
     {
-        PressB();
+    //    PressB();
     }
     
-    private void PressB()                     
+    private void TheReact()                     
     {
         if (isColliding)
         {
@@ -129,7 +137,7 @@ public class DerniereAttraction : MonoBehaviour
 
     IEnumerator Activation()
     {
-        gameObject.GetComponent<DialogueTrigger>().TheDialogue();
+     //   gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         BigCheckPoint.Play();
         Child1.SetActive(true);
         Child2.SetActive(true);
