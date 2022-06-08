@@ -120,8 +120,7 @@ namespace Cinemachine
         // Settings
       //  [HideInInspector]
       public bool isVibrate;
-
-   //   public AudioClip sound;
+      public AudioClip rails;
         
         #endregion
 
@@ -276,6 +275,7 @@ namespace Cinemachine
         {
             if (isSurfing)
             {
+                AudioManager.instance.PlayClipAt(rails, transform.position);
            //     AudioManager.instance.PlayClipAt(sound, transform.position);
                 animator.SetBool("isSurfing", true);
                 isAirborn =  false;
