@@ -18,6 +18,7 @@ public class DialogueTrigger : MonoBehaviour
     public bool isOpen;
     public bool isOnAir;
     public bool isOnAttraction;
+    public float TimeDialogue;
 
     private void Awake()
     {
@@ -100,7 +101,7 @@ public class DialogueTrigger : MonoBehaviour
     }
         private IEnumerator ChargeDialogue()
     {
-      yield return new WaitForSeconds(2.8f);
+      yield return new WaitForSeconds(TimeDialogue);
       TriggerDialogue();
     }
 }

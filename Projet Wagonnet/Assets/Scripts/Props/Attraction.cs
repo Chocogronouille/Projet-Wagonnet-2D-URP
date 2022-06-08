@@ -26,6 +26,11 @@ public class Attraction : MonoBehaviour
     private Text Timer;
     private bool isInteract1;
     private bool isReact;
+    public float CamAnim;
+    public float AnimDialogue;
+    public float DialogueScene;
+
+
 
 
     [SerializeField] private GameObject player;
@@ -139,7 +144,7 @@ public class Attraction : MonoBehaviour
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(CamAnim);
         MyAnimator.SetBool("isHappy",true);
         BigCheckPoint.Play();
         if(gameObject.name == "Sad_Rails")
@@ -157,7 +162,7 @@ public class Attraction : MonoBehaviour
         // interactBar.SetCount(currentAttractionCount);
       //  GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(AnimDialogue);
       //  GetComponent<BoxCollider2D>().enabled = false;
        // StartCoroutine(loadNextScene());
        isReact = true;
