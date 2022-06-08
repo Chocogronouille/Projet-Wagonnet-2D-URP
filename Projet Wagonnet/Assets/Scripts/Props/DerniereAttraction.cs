@@ -107,7 +107,7 @@ public class DerniereAttraction : MonoBehaviour
         {
             player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", true);
             Timer.GetComponent<Chronometre>().isTiming = false;
-            MyAnimator.SetBool("isHappy",true);
+        //    MyAnimator.SetBool("isHappy",true);
          //   gameObject.transform.Translate(0,1.1f,0);
             //Effects.gameObject.SetActive(false);
             if(gameObject.name == "Sad_Rails")
@@ -140,9 +140,6 @@ public class DerniereAttraction : MonoBehaviour
         gameObject.GetComponent<DialogueTrigger>().isOnAttraction = true;
         player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
      //   gameObject.GetComponent<DialogueTrigger>().TheDialogue();
-        BigCheckPoint.Play();
-        Child1.SetActive(true);
-        Child2.SetActive(true);
         gameObject.GetComponent<SpriteRenderer>().material = Lampe_Sad;
         animator.SetFloat("Speed", 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -152,6 +149,10 @@ public class DerniereAttraction : MonoBehaviour
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", false);
     //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
+        Child1.SetActive(true);
+        Child2.SetActive(true);
+        MyAnimator.SetBool("isHappy",true);
+        BigCheckPoint.Play();
         gameObject.GetComponent<DialogueTrigger>().isOnAttraction = false;
     //    CounterAttraction.instance.AddCounterAttraction(1);
     //    currentAttractionCount = currentAttractionCount + 1;

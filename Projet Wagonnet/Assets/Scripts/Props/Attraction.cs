@@ -108,18 +108,18 @@ public class Attraction : MonoBehaviour
             Chronometre.instance.SaveTimer();
             if (_isActivated) return;
             _isActivated = true;
-            MyAnimator.SetBool("isHappy",true);
+         //   MyAnimator.SetBool("isHappy",true);
          //   gameObject.transform.Translate(0,1.1f,0);
             Effects.gameObject.SetActive(false);
-            BigCheckPoint.Play();
-            if(gameObject.name == "Sad_Rails")
+      //      BigCheckPoint.Play();
+      /*      if(gameObject.name == "Sad_Rails")
             {
               gameObject.transform.Translate(0,-0.75f,0);
             }
             else if(gameObject.name == "Sad_Ballon")
             {
                 gameObject.transform.Translate(0,1.1f,0);
-            }
+            } */
          //   GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
         }
@@ -140,6 +140,16 @@ public class Attraction : MonoBehaviour
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(1.4f);
+        MyAnimator.SetBool("isHappy",true);
+        BigCheckPoint.Play();
+        if(gameObject.name == "Sad_Rails")
+            {
+              gameObject.transform.Translate(0,-0.75f,0);
+            }
+            else if(gameObject.name == "Sad_Ballon")
+            {
+                gameObject.transform.Translate(0,1.1f,0);
+            }
         gameObject.GetComponent<DialogueTrigger>().isOnAttraction = false;
     //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
     //    CounterAttraction.instance.AddCounterAttraction(1);
