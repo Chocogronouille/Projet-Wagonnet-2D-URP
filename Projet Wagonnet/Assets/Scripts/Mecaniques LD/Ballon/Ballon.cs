@@ -98,10 +98,12 @@ public class Ballon : MonoBehaviour
         animator.SetBool("isExplode",false);
 
         yield return new WaitForSeconds(duréeReapparition);
-        
+        animator.SetBool("isRespawn",true);
         GetComponent<SpriteRenderer>().color = Color.white;
         GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.4f);
         GetComponent<BoxCollider2D>().enabled = true;
+        animator.SetBool("isRespawn",false);
         
         StopCoroutine(ReapparitionBallon());
     }
