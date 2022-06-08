@@ -58,7 +58,15 @@ public class DerniereAttraction : MonoBehaviour
      {
          farmerInputActions.Player.PressB.performed += DoPressB;
          farmerInputActions.Player.PressB.Enable();
+
+         farmerInputActions.Player.Jump.performed += DoReact;
+         farmerInputActions.Player.Jump.Enable();
      }
+
+    private void DoReact(InputAction.CallbackContext obj)
+    {
+        TheReact();
+    }
     private void Start()
     {
         Child1 = GameObject.Find("1");
@@ -74,26 +82,26 @@ public class DerniereAttraction : MonoBehaviour
     void Update()
     {
         isInteract1 = player.GetComponent<Cinemachine.PlayerInput>().isInteract;
-      if(isReact && !isInteract1)
+    /*  if(isReact && !isInteract1)
       {
          StartCoroutine(loadNextScene());
-      }
+      } */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            GameManage.instance.InteractOpen();
+            GameManage.instance.InteractOpenA();
             isColliding = true;
         }
     }
     private void DoPressB(InputAction.CallbackContext obj)
     {
-        PressB();
+    //    PressB();
     }
     
-    private void PressB()                     
+    private void TheReact()                     
     {
         if (isColliding)
         {
@@ -116,7 +124,7 @@ public class DerniereAttraction : MonoBehaviour
             //    gameObject.transform.Translate(0,1.1f,0);
             Debug.Log("ok");
             }
-            GameManage.instance.CountAnim.SetBool("isAttraCount", true);
+         //   GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
         }
     }
@@ -124,12 +132,12 @@ public class DerniereAttraction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         isColliding = false;
-        GameManage.instance.InteractClose();
+        GameManage.instance.InteractCloseA();
     }
 
     IEnumerator Activation()
     {
-        gameObject.GetComponent<DialogueTrigger>().TheDialogue();
+     //   gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         BigCheckPoint.Play();
         Child1.SetActive(true);
         Child2.SetActive(true);
@@ -140,7 +148,7 @@ public class DerniereAttraction : MonoBehaviour
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(1f);
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", false);
-        GameManage.instance.CountAnim.SetBool("isAttraCount", false);
+    //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
     //    CounterAttraction.instance.AddCounterAttraction(1);
     //    currentAttractionCount = currentAttractionCount + 1;

@@ -58,7 +58,16 @@ public class Attraction : MonoBehaviour
      {
          farmerInputActions.Player.PressB.performed += DoPressB;
          farmerInputActions.Player.PressB.Enable();
+         
+          farmerInputActions.Player.Jump.performed += DoReact;
+          farmerInputActions.Player.Jump.Enable();
      }
+
+         private void DoReact(InputAction.CallbackContext obj)
+    {
+        TheReact();
+    }
+
     private void Start()
     {
         isReact = false;
@@ -80,17 +89,17 @@ public class Attraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManage.instance.InteractOpen();
+            GameManage.instance.InteractOpenA();
             isColliding = true;
 
         }
     }
     private void DoPressB(InputAction.CallbackContext obj)
     {
-        PressB();
+    //    PressB();
     }
     
-    private void PressB()                     
+    private void TheReact()                     
     {
         if (isColliding)
         {
@@ -111,26 +120,26 @@ public class Attraction : MonoBehaviour
             {
                 gameObject.transform.Translate(0,1.1f,0);
             }
-            GameManage.instance.CountAnim.SetBool("isAttraCount", true);
+         //   GameManage.instance.CountAnim.SetBool("isAttraCount", true);
             StartCoroutine(Activation());
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        GameManage.instance.InteractClose();
+        GameManage.instance.InteractCloseA();
         isColliding = false;
     }
 
     IEnumerator Activation()
     {
-        gameObject.GetComponent<DialogueTrigger>().TheDialogue();
+   //     gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         animator.SetFloat("Speed", 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(1f);
-        GameManage.instance.CountAnim.SetBool("isAttraCount", false);
+    //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
     //    CounterAttraction.instance.AddCounterAttraction(1);
     //    currentAttractionCount = currentAttractionCount + 1;
