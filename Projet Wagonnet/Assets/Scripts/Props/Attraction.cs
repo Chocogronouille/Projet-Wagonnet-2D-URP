@@ -58,7 +58,16 @@ public class Attraction : MonoBehaviour
      {
          farmerInputActions.Player.PressB.performed += DoPressB;
          farmerInputActions.Player.PressB.Enable();
+         
+          farmerInputActions.Player.Jump.performed += DoReact;
+          farmerInputActions.Player.Jump.Enable();
      }
+
+         private void DoReact(InputAction.CallbackContext obj)
+    {
+        TheReact();
+    }
+
     private void Start()
     {
         isReact = false;
@@ -87,10 +96,10 @@ public class Attraction : MonoBehaviour
     }
     private void DoPressB(InputAction.CallbackContext obj)
     {
-        PressB();
+    //    PressB();
     }
     
-    private void PressB()                     
+    private void TheReact()                     
     {
         if (isColliding)
         {
@@ -124,7 +133,7 @@ public class Attraction : MonoBehaviour
 
     IEnumerator Activation()
     {
-        gameObject.GetComponent<DialogueTrigger>().TheDialogue();
+   //     gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         animator.SetFloat("Speed", 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
