@@ -82,10 +82,10 @@ public class DerniereAttraction : MonoBehaviour
     void Update()
     {
         isInteract1 = player.GetComponent<Cinemachine.PlayerInput>().isInteract;
-      if(isReact && !isInteract1)
+    /*  if(isReact && !isInteract1)
       {
          StartCoroutine(loadNextScene());
-      }
+      } */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
