@@ -132,8 +132,8 @@ public class Attraction : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
-        CounterAttraction.instance.AddCounterAttraction(1);
-        currentAttractionCount = currentAttractionCount + 1;
+    //    CounterAttraction.instance.AddCounterAttraction(1);
+    //    currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);
       //  GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;

@@ -142,8 +142,8 @@ public class DerniereAttraction : MonoBehaviour
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", false);
         GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
-        CounterAttraction.instance.AddCounterAttraction(1);
-        currentAttractionCount = currentAttractionCount + 1;
+    //    CounterAttraction.instance.AddCounterAttraction(1);
+    //    currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);
    //     GetComponent<BoxCollider2D>().enabled = false;
         CameraAttraction.Priority = 0;
