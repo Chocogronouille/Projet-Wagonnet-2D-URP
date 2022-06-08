@@ -17,6 +17,7 @@ public class DialogueTrigger : MonoBehaviour
     private GameObject Player;
     public bool isOpen;
     public bool isOnAir;
+    public bool isOnAttraction;
 
     private void Awake()
     {
@@ -53,8 +54,16 @@ public class DialogueTrigger : MonoBehaviour
         {
             if(!isOpen)
             {
-              TriggerDialogue();
-              DialogueManager.instance.isOpen1 = true;
+                if(isOnAttraction)
+                {
+                    DialogueManager.instance.isOpen1 = true;
+                    StartCoroutine(ChargeDialogue());
+                }
+                else
+                {
+                 TriggerDialogue();
+                 DialogueManager.instance.isOpen1 = true;
+                }
             }
         }
     }
@@ -88,5 +97,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         GameManage.instance.InteractCloseA();
         DialogueManager.instance.StartDialogue(dialogue);
+    }
+        private IEnumerator ChargeDialogue()
+    {
+      yield return new WaitForSeconds(2.8f);
+      TriggerDialogue();
     }
 }

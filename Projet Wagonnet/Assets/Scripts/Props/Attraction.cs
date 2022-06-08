@@ -133,14 +133,15 @@ public class Attraction : MonoBehaviour
 
     IEnumerator Activation()
     {
+        gameObject.GetComponent<DialogueTrigger>().isOnAttraction = true;
    //     gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         animator.SetFloat("Speed", 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.4f);
+        gameObject.GetComponent<DialogueTrigger>().isOnAttraction = false;
     //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
-        yield return new WaitForSeconds(0.4f);
     //    CounterAttraction.instance.AddCounterAttraction(1);
     //    currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);

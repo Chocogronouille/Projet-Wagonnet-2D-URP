@@ -137,6 +137,8 @@ public class DerniereAttraction : MonoBehaviour
 
     IEnumerator Activation()
     {
+        gameObject.GetComponent<DialogueTrigger>().isOnAttraction = true;
+        player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
      //   gameObject.GetComponent<DialogueTrigger>().TheDialogue();
         BigCheckPoint.Play();
         Child1.SetActive(true);
@@ -150,6 +152,7 @@ public class DerniereAttraction : MonoBehaviour
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", false);
     //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
+        gameObject.GetComponent<DialogueTrigger>().isOnAttraction = false;
     //    CounterAttraction.instance.AddCounterAttraction(1);
     //    currentAttractionCount = currentAttractionCount + 1;
         // interactBar.SetCount(currentAttractionCount);
