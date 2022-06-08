@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParallaxScrolling : MonoBehaviour
@@ -7,7 +5,7 @@ public class ParallaxScrolling : MonoBehaviour
     private float _length, _startPositionX, _distanceX, _distanceY, _ecartParallax;
     private Vector3 _newPosition;
     
-    [SerializeField] private float parallaxFactor;
+    public float parallaxFactor;
     [SerializeField] private float offsetY;
     public GameObject camPlayer;
 
