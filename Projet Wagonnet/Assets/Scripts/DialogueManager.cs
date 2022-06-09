@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     private string sentence;
     public bool isFinished;
     public bool isOpen1;
+    public GameObject InteractA;
 
     public static DialogueManager instance;
 
@@ -31,6 +32,13 @@ public class DialogueManager : MonoBehaviour
         instance = this;
 
         sentences = new Queue<string>();
+    }
+    void Update()
+    {
+        if(isOpen1)
+        {
+          InteractA.SetActive(false);
+        }
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -112,7 +120,7 @@ public class DialogueManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(Timer());
         animator.SetBool("isOpen", false);
-     //   isOpen1 = false;
+        isOpen1 = false;
         Debug.Log("EndDialogue");
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isNoneInteract", true);
         StartCoroutine(Triche());

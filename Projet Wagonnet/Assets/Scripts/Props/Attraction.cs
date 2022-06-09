@@ -109,6 +109,7 @@ public class Attraction : MonoBehaviour
     {
         if (isColliding)
         {
+            DialogueManager.instance.isOpen1 = true;
             player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", true);
             Timer.GetComponent<Chronometre>().isTiming = false;
             Chronometre.instance.SaveTimer();
