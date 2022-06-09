@@ -49,6 +49,9 @@ public class GameManage : MonoBehaviour
     public Toggle VibrationToggle;
     public Toggle SpeedRunToggle;
 
+    public Sprite CheckToggle;
+    public Sprite CheckUnToggle;
+
     public bool isSpeedRun;
 
     public GameObject ButtonA;
@@ -129,20 +132,32 @@ public class GameManage : MonoBehaviour
         if(VibrationToggle.isOn == true)
         {
             player.GetComponent<Cinemachine.PlayerInput>().isVibrate = true;
+            VibrationToggle.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = CheckToggle;
         }
         else
         {
            player.GetComponent<Cinemachine.PlayerInput>().isVibrate = false;
+           VibrationToggle.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = CheckUnToggle;
         }
         if(SpeedRunToggle.isOn == true)
         {
             Timer.enabled = true;
             Timer.GetComponent<Chronometre>().enabled = true;
+            SpeedRunToggle.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = CheckToggle;
         }
         else
         {
            Timer.enabled = false;
            Timer.GetComponent<Chronometre>().enabled = false;
+           SpeedRunToggle.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = CheckUnToggle;
+        }
+        if(FullScreenToggle.isOn == true)
+        {
+            FullScreenToggle.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = CheckToggle;
+        }
+        else
+        {
+           FullScreenToggle.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = CheckUnToggle;
         }
 
 
