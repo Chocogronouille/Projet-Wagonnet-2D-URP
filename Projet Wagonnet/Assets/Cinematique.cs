@@ -13,6 +13,7 @@ public class Cinematique : MonoBehaviour
     private GameObject CineFin;
     private GameObject Player;
     private GameObject GameManager;
+    private bool isTalk;
 
     private Dialogue dialogue1;
     private void Awake()
@@ -31,19 +32,40 @@ public class Cinematique : MonoBehaviour
         {
             if(CineDebut.activeInHierarchy == true)
             {
+                if(isTalk)
+                {
                 CineDebut.SetActive(false);
                 CineMillieu.SetActive(true);
                 DialogueManager.instance.DisplayNextSentence();
+                }
+                else
+                {
+                DialogueManager.instance.DNSButton();
+                }
             }
             else if(CineMillieu.activeInHierarchy == true)
             {
+                 if(isTalk)
+                {
                 CineMillieu.SetActive(false);
                 CineFin.SetActive(true);
                 DialogueManager.instance.DisplayNextSentence();
+                }
+                else
+                {
+                DialogueManager.instance.DNSButton();
+                }
             }
             else if(CineFin.activeInHierarchy == true)
             {
+                if(isTalk)
+                {
                 GameManager.GetComponent<GameManage>().StartGame();
+                }
+                else
+                {
+                DialogueManager.instance.DNSButton();
+                }
             }
         }
     // Start is called before the first frame update
@@ -62,6 +84,6 @@ public class Cinematique : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        isTalk =  DialogueManager.instance.isFinished;
     }
 }
