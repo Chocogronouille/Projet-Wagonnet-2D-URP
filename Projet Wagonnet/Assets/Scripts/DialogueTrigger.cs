@@ -91,7 +91,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             isInRange = false;
             GameManage.instance.InteractCloseA();
-            DialogueManager.instance.EndDialogue();
+       //     DialogueManager.instance.EndDialogue();
         }
     }
     private void TriggerDialogue()

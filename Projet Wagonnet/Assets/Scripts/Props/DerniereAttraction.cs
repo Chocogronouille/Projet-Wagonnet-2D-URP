@@ -104,7 +104,7 @@ public class DerniereAttraction : MonoBehaviour
     
     private void TheReact()                     
     {
-        if (isColliding)
+        if (isColliding && !isReact)
         {
             player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", true);
             Timer.GetComponent<Chronometre>().isTiming = false;
@@ -138,6 +138,7 @@ public class DerniereAttraction : MonoBehaviour
 
     IEnumerator Activation()
     {
+        isReact = true;
         gameObject.GetComponent<DialogueTrigger>().isOnAttraction = true;
         player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
      //   gameObject.GetComponent<DialogueTrigger>().TheDialogue();
@@ -165,7 +166,6 @@ public class DerniereAttraction : MonoBehaviour
    //     GetComponent<BoxCollider2D>().enabled = false;
    //     player.GetComponent<PlayerInput>().enabled = true;
         CameraFin.Priority = 10;
-        isReact = true;
         //StartCoroutine(loadNextScene());
         
 
@@ -174,7 +174,7 @@ public class DerniereAttraction : MonoBehaviour
      public IEnumerator loadNextScene()
      {
          player.GetComponent<Cinemachine.PlayerInput>().isInteract = true;
-         isReact = false;
+      //   isReact = false;
          GetComponent<BoxCollider2D>().enabled = false;
          //fadeSystem.SetTrigger("FadeIn");
          yield return new WaitForSeconds(1f);

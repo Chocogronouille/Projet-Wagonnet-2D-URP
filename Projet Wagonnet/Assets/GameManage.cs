@@ -298,6 +298,10 @@ IEnumerator IsOpenFalse()
    //     player.GetComponent<Cinemachine.PlayerInput>().isInteract = false;
    StartCoroutine(AllowMovement());
     }
+     public void LoadCinematique()
+    {
+        SceneManager.LoadScene("Cinématiques");
+    }
     public void Resume()
     {
         if(SpeedRunToggle.isOn == false)

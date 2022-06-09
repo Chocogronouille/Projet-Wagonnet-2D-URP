@@ -22,7 +22,7 @@ public class Ballon : MonoBehaviour
 
     public Animator animator;
     public AudioClip sound;
-    private bool isPlaying;
+    public bool isPlaying;
   //  animator.SetBool("isFlying",true);
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -115,6 +115,7 @@ public class Ballon : MonoBehaviour
 
         yield return new WaitForSeconds(0.01f);
         animator.SetBool("isExplode",false);
+        isPlaying = false;
 
         yield return new WaitForSeconds(duréeReapparition);
         animator.SetBool("isRespawn",true);
