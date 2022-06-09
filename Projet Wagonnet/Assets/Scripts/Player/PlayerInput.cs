@@ -121,6 +121,7 @@ namespace Cinemachine
       //  [HideInInspector]
       public bool isVibrate;
       public AudioClip rails;
+      private bool isSoundPlaying;
         
         #endregion
 
@@ -275,11 +276,12 @@ namespace Cinemachine
         {
             if (isSurfing)
             {
-                AudioManager.instance.PlayClipAt(rails, transform.position);
+           //     AudioManager.instance.PlayClipAt(rails, transform.position);
            //     AudioManager.instance.PlayClipAt(sound, transform.position);
                 animator.SetBool("isSurfing", true);
                 isAirborn =  false;
                 isFalling = false;
+                StartCoroutine(RailsSound());
             }
             else
             {
@@ -289,6 +291,16 @@ namespace Cinemachine
             direction = movement.ReadValue<Vector2>();
             characterVelocity = Mathf.Abs(rbCharacter.velocity.x); //N'EST PAS UNE DE MES FONCTIONS
             animator.SetFloat("Speed", characterVelocity); //N'EST PAS UNE DE MES FONCTIONS
+        }
+        private IEnumerator RailsSound()
+        {
+                if(!isSoundPlaying)
+                {
+                   isSoundPlaying = true;
+                   AudioManager.instance.PlayClipAt(rails, transform.position);
+                   yield return new WaitForSeconds(0.06f);
+                   isSoundPlaying = false;
+                }
         }
         
         private void JumpBuffer()
