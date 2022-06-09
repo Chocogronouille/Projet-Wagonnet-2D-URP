@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     public bool isFinished;
     public bool isOpen1;
     public GameObject InteractA;
+    public GameObject TheAttraction;
 
     public static DialogueManager instance;
 
@@ -120,7 +121,7 @@ public class DialogueManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(Timer());
         animator.SetBool("isOpen", false);
-        isOpen1 = false;
+    //    isOpen1 = false;
         Debug.Log("EndDialogue");
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isNoneInteract", true);
         StartCoroutine(Triche());
@@ -134,6 +135,10 @@ public class DialogueManager : MonoBehaviour
     }
         IEnumerator Triche()
     {
+        if(TheAttraction.name == "Lampe_Sad")
+        {
+          TheAttraction.GetComponent<BoxCollider2D>().enabled = false;
+        }
         yield return new WaitForSeconds(2f);
         isOpen1 = false;
     }
