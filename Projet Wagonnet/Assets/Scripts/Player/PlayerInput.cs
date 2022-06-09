@@ -275,7 +275,7 @@ namespace Cinemachine
         {
             if (isSurfing)
             {
-                AudioManager.instance.PlayClipAt(rails, transform.position);
+                //AudioManager.instance.PlayClipAt(rails, transform.position);
            //     AudioManager.instance.PlayClipAt(sound, transform.position);
                 animator.SetBool("isSurfing", true);
                 isAirborn =  false;
