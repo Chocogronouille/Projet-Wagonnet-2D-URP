@@ -1,15 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Cinematique : MonoBehaviour
 {
-
+    private InputActions farmerInputActions;
     private GameObject CineDebut;
     private GameObject CineMillieu;
     private GameObject CineFin;
+    private GameObject Player;
+    private GameObject GameManager;
 
     private Dialogue dialogue1;
+    private void Awake()
+    {
+        GameManager = GameObject.Find("GameManager");
+        farmerInputActions = new InputActions();
+        Player = GameObject.Find("Player");
+    }
+    private void OnEnable()
+        {
+
+            farmerInputActions.Player.Jump.performed += DoCinema;
+            farmerInputActions.Player.Jump.Enable();
+        }
+        private void DoCinema(InputAction.CallbackContext obj)
+        {
+            if(CineDebut.activeInHierarchy == true)
+            {
+                CineDebut.SetActive(false);
+                CineMillieu.SetActive(true);
+                DialogueManager.instance.DisplayNextSentence();
+            }
+            else if(CineMillieu.activeInHierarchy == true)
+            {
+                CineMillieu.SetActive(false);
+                CineFin.SetActive(true);
+                DialogueManager.instance.DisplayNextSentence();
+            }
+            else if(CineFin.activeInHierarchy == true)
+            {
+                GameManager.GetComponent<GameManage>().StartGame();
+            }
+        }
     // Start is called before the first frame update
     void Start()
     {
