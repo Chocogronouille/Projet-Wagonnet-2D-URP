@@ -18,6 +18,7 @@ public class Cinematique : MonoBehaviour
     private Dialogue dialogue1;
     private void Awake()
     {
+        Time.timeScale = 1;
         GameManager = GameObject.Find("GameManager");
         farmerInputActions = new InputActions();
         Player = GameObject.Find("Player");
