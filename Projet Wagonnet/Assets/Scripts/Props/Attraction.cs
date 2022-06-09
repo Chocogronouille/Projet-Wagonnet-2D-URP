@@ -28,7 +28,8 @@ public class Attraction : MonoBehaviour
     private bool isReact;
     public float CamAnim;
     public float AnimDialogue;
-    public float DialogueScene;
+    public AudioClip sound;
+
 
 
 
@@ -147,6 +148,7 @@ public class Attraction : MonoBehaviour
         yield return new WaitForSeconds(CamAnim);
         MyAnimator.SetBool("isHappy",true);
         BigCheckPoint.Play();
+        AudioManager.instance.PlayClipAt(sound, transform.position);
         if(gameObject.name == "Sad_Rails")
             {
               gameObject.transform.Translate(0,-0.75f,0);

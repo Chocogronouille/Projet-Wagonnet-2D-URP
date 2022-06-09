@@ -25,6 +25,7 @@ public class DerniereAttraction : MonoBehaviour
     private GameObject Child2;
     public bool isInteract1;
     public bool isReact;
+    public AudioClip sound;
     //public ParticleSystem Effects;
     //public string sceneName;
     //public Animator fadeSystem;
@@ -152,6 +153,7 @@ public class DerniereAttraction : MonoBehaviour
         Child1.SetActive(true);
         Child2.SetActive(true);
         MyAnimator.SetBool("isHappy",true);
+        AudioManager.instance.PlayClipAt(sound, transform.position);
         BigCheckPoint.Play();
         gameObject.GetComponent<DialogueTrigger>().isOnAttraction = false;
     //    CounterAttraction.instance.AddCounterAttraction(1);
