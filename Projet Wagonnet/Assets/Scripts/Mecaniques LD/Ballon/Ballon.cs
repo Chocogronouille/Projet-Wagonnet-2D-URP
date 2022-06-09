@@ -21,6 +21,8 @@ public class Ballon : MonoBehaviour
     private bool _asJumped;
 
     public Animator animator;
+    public AudioClip sound;
+    private bool isPlaying;
   //  animator.SetBool("isFlying",true);
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -79,8 +81,25 @@ public class Ballon : MonoBehaviour
         StartCoroutine(ReapparitionBallon());
      //   animator.SetBool("isFlying",false);
         animator.SetBool("isExplode",true);
+        if(!isPlaying)
+        {
+        AudioManager.instance.PlayClipAt(sound, transform.position);
+        isPlaying = true;
+        }
      
         PlayerInput.instance.animator.SetBool("isBallon",false);
+    }
+    public void PlaySound()
+    {
+        if(!isPlaying)
+        {
+        AudioManager.instance.PlayClipAt(sound, transform.position);
+        isPlaying = true;
+        }
+    }
+    public void ChangePlaying()
+    {
+        isPlaying = false;
     }
 
     private IEnumerator ReapparitionBallon()
