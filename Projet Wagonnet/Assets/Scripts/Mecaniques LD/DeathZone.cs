@@ -7,6 +7,8 @@ public class DeathZone : MonoBehaviour
     private Transform playerSpawn;
     [SerializeField] private Animator fadeSystem;
     private GameObject player;
+    public AudioClip sound;
+
 
     public bool instanceDeathzone;
 
@@ -28,6 +30,7 @@ public class DeathZone : MonoBehaviour
     { 
         fadeSystem.SetTrigger("FadeIn");
         collision.GetComponent<PlayerInput>().isSurfing = false;
+        AudioManager.instance.PlayClipAt(sound, transform.position);
         var rb = collision.GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(0.5f);

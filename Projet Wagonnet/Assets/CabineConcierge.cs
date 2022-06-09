@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CabineConcierge : MonoBehaviour
 {
+
+    public AudioClip sound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,7 @@ public class CabineConcierge : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         gameObject.GetComponent<Animator>().SetBool("isPassed",true);
+        AudioManager.instance.PlayClipAt(sound, transform.position);
         StartCoroutine(isPassedFalse());
     }
 
