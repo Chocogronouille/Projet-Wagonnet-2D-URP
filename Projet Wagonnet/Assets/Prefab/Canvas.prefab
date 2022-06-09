@@ -4473,8 +4473,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -125, y: -76}
-  m_SizeDelta: {x: 217.8843, y: 112.6424}
+  m_AnchoredPosition: {x: -194, y: -76}
+  m_SizeDelta: {x: 335.8571, y: 112.6424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7128757657821846753
 CanvasRenderer:
@@ -4505,9 +4505,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5dd49b3eacc540408c98eee0de38e0f1, type: 3}
+    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
     m_FontSize: 102
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 102
@@ -5054,6 +5054,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1866117495307750937}
     m_Modifications:
+    - target: {fileID: 1289624432873988968, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
+      propertyPath: m_Text
+      value: Vous avez pris une cassette
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289624432873988968, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    - target: {fileID: 1289624432873988968, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1289624432873988970, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
       propertyPath: m_Name
       value: CassetteRecupText
@@ -5088,11 +5100,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1289624432873988971, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1234.4421
+      value: 1946.1428
       objectReference: {fileID: 0}
     - target: {fileID: 1289624432873988971, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 193.33002
+      value: 193.33
       objectReference: {fileID: 0}
     - target: {fileID: 1289624432873988971, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5124,7 +5136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1289624432873988971, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1289624432873988971, guid: 18055eef11d1b694eb8e179f9ba75fae, type: 3}
       propertyPath: m_AnchoredPosition.y
