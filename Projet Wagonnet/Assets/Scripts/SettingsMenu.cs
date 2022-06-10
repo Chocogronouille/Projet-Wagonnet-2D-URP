@@ -16,6 +16,18 @@ public class SettingsMenu : MonoBehaviour
     public Slider soundSlider;
     private GameObject player;
 
+    public static SettingsMenu instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+            {
+              Destroy(gameObject);
+              return;
+            }
+            instance = this;
+    }
+
     public void Start()
     {
         player = GameObject.Find("Player");
