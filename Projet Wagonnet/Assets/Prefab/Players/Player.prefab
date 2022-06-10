@@ -43,7 +43,7 @@ Camera:
   m_GameObject: {fileID: 820045834}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1268,6 +1268,7 @@ MonoBehaviour:
   Effects: {fileID: 5251310779997486367}
   FallEffects: {fileID: 1396213137474829173}
   isVibrate: 0
+  rails: {fileID: 0}
   railDirection: {x: 0, y: 0}
   railJump: 25
   deplacement: {x: 0, y: 0}
