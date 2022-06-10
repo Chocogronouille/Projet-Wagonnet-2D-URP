@@ -9,13 +9,7 @@ public class ChargeMenu : MonoBehaviour
     private float MusicVolume;
     private float SoundVolume;
     private bool isDownVolume;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
     //    MusicVolume = SettingsMenu.instance.musicSlider.GetComponent<Slider>().value;
@@ -29,7 +23,7 @@ public class ChargeMenu : MonoBehaviour
     {
       GameManage.instance.LoadMenu();
     }
-        public void BaseVolume()
+    public void BaseVolume()
     {
       MusicVolume = SettingsMenu.instance.musicSlider.GetComponent<Slider>().value;
       SoundVolume = SettingsMenu.instance.soundSlider.GetComponent<Slider>().value;
