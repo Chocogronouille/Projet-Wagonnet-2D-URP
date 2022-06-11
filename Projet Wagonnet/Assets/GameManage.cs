@@ -28,6 +28,7 @@ public class GameManage : MonoBehaviour
     public GameObject CassetteText;
     [HideInInspector]
     public Animator CassetteAnim;
+    public string CassetteTheText;
 
     // UI Count
     [HideInInspector] 

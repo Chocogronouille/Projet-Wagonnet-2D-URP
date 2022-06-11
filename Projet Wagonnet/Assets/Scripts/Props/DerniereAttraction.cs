@@ -26,6 +26,7 @@ public class DerniereAttraction : MonoBehaviour
     public bool isInteract1;
     public bool isReact;
     public AudioClip sound;
+    public string ReactText;
     //public ParticleSystem Effects;
     //public string sceneName;
     //public Animator fadeSystem;
@@ -151,6 +152,9 @@ public class DerniereAttraction : MonoBehaviour
         player.GetComponent<Cinemachine.PlayerInput>().animator.SetBool("isHuging", false);
     //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
+        GameManage.instance.CassetteText.GetComponent<Text>().text = ReactText;
+        GameManage.instance.CassetteText.GetComponent<Text>().fontSize = 70;
+        GameManage.instance.CassetteOpen();
         Child1.SetActive(true);
         Child2.SetActive(true);
         MyAnimator.SetBool("isHappy",true);

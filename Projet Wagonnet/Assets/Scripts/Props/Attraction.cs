@@ -29,6 +29,7 @@ public class Attraction : MonoBehaviour
     public float CamAnim;
     public float AnimDialogue;
     public AudioClip sound;
+    public string ReactText;
 
 
 
@@ -147,6 +148,9 @@ public class Attraction : MonoBehaviour
         player.GetComponent<PlayerInput>().enabled = false;
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(CamAnim);
+        GameManage.instance.CassetteText.GetComponent<Text>().text = ReactText;
+        GameManage.instance.CassetteText.GetComponent<Text>().fontSize = 80;
+        GameManage.instance.CassetteOpen();
         MyAnimator.SetBool("isHappy",true);
         BigCheckPoint.Play();
         AudioManager.instance.PlayClipAt(sound, transform.position);
