@@ -153,7 +153,7 @@ public class DerniereAttraction : MonoBehaviour
     //    GameManage.instance.CountAnim.SetBool("isAttraCount", false);
         yield return new WaitForSeconds(0.4f);
         GameManage.instance.CassetteText.GetComponent<Text>().text = ReactText;
-        GameManage.instance.CassetteText.GetComponent<Text>().fontSize = 70;
+        GameManage.instance.CassetteText.GetComponent<Text>().fontSize = 90;
         GameManage.instance.CassetteOpen();
         Child1.SetActive(true);
         Child2.SetActive(true);
