@@ -149,7 +149,7 @@ public class Attraction : MonoBehaviour
         CameraAttraction.Priority = 5;
         yield return new WaitForSeconds(CamAnim);
         GameManage.instance.CassetteText.GetComponent<Text>().text = ReactText;
-        GameManage.instance.CassetteText.GetComponent<Text>().fontSize = 100;
+        GameManage.instance.CassetteText.GetComponent<Text>().fontSize = 80;
         GameManage.instance.CassetteOpen();
         MyAnimator.SetBool("isHappy",true);
         BigCheckPoint.Play();
