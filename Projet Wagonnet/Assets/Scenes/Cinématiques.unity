@@ -988,12 +988,21 @@ MonoBehaviour:
   dialogue:
     name: Le narrateur
     sentences:
-    - "Premi\xE8re phrase Premi\xE8re phrase Premi\xE8re phrase Premi\xE8re phrase
-      Premi\xE8re phrase Premi\xE8re phrase Premi\xE8re phrase"
-    - "Deuxi\xE8me phrase Deuxi\xE8me phrase Deuxi\xE8me phrase Deuxi\xE8me phrase
-      Deuxi\xE8me phrase Deuxi\xE8me phrase Deuxi\xE8me phrase"
-    - "Troisi\xE8me phrase Troisi\xE8me phrase Troisi\xE8me phrase Troisi\xE8me phrase
-      Troisi\xE8me phrase Troisi\xE8me phrase Troisi\xE8me phrase"
+    - "Bienvenue dans le monde de Lucania et plus pr\xE9cisement dans la r\xE9gion
+      de Publicola.\nUn endroit calme prosp\xE8re o\xF9 les hommes et les machines
+      vivent en harmonie et o\xF9 le jeu et l'amusement sont au coeur du mode de
+      vie de ce peuple.\nJusqu'\xE0 un beau jour..."
+    - "Un \xE9trange \xE9v\xE9nement causa la mise en d\xE9route des principales
+      attractions de la f\xEAte foraine r\xE9gionale.\r\nLe probl\xE8me est que ces
+      attractions sont la raison pour laquel le peuple est si heureux.\nEt si elle
+      devait ne plus exister, alors l'ennui et la triststesse s'abattront sur tout
+      le monde.\nCependant il reste peut \xEAtre un espoir..."
+    - "Et cette espoir r\xE9side, dans un jeune t\xE9l\xE9viseur cathodique. Ayant
+      appris les derni\xE8res nouvelles sur son petit \xE9cran, il se d\xE9cida \xE0
+      prendre les choses en main et partis sur le champ d\xE9couvir ce qui a caus\xE9
+      la ruine des attractions, comment les sauver et permettre ainsi aux gens de
+      s'amuser pour l'\xE9ternit\xE9.\nCeci est le r\xE9cit du robot le plus mignon,
+      le plus gentils et le plus lumineux de tous, LUCE."
   isOpen: 0
   isOnAir: 0
   isOnAttraction: 0
@@ -1079,7 +1088,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 831298165}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -1139,7 +1148,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 831298166}
-  m_RootOrder: 11
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1783,7 +1792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 383826372, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 455266282, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_Enabled
@@ -1791,7 +1800,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 507483128, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 507483128, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1924.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 507483128, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: 507483129, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_Enabled
@@ -1835,7 +1852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196056645, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1322301593, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_LocalScale.x
@@ -1865,6 +1882,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetVolume
       objectReference: {fileID: 0}
+    - target: {fileID: 1428628085, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -202.7026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1428628085, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -114
+      objectReference: {fileID: 0}
     - target: {fileID: 1517595695, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1884,6 +1909,10 @@ PrefabInstance:
     - target: {fileID: 1610903625, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702835042, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717884906, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder
@@ -2151,7 +2180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5379390015977840329, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5716201271149089490, guid: 20f5d0529d9d9a44394cf0fdd2112e11, type: 3}
       propertyPath: m_Name
@@ -2985,7 +3014,7 @@ RectTransform:
   - {fileID: 1082107270}
   - {fileID: 313891611}
   m_Father: {fileID: 831298166}
-  m_RootOrder: 4
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3510,7 +3539,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 831298166}
-  m_RootOrder: 15
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!108 &1682871503
 Light:
